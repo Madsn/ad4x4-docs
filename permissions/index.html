@@ -254,6 +254,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Permissions System
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -263,6 +274,61 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#action-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Action (required)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#levels-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Levels (optional)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#group-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Group (required)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-in-backend-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage in backend code
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -456,6 +522,50 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#action-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Action (required)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#levels-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Levels (optional)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#group-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Group (required)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-in-backend-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage in backend code
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -470,6 +580,45 @@
 
 
 <h1 id="permissions">Permissions<a class="headerlink" href="#permissions" title="Permanent link">&para;</a></h1>
+<p>This API uses a concept of dynamically defined permissions, which can be edited via the Django Admin interface.
+This page is intended simply to explain the concept in general terms.
+Pages focusing on specific features or areas of the API will go into further detail on the specific permissions
+relevant to those endpoints.</p>
+<p>The permissions for API endpoints are controlled to some extent by hard-coded logic (e.g. trip lead can edit a trip),
+but also in many cases through the <code>PermissionMatrix</code> model. This model is intended to be edited only via Django Admin
+interface, with read-only API endpoints available for clients to determine permissions that apply for an authenticated user.</p>
+<p>The <code>PermissionMatrix</code> model contains 3 columns as shown below, with subsequent sections explaining purpose of each in
+more detail:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">PermissionMatrix</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">ActionChoice</span><span class="p">)</span>
+    <span class="n">levels</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Level</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s2">&quot;permission_matrix_level&quot;</span><span class="p">)</span>
+    <span class="n">group</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Group</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">CASCADE</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s2">&quot;permission_matrix_group&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h2 id="action-required">Action (required)<a class="headerlink" href="#action-required" title="Permanent link">&para;</a></h2>
+<p>The <code>action</code> column indicates which permission the entity/row relates to.</p>
+<p>The full list of <code>ActionChoice</code> options can be fetched via the <code>api/choices/permissionmatrixaction</code> endpoint,
+but include things like <code>CREATE_TRIP</code>, <code>CREATE_TRIP_WITH_APPROVAL</code> and <code>APPROVE_TRIP</code>.</p>
+<h2 id="levels-optional">Levels (optional)<a class="headerlink" href="#levels-optional" title="Permanent link">&para;</a></h2>
+<p>The <code>levels</code> column indicates which levels the permission applies to. It is possible to select multiple levels.
+For trips this would be e.g. the level of that trip, while for upgrade request it would be the level that
+the applicant is requesting to be upgraded to.</p>
+<p>If left blank, the permission applies to ALL levels.</p>
+<p>For some actions the levels field has no effect. In those cases that will be
+indicated through the name of the <code>action</code> in the Django Admin interface.</p>
+<h2 id="group-required">Group (required)<a class="headerlink" href="#group-required" title="Permanent link">&para;</a></h2>
+<p>The <code>group</code> column indicates which groups the permission applies to. All members of the group will be granted
+the permission to perform the action for the appropriate levels.</p>
+<h2 id="usage-in-backend-code">Usage in backend code<a class="headerlink" href="#usage-in-backend-code" title="Permanent link">&para;</a></h2>
+<p>The <code>views</code> (endpoints) make use of these permissions mainly via the <code>permission_classes</code> property of a django-rest-framework
+viewset, e.g. as seen in this example:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">api.permissions</span> <span class="kn">import</span> <span class="n">CanCreateTripPermission</span>
+
+<span class="k">class</span> <span class="nc">TripCreateView</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">CreateAPIView</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Trip</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">CreateTripSerializer</span>
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">CanCreateTripPermission</span><span class="p">]</span>
+</code></pre></div>
 
 
 
