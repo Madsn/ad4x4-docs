@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://api.ad4x4.com/readme/</loc>
+         <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+         <loc>https://api.ad4x4.com/readme/api-reference/</loc>
+         <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+         <loc>https://api.ad4x4.com/readme/contact/</loc>
+         <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+         <loc>https://api.ad4x4.com/readme/getting-started/</loc>
+         <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+         <loc>https://api.ad4x4.com/readme/user-guide/</loc>
+         <lastmod>2024-12-26</lastmod>
+    </url>
+</urlset>
