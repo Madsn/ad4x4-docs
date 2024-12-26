@@ -5,11 +5,7 @@
          <lastmod>2024-12-26</lastmod>
     </url>
     <url>
-         <loc>https://api.ad4x4.com/readme/api-reference/</loc>
-         <lastmod>2024-12-26</lastmod>
-    </url>
-    <url>
-         <loc>https://api.ad4x4.com/readme/contact/</loc>
+         <loc>https://api.ad4x4.com/readme/auth-profiles/</loc>
          <lastmod>2024-12-26</lastmod>
     </url>
     <url>
@@ -17,7 +13,23 @@
          <lastmod>2024-12-26</lastmod>
     </url>
     <url>
-         <loc>https://api.ad4x4.com/readme/user-guide/</loc>
+         <loc>https://api.ad4x4.com/readme/levels-groups/</loc>
+         <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+         <loc>https://api.ad4x4.com/readme/meeting-points/</loc>
+         <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+         <loc>https://api.ad4x4.com/readme/notifications/</loc>
+         <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+         <loc>https://api.ad4x4.com/readme/trips/</loc>
+         <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+         <loc>https://api.ad4x4.com/readme/upgrade-requests/</loc>
          <lastmod>2024-12-26</lastmod>
     </url>
 </urlset>
