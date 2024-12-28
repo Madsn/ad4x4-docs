@@ -587,14 +587,9 @@ relevant to those endpoints.</p>
 <p>The permissions for API endpoints are controlled to some extent by hard-coded logic (e.g. trip lead can edit a trip),
 but also in many cases through the <code>PermissionMatrix</code> model. This model is intended to be edited only via Django Admin
 interface, with read-only API endpoints available for clients to determine permissions that apply for an authenticated user.</p>
-<p>The <code>PermissionMatrix</code> model contains 3 columns as shown below, with subsequent sections explaining purpose of each in
-more detail:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">PermissionMatrix</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-    <span class="n">action</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">ActionChoice</span><span class="p">)</span>
-    <span class="n">levels</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Level</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s2">&quot;permission_matrix_level&quot;</span><span class="p">)</span>
-    <span class="n">group</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Group</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">CASCADE</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s2">&quot;permission_matrix_group&quot;</span><span class="p">)</span>
-</code></pre></div>
-
+<p>The <code>PermissionMatrix</code> model contains 3 properties as shown below, with subsequent sections explaining purpose of each in
+more detail:
+<img alt="PermissionMatrix object" src="./images/PermissionMatrix-admin" /></p>
 <h2 id="action-required">Action (required)<a class="headerlink" href="#action-required" title="Permanent link">&para;</a></h2>
 <p>The <code>action</code> column indicates which permission the entity/row relates to.</p>
 <p>The full list of <code>ActionChoice</code> options can be fetched via the <code>api/choices/permissionmatrixaction</code> endpoint,
