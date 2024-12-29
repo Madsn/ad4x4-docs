@@ -353,6 +353,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Trips
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -362,6 +373,52 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#trip-register-and-unregister" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trip Register and Unregister
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trip-check-in-and-check-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trip Check-in and Check-out
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accepting-members-from-waiting-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accepting Members from Waiting List
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -458,6 +515,41 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#trip-register-and-unregister" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trip Register and Unregister
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trip-check-in-and-check-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trip Check-in and Check-out
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accepting-members-from-waiting-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accepting Members from Waiting List
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -472,6 +564,14 @@
 
 
 <h1 id="trips">Trips<a class="headerlink" href="#trips" title="Permanent link">&para;</a></h1>
+<h2 id="trip-register-and-unregister">Trip Register and Unregister<a class="headerlink" href="#trip-register-and-unregister" title="Permanent link">&para;</a></h2>
+<h2 id="trip-check-in-and-check-out">Trip Check-in and Check-out<a class="headerlink" href="#trip-check-in-and-check-out" title="Permanent link">&para;</a></h2>
+<h2 id="accepting-members-from-waiting-list">Accepting Members from Waiting List<a class="headerlink" href="#accepting-members-from-waiting-list" title="Permanent link">&para;</a></h2>
+<p>When a member cancels their registration to a trip, the member first in line on waiting list will automatically
+be added to the registered list.</p>
+<p>Trip lead, deputy leads and any member with 'EDIT<em>TRIP</em>REGISTRATIONS' permission can accept a specific member
+from waitlist to the registered list via the <code>/api/trips/{id}/addfromwaitlist</code> endpoint.
+This will ignore trip capacity, allowing the count of registered members to exceed the trip capacity.</p>
 
 
 
