@@ -12,13 +12,13 @@
         <meta name="author" content="Redbeard">
       
       
-        <link rel="canonical" href="https://api.ad4x4.com/readme/levels-groups/">
+        <link rel="canonical" href="https://api.ad4x4.com/readme/account-deletion/">
       
       
-        <link rel="prev" href="../auth-profiles/">
+        <link rel="prev" href="../upgrade-requests/">
       
       
-        <link rel="next" href="../trips/">
+        <link rel="next" href="../notifications/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Levels and Groups - AD4x4 API</title>
+        <title>Account Deletion - AD4x4 API</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#levels-and-groups" class="md-skip">
+        <a href="#account-deletion" class="md-skip">
           Skip to content
         </a>
       
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Levels and Groups
+              Account Deletion
             
           </span>
         </div>
@@ -334,39 +334,6 @@
                 
   
   
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    Levels and Groups
-    
-  </span>
-  
-
-      </a>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
   
   
     <li class="md-nav__item">
@@ -427,6 +394,113 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Account Deletion
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Account Deletion
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Endpoint
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Endpoint">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      Responses
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anonymization-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      Anonymization Details
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -505,6 +579,56 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Endpoint
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Endpoint">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      Responses
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anonymization-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      Anonymization Details
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -519,7 +643,42 @@
 
 
 
-<h1 id="levels-and-groups">Levels and Groups<a class="headerlink" href="#levels-and-groups" title="Permanent link">&para;</a></h1>
+<h1 id="account-deletion">Account Deletion<a class="headerlink" href="#account-deletion" title="Permanent link">&para;</a></h1>
+<p>This document explains how a user can request the deletion of their account.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The account deletion process is designed to be simple and secure. It involves two main steps:
+1.  The user makes an API request to signal their intent to delete their account.
+2.  A background process runs periodically, and after a 3-day grace period, it anonymizes the user's data.</p>
+<p>This grace period allows for a "cooling off" period, during which the user can change their mind. The anonymization process ensures that all personally identifiable information is removed from the user's profile, while preserving the integrity of any content they may have created (e.g., trip comments).</p>
+<h2 id="api-endpoint">API Endpoint<a class="headerlink" href="#api-endpoint" title="Permanent link">&para;</a></h2>
+<p>To initiate the account deletion process, the client must make a POST request to the following endpoint:</p>
+<p><code>POST /api/members/request-deletion</code></p>
+<p>This endpoint does not require any request body. The authenticated user associated with the request will be marked for deletion.</p>
+<h3 id="responses">Responses<a class="headerlink" href="#responses" title="Permanent link">&para;</a></h3>
+<p><strong>Success</strong></p>
+<p>A successful request will return a <code>200 OK</code> status code and a JSON body indicating success:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Error: Deletion Request Already Exists</strong></p>
+<p>If the user has already requested deletion and a request is pending, the API will return a <code>400 Bad Request</code> status code and the following JSON error message:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;deletion_request_already_exists&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="anonymization-details">Anonymization Details<a class="headerlink" href="#anonymization-details" title="Permanent link">&para;</a></h2>
+<p>After the 3-day grace period, the user's account will be anonymized. This is a permanent and irreversible action. The following fields will be changed:</p>
+<ul>
+<li>The user will be marked as inactive.</li>
+<li>The username will be replaced with a randomly generated string (e.g., <code>deleted_user_...</code>).</li>
+<li>The email address will be changed to a dummy address (e.g., <code>...@deleted.com</code>).</li>
+<li>The first name will be set to "Anonymous".</li>
+<li>The last name will be cleared.</li>
+</ul>
 
 
 

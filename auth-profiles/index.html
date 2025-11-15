@@ -18,7 +18,7 @@
         <link rel="prev" href="../permissions/">
       
       
-        <link rel="next" href="../levels-groups/">
+        <link rel="next" href="../trips/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#auth-and-profiles" class="md-skip">
+        <a href="#authentication-and-profiles" class="md-skip">
           Skip to content
         </a>
       
@@ -323,6 +323,19 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Auth and Profiles
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -335,29 +348,133 @@
 
       </a>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../levels-groups/" class="md-nav__link">
         
-  
-  
-  <span class="md-ellipsis">
-    Levels and Groups
-    
-  </span>
-  
 
-      </a>
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#obtaining-a-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      Obtaining a Token
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refreshing-a-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      Refreshing a Token
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registration-and-password-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Registration and Password Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Registration and Password Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Registration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      Change Password
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other Endpoints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#profile-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profile Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Profile Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#retrieving-a-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retrieving a Profile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updating-a-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Updating a Profile
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -422,6 +539,29 @@
   
   <span class="md-ellipsis">
     Upgrade Requests
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../account-deletion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Account Deletion
     
   </span>
   
@@ -505,6 +645,122 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#obtaining-a-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      Obtaining a Token
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refreshing-a-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      Refreshing a Token
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registration-and-password-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Registration and Password Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Registration and Password Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Registration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      Change Password
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other Endpoints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#profile-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profile Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Profile Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#retrieving-a-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retrieving a Profile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updating-a-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Updating a Profile
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -519,7 +775,109 @@
 
 
 
-<h1 id="auth-and-profiles">Auth and Profiles<a class="headerlink" href="#auth-and-profiles" title="Permanent link">&para;</a></h1>
+<h1 id="authentication-and-profiles">Authentication and Profiles<a class="headerlink" href="#authentication-and-profiles" title="Permanent link">&para;</a></h1>
+<p>This document outlines the API endpoints for user authentication, registration, and profile management.</p>
+<h2 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h2>
+<p>Authentication is handled using JSON Web Tokens (JWT). To access protected endpoints, you must include an <code>Authorization</code> header with a valid JWT access token.</p>
+<p><code>Authorization: Bearer &lt;your_access_token&gt;</code></p>
+<h3 id="obtaining-a-token">Obtaining a Token<a class="headerlink" href="#obtaining-a-token" title="Permanent link">&para;</a></h3>
+<p>To obtain an access and refresh token pair, make a <code>POST</code> request to the <code>/api/token/</code> endpoint with the user's credentials.</p>
+<p><strong>POST</strong> <code>/api/token/</code></p>
+<p><strong>Request Body:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your_username&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your_password&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Success Response:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;refresh&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;access&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="refreshing-a-token">Refreshing a Token<a class="headerlink" href="#refreshing-a-token" title="Permanent link">&para;</a></h3>
+<p>Access tokens are short-lived. When an access token expires, you can obtain a new one by making a <code>POST</code> request to the <code>/api/token/refresh/</code> endpoint with your refresh token.</p>
+<p><strong>POST</strong> <code>/api/token/refresh/</code></p>
+<p><strong>Request Body:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;refresh&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your_refresh_token&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Success Response:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;access&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="registration-and-password-management">Registration and Password Management<a class="headerlink" href="#registration-and-password-management" title="Permanent link">&para;</a></h2>
+<p>The API provides endpoints for user registration and password management, powered by the <code>rest_registration</code> library.</p>
+<h3 id="registration">Registration<a class="headerlink" href="#registration" title="Permanent link">&para;</a></h3>
+<p><strong>POST</strong> <code>/api/auth/register/</code></p>
+<p>The request body should include the user's details. Refer to the <code>MemberRegistrationSerializer</code> for the full list of required and optional fields.</p>
+<h3 id="change-password">Change Password<a class="headerlink" href="#change-password" title="Permanent link">&para;</a></h3>
+<p>Authenticated users can change their password by making a <code>POST</code> request to <code>/api/auth/change-password/</code>.</p>
+<p><strong>POST</strong> <code>/api/auth/change-password/</code></p>
+<p><strong>Request Body:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;old_password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;current_password&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;new_password&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;password2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;new_password_confirmation&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><em>Note: <code>password</code> and <code>password2</code> must match.</em></p>
+<h3 id="other-endpoints">Other Endpoints<a class="headerlink" href="#other-endpoints" title="Permanent link">&para;</a></h3>
+<p>The <code>rest_registration</code> library also provides endpoints for:
+*   Resetting a forgotten password
+*   Verifying registration via email</p>
+<p>Please refer to the library's documentation for details on these flows.</p>
+<h2 id="profile-management">Profile Management<a class="headerlink" href="#profile-management" title="Permanent link">&para;</a></h2>
+<h3 id="retrieving-a-profile">Retrieving a Profile<a class="headerlink" href="#retrieving-a-profile" title="Permanent link">&para;</a></h3>
+<p>To retrieve a user's profile, make a <code>GET</code> request to <code>/api/members/{id}/</code>.</p>
+<p><strong>GET</strong> <code>/api/members/{id}/</code></p>
+<p><strong>Success Response:</strong>
+The response will be a JSON object containing the user's profile information. The fields returned are defined by the <code>ProfileSerializer</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;testuser&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;test@example.com&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;first_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Test&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;last_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;User&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;phone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1234567890&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;car_brand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toyota&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;car_model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Land Cruiser&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;car_year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2022</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;car_color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;White&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;car_image&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;dob&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2000-01-01&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ice_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Jane Doe&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ice_phone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0987654321&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Newbie&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;trip_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;avatar&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;permissions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;paid_member&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;date_joined&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-01-01T12:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;city&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dubai&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;gender&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;M&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;nationality&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AE&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="updating-a-profile">Updating a Profile<a class="headerlink" href="#updating-a-profile" title="Permanent link">&para;</a></h3>
+<p>To update a user's profile, make a <code>PATCH</code> request to <code>/api/members/{id}/</code>. Users can only update their own profiles unless they are an administrator.</p>
+<p><strong>PATCH</strong> <code>/api/members/{id}/</code></p>
+<p><strong>Request Body:</strong>
+The request body should contain the fields to be updated. For a list of editable fields, refer to the <code>EditMemberSerializer</code>. Note that some fields like <code>username</code>, <code>email</code>, and <code>level</code> are read-only.</p>
+<p><strong>Success Response:</strong>
+A successful update will return a <code>200 OK</code> status code and the updated profile data.</p>
 
 
 

@@ -337,29 +337,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../levels-groups/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Levels and Groups
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../trips/" class="md-nav__link">
         
   
@@ -392,6 +369,19 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Meeting Points
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -403,6 +393,94 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Endpoints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-meeting-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      List Meeting Points
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retrieve-a-meeting-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retrieve a Meeting Point
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-meeting-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a Meeting Point
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-a-meeting-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update a Meeting Point
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-a-meeting-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      Delete a Meeting Point
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -422,6 +500,29 @@
   
   <span class="md-ellipsis">
     Upgrade Requests
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../account-deletion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Account Deletion
     
   </span>
   
@@ -505,6 +606,83 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Endpoints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-meeting-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      List Meeting Points
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retrieve-a-meeting-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retrieve a Meeting Point
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-meeting-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a Meeting Point
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-a-meeting-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update a Meeting Point
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-a-meeting-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      Delete a Meeting Point
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -520,6 +698,56 @@
 
 
 <h1 id="meeting-points">Meeting Points<a class="headerlink" href="#meeting-points" title="Permanent link">&para;</a></h1>
+<p>This document outlines the API endpoints for managing meeting points.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>Meeting points are predefined locations where trip participants can gather. The API provides endpoints for creating, viewing, updating, and deleting these points.</p>
+<h2 id="endpoints">Endpoints<a class="headerlink" href="#endpoints" title="Permanent link">&para;</a></h2>
+<h3 id="list-meeting-points">List Meeting Points<a class="headerlink" href="#list-meeting-points" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>GET</strong> <code>/api/meetingpoints/</code><ul>
+<li>Retrieves a list of all available meeting points.</li>
+</ul>
+</li>
+</ul>
+<h3 id="retrieve-a-meeting-point">Retrieve a Meeting Point<a class="headerlink" href="#retrieve-a-meeting-point" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>GET</strong> <code>/api/meetingpoints/{id}/</code><ul>
+<li>Retrieves the details of a single meeting point.</li>
+</ul>
+</li>
+</ul>
+<h3 id="create-a-meeting-point">Create a Meeting Point<a class="headerlink" href="#create-a-meeting-point" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>POST</strong> <code>/api/meetingpoints/</code><ul>
+<li>Creates a new meeting point. Requires the <code>CREATE_MEETING_POINTS</code> permission.</li>
+<li><strong>Request Body:</strong>
+    <code>json
+    {
+        "name": "Al Faya",
+        "lat": 24.733,
+        "lon": 55.766,
+        "link": "https://goo.gl/maps/...",
+        "area": "AUH"
+    }</code>
+    <em>Note: The <code>area</code> field can be one of <code>DXB</code>, <code>NOR</code>, <code>AUH</code>, <code>AAN</code>, or <code>LIW</code>.</em></li>
+</ul>
+</li>
+</ul>
+<h3 id="update-a-meeting-point">Update a Meeting Point<a class="headerlink" href="#update-a-meeting-point" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>PUT</strong> or <strong>PATCH</strong> <code>/api/meetingpoints/{id}/</code><ul>
+<li>Updates an existing meeting point. Requires the <code>EDIT_MEETING_POINTS</code> permission.</li>
+<li>The request body should contain the fields to be updated.</li>
+</ul>
+</li>
+</ul>
+<h3 id="delete-a-meeting-point">Delete a Meeting Point<a class="headerlink" href="#delete-a-meeting-point" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>DELETE</strong> <code>/api/meetingpoints/{id}/</code><ul>
+<li>Deletes a meeting point. Requires the <code>DELETE_MEETING_POINTS</code> permission.</li>
+</ul>
+</li>
+</ul>
 
 
 
