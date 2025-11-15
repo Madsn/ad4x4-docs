@@ -12,13 +12,9 @@
         <meta name="author" content="Redbeard">
       
       
-        <link rel="canonical" href="https://api.ad4x4.com/readme/account-deletion/">
+        <link rel="canonical" href="https://api.ad4x4.com/readme/todo/">
       
       
-        <link rel="prev" href="../upgrade-requests/">
-      
-      
-        <link rel="next" href="../notifications/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -26,7 +22,7 @@
     
     
       
-        <title>Account Deletion - AD4x4 API</title>
+        <title>Todo - AD4x4 API</title>
       
     
     
@@ -75,11 +71,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#account-deletion" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -112,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Account Deletion
+              Todo
             
           </span>
         </div>
@@ -271,20 +262,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -300,7 +289,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Documentation
@@ -403,32 +392,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Account Deletion
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../account-deletion/" class="md-nav__link">
         
   
   
@@ -439,68 +406,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      Overview
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api-endpoint" class="md-nav__link">
-    <span class="md-ellipsis">
-      API Endpoint
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="API Endpoint">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#responses" class="md-nav__link">
-    <span class="md-ellipsis">
-      Responses
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#anonymization-details" class="md-nav__link">
-    <span class="md-ellipsis">
-      Anonymization Details
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -576,58 +481,6 @@
   
   
   
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      Overview
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api-endpoint" class="md-nav__link">
-    <span class="md-ellipsis">
-      API Endpoint
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="API Endpoint">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#responses" class="md-nav__link">
-    <span class="md-ellipsis">
-      Responses
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#anonymization-details" class="md-nav__link">
-    <span class="md-ellipsis">
-      Anonymization Details
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -643,43 +496,20 @@
 
 
 
-<h1 id="account-deletion">Account Deletion<a class="headerlink" href="#account-deletion" title="Permanent link">&para;</a></h1>
-<p>This document explains how a user can request the deletion of their account.</p>
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>The account deletion process is designed to be simple and secure. It involves two main steps:</p>
-<ol>
-<li>The user makes an API request to signal their intent to delete their account.</li>
-<li>A background process runs periodically, and after a 3-day grace period, it anonymizes the user's data.</li>
-</ol>
-<p>This grace period allows for a "cooling off" period, during which the user can change their mind. The anonymization process ensures that all personally identifiable information is removed from the user's profile, while preserving the integrity of any content they may have created (e.g., trip comments).</p>
-<h2 id="api-endpoint">API Endpoint<a class="headerlink" href="#api-endpoint" title="Permanent link">&para;</a></h2>
-<p>To initiate the account deletion process, the client must make a POST request to the following endpoint:</p>
-<p><code>POST /api/members/request-deletion</code></p>
-<p>This endpoint does not require any request body. The authenticated user associated with the request will be marked for deletion.</p>
-<h3 id="responses">Responses<a class="headerlink" href="#responses" title="Permanent link">&para;</a></h3>
-<p><strong>Success</strong></p>
-<p>A successful request will return a <code>200 OK</code> status code and a JSON body indicating success:</p>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="p">}</span>
-</code></pre></div>
+  <h1>Todo</h1>
 
-<p><strong>Error: Deletion Request Already Exists</strong></p>
-<p>If the user has already requested deletion and a request is pending, the API will return a <code>400 Bad Request</code> status code and the following JSON error message:</p>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;deletion_request_already_exists&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<h2 id="anonymization-details">Anonymization Details<a class="headerlink" href="#anonymization-details" title="Permanent link">&para;</a></h2>
-<p>After the 3-day grace period, the user's account will be anonymized. This is a permanent and irreversible action. The following fields will be changed:</p>
-<ul>
-<li>The user will be marked as inactive.</li>
-<li>The username will be replaced with a randomly generated string (e.g., <code>deleted_user_...</code>).</li>
-<li>The email address will be changed to a dummy address (e.g., <code>...@deleted.com</code>).</li>
-<li>The first name will be set to "Anonymous".</li>
-<li>The last name will be cleared.</li>
+<p>This document contains notes on things that are missing or need to be improved for the documentation.</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Home and Getting started pages are currently blank. Suggest reorganizing so everything nested under "documentation"
+      is brought to the top level of menu, get rid of "getting started" and populate the home page with a general overview of the API.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> We need to add a page that covers use of swagger docs, links to the swagger docs page and explains
+      how to get the bearer token and use it in swagger.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> UI Strings page validation rules are poorly phrased. Define those in a more formal way.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Notifications page is missing a list or table of the NotificationType enum values</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> On the Upgrade Requests page, the "Create an Upgrade Request" section mentions target<em>level and applicant</em>reason etc.,
+      but while the fields are snake_case in the serializer, they are actually camelCase in the API. Need to clarify that.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Check other pages for snake_case vs camelCase inconsistencies in field names.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> The Permissions, Groups and Levels page should cover how to fetch the permissions for a user via the API.</li>
 </ul>
 
 
