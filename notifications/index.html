@@ -438,6 +438,19 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Notifications
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -449,6 +462,85 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#registering-for-push-notifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Registering for Push Notifications
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notification-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notification Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Notification Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trips
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upgrade-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upgrade Requests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#club-news" class="md-nav__link">
+    <span class="md-ellipsis">
+      Club News
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feedback
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -505,6 +597,74 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#registering-for-push-notifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Registering for Push Notifications
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notification-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notification Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Notification Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trips
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upgrade-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upgrade Requests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#club-news" class="md-nav__link">
+    <span class="md-ellipsis">
+      Club News
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feedback
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -520,6 +680,43 @@
 
 
 <h1 id="notifications">Notifications<a class="headerlink" href="#notifications" title="Permanent link">&para;</a></h1>
+<p>This document outlines the different types of push and email notifications sent by the backend.</p>
+<h2 id="registering-for-push-notifications">Registering for Push Notifications<a class="headerlink" href="#registering-for-push-notifications" title="Permanent link">&para;</a></h2>
+<p>To receive push notifications, the client application must register the device's FCM token with the backend. This is done by making a <code>POST</code> request to the <code>/api/device/fcm/</code> endpoint.</p>
+<p><strong>POST</strong> <code>/api/device/fcm/</code></p>
+<p><strong>Request Body:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;registration_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your-fcm-token&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ios&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>The <code>type</code> can be <code>ios</code>, <code>android</code>, or <code>web</code>.</p>
+<p>For more information on Firebase Cloud Messaging, please refer to the <a href="https://firebase.google.com/docs/cloud-messaging">official documentation</a>.</p>
+<h2 id="notification-types">Notification Types<a class="headerlink" href="#notification-types" title="Permanent link">&para;</a></h2>
+<h3 id="trips">Trips<a class="headerlink" href="#trips" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>New Trip Notification</strong>: Sent when a new trip is created.</li>
+<li><strong>Trip Approval Notification</strong>: Sent when a trip is approved or rejected.</li>
+<li><strong>Accepted from Waitlist</strong>: Sent to a member when they are moved from the waitlist to the registered list for a trip.</li>
+<li><strong>Removed from Trip Registered List</strong>: Sent to a member when they are removed from the registered list for a trip.</li>
+<li><strong>Removed from Trip Waitlist</strong>: Sent to a member when they are removed from the waitlist for a trip.</li>
+<li><strong>New Trip Comment</strong>: Sent when a new comment is added to a trip. This is used for the real-time chat feature.</li>
+</ul>
+<h3 id="upgrade-requests">Upgrade Requests<a class="headerlink" href="#upgrade-requests" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Upgrade Request Handled</strong>: Sent to a member when their upgrade request has been handled (approved or rejected).</li>
+<li><strong>Upgrade Request Created</strong>: Sent to the marshals when a new upgrade request is created.</li>
+<li><strong>Upgrade Request Reminder</strong>: A periodic reminder sent to the marshals about open upgrade requests.</li>
+</ul>
+<h3 id="club-news">Club News<a class="headerlink" href="#club-news" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Club-Wide News</strong>: Sent to all members when a new club news item is published.</li>
+</ul>
+<h3 id="feedback">Feedback<a class="headerlink" href="#feedback" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Feedback Notification</strong>: Sent to the administrators when a member submits feedback.</li>
+</ul>
 
 
 
