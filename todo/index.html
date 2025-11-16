@@ -490,7 +490,10 @@
 
   <h1>Todo</h1>
 
-<p>This document contains notes on things that are missing or need to be improved for the documentation.</p>
+<p>This document contains notes on things that are missing or need to be improved for the documentation.
+The docs are markdown files under the "docs" folder, and are automatically pushed to a github pages site.
+Docs are generated from the markdown using https://squidfunk.github.io/mkdocs-material/
+The menu/page organization is specified in the mkdocs.yml file.</p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Home and Getting started pages are currently blank. Suggest reorganizing so everything nested under "documentation"
       is brought to the top level of menu, get rid of "getting started" and populate the home page with a general overview of the API.</li>
@@ -504,6 +507,8 @@
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> The Permissions, Groups and Levels page should cover how to fetch the permissions for a user via the API.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Add a page for Maintenance mode (503 errors returned for all clients when enabled, clients must handle this and show proper error messages)</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Add a page for Rate limiting - document how the rate limiting is configured for nginx (default.conf.template), and that the clients will receive HTTP 429 - and should show appropriate error messages to the user if they hit that limit.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Trips page does not cover deletion of trips</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Need to add a page for the digital logbook and signing of logbooks. Link to this page from the Trips page.</li>
 </ul>
 
 
