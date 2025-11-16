@@ -18,7 +18,7 @@
         <link rel="prev" href="../auth-profiles/">
       
       
-        <link rel="next" href="../meeting-points/">
+        <link rel="next" href="../logbook/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -370,6 +370,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#delete-a-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      Delete a Trip
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#approve-a-trip" class="md-nav__link">
     <span class="md-ellipsis">
       Approve a Trip
@@ -405,6 +414,28 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Digital Logbook
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -658,6 +689,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#delete-a-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      Delete a Trip
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#approve-a-trip" class="md-nav__link">
     <span class="md-ellipsis">
       Approve a Trip
@@ -758,6 +798,14 @@
 </ul>
 </li>
 </ul>
+<h3 id="delete-a-trip">Delete a Trip<a class="headerlink" href="#delete-a-trip" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>DELETE</strong> <code>/api/trips/{id}/</code><ul>
+<li>Deletes a trip. This is a soft-delete, meaning the trip's <code>approval_status</code> is set to <code>DELETED</code>.</li>
+<li>Requires the <code>DELETE_TRIPS</code> permission.</li>
+</ul>
+</li>
+</ul>
 <h3 id="approve-a-trip">Approve a Trip<a class="headerlink" href="#approve-a-trip" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>POST</strong> <code>/api/trips/{id}/approve/</code><ul>
@@ -803,6 +851,7 @@
 </ul>
 </li>
 </ul>
+<p>See also the <a href="../logbook/">Digital Logbook</a> page for information on how to manage logbook entries for a trip.</p>
 
 
 
