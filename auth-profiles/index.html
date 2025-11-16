@@ -230,6 +230,50 @@
   
   
     <li class="md-nav__item">
+      <a href="../api-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Concepts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practical-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Practical Examples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../permissions/" class="md-nav__link">
         
   
@@ -300,39 +344,6 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#authentication" class="md-nav__link">
-    <span class="md-ellipsis">
-      Authentication
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Authentication">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#obtaining-a-token" class="md-nav__link">
-    <span class="md-ellipsis">
-      Obtaining a Token
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#refreshing-a-token" class="md-nav__link">
-    <span class="md-ellipsis">
-      Refreshing a Token
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#registration-and-password-management" class="md-nav__link">
@@ -664,39 +675,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#authentication" class="md-nav__link">
-    <span class="md-ellipsis">
-      Authentication
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Authentication">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#obtaining-a-token" class="md-nav__link">
-    <span class="md-ellipsis">
-      Obtaining a Token
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#refreshing-a-token" class="md-nav__link">
-    <span class="md-ellipsis">
-      Refreshing a Token
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#registration-and-password-management" class="md-nav__link">
     <span class="md-ellipsis">
       Registration and Password Management
@@ -789,41 +767,7 @@
 
 <h1 id="authentication-and-profiles">Authentication and Profiles<a class="headerlink" href="#authentication-and-profiles" title="Permanent link">&para;</a></h1>
 <p>This document outlines the API endpoints for user authentication, registration, and profile management.</p>
-<h2 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h2>
-<p>Authentication is handled using JSON Web Tokens (JWT). To access protected endpoints, you must include an <code>Authorization</code> header with a valid JWT access token.</p>
-<p><code>Authorization: Bearer &lt;your_access_token&gt;</code></p>
-<h3 id="obtaining-a-token">Obtaining a Token<a class="headerlink" href="#obtaining-a-token" title="Permanent link">&para;</a></h3>
-<p>To obtain an access and refresh token pair, make a <code>POST</code> request to the <code>/api/token/</code> endpoint with the user's credentials.</p>
-<p><strong>POST</strong> <code>/api/token/</code></p>
-<p><strong>Request Body:</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your_username&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your_password&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p><strong>Success Response:</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;refresh&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;access&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<h3 id="refreshing-a-token">Refreshing a Token<a class="headerlink" href="#refreshing-a-token" title="Permanent link">&para;</a></h3>
-<p>Access tokens are short-lived. When an access token expires, you can obtain a new one by making a <code>POST</code> request to the <code>/api/token/refresh/</code> endpoint with your refresh token.</p>
-<p><strong>POST</strong> <code>/api/token/refresh/</code></p>
-<p><strong>Request Body:</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;refresh&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your_refresh_token&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p><strong>Success Response:</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;access&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-
+<p>For a high-level overview of the authentication process, please refer to the <a href="../api-concepts/">API Concepts</a> document.</p>
 <h2 id="registration-and-password-management">Registration and Password Management<a class="headerlink" href="#registration-and-password-management" title="Permanent link">&para;</a></h2>
 <p>The API provides endpoints for user registration and password management, powered by the <code>rest_registration</code> library.</p>
 <h3 id="registration">Registration<a class="headerlink" href="#registration" title="Permanent link">&para;</a></h3>
