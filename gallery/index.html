@@ -12,13 +12,13 @@
         <meta name="author" content="Redbeard">
       
       
-        <link rel="canonical" href="https://api.ad4x4.com/readme/meeting-points/">
+        <link rel="canonical" href="https://api.ad4x4.com/readme/gallery/">
       
       
-        <link rel="prev" href="../logbook/">
+        <link rel="prev" href="../trips/">
       
       
-        <link rel="next" href="../upgrade-requests/">
+        <link rel="next" href="../logbook/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Meeting Points - AD4x4 API</title>
+        <title>Gallery Configuration - AD4x4 API</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#meeting-points" class="md-skip">
+        <a href="#gallery-system-configuration" class="md-skip">
           Skip to content
         </a>
       
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Meeting Points
+              Gallery Configuration
             
           </span>
         </div>
@@ -337,10 +337,32 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../gallery/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Gallery Configuration
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -351,6 +373,35 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Fields
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -381,32 +432,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Meeting Points
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../meeting-points/" class="md-nav__link">
         
   
   
@@ -417,95 +446,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      Overview
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#endpoints" class="md-nav__link">
-    <span class="md-ellipsis">
-      Endpoints
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Endpoints">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#list-meeting-points" class="md-nav__link">
-    <span class="md-ellipsis">
-      List Meeting Points
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#retrieve-a-meeting-point" class="md-nav__link">
-    <span class="md-ellipsis">
-      Retrieve a Meeting Point
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-a-meeting-point" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create a Meeting Point
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#update-a-meeting-point" class="md-nav__link">
-    <span class="md-ellipsis">
-      Update a Meeting Point
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#delete-a-meeting-point" class="md-nav__link">
-    <span class="md-ellipsis">
-      Delete a Meeting Point
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -691,71 +631,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#configuration-fields" class="md-nav__link">
     <span class="md-ellipsis">
-      Overview
+      Configuration Fields
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#endpoints" class="md-nav__link">
-    <span class="md-ellipsis">
-      Endpoints
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Endpoints">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#list-meeting-points" class="md-nav__link">
-    <span class="md-ellipsis">
-      List Meeting Points
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#retrieve-a-meeting-point" class="md-nav__link">
-    <span class="md-ellipsis">
-      Retrieve a Meeting Point
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-a-meeting-point" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create a Meeting Point
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#update-a-meeting-point" class="md-nav__link">
-    <span class="md-ellipsis">
-      Update a Meeting Point
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#delete-a-meeting-point" class="md-nav__link">
-    <span class="md-ellipsis">
-      Delete a Meeting Point
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -775,57 +655,39 @@
 
 
 
-<h1 id="meeting-points">Meeting Points<a class="headerlink" href="#meeting-points" title="Permanent link">&para;</a></h1>
-<p>This document outlines the API endpoints for managing meeting points.</p>
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>Meeting points are predefined locations where trip participants can gather. The API provides endpoints for creating, viewing, updating, and deleting these points.</p>
-<h2 id="endpoints">Endpoints<a class="headerlink" href="#endpoints" title="Permanent link">&para;</a></h2>
-<h3 id="list-meeting-points">List Meeting Points<a class="headerlink" href="#list-meeting-points" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>GET</strong> <code>/api/meetingpoints/</code><ul>
-<li>Retrieves a list of all available meeting points.</li>
-</ul>
-</li>
-</ul>
-<h3 id="retrieve-a-meeting-point">Retrieve a Meeting Point<a class="headerlink" href="#retrieve-a-meeting-point" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>GET</strong> <code>/api/meetingpoints/{id}/</code><ul>
-<li>Retrieves the details of a single meeting point.</li>
-</ul>
-</li>
-</ul>
-<h3 id="create-a-meeting-point">Create a Meeting Point<a class="headerlink" href="#create-a-meeting-point" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>POST</strong> <code>/api/meetingpoints/</code><ul>
-<li>Creates a new meeting point. Requires the <code>CREATE_MEETING_POINTS</code> permission.</li>
-<li><strong>Request Body:</strong>
-    <code>json
-    {
-        "name": "Al Faya",
-        "lat": 24.733,
-        "lon": 55.766,
-        "link": "https://goo.gl/maps/...",
-        "area": "AUH"
-    }</code>
-    <em>Note: The <code>area</code> field can be one of <code>DXB</code>, <code>NOR</code>, <code>AUH</code>, <code>AAN</code>, or <code>LIW</code>.</em></li>
-</ul>
-</li>
-</ul>
-<h3 id="update-a-meeting-point">Update a Meeting Point<a class="headerlink" href="#update-a-meeting-point" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>PUT</strong> or <strong>PATCH</strong> <code>/api/meetingpoints/{id}/</code><ul>
-<li>Updates an existing meeting point. Requires the <code>EDIT_MEETING_POINTS</code> permission.</li>
-<li>The request body should contain the fields to be updated.</li>
-</ul>
-</li>
-</ul>
-<h3 id="delete-a-meeting-point">Delete a Meeting Point<a class="headerlink" href="#delete-a-meeting-point" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>DELETE</strong> <code>/api/meetingpoints/{id}/</code><ul>
-<li>Deletes a meeting point. Requires the <code>DELETE_MEETING_POINTS</code> permission.</li>
-</ul>
-</li>
-</ul>
+<h1 id="gallery-system-configuration">Gallery System Configuration<a class="headerlink" href="#gallery-system-configuration" title="Permanent link">&para;</a></h1>
+<p>The gallery system's integration with the main application can be configured via the <strong>Global Settings</strong> in the admin panel. These settings allow administrators to control the gallery's behavior without requiring code changes.</p>
+<h2 id="configuration-fields">Configuration Fields<a class="headerlink" href="#configuration-fields" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gallery_api_url</code></td>
+<td>The base URL for the external Gallery API. This can be changed to point to different environments (e.g., staging or production).</td>
+</tr>
+<tr>
+<td><code>gallery_api_timeout</code></td>
+<td>The time in seconds the application will wait for a response from the Gallery API before timing out.</td>
+</tr>
+<tr>
+<td><code>enable_gallery_system</code></td>
+<td>A master switch to completely enable or disable all gallery-related features. If disabled, no galleries will be created, and no API calls will be made.</td>
+</tr>
+<tr>
+<td><code>auto_create_trip_gallery</code></td>
+<td>If enabled, a new gallery will be automatically created whenever a trip is approved. If disabled, galleries must be created manually.</td>
+</tr>
+<tr>
+<td><code>allow_manual_gallery_creation</code></td>
+<td>This setting controls whether clients should show UI for manually creating galleries. The API does not enforce this, but clients should respect this flag.</td>
+</tr>
+</tbody>
+</table>
 
 
 
