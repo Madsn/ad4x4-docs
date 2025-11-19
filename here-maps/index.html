@@ -12,13 +12,13 @@
         <meta name="author" content="Redbeard">
       
       
-        <link rel="canonical" href="https://api.ad4x4.com/readme/upgrade-requests/">
+        <link rel="canonical" href="https://api.ad4x4.com/readme/here-maps/">
       
       
-        <link rel="prev" href="../meeting-points/">
+        <link rel="prev" href="../gallery/">
       
       
-        <link rel="next" href="../account-deletion/">
+        <link rel="next" href="../logbook/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Upgrade Requests - AD4x4 API</title>
+        <title>HERE Maps - AD4x4 API</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#upgrade-requests" class="md-skip">
+        <a href="#here-maps-integration" class="md-skip">
           Skip to content
         </a>
       
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Upgrade Requests
+              HERE Maps
             
           </span>
         </div>
@@ -359,10 +359,32 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../here-maps/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    HERE Maps
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -373,6 +395,68 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#admin-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Admin Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Endpoints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-here-maps-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get HERE Maps Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reverse-geocode-coordinates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reverse Geocode Coordinates
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -425,32 +509,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Upgrade Requests
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../upgrade-requests/" class="md-nav__link">
         
   
   
@@ -461,95 +523,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      Overview
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#endpoints" class="md-nav__link">
-    <span class="md-ellipsis">
-      Endpoints
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Endpoints">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#list-and-retrieve-upgrade-requests" class="md-nav__link">
-    <span class="md-ellipsis">
-      List and Retrieve Upgrade Requests
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-an-upgrade-request" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create an Upgrade Request
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#update-an-upgrade-request" class="md-nav__link">
-    <span class="md-ellipsis">
-      Update an Upgrade Request
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#voting-and-approval" class="md-nav__link">
-    <span class="md-ellipsis">
-      Voting and Approval
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#comments" class="md-nav__link">
-    <span class="md-ellipsis">
-      Comments
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -713,64 +686,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#admin-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Overview
+      Admin Configuration
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#endpoints" class="md-nav__link">
+  <a href="#api-endpoints" class="md-nav__link">
     <span class="md-ellipsis">
-      Endpoints
+      API Endpoints
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Endpoints">
+    <nav class="md-nav" aria-label="API Endpoints">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#list-and-retrieve-upgrade-requests" class="md-nav__link">
+  <a href="#get-here-maps-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      List and Retrieve Upgrade Requests
+      Get HERE Maps Configuration
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#create-an-upgrade-request" class="md-nav__link">
+  <a href="#reverse-geocode-coordinates" class="md-nav__link">
     <span class="md-ellipsis">
-      Create an Upgrade Request
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#update-an-upgrade-request" class="md-nav__link">
-    <span class="md-ellipsis">
-      Update an Upgrade Request
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#voting-and-approval" class="md-nav__link">
-    <span class="md-ellipsis">
-      Voting and Approval
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#comments" class="md-nav__link">
-    <span class="md-ellipsis">
-      Comments
+      Reverse Geocode Coordinates
     </span>
   </a>
   
@@ -797,78 +743,65 @@
 
 
 
-<h1 id="upgrade-requests">Upgrade Requests<a class="headerlink" href="#upgrade-requests" title="Permanent link">&para;</a></h1>
-<p>This document outlines the API endpoints for managing level upgrade requests.</p>
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>Members can request to be upgraded to a higher level. This process involves creating a request, which is then reviewed and voted on by authorized members (e.g., Marshals, Board Members).</p>
-<h2 id="endpoints">Endpoints<a class="headerlink" href="#endpoints" title="Permanent link">&para;</a></h2>
-<h3 id="list-and-retrieve-upgrade-requests">List and Retrieve Upgrade Requests<a class="headerlink" href="#list-and-retrieve-upgrade-requests" title="Permanent link">&para;</a></h3>
+<h1 id="here-maps-integration">HERE Maps Integration<a class="headerlink" href="#here-maps-integration" title="Permanent link">&para;</a></h1>
+<p>This document outlines the configuration and API endpoints for the HERE Maps reverse geocoding feature.</p>
+<h2 id="admin-configuration">Admin Configuration<a class="headerlink" href="#admin-configuration" title="Permanent link">&para;</a></h2>
+<p>The HERE Maps integration is configured through the <strong>Global Settings</strong> in the Django Admin interface. The following fields are available:</p>
 <ul>
-<li><strong>GET</strong> <code>/api/upgraderequests/</code><ul>
-<li>Retrieves a list of upgrade requests. Requires <code>VIEW_UPGRADE_REQ</code> permission.</li>
+<li><strong>Here Maps Enabled</strong>: Master switch to enable or disable the entire HERE Maps feature.</li>
+<li><strong>Here Maps Api Key</strong>: Your HERE Maps API key.</li>
+<li><strong>Here Maps Api Base Url</strong>: The base URL for the HERE Maps reverse geocoding API.</li>
+<li><strong>Here Maps Selected Fields</strong>: A JSON list of fields to be returned by the reverse geocoding endpoint (e.g., <code>["city", "district"]</code>).</li>
+<li><strong>Here Maps Max Fields</strong>: The maximum number of fields to display in the formatted <code>area</code> string.</li>
+<li><strong>Here Maps Available Fields</strong>: A JSON object defining the available fields and their display names (e.g., <code>{"city": "City", "district": "District"}</code>).</li>
+<li><strong>Here Maps Cache Duration</strong>: The duration, in days, for which geocoding results are cached in the database.</li>
+<li><strong>Here Maps Request Timeout</strong>: The timeout, in seconds, for requests to the HERE Maps API.</li>
 </ul>
-</li>
-<li><strong>GET</strong> <code>/api/upgraderequests/{id}/</code><ul>
-<li>Retrieves the details of a single upgrade request.</li>
-</ul>
-</li>
-</ul>
-<h3 id="create-an-upgrade-request">Create an Upgrade Request<a class="headerlink" href="#create-an-upgrade-request" title="Permanent link">&para;</a></h3>
+<h2 id="api-endpoints">API Endpoints<a class="headerlink" href="#api-endpoints" title="Permanent link">&para;</a></h2>
+<h3 id="get-here-maps-configuration">Get HERE Maps Configuration<a class="headerlink" href="#get-here-maps-configuration" title="Permanent link">&para;</a></h3>
+<p>This public endpoint provides the necessary configuration for the frontend to interact with the HERE Maps feature.</p>
 <ul>
-<li>
-<p><strong>POST</strong> <code>/api/upgraderequests/</code></p>
+<li><strong>Endpoint</strong>: <code>GET /api/settings/here-maps-config/</code></li>
+<li><strong>Authentication</strong>: None</li>
+<li><strong>Response</strong>:
+    <code>json
+    {
+      "enabled": true,
+      "selectedFields": ["district", "city"],
+      "maxFields": 2,
+      "availableFields": [
+        {"name": "title", "displayName": "Place Name"},
+        {"name": "district", "displayName": "District"},
+        {"name": "city", "displayName": "City"}
+      ]
+    }</code></li>
+</ul>
+<h3 id="reverse-geocode-coordinates">Reverse Geocode Coordinates<a class="headerlink" href="#reverse-geocode-coordinates" title="Permanent link">&para;</a></h3>
+<p>This endpoint takes a latitude and longitude and returns a formatted <code>area</code> string based on the configured <code>selectedFields</code> and <code>maxFields</code>.</p>
 <ul>
-<li>Creates a new upgrade request.</li>
-<li><strong>Request Body:</strong> See the <code>CreateUpgradeRequestSerializer</code> for details. Key fields include:<ul>
-<li><code>applicant</code> (Member ID of the person being nominated for upgrade)</li>
-<li><code>target_level</code> (Level ID)</li>
-<li><code>applicant_reason</code> (Text description)</li>
-<li><code>nominated_voters</code> (List of Member IDs)</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p><strong>Note:</strong> While the serializer and database use <code>snake_case</code> for field names (e.g., <code>target_level</code>), the API expects <code>camelCase</code> in the request body (e.g., <code>targetLevel</code>).</p>
-</blockquote>
-</li>
-</ul>
-<h3 id="update-an-upgrade-request">Update an Upgrade Request<a class="headerlink" href="#update-an-upgrade-request" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>PUT</strong> or <strong>PATCH</strong> <code>/api/upgraderequests/{id}/</code><ul>
-<li>Updates an existing upgrade request. Requires <code>EDIT_UPGRADE_REQ</code> permission.</li>
-</ul>
-</li>
-</ul>
-<h3 id="voting-and-approval">Voting and Approval<a class="headerlink" href="#voting-and-approval" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>POST</strong> <code>/api/upgraderequests/{id}/vote/</code><ul>
-<li>Casts a vote on an upgrade request. Requires <code>VOTE_UPGRADE_REQ</code> permission.</li>
-<li><strong>Request Body:</strong> <code>{"vote": "Y"}</code> (or "N" for No, "D" for Defer)</li>
-</ul>
-</li>
-<li><strong>POST</strong> <code>/api/upgraderequests/{id}/approve/</code><ul>
-<li>Approves an upgrade request. Requires <code>APPROVE_UPGRADE_REQ</code> permission.</li>
-</ul>
-</li>
-<li><strong>POST</strong> <code>/api/upgraderequests/{id}/decline/</code><ul>
-<li>Declines an upgrade request. Requires <code>APPROVE_UPGRADE_REQ</code> permission.</li>
-<li><strong>Request Body:</strong> <code>{"verdict_reason": "..."}</code></li>
-</ul>
-</li>
-</ul>
-<h3 id="comments">Comments<a class="headerlink" href="#comments" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>GET</strong> <code>/api/upgraderequests/{id}/comments/</code><ul>
-<li>Retrieves all comments for a specific upgrade request.</li>
-</ul>
-</li>
-<li><strong>POST</strong> <code>/api/upgraderequestcomments/</code><ul>
-<li>Adds a new comment to an upgrade request. Requires <code>CREATE_COMMENT_UPGRADE_REQ</code> permission.</li>
-<li><strong>Request Body:</strong> <code>{"upgrade_request": &lt;request_id&gt;, "text": "..."}</code></li>
-</ul>
-</li>
-<li><strong>DELETE</strong> <code>/api/upgraderequestcomments/{id}/</code><ul>
-<li>Deletes a comment. Requires <code>DELETE_COMMENT_UPGRADE_REQ</code> permission.</li>
+<li><strong>Endpoint</strong>: <code>POST /api/geocoding/reverse/</code></li>
+<li><strong>Authentication</strong>: Required</li>
+<li><strong>Request Body</strong>:
+    <code>json
+    {
+      "latitude": 24.4539,
+      "longitude": 54.3773
+    }</code></li>
+<li><strong>Responses</strong>:<ul>
+<li><strong>200 OK</strong>:
+    <code>json
+    {
+      "success": true,
+      "area": "Al Ain, Abu Dhabi",
+      "fields": {
+        "district": "Al Ain",
+        "city": "Abu Dhabi"
+      },
+      "cached": false
+    }</code></li>
+<li><strong>400 Bad Request</strong>: If <code>latitude</code> or <code>longitude</code> are missing or invalid.</li>
+<li><strong>401 Unauthorized</strong>: If the user is not authenticated.</li>
+<li><strong>500 Internal Server Error</strong>: If there is an error communicating with the HERE Maps API.</li>
 </ul>
 </li>
 </ul>
