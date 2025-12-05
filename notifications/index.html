@@ -954,8 +954,8 @@
 <p><strong>GET</strong> <code>/api/notifications/</code></p>
 <p>The endpoint returns a paginated list of the 20 most recent notifications for the authenticated user. Each notification object in the response now includes an <code>is_read</code> boolean field, which indicates whether the notification has been read by the user.</p>
 <h3 id="marking-notifications-as-read">Marking Notifications as Read<a class="headerlink" href="#marking-notifications-as-read" title="Permanent link">&para;</a></h3>
-<p>To mark one or more notifications as read, the client can make a <code>POST</code> request to the <code>/api/notifications/mark_as_read/</code> endpoint.</p>
-<p><strong>POST</strong> <code>/api/notifications/mark_as_read/</code></p>
+<p>To mark one or more notifications as read, the client can make a <code>POST</code> request to the <code>/api/notifications/mark-as-read/</code> endpoint.</p>
+<p><strong>POST</strong> <code>/api/notifications/mark-as-read/</code></p>
 <p><strong>Request Body:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;notification_ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span>
