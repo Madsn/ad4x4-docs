@@ -590,6 +590,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#notification-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notification History
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notification-purging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notification Purging
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -781,6 +799,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#notification-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notification History
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notification-purging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notification Purging
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -883,6 +919,12 @@
 </tr>
 </tbody>
 </table>
+<h2 id="notification-history">Notification History<a class="headerlink" href="#notification-history" title="Permanent link">&para;</a></h2>
+<p>A log of all notifications sent to a member is stored in the database. This allows the client application to display a history of notifications to the user.</p>
+<p><strong>GET</strong> <code>/api/notifications/</code></p>
+<p>The endpoint returns a paginated list of the 20 most recent notifications for the authenticated user.</p>
+<h2 id="notification-purging">Notification Purging<a class="headerlink" href="#notification-purging" title="Permanent link">&para;</a></h2>
+<p>To prevent the notification log from growing indefinitely, a periodic background task runs daily to purge old notifications. Any notification logs older than 60 days are automatically deleted from the database.</p>
 
 
 
