@@ -870,7 +870,7 @@
 <p><strong>POST</strong> <code>/api/device/fcm/</code></p>
 <p><strong>Request Body:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;registration_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your-fcm-token&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;registrationId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your-fcm-token&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ios&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -958,11 +958,11 @@
 <p><strong>POST</strong> <code>/api/notifications/mark-as-read/</code></p>
 <p><strong>Request Body:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;notification_ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span>
+<span class="w">    </span><span class="nt">&quot;notificationIds&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
 
-<p>The <code>notification_ids</code> field should contain a list of notification IDs to be marked as read. The endpoint will return a <code>204 No Content</code> response on success.</p>
+<p>The <code>notificationIds</code> field should contain a list of notification IDs to be marked as read. The endpoint will return a <code>204 No Content</code> response on success.</p>
 <h2 id="notification-purging">Notification Purging<a class="headerlink" href="#notification-purging" title="Permanent link">&para;</a></h2>
 <p>To prevent the notification log from growing indefinitely, a periodic background task runs daily to purge old notifications. Any notification logs older than 60 days are automatically deleted from the database.</p>
 
