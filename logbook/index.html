@@ -790,6 +790,9 @@
 <ul>
 <li><strong>GET</strong> <code>/api/logbookskills</code><ul>
 <li>Retrieves a list of all available logbook skills.</li>
+<li>The <code>count_requirement</code> field indicates the minimum number of sign-offs required for a skill.</li>
+<li>The <code>category</code> field is an object containing the ID and name of the skill category.</li>
+<li>Skills can be filtered by category using the <code>category</code> query parameter (e.g., <code>/api/logbookskills?category=1</code>).</li>
 </ul>
 </li>
 </ul>
