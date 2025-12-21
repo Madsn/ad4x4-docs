@@ -506,13 +506,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#get-member-upgrade-eligibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get Member Upgrade Eligibility
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#create-an-upgrade-request" class="md-nav__link">
     <span class="md-ellipsis">
       Create an Upgrade Request
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Create an Upgrade Request">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#update-an-upgrade-request" class="md-nav__link">
@@ -741,13 +756,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#get-member-upgrade-eligibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get Member Upgrade Eligibility
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#create-an-upgrade-request" class="md-nav__link">
     <span class="md-ellipsis">
       Create an Upgrade Request
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Create an Upgrade Request">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#update-an-upgrade-request" class="md-nav__link">
@@ -813,7 +843,94 @@
 </ul>
 </li>
 </ul>
-<h3 id="create-an-upgrade-request">Create an Upgrade Request<a class="headerlink" href="#create-an-upgrade-request" title="Permanent link">&para;</a></h3>
+<h3 id="get-member-upgrade-eligibility">Get Member Upgrade Eligibility<a class="headerlink" href="#get-member-upgrade-eligibility" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>GET</strong> <code>/api/members/{id}/upgradeeligibility</code><ul>
+<li>Retrieves a detailed report on a member's eligibility for an upgrade to the next potential level. This report includes a breakdown of met/unmet requirements based on minimum trips at the current level and required logbook skills for the next level.</li>
+<li><strong>Authorization:</strong><ul>
+<li>A member can view their own eligibility (when <code>{id}</code> matches <code>request.user.id</code>).</li>
+<li>Members with the <code>view_upgrade_req</code> permission can view the eligibility of any member.</li>
+</ul>
+</li>
+<li><strong>Response Structure (Example):</strong>
+    <code>json
+    {
+        "member_id": 1,
+        "member_username": "testuser",
+        "current_level": {
+            "id": 1,
+            "name": "Beginner",
+            "numeric_level": 1
+        },
+        "next_potential_level": {
+            "id": 2,
+            "name": "Intermediate",
+            "numeric_level": 2
+        },
+        "upgrade_requirements": [
+            {
+                "type": "min_trips",
+                "name": "Minimum trips for current level",
+                "required_value": 5,
+                "current_value": 3,
+                "met": false,
+                "description": "You need 5 trips at your current level (completed at this level).",
+                "recent_trips_at_level": [
+                    {
+                        "trip_id": 10,
+                        "title": "Desert Crossing",
+                        "start_time": "2025-11-15T09:00:00Z",
+                        "lead": {"id": 1, "username": "leader1"},
+                        "level": {"id": 1, "name": "Beginner", "numeric_level": 1}
+                    },
+                    {
+                        "trip_id": 9,
+                        "title": "Mountain Trail",
+                        "start_time": "2025-10-20T08:00:00Z",
+                        "lead": {"id": 2, "username": "leader2"},
+                        "level": {"id": 1, "name": "Beginner", "numeric_level": 1}
+                    }
+                ]
+            },
+            {
+                "type": "logbook_skill",
+                "skill_id": 101,
+                "skill_name": "Basic Recovery",
+                "required_count": 2,
+                "current_count": 1,
+                "met": false,
+                "description": "Complete 'Basic Recovery' 2 times.",
+                "signatures": [
+                    {
+                        "trip_id": 15,
+                        "signed_by": {"id": 5, "username": "verifier_user"},
+                        "signed_date": "2025-12-01T10:30:00Z"
+                    }
+                ]
+            },
+            {
+                "type": "logbook_skill",
+                "skill_id": 102,
+                "skill_name": "Tyre Changing",
+                "required_count": 1,
+                "current_count": 1,
+                "met": true,
+                "description": "Complete 'Tyre Changing' 1 time.",
+                "signatures": [
+                    {
+                        "trip_id": 12,
+                        "signed_by": {"id": 6, "username": "another_verifier"},
+                        "signed_date": "2025-11-25T14:00:00Z"
+                    }
+                ]
+            }
+        ],
+        "is_eligible_for_upgrade": false
+    }</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="create-an-upgrade-request">Create an Upgrade Request<a class="headerlink" href="#create-an-upgrade-request" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
 <p><strong>POST</strong> <code>/api/upgraderequests/</code></p>
