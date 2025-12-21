@@ -514,20 +514,14 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#create-an-upgrade-request" class="md-nav__link">
     <span class="md-ellipsis">
       Create an Upgrade Request
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Create an Upgrade Request">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#update-an-upgrade-request" class="md-nav__link">
@@ -764,20 +758,14 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#create-an-upgrade-request" class="md-nav__link">
     <span class="md-ellipsis">
       Create an Upgrade Request
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Create an Upgrade Request">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#update-an-upgrade-request" class="md-nav__link">
@@ -930,12 +918,13 @@
 </ul>
 </li>
 </ul>
-<h2 id="create-an-upgrade-request">Create an Upgrade Request<a class="headerlink" href="#create-an-upgrade-request" title="Permanent link">&para;</a></h2>
+<h3 id="create-an-upgrade-request">Create an Upgrade Request<a class="headerlink" href="#create-an-upgrade-request" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
 <p><strong>POST</strong> <code>/api/upgraderequests/</code></p>
 <ul>
 <li>Creates a new upgrade request.</li>
+<li><strong>Eligibility Check</strong>: Before creation, the system checks if the <code>applicant</code> is eligible for an upgrade based on minimum trips at their current level and required logbook skills for the target level. If the applicant is not eligible, or is already at the highest available level, the request will be rejected with a <code>400 Bad Request</code> status and a detailed error message listing unmet requirements.</li>
 <li><strong>Request Body:</strong> See the <code>CreateUpgradeRequestSerializer</code> for details. Key fields include:<ul>
 <li><code>applicant</code> (Member ID of the person being nominated for upgrade)</li>
 <li><code>target_level</code> (Level ID)</li>
