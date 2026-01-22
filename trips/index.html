@@ -454,6 +454,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#member-specific-trip-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Member-Specific Trip Endpoints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Member-Specific Trip Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#member-trip-counts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Member Trip Counts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#member-trip-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      Member Trip History
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -817,6 +850,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#member-specific-trip-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Member-Specific Trip Endpoints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Member-Specific Trip Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#member-trip-counts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Member Trip Counts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#member-trip-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      Member Trip History
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -936,6 +1002,32 @@
 <li><strong>POST</strong> <code>/api/trips/{id}/checkout/</code><ul>
 <li>Checks out one or more members from the trip.</li>
 <li><strong>Request Body:</strong> <code>{"members": [&lt;member_id_1&gt;, &lt;member_id_2&gt;]}</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="member-specific-trip-endpoints">Member-Specific Trip Endpoints<a class="headerlink" href="#member-specific-trip-endpoints" title="Permanent link">&para;</a></h2>
+<p>These endpoints provide trip information tailored to a specific member.</p>
+<h3 id="member-trip-counts">Member Trip Counts<a class="headerlink" href="#member-trip-counts" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>GET</strong> <code>/api/members/{id}/tripcounts/</code><ul>
+<li>Retrieves a summary of a member's completed trips, grouped by trip level.</li>
+<li>
+<blockquote>
+<p><strong>Note:</strong> This endpoint only includes trips with an <code>APPROVED</code> status where the member was successfully checked in.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="member-trip-history">Member Trip History<a class="headerlink" href="#member-trip-history" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>GET</strong> <code>/api/members/{id}/triphistory/</code><ul>
+<li>Retrieves a paginated history of a member's trips.</li>
+<li>
+<blockquote>
+<p><strong>Note:</strong> This endpoint only includes trips with an <code>APPROVED</code> status.</p>
+</blockquote>
+</li>
 </ul>
 </li>
 </ul>
