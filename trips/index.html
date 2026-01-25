@@ -947,7 +947,14 @@
 <h3 id="update-a-trip">Update a Trip<a class="headerlink" href="#update-a-trip" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>PUT</strong> or <strong>PATCH</strong> <code>/api/trips/{id}/</code><ul>
-<li>Updates an existing trip. Only users with the <code>EDIT_TRIPS</code> permission (or the trip lead) can do this.</li>
+<li>Updates an existing trip.</li>
+<li><strong>Restrictions</strong>:<ul>
+<li>A configurable cutoff time (in minutes before the trip's <code>start_time</code>) determines when editing is restricted. The default is 0 minutes, meaning editing is disabled once the trip starts.</li>
+<li><strong>Before the cutoff time</strong>: The trip's <code>lead</code> and users with the <code>EDIT_TRIPS</code> permission can edit the trip.</li>
+<li><strong>After the cutoff time</strong>: Only users with the <code>EDIT_TRIPS</code> permission can edit the trip.</li>
+<li>Superusers are exempt from all restrictions.</li>
+</ul>
+</li>
 <li><strong>Request Body:</strong> See the <code>UpdateTripSerializer</code> for a list of editable fields.</li>
 </ul>
 </li>
@@ -956,7 +963,13 @@
 <ul>
 <li><strong>DELETE</strong> <code>/api/trips/{id}/</code><ul>
 <li>Deletes a trip. This is a soft-delete, meaning the trip's <code>approval_status</code> is set to <code>DELETED</code>.</li>
-<li>Requires the <code>DELETE_TRIPS</code> permission.</li>
+<li><strong>Restrictions</strong>:<ul>
+<li>A configurable cutoff time (in minutes before the trip's <code>start_time</code>) determines when deleting is restricted. The default is 0 minutes, meaning deleting is disabled once the trip starts.</li>
+<li><strong>Before the cutoff time</strong>: The trip's <code>lead</code> and users with the <code>DELETE_TRIPS</code> permission can delete the trip.</li>
+<li><strong>After the cutoff time</strong>: Only users with the <code>DELETE_TRIPS</code> permission can delete the trip.</li>
+<li>Superusers are exempt from all restrictions.</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
