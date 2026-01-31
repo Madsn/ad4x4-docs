@@ -889,7 +889,7 @@
 </ul>
 <h3 id="members-creating-entries-for-other-members">Members Creating Entries for Other Members<a class="headerlink" href="#members-creating-entries-for-other-members" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Trip Lead:</strong> A trip lead can create, update, or delete a logbook entry for another member, provided that the other member is registered for the trip. The trip lead does not need to be registered themselves.</li>
+<li><strong>Trip Lead or Deputy Lead:</strong> A trip lead or deputy lead can create, update, or delete a logbook entry for another member, provided that the other member is registered for the trip. The lead/deputy lead does not need to be registered themselves.</li>
 <li><strong>Superuser (<code>CREATE_LOGBOOK_ENTRIES_SUPERUSER</code>):</strong> A member with this permission can create, update, or delete a logbook entry for another member, provided that the other member is registered for the trip.</li>
 <li><strong>Regular Member (with <code>CREATE_LOGBOOK_ENTRIES</code> permission):</strong> A regular member can create, update, or delete a logbook entry for another member if all of the following conditions are met:</li>
 <li>The acting member is registered for the trip.</li>
@@ -899,7 +899,7 @@
 <h3 id="skill-sign-off-validation-when-skills_verified-are-included-in-the-request">Skill Sign-Off Validation (when <code>skills_verified</code> are included in the request)<a class="headerlink" href="#skill-sign-off-validation-when-skills_verified-are-included-in-the-request" title="Permanent link">&para;</a></h3>
 <p>A user can sign off on skills for another user if any of the following are true:</p>
 <ul>
-<li>They are the <strong>Trip Lead</strong> for the associated trip.</li>
+<li>They are the <strong>Trip Lead or Deputy Lead</strong> for the associated trip.</li>
 <li>They have the <code>SIGN_LOGBOOK_SKILLS</code> permission AND are registered for the associated trip themselves.</li>
 <li>They have the <code>CREATE_LOGBOOK_ENTRIES_SUPERUSER</code> permission (this permission bypasses all other skill sign-off checks).</li>
 </ul>
