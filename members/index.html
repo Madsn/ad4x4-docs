@@ -779,6 +779,24 @@
 <td>Search term - must be at least 3 characters. Matches against username, first name, and last name (case-insensitive partial match)</td>
 </tr>
 <tr>
+<td><code>level</code></td>
+<td>integer</td>
+<td>No</td>
+<td>Level ID for filtering to include only members at a specific level</td>
+</tr>
+<tr>
+<td><code>min_level</code></td>
+<td>integer</td>
+<td>No</td>
+<td>Minimum level ID for filtering to include only members at this level or higher (inclusive)</td>
+</tr>
+<tr>
+<td><code>max_level</code></td>
+<td>integer</td>
+<td>No</td>
+<td>Maximum level ID for filtering to include only members at this level or lower (inclusive)</td>
+</tr>
+<tr>
 <td><code>page</code></td>
 <td>integer</td>
 <td>No</td>
@@ -792,8 +810,28 @@
 </tr>
 </tbody>
 </table>
+<p><strong>Level Filtering Examples:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Search for Newbies (level ID 10)</span>
+GET<span class="w"> </span>/api/members/search/?query<span class="o">=</span>john<span class="p">&amp;</span><span class="nv">level</span><span class="o">=</span><span class="m">10</span>
+
+<span class="c1"># Search for members Newbie (10) and up to Intermediate (100) inclusive</span>
+GET<span class="w"> </span>/api/members/search/?query<span class="o">=</span>john<span class="p">&amp;</span><span class="nv">max_level</span><span class="o">=</span><span class="m">100</span>
+
+<span class="c1"># Search for members Intermediate (100) and higher inclusive</span>
+GET<span class="w"> </span>/api/members/search/?query<span class="o">=</span>john<span class="p">&amp;</span><span class="nv">min_level</span><span class="o">=</span><span class="m">100</span>
+</code></pre></div>
+
 <p><strong>Request Example:</strong></p>
-<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/members/search/?query=john&amp;page=1&amp;page_size=20&quot;</span><span class="w"> </span><span class="se">\</span>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Basic search</span>
+curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/members/search/?query=john&amp;page=1&amp;page_size=20&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your-token&gt;&quot;</span>
+
+<span class="c1"># Search for Newbies only</span>
+curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/members/search/?query=john&amp;level=10&amp;page=1&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your-token&gt;&quot;</span>
+
+<span class="c1"># Search for members Newbie to Intermediate inclusive</span>
+curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/members/search/?query=john&amp;max_level=100&amp;page=1&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your-token&gt;&quot;</span>
 </code></pre></div>
 
@@ -840,13 +878,21 @@
 <span class="p">}</span>
 </code></pre></div>
 
+<p><strong>Error Response</strong> (403 Forbidden):</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;You do not have permission to perform this action.&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
 <p><strong>Notes:</strong>
 - The search is case-insensitive and performs partial matching (contains)
 - Query must be at least 3 characters long
 - Results are ordered by <code>trip_count</code> (descending), then by <code>id</code> (ascending)
 - Results are paginated using standard pagination
 - Matches across <code>username</code>, <code>first_name</code>, and <code>last_name</code> fields using OR logic
-- Contact information (email, phone) is only visible to users with the <code>VIEW_CONTACT_INFO</code> permission or when viewing their own profile</p>
+- Results can be filtered by level using <code>level</code>, <code>min_level</code>, or <code>max_level</code> parameters
+- Contact information (email, phone) is only visible to users with the <code>VIEW_CONTACT_INFO</code> permission or when viewing their own profile
+- <strong>Permission Required</strong>: Users must have the <code>SEARCH_MEMBERS</code> permission to use this endpoint. By default, this is granted to Newbie level and above. ANIT members cannot use this endpoint.</p>
 <p><strong>Use Cases:</strong>
 - Finding members when adding trip participants
 - Looking up member profiles
