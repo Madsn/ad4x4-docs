@@ -12,13 +12,13 @@
         <meta name="author" content="Redbeard">
       
       
-        <link rel="canonical" href="https://api.ad4x4.com/readme/editable-strings/">
+        <link rel="canonical" href="https://api.ad4x4.com/readme/global-settings/">
       
       
-        <link rel="prev" href="../background-tasks/">
+        <link rel="prev" href="../here-maps/">
       
       
-        <link rel="next" href="../account-deletion/">
+        <link rel="next" href="../background-tasks/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>UI Strings - AD4x4 API</title>
+        <title>Global Settings - AD4x4 API</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#editable-strings-uistring-api" class="md-skip">
+        <a href="#global-settings" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              UI Strings
+              Global Settings
             
           </span>
         </div>
@@ -801,60 +801,6 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../global-settings/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Global Settings
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../background-tasks/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Background Tasks
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -874,7 +820,7 @@
   <span class="md-ellipsis">
     
   
-    UI Strings
+    Global Settings
   
 
     
@@ -892,7 +838,7 @@
   <span class="md-ellipsis">
     
   
-    UI Strings
+    Global Settings
   
 
     
@@ -929,66 +875,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#authentication" class="md-nav__link">
+  <a href="#accessing-settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Authentication
+        Accessing Settings
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#endpoints" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Endpoints
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Endpoints">
+    <nav class="md-nav" aria-label="Accessing Settings">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#retrieve-a-ui-string" class="md-nav__link">
+  <a href="#api-endpoint" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Retrieve a UI String
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-a-ui-string" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Create a UI String
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#update-a-ui-string" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Update a UI String
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#delete-a-ui-string" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Delete a UI String
+        API Endpoint
       
     </span>
   </a>
@@ -1001,10 +903,115 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation-rules" class="md-nav__link">
+  <a href="#settings-reference" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation Rules
+        Settings Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Settings Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#user-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-upgrade-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-Upgrade Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trip-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trip Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#here-maps-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HERE Maps Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gallery-system-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gallery System Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notification-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notification Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-via-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration via Admin
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documentation
       
     </span>
   </a>
@@ -1015,6 +1022,60 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../background-tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background Tasks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editable-strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1192,66 +1253,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#authentication" class="md-nav__link">
+  <a href="#accessing-settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Authentication
+        Accessing Settings
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#endpoints" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Endpoints
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Endpoints">
+    <nav class="md-nav" aria-label="Accessing Settings">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#retrieve-a-ui-string" class="md-nav__link">
+  <a href="#api-endpoint" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Retrieve a UI String
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-a-ui-string" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Create a UI String
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#update-a-ui-string" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Update a UI String
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#delete-a-ui-string" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Delete a UI String
+        API Endpoint
       
     </span>
   </a>
@@ -1264,10 +1281,115 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation-rules" class="md-nav__link">
+  <a href="#settings-reference" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation Rules
+        Settings Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Settings Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#user-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-upgrade-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-Upgrade Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trip-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trip Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#here-maps-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HERE Maps Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gallery-system-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gallery System Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notification-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notification Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-via-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration via Admin
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documentation
       
     </span>
   </a>
@@ -1291,101 +1413,323 @@
 
 
 
-<h1 id="editable-strings-uistring-api">Editable Strings (UIString) API<a class="headerlink" href="#editable-strings-uistring-api" title="Permanent link">&para;</a></h1>
-<p>This document outlines how to use the Editable Strings (UIString) API to manage translations for the application.</p>
+<h1 id="global-settings">Global Settings<a class="headerlink" href="#global-settings" title="Permanent link">&para;</a></h1>
+<p>This document lists all configurable system settings available in the AD4x4 API.</p>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>The UIString feature allows for dynamic management of strings in the application's UI. Strings are stored as key-value pairs, with support for English and Arabic translations. The API provides endpoints for creating, retrieving, updating, and deleting these strings.</p>
-<h2 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h2>
-<p>All API endpoints require authentication. You must have the <code>EDIT_UI_STRINGS</code> permission to create, update, or delete UI strings.</p>
-<h2 id="endpoints">Endpoints<a class="headerlink" href="#endpoints" title="Permanent link">&para;</a></h2>
-<h3 id="retrieve-a-ui-string">Retrieve a UI String<a class="headerlink" href="#retrieve-a-ui-string" title="Permanent link">&para;</a></h3>
+<p>Global settings are managed via the Django Admin interface under <code>ConfigurableSettings</code>. These settings control system-wide behavior without requiring code changes.</p>
+<h2 id="accessing-settings">Accessing Settings<a class="headerlink" href="#accessing-settings" title="Permanent link">&para;</a></h2>
+<h3 id="api-endpoint">API Endpoint<a class="headerlink" href="#api-endpoint" title="Permanent link">&para;</a></h3>
+<p><strong>GET</strong> <code>/api/settings/</code></p>
+<p>Returns current configuration (requires authentication):</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;defaultUserLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;defaultUserGroup&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;enableAutoUpgradeOnCheckin&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;forceWaitlist&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;tripEditDeleteCutoffMinutes&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;hereMapsEnabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;enableGallerySystem&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;autoCreateTripGallery&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="err">...</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="settings-reference">Settings Reference<a class="headerlink" href="#settings-reference" title="Permanent link">&para;</a></h2>
+<h3 id="user-management">User Management<a class="headerlink" href="#user-management" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Field Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Default User Level</td>
+<td><code>default_user_level</code></td>
+<td>FK</td>
+<td>Required</td>
+<td>Level assigned to new users</td>
+</tr>
+<tr>
+<td>Default User Group</td>
+<td><code>default_user_group</code></td>
+<td>FK</td>
+<td>Optional</td>
+<td>Group assigned to new users</td>
+</tr>
+</tbody>
+</table>
+<h3 id="auto-upgrade-settings">Auto-Upgrade Settings<a class="headerlink" href="#auto-upgrade-settings" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Field Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enable Auto-Upgrade on Check-in</td>
+<td><code>enable_auto_upgrade_on_checkin</code></td>
+<td>Boolean</td>
+<td><code>false</code></td>
+<td>Auto-upgrade member after first trip check-in</td>
+</tr>
+<tr>
+<td>Auto-Upgrade Source Level</td>
+<td><code>auto_upgrade_source_level</code></td>
+<td>FK</td>
+<td>null</td>
+<td>Level to upgrade from</td>
+</tr>
+<tr>
+<td>Auto-Upgrade Target Level</td>
+<td><code>auto_upgrade_target_level</code></td>
+<td>FK</td>
+<td>null</td>
+<td>Level to upgrade to</td>
+</tr>
+</tbody>
+</table>
+<h3 id="email-settings">Email Settings<a class="headerlink" href="#email-settings" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Field Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Email Sending Address</td>
+<td><code>email_sending_address</code></td>
+<td>Email</td>
+<td><code>noreply@ad4x4.com</code></td>
+<td>From address for emails</td>
+</tr>
+<tr>
+<td>Email Unsubscribe Address</td>
+<td><code>email_unsub_address</code></td>
+<td>Email</td>
+<td><code>unsub@ad4x4.com</code></td>
+<td>Unsubscribe footer address</td>
+</tr>
+<tr>
+<td>Email Support Address</td>
+<td><code>email_support_address</code></td>
+<td>Email</td>
+<td><code>support@ad4x4.com</code></td>
+<td>Support email address</td>
+</tr>
+<tr>
+<td>Email Sleep Period (ms)</td>
+<td><code>email_sleep_period_ms</code></td>
+<td>Integer</td>
+<td><code>500</code></td>
+<td>Delay between email batches</td>
+</tr>
+</tbody>
+</table>
+<h3 id="trip-settings">Trip Settings<a class="headerlink" href="#trip-settings" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Field Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Force Waitlist</td>
+<td><code>force_waitlist</code></td>
+<td>Boolean</td>
+<td><code>false</code></td>
+<td>If true, trip leads cannot disable waitlist</td>
+</tr>
+<tr>
+<td>Trip Edit/Delete Cutoff (minutes)</td>
+<td><code>trip_edit_delete_cutoff_minutes</code></td>
+<td>Integer</td>
+<td><code>0</code></td>
+<td>Minutes before trip starts when editing/deleting is blocked</td>
+</tr>
+</tbody>
+</table>
+<h3 id="here-maps-settings">HERE Maps Settings<a class="headerlink" href="#here-maps-settings" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Field Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HERE Maps Enabled</td>
+<td><code>here_maps_enabled</code></td>
+<td>Boolean</td>
+<td><code>false</code></td>
+<td>Enable reverse geocoding</td>
+</tr>
+<tr>
+<td>HERE Maps API Key</td>
+<td><code>here_maps_api_key</code></td>
+<td>String</td>
+<td>null</td>
+<td>API key for HERE Maps</td>
+</tr>
+<tr>
+<td>HERE Maps API Base URL</td>
+<td><code>here_maps_api_base_url</code></td>
+<td>String</td>
+<td>HERE API URL</td>
+<td>Base URL for geocoding API</td>
+</tr>
+<tr>
+<td>HERE Maps Selected Fields</td>
+<td><code>here_maps_selected_fields</code></td>
+<td>JSON</td>
+<td><code>[]</code></td>
+<td>Fields to return</td>
+</tr>
+<tr>
+<td>HERE Maps Max Fields</td>
+<td><code>here_maps_max_fields</code></td>
+<td>Integer</td>
+<td><code>2</code></td>
+<td>Max fields in area string</td>
+</tr>
+<tr>
+<td>HERE Maps Cache Duration (min)</td>
+<td><code>here_maps_cache_duration</code></td>
+<td>Integer</td>
+<td><code>1440</code></td>
+<td>Cache duration in minutes</td>
+</tr>
+<tr>
+<td>HERE Maps Request Timeout (s)</td>
+<td><code>here_maps_request_timeout</code></td>
+<td>Integer</td>
+<td><code>10</code></td>
+<td>Request timeout in seconds</td>
+</tr>
+<tr>
+<td>HERE Maps Available Fields</td>
+<td><code>here_maps_available_fields</code></td>
+<td>JSON</td>
+<td>See below</td>
+<td>Available field definitions</td>
+</tr>
+</tbody>
+</table>
+<p><strong>HERE Maps Available Fields (default):</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;title&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Place Name&quot;</span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;district&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;District&quot;</span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;city&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;City&quot;</span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;county&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;County&quot;</span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;countryName&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Country&quot;</span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;postalCode&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Postal Code&quot;</span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;label&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Full Address&quot;</span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;categoryName&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Category&quot;</span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+
+<h3 id="gallery-system-settings">Gallery System Settings<a class="headerlink" href="#gallery-system-settings" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Field Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enable Gallery System</td>
+<td><code>enable_gallery_system</code></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Master switch for gallery feature</td>
+</tr>
+<tr>
+<td>Auto Create Trip Gallery</td>
+<td><code>auto_create_trip_gallery</code></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Auto-create gallery on trip approval</td>
+</tr>
+<tr>
+<td>Allow Manual Gallery Creation</td>
+<td><code>allow_manual_gallery_creation</code></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Allow manual gallery creation</td>
+</tr>
+<tr>
+<td>Gallery API URL</td>
+<td><code>gallery_api_url</code></td>
+<td>String</td>
+<td><code>https://media.ad4x4.com</code></td>
+<td>External gallery API URL</td>
+</tr>
+<tr>
+<td>Gallery API Timeout (s)</td>
+<td><code>gallery_api_timeout</code></td>
+<td>Integer</td>
+<td><code>30</code></td>
+<td>API timeout in seconds</td>
+</tr>
+</tbody>
+</table>
+<h3 id="notification-settings">Notification Settings<a class="headerlink" href="#notification-settings" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Field Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Notification Dry Run</td>
+<td><code>notification_dry_run</code></td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>If true, notifications are logged but not sent</td>
+</tr>
+</tbody>
+</table>
+<h2 id="configuration-via-admin">Configuration via Admin<a class="headerlink" href="#configuration-via-admin" title="Permanent link">&para;</a></h2>
+<p>Settings are managed in Django Admin at <code>/admin/api/configurablesettings/</code>.</p>
+<p>Only superusers can modify these settings.</p>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
 <ul>
-<li>
-<p><strong>GET</strong> <code>/api/strings/{key}/</code></p>
-<p>Retrieves a single UI string by its key.</p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>key</code> (string): The key of the UI string to retrieve.</li>
-<li><code>lang</code> (string, optional): The language to retrieve. Can be <code>en</code> or <code>ar</code>. Defaults to <code>en</code>.</li>
-</ul>
-<p><strong>Example Request:</strong></p>
-<p><code>bash
-curl -X GET -H "Authorization: Bearer &lt;token&gt;" "https://example.com/api/strings/welcome_message/?lang=ar"</code></p>
-<p><strong>Example Response:</strong></p>
-<p><code>json
-{
-    "key": "welcome_message",
-    "values": {
-        "title": "مرحباً",
-        "body": "مرحباً بك في تطبيقنا!"
-    }
-}</code></p>
-</li>
-</ul>
-<h3 id="create-a-ui-string">Create a UI String<a class="headerlink" href="#create-a-ui-string" title="Permanent link">&para;</a></h3>
-<ul>
-<li>
-<p><strong>POST</strong> <code>/api/strings/</code></p>
-<p>Creates a new UI string.</p>
-<p><strong>Example Request:</strong></p>
-<p><code>bash
-curl -X POST -H "Authorization: Bearer &lt;token&gt;" -H "Content-Type: application/json" -d '{
-    "key": "new_feature_announcement",
-    "values_en": {
-        "title": "New Feature!",
-        "description": "We have a new feature for you to try."
-    },
-    "values_ar": {
-        "title": "ميزة جديدة!",
-        "description": "لدينا ميزة جديدة لتجربتها."
-    }
-}' "https://example.com/api/strings/"</code></p>
-</li>
-</ul>
-<h3 id="update-a-ui-string">Update a UI String<a class="headerlink" href="#update-a-ui-string" title="Permanent link">&para;</a></h3>
-<ul>
-<li>
-<p><strong>PUT</strong> or <strong>PATCH</strong> <code>/api/strings/{key}/</code></p>
-<p>Updates an existing UI string.</p>
-<p><strong>Example Request (PUT):</strong></p>
-<p><code>bash
-curl -X PUT -H "Authorization: Bearer &lt;token&gt;" -H "Content-Type: application/json" -d '{
-    "key": "welcome_message",
-    "values_en": {
-        "title": "Welcome",
-        "body": "Welcome to our app!"
-    },
-    "values_ar": {
-        "title": "أهلاً بك",
-        "body": "أهلاً بك في تطبيقنا!"
-    }
-}' "https://example.com/api/strings/welcome_message/"</code></p>
-<p><strong>Example Request (PATCH):</strong></p>
-<p><code>bash
-curl -X PATCH -H "Authorization: Bearer &lt;token&gt;" -H "Content-Type: application/json" -d '{
-    "values_en": {
-        "title": "Welcome Back",
-        "body": "Welcome back to our app!"
-    }
-}' "https://example.com/api/strings/welcome_message/"</code></p>
-</li>
-</ul>
-<h3 id="delete-a-ui-string">Delete a UI String<a class="headerlink" href="#delete-a-ui-string" title="Permanent link">&para;</a></h3>
-<ul>
-<li>
-<p><strong>DELETE</strong> <code>/api/strings/{key}/</code></p>
-<p>Deletes a UI string.</p>
-<p><strong>Example Request:</strong></p>
-<p><code>bash
-curl -X DELETE -H "Authorization: Bearer &lt;token&gt;" "https://example.com/api/strings/welcome_message/"</code></p>
-</li>
-</ul>
-<h2 id="validation-rules">Validation Rules<a class="headerlink" href="#validation-rules" title="Permanent link">&para;</a></h2>
-<p>The following validation rules apply when creating or updating UI strings:</p>
-<ul>
-<li><strong><code>key</code></strong>: A unique string used to identify the UI string. This field is required when creating a new string and cannot be changed after creation.</li>
-<li><strong><code>values_en</code></strong>: A JSON object containing the English translations. This field is required, and its keys define the structure that <code>values_ar</code> must follow.</li>
-<li><strong><code>values_ar</code></strong>: A JSON object containing the Arabic translations. This field is optional and can be <code>null</code> or an empty JSON object (<code>{}</code>). If <code>values_ar</code> is provided and is not empty, it <strong>must</strong> contain the exact same set of keys as <code>values_en</code>.</li>
+<li><a href="../here-maps/">HERE Maps</a> - HERE Maps integration</li>
+<li><a href="../gallery/">Gallery</a> - Gallery system configuration</li>
+<li><a href="../notifications/">Notifications</a> - Notification system</li>
+<li><a href="../trips/">Trips</a> - Trip settings and behavior</li>
 </ul>
 
 

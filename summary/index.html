@@ -12,13 +12,11 @@
         <meta name="author" content="Redbeard">
       
       
-        <link rel="canonical" href="https://api.ad4x4.com/readme/editable-strings/">
+        <link rel="canonical" href="https://api.ad4x4.com/readme/summary/">
       
       
-        <link rel="prev" href="../background-tasks/">
+        <link rel="prev" href="../rate-limiting/">
       
-      
-        <link rel="next" href="../account-deletion/">
       
       
         
@@ -29,7 +27,7 @@
     
     
       
-        <title>UI Strings - AD4x4 API</title>
+        <title>Summary - AD4x4 API</title>
       
     
     
@@ -78,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#editable-strings-uistring-api" class="md-skip">
+        <a href="#ad4x4-api-documentation-summary" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              UI Strings
+              Summary
             
           </span>
         </div>
@@ -855,37 +853,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    UI Strings
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../editable-strings/" class="md-nav__link">
         
   
   
@@ -901,120 +872,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Overview
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#authentication" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Authentication
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#endpoints" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Endpoints
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Endpoints">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#retrieve-a-ui-string" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Retrieve a UI String
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-a-ui-string" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Create a UI String
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#update-a-ui-string" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Update a UI String
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#delete-a-ui-string" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Delete a UI String
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#validation-rules" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Validation Rules
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1131,10 +988,37 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../summary/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summary
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1150,6 +1034,153 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting Started
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#club-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Club Features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Utilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-guides" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical Guides
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Links
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Links">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authentication-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#find-by-permission" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Find by Permission
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version Info
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Support
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1181,10 +1212,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#getting-started" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview
+        Getting Started
       
     </span>
   </a>
@@ -1192,10 +1223,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#authentication" class="md-nav__link">
+  <a href="#core-resources" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Authentication
+        Core Resources
       
     </span>
   </a>
@@ -1203,22 +1234,55 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#endpoints" class="md-nav__link">
+  <a href="#club-features" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Endpoints
+        Club Features
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Endpoints">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Utilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-guides" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical Guides
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Links
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Links">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#retrieve-a-ui-string" class="md-nav__link">
+  <a href="#authentication-flow" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Retrieve a UI String
+        Authentication Flow
       
     </span>
   </a>
@@ -1226,10 +1290,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#create-a-ui-string" class="md-nav__link">
+  <a href="#common-tasks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Create a UI String
+        Common Tasks
       
     </span>
   </a>
@@ -1237,21 +1301,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#update-a-ui-string" class="md-nav__link">
+  <a href="#find-by-permission" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Update a UI String
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#delete-a-ui-string" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Delete a UI String
+        Find by Permission
       
     </span>
   </a>
@@ -1264,10 +1317,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation-rules" class="md-nav__link">
+  <a href="#version-info" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation Rules
+        Version Info
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Support
       
     </span>
   </a>
@@ -1291,101 +1355,239 @@
 
 
 
-<h1 id="editable-strings-uistring-api">Editable Strings (UIString) API<a class="headerlink" href="#editable-strings-uistring-api" title="Permanent link">&para;</a></h1>
-<p>This document outlines how to use the Editable Strings (UIString) API to manage translations for the application.</p>
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>The UIString feature allows for dynamic management of strings in the application's UI. Strings are stored as key-value pairs, with support for English and Arabic translations. The API provides endpoints for creating, retrieving, updating, and deleting these strings.</p>
-<h2 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h2>
-<p>All API endpoints require authentication. You must have the <code>EDIT_UI_STRINGS</code> permission to create, update, or delete UI strings.</p>
-<h2 id="endpoints">Endpoints<a class="headerlink" href="#endpoints" title="Permanent link">&para;</a></h2>
-<h3 id="retrieve-a-ui-string">Retrieve a UI String<a class="headerlink" href="#retrieve-a-ui-string" title="Permanent link">&para;</a></h3>
+<h1 id="ad4x4-api-documentation-summary">AD4x4 API Documentation Summary<a class="headerlink" href="#ad4x4-api-documentation-summary" title="Permanent link">&para;</a></h1>
+<p>This document provides an overview of all available API documentation.</p>
+<h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Document</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../quick-start/">Quick Start</a></td>
+<td>5-minute quick start guide for new developers</td>
+</tr>
+<tr>
+<td><a href="../api-concepts/">API Concepts</a></td>
+<td>Authentication, response formats, error handling</td>
+</tr>
+<tr>
+<td><a href="../swagger/">Swagger UI</a></td>
+<td>Interactive API documentation</td>
+</tr>
+</tbody>
+</table>
+<h2 id="core-resources">Core Resources<a class="headerlink" href="#core-resources" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Document</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../auth-profiles/">Authentication &amp; Profiles</a></td>
+<td>User registration, login, profile management</td>
+</tr>
+<tr>
+<td><a href="../members/">Members</a></td>
+<td>Member search, profiles, trip history</td>
+</tr>
+<tr>
+<td><a href="../trips/">Trips</a></td>
+<td>Trip creation, registration, management</td>
+</tr>
+<tr>
+<td><a href="../trip-search/">Trip Search</a></td>
+<td>Search and filter trips</td>
+</tr>
+<tr>
+<td><a href="../lead-trip-history/">Lead Trip History</a></td>
+<td>Search trips led by a member</td>
+</tr>
+<tr>
+<td><a href="../meeting-points/">Meeting Points</a></td>
+<td>Meeting point management</td>
+</tr>
+</tbody>
+</table>
+<h2 id="club-features">Club Features<a class="headerlink" href="#club-features" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Document</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../logbook/">Digital Logbook</a></td>
+<td>Logbook entries, skills verification</td>
+</tr>
+<tr>
+<td><a href="../upgrade-requests/">Upgrade Requests</a></td>
+<td>Member level upgrade system</td>
+</tr>
+<tr>
+<td><a href="../trip-requests/">Trip Requests</a></td>
+<td>Trip proposals and voting</td>
+</tr>
+<tr>
+<td><a href="../notifications/">Notifications</a></td>
+<td>Push and email notifications</td>
+</tr>
+<tr>
+<td><a href="../club-news/">Club News</a></td>
+<td>Club-wide announcements</td>
+</tr>
+<tr>
+<td><a href="../trip-reports/">Trip Reports</a></td>
+<td>Trip documentation with photos and tracks</td>
+</tr>
+<tr>
+<td><a href="../faqs/">FAQs</a></td>
+<td>Frequently asked questions</td>
+</tr>
+<tr>
+<td><a href="../feedback/">Feedback</a></td>
+<td>User feedback system</td>
+</tr>
+<tr>
+<td><a href="../sponsorships/">Sponsorships</a></td>
+<td>Sponsorship management</td>
+</tr>
+</tbody>
+</table>
+<h2 id="utilities">Utilities<a class="headerlink" href="#utilities" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Document</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../permissions/">Permissions</a></td>
+<td>Groups, levels, and permission system</td>
+</tr>
+<tr>
+<td><a href="../global-settings/">Global Settings</a></td>
+<td>System configuration reference</td>
+</tr>
+<tr>
+<td><a href="../here-maps/">HERE Maps</a></td>
+<td>Geocoding integration</td>
+</tr>
+<tr>
+<td><a href="../gallery/">Gallery</a></td>
+<td>Media gallery configuration</td>
+</tr>
+<tr>
+<td><a href="../editable-strings/">Editable Strings</a></td>
+<td>UI translations management</td>
+</tr>
+<tr>
+<td><a href="../background-tasks/">Background Tasks</a></td>
+<td>Async tasks and scheduling</td>
+</tr>
+</tbody>
+</table>
+<h2 id="practical-guides">Practical Guides<a class="headerlink" href="#practical-guides" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Document</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../practical-examples/">Practical Examples</a></td>
+<td>Complete workflow examples</td>
+</tr>
+<tr>
+<td><a href="../account-deletion/">Account Deletion</a></td>
+<td>User account deletion process</td>
+</tr>
+<tr>
+<td><a href="../rate-limiting/">Rate Limiting</a></td>
+<td>API rate limits</td>
+</tr>
+<tr>
+<td><a href="../maintenance-mode/">Maintenance Mode</a></td>
+<td>Handling maintenance downtime</td>
+</tr>
+</tbody>
+</table>
+<h2 id="quick-links">Quick Links<a class="headerlink" href="#quick-links" title="Permanent link">&para;</a></h2>
+<h3 id="authentication-flow">Authentication Flow<a class="headerlink" href="#authentication-flow" title="Permanent link">&para;</a></h3>
+<ol>
+<li><a href="../quick-start/">Quick Start</a> - Get started in 5 minutes</li>
+<li><a href="../api-concepts/">API Concepts</a> - JWT authentication</li>
+<li><a href="../swagger/">Swagger UI</a> - Test endpoints interactively</li>
+</ol>
+<h3 id="common-tasks">Common Tasks<a class="headerlink" href="#common-tasks" title="Permanent link">&para;</a></h3>
 <ul>
-<li>
-<p><strong>GET</strong> <code>/api/strings/{key}/</code></p>
-<p>Retrieves a single UI string by its key.</p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>key</code> (string): The key of the UI string to retrieve.</li>
-<li><code>lang</code> (string, optional): The language to retrieve. Can be <code>en</code> or <code>ar</code>. Defaults to <code>en</code>.</li>
+<li><strong>Create a trip</strong>: <a href="../trips/">Trips</a> + <a href="../practical-examples/">Practical Examples</a></li>
+<li><strong>Register for trip</strong>: <a href="../trips/#registration">Trips.md Registration</a></li>
+<li><strong>Search trips</strong>: <a href="../trip-search/">Trip Search</a></li>
+<li><strong>Upgrade level</strong>: <a href="../upgrade-requests/">Upgrade Requests</a></li>
+<li><strong>Log skills</strong>: <a href="../logbook/">Digital Logbook</a></li>
 </ul>
-<p><strong>Example Request:</strong></p>
-<p><code>bash
-curl -X GET -H "Authorization: Bearer &lt;token&gt;" "https://example.com/api/strings/welcome_message/?lang=ar"</code></p>
-<p><strong>Example Response:</strong></p>
-<p><code>json
-{
-    "key": "welcome_message",
-    "values": {
-        "title": "مرحباً",
-        "body": "مرحباً بك في تطبيقنا!"
-    }
-}</code></p>
-</li>
-</ul>
-<h3 id="create-a-ui-string">Create a UI String<a class="headerlink" href="#create-a-ui-string" title="Permanent link">&para;</a></h3>
+<h3 id="find-by-permission">Find by Permission<a class="headerlink" href="#find-by-permission" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Required Permission</th>
+<th>Documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Create trip</td>
+<td><code>CREATE_TRIP</code></td>
+<td><a href="../trips/">Trips</a></td>
+</tr>
+<tr>
+<td>Approve trip</td>
+<td><code>APPROVE_TRIP</code></td>
+<td><a href="../trips/">Trips</a></td>
+</tr>
+<tr>
+<td>View contact info</td>
+<td><code>VIEW_CONTACT_INFO</code></td>
+<td><a href="../permissions/">Permissions</a></td>
+</tr>
+<tr>
+<td>Vote on upgrade</td>
+<td><code>VOTE_UPGRADE_REQ</code></td>
+<td><a href="../upgrade-requests/">Upgrade Requests</a></td>
+</tr>
+<tr>
+<td>Create logbook entry</td>
+<td><code>CREATE_LOGBOOK_ENTRIES</code></td>
+<td><a href="../logbook/">Logbook</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="version-info">Version Info<a class="headerlink" href="#version-info" title="Permanent link">&para;</a></h2>
 <ul>
-<li>
-<p><strong>POST</strong> <code>/api/strings/</code></p>
-<p>Creates a new UI string.</p>
-<p><strong>Example Request:</strong></p>
-<p><code>bash
-curl -X POST -H "Authorization: Bearer &lt;token&gt;" -H "Content-Type: application/json" -d '{
-    "key": "new_feature_announcement",
-    "values_en": {
-        "title": "New Feature!",
-        "description": "We have a new feature for you to try."
-    },
-    "values_ar": {
-        "title": "ميزة جديدة!",
-        "description": "لدينا ميزة جديدة لتجربتها."
-    }
-}' "https://example.com/api/strings/"</code></p>
-</li>
+<li><strong>API Base URL</strong>: <code>/api/</code></li>
+<li><strong>Authentication</strong>: JWT (Bearer token)</li>
+<li><strong>Time Zone</strong>: Asia/Dubai (UTC+4, no DST)</li>
+<li><strong>Response Format</strong>: JSON</li>
+<li><strong>Date Format</strong>: ISO 8601</li>
 </ul>
-<h3 id="update-a-ui-string">Update a UI String<a class="headerlink" href="#update-a-ui-string" title="Permanent link">&para;</a></h3>
+<h2 id="support">Support<a class="headerlink" href="#support" title="Permanent link">&para;</a></h2>
 <ul>
-<li>
-<p><strong>PUT</strong> or <strong>PATCH</strong> <code>/api/strings/{key}/</code></p>
-<p>Updates an existing UI string.</p>
-<p><strong>Example Request (PUT):</strong></p>
-<p><code>bash
-curl -X PUT -H "Authorization: Bearer &lt;token&gt;" -H "Content-Type: application/json" -d '{
-    "key": "welcome_message",
-    "values_en": {
-        "title": "Welcome",
-        "body": "Welcome to our app!"
-    },
-    "values_ar": {
-        "title": "أهلاً بك",
-        "body": "أهلاً بك في تطبيقنا!"
-    }
-}' "https://example.com/api/strings/welcome_message/"</code></p>
-<p><strong>Example Request (PATCH):</strong></p>
-<p><code>bash
-curl -X PATCH -H "Authorization: Bearer &lt;token&gt;" -H "Content-Type: application/json" -d '{
-    "values_en": {
-        "title": "Welcome Back",
-        "body": "Welcome back to our app!"
-    }
-}' "https://example.com/api/strings/welcome_message/"</code></p>
-</li>
-</ul>
-<h3 id="delete-a-ui-string">Delete a UI String<a class="headerlink" href="#delete-a-ui-string" title="Permanent link">&para;</a></h3>
-<ul>
-<li>
-<p><strong>DELETE</strong> <code>/api/strings/{key}/</code></p>
-<p>Deletes a UI string.</p>
-<p><strong>Example Request:</strong></p>
-<p><code>bash
-curl -X DELETE -H "Authorization: Bearer &lt;token&gt;" "https://example.com/api/strings/welcome_message/"</code></p>
-</li>
-</ul>
-<h2 id="validation-rules">Validation Rules<a class="headerlink" href="#validation-rules" title="Permanent link">&para;</a></h2>
-<p>The following validation rules apply when creating or updating UI strings:</p>
-<ul>
-<li><strong><code>key</code></strong>: A unique string used to identify the UI string. This field is required when creating a new string and cannot be changed after creation.</li>
-<li><strong><code>values_en</code></strong>: A JSON object containing the English translations. This field is required, and its keys define the structure that <code>values_ar</code> must follow.</li>
-<li><strong><code>values_ar</code></strong>: A JSON object containing the Arabic translations. This field is optional and can be <code>null</code> or an empty JSON object (<code>{}</code>). If <code>values_ar</code> is provided and is not empty, it <strong>must</strong> contain the exact same set of keys as <code>values_en</code>.</li>
+<li><strong>Swagger UI</strong>: Interactive documentation at <code>/docs/swagger-ui/</code></li>
+<li><strong>Issues</strong>: Report via feedback system or GitHub</li>
 </ul>
 
 

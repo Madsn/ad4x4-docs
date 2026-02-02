@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://api.ad4x4.com/readme/api-concepts/">
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../quick-start/">
       
       
         <link rel="next" href="../practical-examples/">
@@ -234,6 +234,33 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -295,6 +322,17 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#time-zone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time Zone
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#authentication" class="md-nav__link">
@@ -571,6 +609,285 @@
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authentication-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#given-token-not-valid-for-any-token-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Given token not valid for any token type"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-credentials-were-not-provided" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Authentication credentials were not provided"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permission-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permission Errors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Permission Errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nopermissiontoperformaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "nopermissiontoperformaction"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-validation-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Validation Errors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Field Validation Errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#field-shows-this-field-is-required-but-value-is-provided" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field shows "This field is required" but value is provided
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#503-service-unavailable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        503 Service Unavailable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pagination-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pagination Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pagination Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#count-0-with-no-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "count": 0 with no results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nextprevious-urls-are-null" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next/Previous URLs are null
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rate Limiting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rate Limiting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requests-returning-429-too-many-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requests returning 429 Too Many Requests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datetime-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Date/Time Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Date/Time Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trip-times-appearing-incorrect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trip times appearing incorrect
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-upload-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Upload Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File Upload Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request-is-not-a-multipart-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Request is not a multipart request"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-too-large-413-payload-too-large" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File too large (413 Payload Too Large)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-http-status-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common HTTP Status Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting Help
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -670,6 +987,87 @@
   
   
     <li class="md-nav__item">
+      <a href="../members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trip-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lead-trip-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lead Trip History
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../trips/" class="md-nav__link">
         
   
@@ -678,6 +1076,276 @@
     
   
     Trips
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trip-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trip-reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meeting-points/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meeting Points
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Logbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upgrade-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../club-news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Club News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faqs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feedback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sponsorships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sponsorships
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notifications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications
   
 
     
@@ -751,14 +1419,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../logbook/" class="md-nav__link">
+      <a href="../global-settings/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Digital Logbook
+    Global Settings
   
 
     
@@ -778,95 +1446,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../meeting-points/" class="md-nav__link">
+      <a href="../background-tasks/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Meeting Points
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../upgrade-requests/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Upgrade Requests
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../account-deletion/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Account Deletion
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../notifications/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Notifications
+    Background Tasks
   
 
     
@@ -894,6 +1481,33 @@
     
   
     UI Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../account-deletion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Account Deletion
   
 
     
@@ -987,6 +1601,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1012,6 +1653,17 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#time-zone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time Zone
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#authentication" class="md-nav__link">
@@ -1291,6 +1943,285 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authentication-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#given-token-not-valid-for-any-token-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Given token not valid for any token type"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-credentials-were-not-provided" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Authentication credentials were not provided"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permission-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permission Errors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Permission Errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nopermissiontoperformaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "nopermissiontoperformaction"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-validation-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Validation Errors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Field Validation Errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#field-shows-this-field-is-required-but-value-is-provided" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field shows "This field is required" but value is provided
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#503-service-unavailable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        503 Service Unavailable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pagination-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pagination Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pagination Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#count-0-with-no-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "count": 0 with no results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nextprevious-urls-are-null" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next/Previous URLs are null
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rate Limiting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rate Limiting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requests-returning-429-too-many-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requests returning 429 Too Many Requests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datetime-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Date/Time Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Date/Time Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trip-times-appearing-incorrect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trip times appearing incorrect
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-upload-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Upload Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File Upload Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request-is-not-a-multipart-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Request is not a multipart request"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-too-large-413-payload-too-large" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File too large (413 Payload Too Large)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-http-status-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common HTTP Status Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting Help
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1310,6 +2241,12 @@
 
 <h1 id="api-concepts">API Concepts<a class="headerlink" href="#api-concepts" title="Permanent link">&para;</a></h1>
 <p>This document covers high-level concepts for interacting with the AD4x4 API.</p>
+<h2 id="time-zone">Time Zone<a class="headerlink" href="#time-zone" title="Permanent link">&para;</a></h2>
+<p>All dates and times in the API use <strong>Asia/Dubai time zone (UTC+4)</strong> with no daylight saving time.</p>
+<p><strong>Examples:</strong>
+- <code>2024-12-15T07:00:00+04:00</code> - December 15, 2024 at 7:00 AM Dubai time
+- <code>2024-12-14T18:00:00+04:00</code> - December 14, 2024 at 6:00 PM Dubai time</p>
+<p><strong>Important:</strong> The <code>USE_TZ</code> setting is <code>False</code>, so times are stored and returned as-is in Dubai time without UTC conversion.</p>
 <h2 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h2>
 <p>The API uses JWT (JSON Web Token) authentication. To authenticate:</p>
 <ol>
@@ -1353,18 +2290,42 @@
     }</code></li>
 </ul>
 <h2 id="response-format">Response Format<a class="headerlink" href="#response-format" title="Permanent link">&para;</a></h2>
-<p>Most endpoints return responses in the following formats:</p>
+<p>Most endpoints return responses in the following formats. Note that the <code>message</code> field can be either a string or an object depending on the endpoint.</p>
 <h3 id="success-response-unified">Success Response (Unified)<a class="headerlink" href="#success-response-unified" title="Permanent link">&para;</a></h3>
+<p>When <code>message</code> is a string:</p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;operation_successful&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
 
+<p>When <code>message</code> is an object (data responses):</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">456</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Weekend Trip&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="err">...</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
 <h3 id="error-response-unified">Error Response (Unified)<a class="headerlink" href="#error-response-unified" title="Permanent link">&para;</a></h3>
+<p>When <code>message</code> is a string:</p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;error_description&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>When <code>message</code> is an object (validation errors):</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;field_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;This field is required.&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -1466,6 +2427,156 @@
 <li><strong>Use appropriate HTTP methods</strong> (GET, POST, PUT, PATCH, DELETE)</li>
 <li><strong>Include proper Content-Type headers</strong></li>
 <li><strong>Test with the Swagger UI</strong> at <code>/docs/swagger-ui/</code></li>
+</ol>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="authentication-issues">Authentication Issues<a class="headerlink" href="#authentication-issues" title="Permanent link">&para;</a></h3>
+<h4 id="given-token-not-valid-for-any-token-type">"Given token not valid for any token type"<a class="headerlink" href="#given-token-not-valid-for-any-token-type" title="Permanent link">&para;</a></h4>
+<p><strong>Cause:</strong> Token is expired, invalid, or malformed</p>
+<p><strong>Solutions:</strong>
+1. Refresh the token using <code>/api/token/refresh/</code>
+2. Re-authenticate with username and password
+3. Check token format (should start with <code>eyJ...</code>)</p>
+<h4 id="authentication-credentials-were-not-provided">"Authentication credentials were not provided"<a class="headerlink" href="#authentication-credentials-were-not-provided" title="Permanent link">&para;</a></h4>
+<p><strong>Cause:</strong> Missing or malformed Authorization header</p>
+<p><strong>Solutions:</strong>
+1. Ensure header is present: <code>Authorization: Bearer &lt;token&gt;</code>
+2. Check for typos in "Bearer" (case-sensitive)
+3. Verify token is not empty or None</p>
+<h3 id="permission-errors">Permission Errors<a class="headerlink" href="#permission-errors" title="Permanent link">&para;</a></h3>
+<h4 id="nopermissiontoperformaction">"no<em>permission</em>to<em>perform</em>action"<a class="headerlink" href="#nopermissiontoperformaction" title="Permanent link">&para;</a></h4>
+<p><strong>Cause:</strong> User lacks required permission for the action</p>
+<p><strong>Solutions:</strong>
+1. Check user has correct group membership
+2. Verify permission exists in PermissionMatrix
+3. Contact administrator for elevated permissions</p>
+<h3 id="field-validation-errors">Field Validation Errors<a class="headerlink" href="#field-validation-errors" title="Permanent link">&para;</a></h3>
+<h4 id="field-shows-this-field-is-required-but-value-is-provided">Field shows "This field is required" but value is provided<a class="headerlink" href="#field-shows-this-field-is-required-but-value-is-provided" title="Permanent link">&para;</a></h4>
+<p><strong>Causes:</strong>
+1. Wrong field name (camelCase vs snake_case mismatch)
+2. Field not expected by this endpoint/method
+3. Type mismatch (string vs number)</p>
+<p><strong>Solutions:</strong>
+1. Use camelCase for API requests (e.g., <code>startTime</code> not <code>start_time</code>)
+2. Check Swagger documentation for accepted fields
+3. Verify data type matches expected format</p>
+<h3 id="503-service-unavailable">503 Service Unavailable<a class="headerlink" href="#503-service-unavailable" title="Permanent link">&para;</a></h3>
+<p><strong>Cause:</strong> Maintenance mode is enabled</p>
+<p><strong>Solutions:</strong>
+1. Wait and retry after a few minutes
+2. Check Club News for maintenance announcements
+3. See <a href="../maintenance-mode/">Maintenance Mode</a></p>
+<h3 id="pagination-issues">Pagination Issues<a class="headerlink" href="#pagination-issues" title="Permanent link">&para;</a></h3>
+<h4 id="count-0-with-no-results">"count": 0 with no results<a class="headerlink" href="#count-0-with-no-results" title="Permanent link">&para;</a></h4>
+<p><strong>Causes:</strong>
+1. No data matching filter criteria
+2. Page number exceeds available pages
+3. Authentication required for filtered results</p>
+<p><strong>Solutions:</strong>
+1. Remove filters to see all data
+2. Request page 1 if using page numbers
+3. Verify authentication token</p>
+<h4 id="nextprevious-urls-are-null">Next/Previous URLs are null<a class="headerlink" href="#nextprevious-urls-are-null" title="Permanent link">&para;</a></h4>
+<p><strong>Null <code>next</code>:</strong> You are on the last page
+<strong>Null <code>previous</code>:</strong> You are on the first page</p>
+<h3 id="rate-limiting">Rate Limiting<a class="headerlink" href="#rate-limiting" title="Permanent link">&para;</a></h3>
+<h4 id="requests-returning-429-too-many-requests">Requests returning 429 Too Many Requests<a class="headerlink" href="#requests-returning-429-too-many-requests" title="Permanent link">&para;</a></h4>
+<p><strong>Cause:</strong> Exceeded rate limit (100 requests/minute per IP)</p>
+<p><strong>Solutions:</strong>
+1. Implement exponential backoff
+2. Reduce request frequency
+3. Cache responses locally</p>
+<p>See <a href="../rate-limiting/">Rate Limiting</a> for details.</p>
+<h3 id="datetime-issues">Date/Time Issues<a class="headerlink" href="#datetime-issues" title="Permanent link">&para;</a></h3>
+<h4 id="trip-times-appearing-incorrect">Trip times appearing incorrect<a class="headerlink" href="#trip-times-appearing-incorrect" title="Permanent link">&para;</a></h4>
+<p><strong>Cause:</strong> Client not parsing timezone correctly</p>
+<p><strong>Solutions:</strong>
+1. All API times are in Asia/Dubai (UTC+4)
+2. Parse with timezone awareness
+3. Examples: <code>2024-12-15T07:00:00+04:00</code></p>
+<h3 id="file-upload-issues">File Upload Issues<a class="headerlink" href="#file-upload-issues" title="Permanent link">&para;</a></h3>
+<h4 id="request-is-not-a-multipart-request">"Request is not a multipart request"<a class="headerlink" href="#request-is-not-a-multipart-request" title="Permanent link">&para;</a></h4>
+<p><strong>Cause:</strong> Wrong Content-Type for file upload</p>
+<p><strong>Solutions:</strong>
+1. Use <code>multipart/form-data</code> not <code>application/json</code>
+2. Do not JSON-encode the body
+3. Use appropriate HTTP client settings</p>
+<h4 id="file-too-large-413-payload-too-large">File too large (413 Payload Too Large)<a class="headerlink" href="#file-too-large-413-payload-too-large" title="Permanent link">&para;</a></h4>
+<p><strong>Cause:</strong> File exceeds size limit</p>
+<p><strong>Solutions:</strong>
+1. Compress images before upload
+2. Stay within limits:
+   - Profile avatars: 5MB
+   - Car images: 5MB
+   - Trip images: 10MB
+   - Track files: 2MB</p>
+<h3 id="common-http-status-codes">Common HTTP Status Codes<a class="headerlink" href="#common-http-status-codes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+<th>Common Causes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>Successful request</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td>Resource successfully created</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td>Invalid data, validation errors</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td>Missing or invalid token</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td>Permission denied</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>Resource doesn't exist</td>
+</tr>
+<tr>
+<td>422</td>
+<td>Unprocessable</td>
+<td>Business rule violation</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+<td>Rate limit exceeded</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td>Server error, check logs</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+<td>Maintenance mode</td>
+</tr>
+</tbody>
+</table>
+<h3 id="getting-help">Getting Help<a class="headerlink" href="#getting-help" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Check Swagger UI</strong> at <code>/docs/swagger-ui/</code> for interactive testing</li>
+<li><strong>Review error messages</strong> in response body</li>
+<li><strong>Check server logs</strong> for detailed error information</li>
+<li><strong>Contact support</strong> via the feedback system</li>
 </ol>
 
 

@@ -12,13 +12,13 @@
         <meta name="author" content="Redbeard">
       
       
-        <link rel="canonical" href="https://api.ad4x4.com/readme/editable-strings/">
+        <link rel="canonical" href="https://api.ad4x4.com/readme/sponsorships/">
       
       
-        <link rel="prev" href="../background-tasks/">
+        <link rel="prev" href="../feedback/">
       
       
-        <link rel="next" href="../account-deletion/">
+        <link rel="next" href="../notifications/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>UI Strings - AD4x4 API</title>
+        <title>Sponsorships - AD4x4 API</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#editable-strings-uistring-api" class="md-skip">
+        <a href="#sponsorships" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              UI Strings
+              Sponsorships
             
           </span>
         </div>
@@ -693,10 +693,37 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../sponsorships/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sponsorships
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -712,6 +739,170 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#model-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-active-sponsors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List Active Sponsors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retrieve-sponsor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retrieve Sponsor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#display-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Display Logic
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Display Logic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#active-sponsor-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Active Sponsor Check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#priority-ordering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Priority Ordering
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-upload-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Upload Path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Cases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#admin-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Admin Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permissions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documentation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -855,37 +1046,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    UI Strings
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../editable-strings/" class="md-nav__link">
         
   
   
@@ -901,120 +1065,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Overview
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#authentication" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Authentication
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#endpoints" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Endpoints
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Endpoints">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#retrieve-a-ui-string" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Retrieve a UI String
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-a-ui-string" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Create a UI String
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#update-a-ui-string" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Update a UI String
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#delete-a-ui-string" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Delete a UI String
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#validation-rules" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Validation Rules
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1181,21 +1231,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#model-overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#authentication" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Authentication
+        Model Overview
       
     </span>
   </a>
@@ -1215,10 +1254,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#retrieve-a-ui-string" class="md-nav__link">
+  <a href="#list-active-sponsors" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Retrieve a UI String
+        List Active Sponsors
       
     </span>
   </a>
@@ -1226,32 +1265,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#create-a-ui-string" class="md-nav__link">
+  <a href="#retrieve-sponsor" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Create a UI String
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#update-a-ui-string" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Update a UI String
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#delete-a-ui-string" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Delete a UI String
+        Retrieve Sponsor
       
     </span>
   </a>
@@ -1264,10 +1281,93 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation-rules" class="md-nav__link">
+  <a href="#display-logic" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation Rules
+        Display Logic
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Display Logic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#active-sponsor-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Active Sponsor Check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#priority-ordering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Priority Ordering
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-upload-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Upload Path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Cases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#admin-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Admin Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permissions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documentation
       
     </span>
   </a>
@@ -1291,101 +1391,156 @@
 
 
 
-<h1 id="editable-strings-uistring-api">Editable Strings (UIString) API<a class="headerlink" href="#editable-strings-uistring-api" title="Permanent link">&para;</a></h1>
-<p>This document outlines how to use the Editable Strings (UIString) API to manage translations for the application.</p>
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>The UIString feature allows for dynamic management of strings in the application's UI. Strings are stored as key-value pairs, with support for English and Arabic translations. The API provides endpoints for creating, retrieving, updating, and deleting these strings.</p>
-<h2 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h2>
-<p>All API endpoints require authentication. You must have the <code>EDIT_UI_STRINGS</code> permission to create, update, or delete UI strings.</p>
+<h1 id="sponsorships">Sponsorships<a class="headerlink" href="#sponsorships" title="Permanent link">&para;</a></h1>
+<p>The sponsorship system manages club sponsors and their associated branding assets. Sponsors are displayed on the frontend based on priority and active date range.</p>
+<h2 id="model-overview">Model Overview<a class="headerlink" href="#model-overview" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>Integer</td>
+<td>Unique identifier</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>CharField(100)</td>
+<td>Sponsor name</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>TextField</td>
+<td>Sponsor details or slogan</td>
+</tr>
+<tr>
+<td><code>priority</code></td>
+<td>Integer</td>
+<td>Display order (lower = higher priority)</td>
+</tr>
+<tr>
+<td><code>image</code></td>
+<td>ImageField</td>
+<td>Sponsor logo</td>
+</tr>
+<tr>
+<td><code>start_date</code></td>
+<td>DateField</td>
+<td>When sponsorship becomes active (default: today)</td>
+</tr>
+<tr>
+<td><code>end_date</code></td>
+<td>DateField</td>
+<td>When sponsorship expires (optional)</td>
+</tr>
+</tbody>
+</table>
 <h2 id="endpoints">Endpoints<a class="headerlink" href="#endpoints" title="Permanent link">&para;</a></h2>
-<h3 id="retrieve-a-ui-string">Retrieve a UI String<a class="headerlink" href="#retrieve-a-ui-string" title="Permanent link">&para;</a></h3>
+<h3 id="list-active-sponsors">List Active Sponsors<a class="headerlink" href="#list-active-sponsors" title="Permanent link">&para;</a></h3>
 <ul>
-<li>
-<p><strong>GET</strong> <code>/api/strings/{key}/</code></p>
-<p>Retrieves a single UI string by its key.</p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>key</code> (string): The key of the UI string to retrieve.</li>
-<li><code>lang</code> (string, optional): The language to retrieve. Can be <code>en</code> or <code>ar</code>. Defaults to <code>en</code>.</li>
+<li><strong>GET</strong> <code>/api/sponsorships/</code></li>
+<li><strong>Authentication:</strong> Not required (public endpoint)</li>
+<li><strong>Pagination:</strong> Disabled</li>
 </ul>
-<p><strong>Example Request:</strong></p>
-<p><code>bash
-curl -X GET -H "Authorization: Bearer &lt;token&gt;" "https://example.com/api/strings/welcome_message/?lang=ar"</code></p>
-<p><strong>Example Response:</strong></p>
-<p><code>json
-{
-    "key": "welcome_message",
-    "values": {
-        "title": "مرحباً",
-        "body": "مرحباً بك في تطبيقنا!"
-    }
-}</code></p>
-</li>
-</ul>
-<h3 id="create-a-ui-string">Create a UI String<a class="headerlink" href="#create-a-ui-string" title="Permanent link">&para;</a></h3>
+<p><strong>Filtering:</strong>
+Only sponsors where <code>end_date</code> is null OR <code>end_date &gt; today</code> are returned.</p>
+<p><strong>Ordering:</strong>
+Results are sorted by <code>priority</code> (ascending).</p>
+<p><strong>Response:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OffRoad Pro&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Premium off-road equipment&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;priority&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/media/avatars/2024/01/sponsor_abc123.jpg&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Desert Tires&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;All-terrain tires for extreme conditions&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;priority&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/media/avatars/2024/01/sponsor_def456.jpg&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="retrieve-sponsor">Retrieve Sponsor<a class="headerlink" href="#retrieve-sponsor" title="Permanent link">&para;</a></h3>
 <ul>
-<li>
-<p><strong>POST</strong> <code>/api/strings/</code></p>
-<p>Creates a new UI string.</p>
-<p><strong>Example Request:</strong></p>
-<p><code>bash
-curl -X POST -H "Authorization: Bearer &lt;token&gt;" -H "Content-Type: application/json" -d '{
-    "key": "new_feature_announcement",
-    "values_en": {
-        "title": "New Feature!",
-        "description": "We have a new feature for you to try."
-    },
-    "values_ar": {
-        "title": "ميزة جديدة!",
-        "description": "لدينا ميزة جديدة لتجربتها."
-    }
-}' "https://example.com/api/strings/"</code></p>
-</li>
+<li><strong>GET</strong> <code>/api/sponsorships/{id}/</code></li>
+<li><strong>Authentication:</strong> Not required (public endpoint)</li>
 </ul>
-<h3 id="update-a-ui-string">Update a UI String<a class="headerlink" href="#update-a-ui-string" title="Permanent link">&para;</a></h3>
+<p><strong>Response:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OffRoad Pro&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Premium off-road equipment&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;priority&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/media/avatars/2024/01/sponsor_abc123.jpg&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="display-logic">Display Logic<a class="headerlink" href="#display-logic" title="Permanent link">&para;</a></h2>
+<h3 id="active-sponsor-check">Active Sponsor Check<a class="headerlink" href="#active-sponsor-check" title="Permanent link">&para;</a></h3>
+<p>A sponsor is considered active when:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">end_date</span> <span class="ow">is</span> <span class="kc">None</span> <span class="n">OR</span> <span class="n">end_date</span> <span class="o">&gt;</span> <span class="n">today</span>
+</code></pre></div>
+
+<h3 id="priority-ordering">Priority Ordering<a class="headerlink" href="#priority-ordering" title="Permanent link">&para;</a></h3>
+<p>Lower <code>priority</code> values appear first in the list. Example:
+- Priority 10: Appears before priority 20
+- Priority 100: Appears last</p>
+<h2 id="file-upload-path">File Upload Path<a class="headerlink" href="#file-upload-path" title="Permanent link">&para;</a></h2>
+<p>Logos are stored at: <code>avatars/{YYYY}/{MM}/{filename}</code></p>
+<h2 id="use-cases">Use Cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Homepage Banner:</strong> Display top 3-5 sponsors by priority</li>
+<li><strong>Sponsor Gallery:</strong> Full list of all active sponsors</li>
+<li><strong>Footer:</strong> Persistent sponsor logos</li>
+<li><strong>Event Pages:</strong> Event-specific sponsors with dedicated priority</li>
+</ol>
+<h2 id="admin-configuration">Admin Configuration<a class="headerlink" href="#admin-configuration" title="Permanent link">&para;</a></h2>
+<p>Sponsors are managed in Django Admin under the <strong>Sponsors</strong> section. Administrators can:</p>
 <ul>
-<li>
-<p><strong>PUT</strong> or <strong>PATCH</strong> <code>/api/strings/{key}/</code></p>
-<p>Updates an existing UI string.</p>
-<p><strong>Example Request (PUT):</strong></p>
-<p><code>bash
-curl -X PUT -H "Authorization: Bearer &lt;token&gt;" -H "Content-Type: application/json" -d '{
-    "key": "welcome_message",
-    "values_en": {
-        "title": "Welcome",
-        "body": "Welcome to our app!"
-    },
-    "values_ar": {
-        "title": "أهلاً بك",
-        "body": "أهلاً بك في تطبيقنا!"
-    }
-}' "https://example.com/api/strings/welcome_message/"</code></p>
-<p><strong>Example Request (PATCH):</strong></p>
-<p><code>bash
-curl -X PATCH -H "Authorization: Bearer &lt;token&gt;" -H "Content-Type: application/json" -d '{
-    "values_en": {
-        "title": "Welcome Back",
-        "body": "Welcome back to our app!"
-    }
-}' "https://example.com/api/strings/welcome_message/"</code></p>
-</li>
+<li>Add new sponsors with logo uploads</li>
+<li>Set priority values for ordering</li>
+<li>Configure start and end dates for campaigns</li>
+<li>Edit sponsor descriptions and titles</li>
 </ul>
-<h3 id="delete-a-ui-string">Delete a UI String<a class="headerlink" href="#delete-a-ui-string" title="Permanent link">&para;</a></h3>
+<h2 id="permissions">Permissions<a class="headerlink" href="#permissions" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Permission Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>List/Retrieve</td>
+<td>AllowAny (public)</td>
+</tr>
+<tr>
+<td>Create/Update/Delete</td>
+<td>Django admin only</td>
+</tr>
+</tbody>
+</table>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
 <ul>
-<li>
-<p><strong>DELETE</strong> <code>/api/strings/{key}/</code></p>
-<p>Deletes a UI string.</p>
-<p><strong>Example Request:</strong></p>
-<p><code>bash
-curl -X DELETE -H "Authorization: Bearer &lt;token&gt;" "https://example.com/api/strings/welcome_message/"</code></p>
-</li>
-</ul>
-<h2 id="validation-rules">Validation Rules<a class="headerlink" href="#validation-rules" title="Permanent link">&para;</a></h2>
-<p>The following validation rules apply when creating or updating UI strings:</p>
-<ul>
-<li><strong><code>key</code></strong>: A unique string used to identify the UI string. This field is required when creating a new string and cannot be changed after creation.</li>
-<li><strong><code>values_en</code></strong>: A JSON object containing the English translations. This field is required, and its keys define the structure that <code>values_ar</code> must follow.</li>
-<li><strong><code>values_ar</code></strong>: A JSON object containing the Arabic translations. This field is optional and can be <code>null</code> or an empty JSON object (<code>{}</code>). If <code>values_ar</code> is provided and is not empty, it <strong>must</strong> contain the exact same set of keys as <code>values_en</code>.</li>
+<li><a href="../global-settings/">Global Settings</a> - Feature flags affecting sponsor display</li>
+<li><a href="../club-news/">Club News</a> - Announcements that may reference sponsors</li>
 </ul>
 
 

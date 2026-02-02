@@ -12,13 +12,13 @@
         <meta name="author" content="Redbeard">
       
       
-        <link rel="canonical" href="https://api.ad4x4.com/readme/permissions/">
+        <link rel="canonical" href="https://api.ad4x4.com/readme/quick-start/">
       
       
-        <link rel="prev" href="../practical-examples/">
+        <link rel="prev" href="..">
       
       
-        <link rel="next" href="../auth-profiles/">
+        <link rel="next" href="../api-concepts/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Permissions System - AD4x4 API</title>
+        <title>Quick Start - AD4x4 API</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#permissions-groups-and-levels" class="md-skip">
+        <a href="#quick-start-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Permissions System
+              Quick Start
             
           </span>
         </div>
@@ -234,10 +234,37 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../quick-start/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -253,6 +280,281 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-authenticate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Authenticate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Authenticate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#obtain-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Obtain Token
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-token-in-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Token in Requests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-explore-available-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Explore Available Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Explore Available Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-trips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List Trips
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Levels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-meeting-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Meeting Points
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-common-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Common Operations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3: Common Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create a Trip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register-for-a-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register for a Trip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-members" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search Members
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-check-your-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Check Your Profile
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#response-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Response Format
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Response Format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#success-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Success Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-zone-note" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time Zone Note
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#field-naming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Naming
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#need-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Need Help?
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -315,37 +617,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Permissions System
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../permissions/" class="md-nav__link">
         
   
   
@@ -361,186 +636,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#core-concepts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Core Concepts
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fetching-user-permissions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Fetching User Permissions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#groups-and-levels" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Groups and Levels
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#default-permissions-by-group" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Default Permissions by Group
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Default Permissions by Group">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#newbies" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Newbies
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#explorers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Explorers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#marshals" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Marshals
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#board-members" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Board Members
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#upgrade-request-managers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Upgrade Request Managers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#trip-managers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Trip Managers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#media-managers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Media Managers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#meeting-point-managers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Meeting Point Managers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#site-admins" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Site Admins
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#full-list-of-permissions-actions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Full List of Permissions (Actions)
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1247,10 +1342,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#core-concepts" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Concepts
+        Prerequisites
       
     </span>
   </a>
@@ -1258,44 +1353,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fetching-user-permissions" class="md-nav__link">
+  <a href="#step-1-authenticate" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Fetching User Permissions
+        Step 1: Authenticate
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#groups-and-levels" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Groups and Levels
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#default-permissions-by-group" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Default Permissions by Group
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Default Permissions by Group">
+    <nav class="md-nav" aria-label="Step 1: Authenticate">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#newbies" class="md-nav__link">
+  <a href="#obtain-token" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Newbies
+        Obtain Token
       
     </span>
   </a>
@@ -1303,87 +1376,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#explorers" class="md-nav__link">
+  <a href="#use-token-in-requests" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Explorers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#marshals" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Marshals
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#board-members" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Board Members
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#upgrade-request-managers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Upgrade Request Managers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#trip-managers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Trip Managers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#media-managers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Media Managers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#meeting-point-managers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Meeting Point Managers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#site-admins" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Site Admins
+        Use Token in Requests
       
     </span>
   </a>
@@ -1396,10 +1392,204 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#full-list-of-permissions-actions" class="md-nav__link">
+  <a href="#step-2-explore-available-data" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Full List of Permissions (Actions)
+        Step 2: Explore Available Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Explore Available Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-trips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List Trips
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Levels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-meeting-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Meeting Points
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-common-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Common Operations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3: Common Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create a Trip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register-for-a-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register for a Trip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-members" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search Members
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-check-your-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Check Your Profile
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#response-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Response Format
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Response Format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#success-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Success Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-zone-note" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time Zone Note
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#field-naming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Naming
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#need-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Need Help?
       
     </span>
   </a>
@@ -1423,313 +1613,185 @@
 
 
 
-<h1 id="permissions-groups-and-levels">Permissions, Groups, and Levels<a class="headerlink" href="#permissions-groups-and-levels" title="Permanent link">&para;</a></h1>
-<p>This document provides a comprehensive overview of the permissions system used in the API. It details the different user groups, experience levels, and the specific actions each group is permitted to perform by default.</p>
-<h2 id="core-concepts">Core Concepts<a class="headerlink" href="#core-concepts" title="Permanent link">&para;</a></h2>
-<p>The permissions system is built on three main concepts:</p>
+<h1 id="quick-start-guide">Quick Start Guide<a class="headerlink" href="#quick-start-guide" title="Permanent link">&para;</a></h1>
+<p>Get started with the AD4x4 API in 5 minutes.</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Groups:</strong> Users are assigned to one or more groups, which determine their general role and permissions.</li>
-<li><strong>Levels:</strong> Levels represent a user's experience or seniority within the club (e.g., Newbie, Intermediate, Marshal). Some permissions are restricted to certain levels.</li>
-<li><strong>Actions:</strong> These are specific permissions that grant the ability to perform a particular operation via the API (e.g., <code>CREATE_TRIP</code>, <code>APPROVE_UPGRADE_REQ</code>).</li>
+<li>API endpoint: <code>http://localhost:8000/api/</code> (development)</li>
+<li>Authentication: JWT Bearer token</li>
+<li>Time zone: Asia/Dubai (UTC+4)</li>
 </ul>
-<p>Permissions are granted to groups, and can optionally be restricted to apply only to certain levels.</p>
-<h2 id="fetching-user-permissions">Fetching User Permissions<a class="headerlink" href="#fetching-user-permissions" title="Permanent link">&para;</a></h2>
-<p>To get the permissions for a specific user, you can retrieve their profile from the <code>/api/members/{id}/</code> endpoint. The user's permissions are included in the <code>permissions</code> array in the response.</p>
-<p><strong>GET</strong> <code>/api/members/{id}/</code></p>
-<p><strong>Example Response Snippet:</strong></p>
+<h2 id="step-1-authenticate">Step 1: Authenticate<a class="headerlink" href="#step-1-authenticate" title="Permanent link">&para;</a></h2>
+<h3 id="obtain-token">Obtain Token<a class="headerlink" href="#obtain-token" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/api/token/<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;username&quot;: &quot;your_username&quot;,</span>
+<span class="s1">    &quot;password&quot;: &quot;your_password&quot;</span>
+<span class="s1">  }&#39;</span>
+</code></pre></div>
+
+<p><strong>Response:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;testuser&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="err">...</span>
-<span class="w">    </span><span class="nt">&quot;permissions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">&quot;CREATE_TRIP&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;VIEW_CONTACT_INFO&quot;</span>
-<span class="w">    </span><span class="p">],</span>
-<span class="w">    </span><span class="err">...</span>
+<span class="w">  </span><span class="nt">&quot;access&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;refresh&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
 
-<h2 id="groups-and-levels">Groups and Levels<a class="headerlink" href="#groups-and-levels" title="Permanent link">&para;</a></h2>
-<p>The following table lists the default groups and their corresponding experience levels:</p>
+<h3 id="use-token-in-requests">Use Token in Requests<a class="headerlink" href="#use-token-in-requests" title="Permanent link">&para;</a></h3>
+<p>Include the token in the Authorization header:</p>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>http://localhost:8000/api/trips/<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer YOUR_ACCESS_TOKEN&quot;</span>
+</code></pre></div>
+
+<h2 id="step-2-explore-available-data">Step 2: Explore Available Data<a class="headerlink" href="#step-2-explore-available-data" title="Permanent link">&para;</a></h2>
+<h3 id="list-trips">List Trips<a class="headerlink" href="#list-trips" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://localhost:8000/api/trips/?approval_status=APPROVED&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer YOUR_TOKEN&quot;</span>
+</code></pre></div>
+
+<h3 id="get-levels">Get Levels<a class="headerlink" href="#get-levels" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>http://localhost:8000/api/levels/<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer YOUR_TOKEN&quot;</span>
+</code></pre></div>
+
+<h3 id="get-meeting-points">Get Meeting Points<a class="headerlink" href="#get-meeting-points" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>http://localhost:8000/api/meetingpoints/<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer YOUR_TOKEN&quot;</span>
+</code></pre></div>
+
+<h2 id="step-3-common-operations">Step 3: Common Operations<a class="headerlink" href="#step-3-common-operations" title="Permanent link">&para;</a></h2>
+<h3 id="create-a-trip">Create a Trip<a class="headerlink" href="#create-a-trip" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/api/trips/<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer YOUR_TOKEN&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;lead&quot;: 123,</span>
+<span class="s1">    &quot;level&quot;: 10,</span>
+<span class="s1">    &quot;meetingPoint&quot;: 1,</span>
+<span class="s1">    &quot;title&quot;: &quot;Weekend Desert Safari&quot;,</span>
+<span class="s1">    &quot;description&quot;: &quot;Easy desert drive&quot;,</span>
+<span class="s1">    &quot;startTime&quot;: &quot;2024-12-15T07:00:00+04:00&quot;,</span>
+<span class="s1">    &quot;endTime&quot;: &quot;2024-12-15T15:00:00+04:00&quot;,</span>
+<span class="s1">    &quot;cutOff&quot;: &quot;2024-12-14T18:00:00+04:00&quot;,</span>
+<span class="s1">    &quot;capacity&quot;: 10,</span>
+<span class="s1">    &quot;allowWaitlist&quot;: true</span>
+<span class="s1">  }&#39;</span>
+</code></pre></div>
+
+<h3 id="register-for-a-trip">Register for a Trip<a class="headerlink" href="#register-for-a-trip" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/api/trips/456/register/<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer YOUR_TOKEN&quot;</span>
+</code></pre></div>
+
+<h3 id="search-members">Search Members<a class="headerlink" href="#search-members" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://localhost:8000/api/members/search/?query=john&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer YOUR_TOKEN&quot;</span>
+</code></pre></div>
+
+<h2 id="step-4-check-your-profile">Step 4: Check Your Profile<a class="headerlink" href="#step-4-check-your-profile" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>http://localhost:8000/api/members/me/<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer YOUR_TOKEN&quot;</span>
+</code></pre></div>
+
+<h2 id="response-format">Response Format<a class="headerlink" href="#response-format" title="Permanent link">&para;</a></h2>
+<h3 id="success-response">Success Response<a class="headerlink" href="#success-response" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;operation_successful&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Or for data responses:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...da</span><span class="kc">ta</span><span class="w"> </span><span class="err">objec</span><span class="kc">t</span><span class="err">...</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="error-response">Error Response<a class="headerlink" href="#error-response" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;error_description&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="time-zone-note">Time Zone Note<a class="headerlink" href="#time-zone-note" title="Permanent link">&para;</a></h2>
+<p>All dates use <strong>Asia/Dubai time zone (UTC+4)</strong> with no daylight saving time. Examples:</p>
+<ul>
+<li><code>2024-12-15T07:00:00+04:00</code> - December 15, 2024 at 7:00 AM Dubai time</li>
+<li><code>2024-12-14T18:00:00+04:00</code> - December 14, 2024 at 6:00 PM Dubai time</li>
+</ul>
+<h2 id="field-naming">Field Naming<a class="headerlink" href="#field-naming" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Request body</strong>: Use camelCase (<code>startTime</code>, <code>endTime</code>)</li>
+<li><strong>Response body</strong>: Returns camelCase (<code>startTime</code>, <code>endTime</code>)</li>
+<li><strong>Database/Serializer</strong>: Uses snake_case internally</li>
+</ul>
+<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Group</th>
-<th>Level</th>
-<th>Numeric Level</th>
-<th>Notes</th>
+<th>Task</th>
+<th>Documentation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Newbies</td>
-<td>Newbie</td>
-<td>10</td>
-<td>Default for new users</td>
+<td>Learn authentication details</td>
+<td><a href="../api-concepts/">API Concepts</a></td>
 </tr>
 <tr>
-<td>Intermediates</td>
-<td>Intermediate</td>
-<td>100</td>
-<td></td>
+<td>Full trip management</td>
+<td><a href="../trips/">Trips</a></td>
 </tr>
 <tr>
-<td>Advanced</td>
-<td>Advance</td>
-<td>200</td>
-<td></td>
+<td>Search and filters</td>
+<td><a href="../trip-search/">Trip Search</a></td>
 </tr>
 <tr>
-<td>Experts</td>
-<td>Expert</td>
-<td>300</td>
-<td><em>Disabled by default</em></td>
+<td>Member management</td>
+<td><a href="../members/">Members</a></td>
 </tr>
 <tr>
-<td>Explorers</td>
-<td>Explorer</td>
-<td>400</td>
-<td></td>
-</tr>
-<tr>
-<td>Marshals</td>
-<td>Marshal</td>
-<td>600</td>
-<td></td>
-</tr>
-<tr>
-<td>Board members</td>
-<td>Board member</td>
-<td>800</td>
-<td></td>
-</tr>
-<tr>
-<td><strong>Non-level Groups</strong></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>Trip managers</td>
-<td>N/A</td>
-<td>N/A</td>
-<td></td>
-</tr>
-<tr>
-<td>Meeting point managers</td>
-<td>N/A</td>
-<td>N/A</td>
-<td></td>
-</tr>
-<tr>
-<td>Media managers</td>
-<td>N/A</td>
-<td>N/A</td>
-<td></td>
-</tr>
-<tr>
-<td>Upgrade request managers</td>
-<td>N/A</td>
-<td>N/A</td>
-<td></td>
-</tr>
-<tr>
-<td>Site admins</td>
-<td>N/A</td>
-<td>N/A</td>
-<td>Super-users with all permissions</td>
+<td>Interactive testing</td>
+<td><a href="../swagger/">Swagger UI</a></td>
 </tr>
 </tbody>
 </table>
-<h2 id="default-permissions-by-group">Default Permissions by Group<a class="headerlink" href="#default-permissions-by-group" title="Permanent link">&para;</a></h2>
-<p>Here is a breakdown of the default permissions assigned to each group.</p>
-<h3 id="newbies">Newbies<a class="headerlink" href="#newbies" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Can search for members in the member directory.</li>
-</ul>
-<h3 id="explorers">Explorers<a class="headerlink" href="#explorers" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Can create trips that require approval for the "Newbie" level.</li>
-<li>Can create trips that do <em>not</em> require approval for "Intermediate" level and above.</li>
-<li>Can create meeting points.</li>
-<li>Can view contact information of other members.</li>
-<li>Can create logbook entries and sign off on skills for trips they lead or support</li>
-</ul>
-<h3 id="marshals">Marshals<a class="headerlink" href="#marshals" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Can create trips without requiring approval.</li>
-<li>Can view, vote on, and comment on upgrade requests.</li>
-</ul>
-<h3 id="board-members">Board Members<a class="headerlink" href="#board-members" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Can view, vote on, and comment on upgrade requests.</li>
-<li>Can approve upgrade requests.</li>
-<li>Can override the global waitlist setting for trips.</li>
-</ul>
-<h3 id="upgrade-request-managers">Upgrade Request Managers<a class="headerlink" href="#upgrade-request-managers" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Can view, vote on, comment on, edit, and delete upgrade requests.</li>
-<li>Can delete comments on upgrade requests.</li>
-</ul>
-<h3 id="trip-managers">Trip Managers<a class="headerlink" href="#trip-managers" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Can create, edit, approve, and delete trips.</li>
-<li>Can edit trip registrations and delete trip comments.</li>
-<li>Can override the global waitlist setting for trips.</li>
-<li>Have superuser permissions for creating logbook entries.</li>
-</ul>
-<h3 id="media-managers">Media Managers<a class="headerlink" href="#media-managers" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Can edit trip media.</li>
-</ul>
-<h3 id="meeting-point-managers">Meeting Point Managers<a class="headerlink" href="#meeting-point-managers" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Can create, edit, and delete meeting points.</li>
-</ul>
-<h3 id="site-admins">Site Admins<a class="headerlink" href="#site-admins" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Have all permissions.</li>
-</ul>
-<h2 id="full-list-of-permissions-actions">Full List of Permissions (Actions)<a class="headerlink" href="#full-list-of-permissions-actions" title="Permanent link">&para;</a></h2>
-<p>The following table lists all possible actions in the system.</p>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Action</th>
-<th>Description</th>
+<th>Issue</th>
+<th>Solution</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>CREATE_TRIP</code></td>
-<td>Create Trip</td>
+<td>401 Unauthorized</td>
+<td>Check token is valid and not expired</td>
 </tr>
 <tr>
-<td><code>CREATE_TRIP_WITH_APPROVAL</code></td>
-<td>Create Trip With Approval</td>
+<td>403 Forbidden</td>
+<td>Verify you have required permissions</td>
 </tr>
 <tr>
-<td><code>CREATE_TRIP_REPORT</code></td>
-<td>Create Trip Report</td>
+<td>400 Bad Request</td>
+<td>Check request body format and required fields</td>
 </tr>
 <tr>
-<td><code>APPROVE_TRIP</code></td>
-<td>Approve Trip</td>
-</tr>
-<tr>
-<td><code>OVERRIDE_WAITLIST_SETTING</code></td>
-<td>Override Global Waitlist Setting</td>
-</tr>
-<tr>
-<td><code>BYPASS_LEVEL_REQ</code></td>
-<td>Bypass Level Requirements for Trip</td>
-</tr>
-<tr>
-<td><code>EDIT_TRIPS</code></td>
-<td>Edit Trips</td>
-</tr>
-<tr>
-<td><code>EDIT_TRIP_MEDIA</code></td>
-<td>Edit Trip Media</td>
-</tr>
-<tr>
-<td><code>EDIT_TRIP_REGISTRATIONS</code></td>
-<td>Edit Trip Registrations</td>
-</tr>
-<tr>
-<td><code>DELETE_TRIPS</code></td>
-<td>Delete Trips</td>
-</tr>
-<tr>
-<td><code>DELETE_TRIP_COMMENTS</code></td>
-<td>Delete Trip Comments</td>
-</tr>
-<tr>
-<td><code>CREATE_MEETING_POINTS</code></td>
-<td>Create Meeting Points</td>
-</tr>
-<tr>
-<td><code>EDIT_MEETING_POINTS</code></td>
-<td>Edit Meeting Points</td>
-</tr>
-<tr>
-<td><code>DELETE_MEETING_POINTS</code></td>
-<td>Delete Meeting Points</td>
-</tr>
-<tr>
-<td><code>CREATE_UPGRADE_REQ_FOR_SELF</code></td>
-<td>Create Upgrade Request For Self</td>
-</tr>
-<tr>
-<td><code>CREATE_UPGRADE_REQ_FOR_OTHERS</code></td>
-<td>Create Upgrade Request For Others</td>
-</tr>
-<tr>
-<td><code>EDIT_UPGRADE_REQ</code></td>
-<td>Edit Upgrade Request</td>
-</tr>
-<tr>
-<td><code>APPROVE_UPGRADE_REQ</code></td>
-<td>Approve Upgrade Request</td>
-</tr>
-<tr>
-<td><code>DELETE_UPGRADE_REQ</code></td>
-<td>Delete Upgrade Request</td>
-</tr>
-<tr>
-<td><code>VIEW_UPGRADE_REQ</code></td>
-<td>View Upgrade Request (ALL levels)</td>
-</tr>
-<tr>
-<td><code>VOTE_UPGRADE_REQ</code></td>
-<td>Vote Upgrade Request</td>
-</tr>
-<tr>
-<td><code>CREATE_COMMENT_UPGRADE_REQ</code></td>
-<td>Comment Upgrade Request</td>
-</tr>
-<tr>
-<td><code>DELETE_COMMENT_UPGRADE_REQ</code></td>
-<td>Delete Comment Upgrade Request</td>
-</tr>
-<tr>
-<td><code>EDIT_MEMBERSHIP_PAYMENTS</code></td>
-<td>Edit Membership Payments</td>
-</tr>
-<tr>
-<td><code>CREATE_LOGBOOK_ENTRIES</code></td>
-<td>Create Logbook Entries</td>
-</tr>
-<tr>
-<td><code>SIGN_LOGBOOK_SKILLS</code></td>
-<td>Sign Logbook Skills</td>
-</tr>
-<tr>
-<td><code>CREATE_LOGBOOK_ENTRIES_SUPERUSER</code></td>
-<td>Create Logbook Entries (superuser bypass)</td>
-</tr>
-<tr>
-<td><code>ACCESS_MARSHAL_PANEL</code></td>
-<td>Access Marshal Panel</td>
-</tr>
-<tr>
-<td><code>VIEW_CONTACT_INFO</code></td>
-<td>View Contact Info</td>
-</tr>
-<tr>
-<td><code>SEARCH_MEMBERS</code></td>
-<td>Search Members</td>
-</tr>
-<tr>
-<td><code>EDIT_UI_STRINGS</code></td>
-<td>Edit UI Strings</td>
-</tr>
-<tr>
-<td><code>EDIT_GLOBAL_SETTINGS</code></td>
-<td>Edit Global Settings</td>
+<td>Rate limited (429)</td>
+<td>Wait 60 seconds before retrying</td>
 </tr>
 </tbody>
 </table>
+<h2 id="need-help">Need Help?<a class="headerlink" href="#need-help" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Try the <a href="http://localhost:8000/docs/swagger-ui/">interactive Swagger UI</a></li>
+<li>Check <a href="../practical-examples/">practical examples</a> for complete workflows</li>
+<li>Review <a href="../api-concepts/#error-handling">error handling</a> for common issues</li>
+</ul>
 
 
 
