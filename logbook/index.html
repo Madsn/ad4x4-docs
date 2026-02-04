@@ -731,6 +731,56 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#auto-upgrade-on-first-logbook-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-Upgrade on First Logbook Entry
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Auto-Upgrade on First Logbook Entry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reverting-upgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reverting Upgrade
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1308,6 +1358,56 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#auto-upgrade-on-first-logbook-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-Upgrade on First Logbook Entry
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Auto-Upgrade on First Logbook Entry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reverting-upgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reverting Upgrade
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1384,6 +1484,25 @@
 <li>They have the <code>CREATE_LOGBOOK_ENTRIES_SUPERUSER</code> permission (this permission bypasses all other skill sign-off checks).</li>
 </ul>
 <p>If a user has permission to create or update a logbook entry but lacks the required skill sign-off permissions, the entire request will be denied if it includes <code>skills_verified</code>.</p>
+<h2 id="auto-upgrade-on-first-logbook-entry">Auto-Upgrade on First Logbook Entry<a class="headerlink" href="#auto-upgrade-on-first-logbook-entry" title="Permanent link">&para;</a></h2>
+<p>When enabled via <a href="../global-settings/">Global Settings</a>, members can be automatically upgraded to the next level after their first logbook entry is created.</p>
+<h3 id="how-it-works">How It Works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h3>
+<ol>
+<li>A logbook entry is created for a member</li>
+<li>The system checks if:</li>
+<li>Auto-upgrade is enabled in global settings</li>
+<li>The member is at the configured <code>source_level</code></li>
+<li>If conditions are met, the member is automatically upgraded to the <code>target_level</code></li>
+<li>The member is also added to the target level's auto_group (if configured)</li>
+</ol>
+<h3 id="reverting-upgrade">Reverting Upgrade<a class="headerlink" href="#reverting-upgrade" title="Permanent link">&para;</a></h3>
+<p>If a logbook entry is deleted and it was the member's only logbook entry, the upgrade is automatically reverted:
+1. The system detects the deletion
+2. Checks if the member has any remaining logbook entries
+3. If no entries remain, the member is reverted to the <code>source_level</code>
+4. The member is removed from the target level's auto_group (if different from source)</p>
+<h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
+<p>See <a href="../global-settings/#auto-upgrade-settings">Global Settings</a> for configuration details.</p>
 
 
 
