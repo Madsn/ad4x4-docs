@@ -25,10 +25,6 @@
          <lastmod>2026-02-22</lastmod>
     </url>
     <url>
-         <loc>https://api.ad4x4.com/readme/codebase-review/</loc>
-         <lastmod>2026-02-22</lastmod>
-    </url>
-    <url>
          <loc>https://api.ad4x4.com/readme/editable-strings/</loc>
          <lastmod>2026-02-22</lastmod>
     </url>
@@ -125,7 +121,11 @@
          <lastmod>2026-02-22</lastmod>
     </url>
     <url>
-         <loc>https://api.ad4x4.com/readme/website-plan/</loc>
+         <loc>https://api.ad4x4.com/readme/workfolder/codebase-review/</loc>
+         <lastmod>2026-02-22</lastmod>
+    </url>
+    <url>
+         <loc>https://api.ad4x4.com/readme/workfolder/website-plan/</loc>
          <lastmod>2026-02-22</lastmod>
     </url>
 </urlset>
