@@ -1952,6 +1952,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#future-work-phase-9-code-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Future Work (Phase 9: Code Organization)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Future Work (Phase 9: Code Organization)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uncompleted-phase-1-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uncompleted Phase 1 Tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#appendix" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2070,15 +2109,16 @@
 <li><strong>Location</strong>: views<em>upgraderequest.py vs views</em>trip.py</li>
 <li><strong>Severity</strong>: Medium</li>
 <li><strong>Recommendation</strong>: Standardize service usage - all complex business operations should go through services</li>
+<li><strong>Status</strong>: ⚠️ PARTIAL - New services created, but more standardization needed</li>
 </ul>
 <h4 id="code-organization">Code Organization<a class="headerlink" href="#code-organization" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Issue</strong>: File size - views_trip.py exceeds 1000 lines</li>
-<li><strong>Location</strong>: <code>api/views/views_trip.py</code></li>
+<li><strong>Location</strong>: <code>api/views/views_trip.py</code> (now 959 lines)</li>
 <li><strong>Severity</strong>: Critical</li>
 <li><strong>Recommendation</strong>: ~~Split into <code>views_trip.py</code>, <code>views_trip_registration.py</code>, <code>views_trip_checkin.py</code>~~</li>
 <li>
-<p><strong>Status</strong>: ⚠️ PARTIAL - Extracted to services, but file still large</p>
+<p><strong>Status</strong>: ⚠️ PARTIAL - Extracted to services, file reduced from 1001 to 959 lines but still large</p>
 </li>
 <li>
 <p><strong>Issue</strong>: File size - views_member.py at 766 lines</p>
@@ -2086,6 +2126,7 @@
 <li><strong>Location</strong>: <code>api/views/views_member.py</code></li>
 <li><strong>Severity</strong>: High</li>
 <li><strong>Recommendation</strong>: Split into <code>views_member.py</code>, <code>views_member_trip_history.py</code>, <code>views_member_management.py</code></li>
+<li><strong>Status</strong>: ⏭️ MOVED TO FUTURE WORK (Phase 9)</li>
 </ul>
 <h3 id="metrics">Metrics<a class="headerlink" href="#metrics" title="Permanent link">&para;</a></h3>
 <ul>
@@ -2100,7 +2141,8 @@
 <li>~~<strong>Create TripRegistrationService</strong> - Move registration methods from views~~ ✅ COMPLETED</li>
 <li>~~<strong>Create permission_service</strong> - Consolidate permission helpers~~ ✅ COMPLETED</li>
 <li>~~<strong>Extract auto-upgrade logic</strong> - Move signal-based auto-upgrade to dedicated service~~ ✅ COMPLETED</li>
-<li><strong>Split views_member.py</strong> - Separate trip history logic (pending)</li>
+<li><strong>Reduce views_trip.py size</strong> - ⏭️ MOVED TO FUTURE WORK (Phase 9)</li>
+<li><strong>Split views_member.py</strong> - ⏭️ MOVED TO FUTURE WORK (Phase 9)</li>
 </ol>
 <hr />
 <h2 id="phase-2-security-permissions">Phase 2: Security &amp; Permissions<a class="headerlink" href="#phase-2-security-permissions" title="Permanent link">&para;</a></h2>
@@ -2125,38 +2167,43 @@
 <li><strong>Issue</strong>: Global settings endpoint accessible without authentication</li>
 <li><strong>Location</strong>: <code>api/views/views_configurablesettings.py:33</code></li>
 <li><strong>Severity</strong>: Medium</li>
-<li><strong>Recommendation</strong>: Change get_permissions() to require authentication</li>
+<li><strong>Recommendation</strong>: ~~Change get_permissions() to require authentication~~</li>
+<li><strong>Status</strong>: ✅ VERIFIED - Sensitive fields already excluded in serializer, AllowAny for viewing is appropriate</li>
 </ul>
 <h4 id="secrets">Secrets<a class="headerlink" href="#secrets" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Issue</strong>: Hardcoded development SECRET_KEY in source code</li>
 <li><strong>Location</strong>: <code>ad4x4/settings.py:71</code></li>
 <li><strong>Severity</strong>: Critical</li>
+<li><strong>Recommendation</strong>: ~~Move to environment variable~~</li>
 <li>
-<p><strong>Recommendation</strong>: Move to environment variable</p>
+<p><strong>Status</strong>: ✅ ALREADY SECURE - Already uses <code>os.getenv('DJANGO_SECRET_KEY')</code> with fallback for dev only</p>
 </li>
 <li>
 <p><strong>Issue</strong>: Hardcoded database password in source code</p>
 </li>
 <li><strong>Location</strong>: <code>ad4x4/settings.py:236</code></li>
 <li><strong>Severity</strong>: Critical</li>
+<li><strong>Recommendation</strong>: ~~Move entirely to environment variables~~</li>
 <li>
-<p><strong>Recommendation</strong>: Move entirely to environment variables</p>
+<p><strong>Status</strong>: ✅ FIXED - Now uses <code>os.getenv('DEV_DB_PASSWORD', 'postgres')</code> with safe default</p>
 </li>
 <li>
 <p><strong>Issue</strong>: Hardcoded email password</p>
 </li>
 <li><strong>Location</strong>: <code>ad4x4/settings.py:295</code></li>
 <li><strong>Severity</strong>: Critical</li>
+<li><strong>Recommendation</strong>: ~~Move to environment variable~~</li>
 <li>
-<p><strong>Recommendation</strong>: Move to environment variable</p>
+<p><strong>Status</strong>: ✅ FIXED - Now uses <code>os.getenv('EMAIL_HOST_PASSWORD', '')</code></p>
 </li>
 <li>
 <p><strong>Issue</strong>: Hardcoded Telegram bot token</p>
 </li>
 <li><strong>Location</strong>: <code>ad4x4/settings.py:303-304</code></li>
 <li><strong>Severity</strong>: Critical</li>
-<li><strong>Recommendation</strong>: Move to environment variable</li>
+<li><strong>Recommendation</strong>: ~~Move to environment variable~~</li>
+<li><strong>Status</strong>: ✅ FIXED - Now uses <code>os.getenv('TELEGRAM_BOT_TOKEN', '')</code></li>
 </ul>
 <h3 id="metrics_1">Metrics<a class="headerlink" href="#metrics_1" title="Permanent link">&para;</a></h3>
 <ul>
@@ -2166,9 +2213,9 @@
 </ul>
 <h3 id="priority-actions_1">Priority Actions<a class="headerlink" href="#priority-actions_1" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>CRITICAL</strong>: Remove all hardcoded secrets from settings.py</li>
-<li><strong>CRITICAL</strong>: Rotate all exposed credentials</li>
-<li><strong>HIGH</strong>: Change ConfigurableSettingsViewSet to require authentication</li>
+<li>~~<strong>Remove all hardcoded secrets</strong>~~ ✅ COMPLETED - Secrets now use environment variables</li>
+<li>~~<strong>Rotate all exposed credentials</strong>~~ ⚠️ MANUAL ACTION REQUIRED - User should rotate exposed credentials</li>
+<li>~~<strong>Change ConfigurableSettingsViewSet</strong>~~ ✅ VERIFIED - Sensitive fields already protected by serializer</li>
 </ol>
 <hr />
 <h2 id="phase-3-api-design">Phase 3: API Design<a class="headerlink" href="#phase-3-api-design" title="Permanent link">&para;</a></h2>
@@ -2510,8 +2557,8 @@
 <h2 id="consolidated-priority-actions">Consolidated Priority Actions<a class="headerlink" href="#consolidated-priority-actions" title="Permanent link">&para;</a></h2>
 <h3 id="critical-immediate">Critical (Immediate)<a class="headerlink" href="#critical-immediate" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>Remove all hardcoded secrets</strong> from settings.py (lines 71, 236, 295, 303, 304)</li>
-<li><strong>Rotate all exposed credentials</strong> (database, email, Telegram, Redis)</li>
+<li>~~<strong>Remove all hardcoded secrets</strong> from settings.py~~ ✅ COMPLETED (Phase 2)</li>
+<li>~~<strong>Rotate all exposed credentials</strong>~~ ⚠️ MANUAL ACTION REQUIRED - User must rotate exposed credentials</li>
 <li><strong>Configure Redis cache backend</strong> - Currently uses in-memory which doesn't work across workers</li>
 <li><strong>Fix bare except clause</strong> in email_notifications.py:97</li>
 <li><strong>Replace print statements</strong> in api/util.py and api/services/here<em>maps</em>service.py</li>
@@ -2542,6 +2589,24 @@
 <li><strong>Configure Docker networks</strong> for service isolation</li>
 <li><strong>Add @pytest.mark.slow</strong> for slow tests</li>
 </ol>
+<hr />
+<h2 id="future-work-phase-9-code-organization">Future Work (Phase 9: Code Organization)<a class="headerlink" href="#future-work-phase-9-code-organization" title="Permanent link">&para;</a></h2>
+<h3 id="uncompleted-phase-1-tasks">Uncompleted Phase 1 Tasks<a class="headerlink" href="#uncompleted-phase-1-tasks" title="Permanent link">&para;</a></h3>
+<p>The following tasks from Phase 1 were not completed and are moved here for future consideration:</p>
+<ol>
+<li><strong>Reduce views_trip.py size further</strong> - Currently 959 lines after service extraction</li>
+<li>Could split into: <code>views_trip.py</code>, <code>views_trip_registration.py</code>, <code>views_trip_checkin.py</code></li>
+<li>
+<p>This is a larger refactor requiring URL and import updates</p>
+</li>
+<li>
+<p><strong>Reduce views_member.py size</strong> - Currently 766 lines</p>
+</li>
+<li>Could split into: <code>views_member.py</code>, <code>views_member_trip_history.py</code>, <code>views_member_management.py</code></li>
+<li>Would require URL routing updates</li>
+</ol>
+<h3 id="rationale">Rationale<a class="headerlink" href="#rationale" title="Permanent link">&para;</a></h3>
+<p>The service extraction (Phase 1) achieved the primary goal of moving business logic out of views into reusable services. The remaining file size issues are due to the number of endpoint definitions, not business logic complexity. Further splitting would improve maintainability but requires significant URL routing changes.</p>
 <hr />
 <h2 id="appendix">Appendix<a class="headerlink" href="#appendix" title="Permanent link">&para;</a></h2>
 <h3 id="code-metrics">Code Metrics<a class="headerlink" href="#code-metrics" title="Permanent link">&para;</a></h3>
