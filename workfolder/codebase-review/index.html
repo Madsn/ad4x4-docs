@@ -2325,40 +2325,63 @@
 <hr />
 <h2 id="phase-5-infrastructure-devops">Phase 5: Infrastructure &amp; DevOps<a class="headerlink" href="#phase-5-infrastructure-devops" title="Permanent link">&para;</a></h2>
 <h3 id="summary_4">Summary<a class="headerlink" href="#summary_4" title="Permanent link">&para;</a></h3>
-<p>Solid Docker setup with 6 services. Critical security issues with hardcoded credentials. Missing explicit cache configuration.</p>
+<p>Solid Docker setup with 6 services. Critical security issues with hardcoded credentials resolved. Redis cache now configured.</p>
 <h3 id="findings_4">Findings<a class="headerlink" href="#findings_4" title="Permanent link">&para;</a></h3>
 <h4 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Issue</strong>: Redis password hardcoded</li>
 <li><strong>Location</strong>: <code>infra/redis/redis.conf:500</code></li>
 <li><strong>Severity</strong>: High</li>
+<li><strong>Recommendation</strong>: Use environment variable</li>
 <li>
-<p><strong>Recommendation</strong>: Use environment variable</p>
+<p><strong>Status</strong>: ⚠️ PENDING - Still hardcoded in redis.conf</p>
 </li>
 <li>
 <p><strong>Issue</strong>: Services not isolated in custom network</p>
 </li>
 <li><strong>Location</strong>: <code>docker-compose.yml</code></li>
 <li><strong>Severity</strong>: Medium</li>
-<li><strong>Recommendation</strong>: Configure Docker network</li>
+<li>
+<p><strong>Recommendation</strong>: Configure Docker network</p>
+</li>
+<li>
+<p><strong>Issue</strong>: Huey container missing website module</p>
+</li>
+<li><strong>Location</strong>: <code>Dockerhuey</code></li>
+<li><strong>Severity</strong>: Critical</li>
+<li><strong>Recommendation</strong>: ~~Add website directory to Dockerfile~~</li>
+<li>
+<p><strong>Status</strong>: ✅ FIXED - Added <code>./website</code> to Dockerhuey copy commands</p>
+</li>
+<li>
+<p><strong>Issue</strong>: Static files not served (nginx config order)</p>
+</li>
+<li><strong>Location</strong>: <code>infra/nginx/secure/default.conf.template</code></li>
+<li><strong>Severity</strong>: Critical</li>
+<li><strong>Recommendation</strong>: ~~Reorder nginx locations~~</li>
+<li>
+<p><strong>Status</strong>: ✅ FIXED - Moved /static/ location before regex locations</p>
+</li>
+<li>
+<p><strong>Issue</strong>: Static files not found (Django STATICFILES_DIRS)</p>
+</li>
+<li><strong>Location</strong>: <code>ad4x4/settings.py</code></li>
+<li><strong>Severity</strong>: Critical</li>
+<li><strong>Recommendation</strong>: ~~Add static/ to STATICFILES_DIRS~~</li>
+<li><strong>Status</strong>: ✅ FIXED - Added <code>os.path.join(BASE_DIR, 'static')</code> to STATICFILES_DIRS</li>
 </ul>
 <h4 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Issue</strong>: Missing Django CACHES configuration</li>
 <li><strong>Location</strong>: <code>ad4x4/settings.py</code></li>
 <li><strong>Severity</strong>: High</li>
-<li><strong>Recommendation</strong>: Configure Redis cache:</li>
-</ul>
-<div class="codehilite"><pre><span></span><code><span class="n">CACHES</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;BACKEND&#39;</span><span class="p">:</span> <span class="s1">&#39;django.core.cache.backends.redis.RedisCache&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;LOCATION&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;redis://:</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;REDIS_PASSWORD&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">@</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;REDIS_HOST&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;REDIS_PORT&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">/1&quot;</span><span class="p">,</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<ul>
-<li><strong>Issue</strong>: Missing database connection pooling</li>
+<li><strong>Recommendation</strong>: ~~Configure Redis cache~~</li>
+<li>
+<p><strong>Status</strong>: ✅ FIXED - Added conditional Redis cache with LocMem fallback</p>
+</li>
+<li>
+<p><strong>Issue</strong>: Missing database connection pooling</p>
+</li>
 <li><strong>Location</strong>: <code>ad4x4/settings.py:219-242</code></li>
 <li><strong>Severity</strong>: Medium</li>
 <li><strong>Recommendation</strong>: Add <code>CONN_MAX_AGE</code> and <code>MAX_CONN_AGE</code></li>
@@ -2374,12 +2397,12 @@
 <ul>
 <li>Docker services: 6</li>
 <li>Background tasks: 14 (8 @task + 6 @periodic_task)</li>
-<li>Cache backends: 1 implicit (LocMemCache)</li>
+<li>Cache backends: Redis (prod) / LocMem (dev)</li>
 </ul>
 <h3 id="priority-actions_4">Priority Actions<a class="headerlink" href="#priority-actions_4" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>CRITICAL</strong>: Remove hardcoded credentials</li>
-<li><strong>HIGH</strong>: Configure Redis cache backend</li>
+<li>~~<strong>Remove hardcoded credentials</strong>~~ ✅ COMPLETED (Phase 2)</li>
+<li>~~<strong>Configure Redis cache backend</strong>~~ ✅ COMPLETED - Added conditional config</li>
 <li><strong>MEDIUM</strong>: Add PostgreSQL connection pooling</li>
 <li><strong>MEDIUM</strong>: Configure Docker networks</li>
 </ol>
