@@ -2404,7 +2404,7 @@
 <ol>
 <li>~~<strong>Remove hardcoded credentials</strong>~~ ✅ COMPLETED (Phase 2)</li>
 <li>~~<strong>Configure Redis cache backend</strong>~~ ✅ COMPLETED - Added conditional config</li>
-<li><strong>MEDIUM</strong>: Add PostgreSQL connection pooling</li>
+<li>~~<strong>Add PostgreSQL connection pooling</strong>~~ ✅ COMPLETED</li>
 <li><strong>MEDIUM</strong>: Configure Docker networks</li>
 </ol>
 <hr />
@@ -2494,8 +2494,9 @@
 <li><strong>Issue</strong>: Member model lacks indexes on frequently filtered fields</li>
 <li><strong>Location</strong>: <code>api/models/models_member.py</code></li>
 <li><strong>Severity</strong>: High</li>
+<li><strong>Recommendation</strong>: ~~Add db<em>index=True to level, trip</em>count, is_active~~</li>
 <li>
-<p><strong>Recommendation</strong>: Add db<em>index=True to level, trip</em>count, is_active</p>
+<p><strong>Status</strong>: ✅ FIXED - Added indexes in Meta class</p>
 </li>
 <li>
 <p><strong>Issue</strong>: PermissionMatrix lacks index on action field</p>
@@ -2503,25 +2504,28 @@
 <li><strong>Location</strong>: <code>api/models/models.py:36</code></li>
 <li><strong>Severity</strong>: Medium</li>
 <li><strong>Recommendation</strong>: Add db_index=True to action</li>
+<li><strong>Status</strong>: ⏭️ NOT COMPLETED</li>
 </ul>
 <h4 id="caching">Caching<a class="headerlink" href="#caching" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Issue</strong>: No CACHES configuration (defaults to LocMemCache)</li>
 <li><strong>Location</strong>: <code>ad4x4/settings.py</code></li>
 <li><strong>Severity</strong>: High</li>
-<li><strong>Recommendation</strong>: Configure Redis cache</li>
+<li><strong>Recommendation</strong>: ~~Configure Redis cache~~</li>
+<li><strong>Status</strong>: ✅ FIXED - Added conditional Redis cache with LocMem fallback</li>
 </ul>
 <h3 id="metrics_6">Metrics<a class="headerlink" href="#metrics_6" title="Permanent link">&para;</a></h3>
 <ul>
 <li>select_related: 7</li>
 <li>prefetch_related: 7</li>
+<li>Member indexes: level, trip<em>count, paid</em>member, is_active</li>
 </ul>
 <h3 id="priority-actions_6">Priority Actions<a class="headerlink" href="#priority-actions_6" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Add Redis caching configuration</li>
-<li>Add indexes to Member model</li>
-<li>Fix UpgradeRequest serializer N+1</li>
-<li>Optimize permission queries</li>
+<li>~~<strong>Add Redis caching configuration</strong>~~ ✅ COMPLETED</li>
+<li>~~<strong>Add indexes to Member model</strong>~~ ✅ COMPLETED</li>
+<li>~~<strong>Fix UpgradeRequest serializer N+1</strong>~~ ✅ COMPLETED</li>
+<li><strong>Optimize permission queries</strong></li>
 </ol>
 <hr />
 <h2 id="phase-8-error-handling-logging">Phase 8: Error Handling &amp; Logging<a class="headerlink" href="#phase-8-error-handling-logging" title="Permanent link">&para;</a></h2>
