@@ -2384,7 +2384,8 @@
 </li>
 <li><strong>Location</strong>: <code>ad4x4/settings.py:219-242</code></li>
 <li><strong>Severity</strong>: Medium</li>
-<li><strong>Recommendation</strong>: Add <code>CONN_MAX_AGE</code> and <code>MAX_CONN_AGE</code></li>
+<li><strong>Recommendation</strong>: ~~Add <code>CONN_MAX_AGE</code>~~</li>
+<li><strong>Status</strong>: ✅ FIXED - Added <code>CONN_MAX_AGE: 60</code></li>
 </ul>
 <h4 id="background-tasks">Background Tasks<a class="headerlink" href="#background-tasks" title="Permanent link">&para;</a></h4>
 <ul>
@@ -2590,23 +2591,23 @@
 <ol>
 <li>~~<strong>Split views_trip.py</strong> - Extract to service layer and smaller modules~~ ✅ COMPLETED (Phase 1)</li>
 <li><strong>Split views_member.py</strong> - Separate trip history logic</li>
-<li><strong>Add indexes</strong> to Member model (level, trip<em>count, is</em>active)</li>
-<li><strong>Fix N+1 queries</strong> in UpgradeRequest serializer</li>
+<li>~~<strong>Add indexes</strong> to Member model (level, trip<em>count, is</em>active)~~ ✅ COMPLETED</li>
+<li>~~<strong>Fix N+1 queries</strong> in UpgradeRequest serializer~~ ✅ COMPLETED</li>
 <li><strong>Create CHANGELOG.md</strong> - Track version history</li>
-<li><strong>Update GEMINI.md</strong> - Fix outdated pipenv references</li>
+<li>~~<strong>Update GEMINI.md</strong> - Fix outdated pipenv references~~ ✅ COMPLETED</li>
 </ol>
 <h3 id="medium-this-quarter">Medium (This Quarter)<a class="headerlink" href="#medium-this-quarter" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>Refactor action-based URLs</strong> to RESTful patterns</li>
+<li>~~<strong>Refactor action-based URLs</strong> to RESTful patterns~~ ⏭️ SKIPPED - Breaking change for client</li>
 <li><strong>Consolidate test fixtures</strong> - Extract common setup to conftest.py</li>
-<li><strong>Add PostgreSQL connection pooling</strong> to settings</li>
+<li>~~<strong>Add PostgreSQL connection pooling</strong> to settings~~ ✅ COMPLETED</li>
 <li><strong>Document signals.py</strong> - Add docstrings to all handlers</li>
 <li><strong>Document background tasks</strong> - Add docstrings in api/background.py</li>
-<li><strong>Standardize error responses</strong> - Ensure all endpoints use unified format</li>
+<li>~~<strong>Standardize error responses</strong>~~ ⏭️ SKIPPED - Breaking change for client</li>
 </ol>
 <h3 id="low-backlog">Low (Backlog)<a class="headerlink" href="#low-backlog" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>Add error tracking service</strong> (Sentry)</li>
+<li>~~<strong>Add error tracking service (Sentry)</strong>~~ ✅ COMPLETED</li>
 <li><strong>Create Architecture Decision Records</strong> in docs/adr/</li>
 <li><strong>Increase Huey workers</strong> for higher throughput</li>
 <li><strong>Configure Docker networks</strong> for service isolation</li>
