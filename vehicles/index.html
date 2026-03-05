@@ -12,13 +12,13 @@
         <meta name="author" content="Redbeard">
       
       
-        <link rel="canonical" href="https://api.ad4x4.com/readme/trip-search/">
+        <link rel="canonical" href="https://api.ad4x4.com/readme/vehicles/">
       
       
-        <link rel="prev" href="../vehicles/">
+        <link rel="prev" href="../members/">
       
       
-        <link rel="next" href="../lead-trip-history/">
+        <link rel="next" href="../trip-search/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Trip Search - AD4x4 API</title>
+        <title>Vehicles - AD4x4 API</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#trips" class="md-skip">
+        <a href="#vehicles" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Trip Search
+              Vehicles
             
           </span>
         </div>
@@ -396,33 +396,6 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../vehicles/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Vehicles
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -442,7 +415,7 @@
   <span class="md-ellipsis">
     
   
-    Trip Search
+    Vehicles
   
 
     
@@ -460,7 +433,7 @@
   <span class="md-ellipsis">
     
   
-    Trip Search
+    Vehicles
   
 
     
@@ -486,10 +459,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#search-trips" class="md-nav__link">
+  <a href="#vehicle-list" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Search Trips
+        Vehicle List
       
     </span>
   </a>
@@ -497,10 +470,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#query-parameters" class="md-nav__link">
+  <a href="#create-vehicle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Query Parameters
+        Create Vehicle
       
     </span>
   </a>
@@ -508,10 +481,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#request-examples" class="md-nav__link">
+  <a href="#get-vehicle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Request Examples
+        Get Vehicle
       
     </span>
   </a>
@@ -519,10 +492,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#success-response-200-ok" class="md-nav__link">
+  <a href="#update-vehicle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Success Response (200 OK)
+        Update Vehicle
       
     </span>
   </a>
@@ -530,10 +503,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#error-responses" class="md-nav__link">
+  <a href="#delete-vehicle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Error Responses
+        Delete Vehicle
       
     </span>
   </a>
@@ -541,10 +514,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
+  <a href="#set-primary-vehicle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Notes
+        Set Primary Vehicle
       
     </span>
   </a>
@@ -552,10 +525,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-cases" class="md-nav__link">
+  <a href="#car-brand-choices" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Use Cases
+        Car Brand Choices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#global-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Global Settings
       
     </span>
   </a>
@@ -566,6 +550,33 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trip-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1191,10 +1202,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#search-trips" class="md-nav__link">
+  <a href="#vehicle-list" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Search Trips
+        Vehicle List
       
     </span>
   </a>
@@ -1202,10 +1213,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#query-parameters" class="md-nav__link">
+  <a href="#create-vehicle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Query Parameters
+        Create Vehicle
       
     </span>
   </a>
@@ -1213,10 +1224,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#request-examples" class="md-nav__link">
+  <a href="#get-vehicle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Request Examples
+        Get Vehicle
       
     </span>
   </a>
@@ -1224,10 +1235,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#success-response-200-ok" class="md-nav__link">
+  <a href="#update-vehicle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Success Response (200 OK)
+        Update Vehicle
       
     </span>
   </a>
@@ -1235,10 +1246,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#error-responses" class="md-nav__link">
+  <a href="#delete-vehicle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Error Responses
+        Delete Vehicle
       
     </span>
   </a>
@@ -1246,10 +1257,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
+  <a href="#set-primary-vehicle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Notes
+        Set Primary Vehicle
       
     </span>
   </a>
@@ -1257,10 +1268,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-cases" class="md-nav__link">
+  <a href="#car-brand-choices" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Use Cases
+        Car Brand Choices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#global-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Global Settings
       
     </span>
   </a>
@@ -1284,237 +1306,173 @@
 
 
 
-<h1 id="trips">Trips<a class="headerlink" href="#trips" title="Permanent link">&para;</a></h1>
-<p>This document outlines the API endpoint for searching trips. For general trip management, please refer to the <a href="../trips/">Trips</a> document.</p>
-<h2 id="search-trips">Search Trips<a class="headerlink" href="#search-trips" title="Permanent link">&para;</a></h2>
-<p>Search for trips by title, with optional filters for level, date ranges, meeting point, and area. This endpoint is useful for finding specific trips, browsing trip history, or discovering trip activities.</p>
-<p><strong>Endpoint</strong>: <code>GET /api/trips/search/</code></p>
-<p><strong>Authentication:</strong> Required (Bearer token)
-<strong>Permission Required:</strong> Users must have <code>SEARCH_TRIPS</code> permission to access this endpoint.</p>
-<hr />
-<h2 id="query-parameters">Query Parameters<a class="headerlink" href="#query-parameters" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>query</code></td>
-<td>string</td>
-<td>Yes</td>
-<td>Search term - must be at least 3 characters. Matches against trip title (case-insensitive partial match)</td>
-</tr>
-<tr>
-<td><code>level</code></td>
-<td>integer</td>
-<td>No</td>
-<td>Trip level ID for filtering to include only trips at a specific level</td>
-</tr>
-<tr>
-<td><code>min_level</code></td>
-<td>integer</td>
-<td>No</td>
-<td>Minimum level numeric value for filtering to include only trips at this level or higher (inclusive)</td>
-</tr>
-<tr>
-<td><code>max_level</code></td>
-<td>integer</td>
-<td>No</td>
-<td>Maximum level numeric value for filtering to include only trips at this level or lower (inclusive)</td>
-</tr>
-<tr>
-<td><code>start_date_min</code></td>
-<td>date (ISO 8601)</td>
-<td>No</td>
-<td>Filter for trips starting from this date (inclusive)</td>
-</tr>
-<tr>
-<td><code>start_date_max</code></td>
-<td>date (ISO 8601)</td>
-<td>No</td>
-<td>Filter for trips starting until this date (inclusive)</td>
-</tr>
-<tr>
-<td><code>end_date_min</code></td>
-<td>date (ISO 8601)</td>
-<td>No</td>
-<td>Filter for trips ending from this date (inclusive)</td>
-</tr>
-<tr>
-<td><code>end_date_max</code></td>
-<td>date (ISO 8601)</td>
-<td>No</td>
-<td>Filter for trips ending until this date (inclusive)</td>
-</tr>
-<tr>
-<td><code>meeting_point</code></td>
-<td>integer</td>
-<td>No</td>
-<td>Filter for trips at a specific meeting point (exact match by ID)</td>
-</tr>
-<tr>
-<td><code>area</code></td>
-<td>string</td>
-<td>No</td>
-<td>Filter for trips in a specific area</td>
-</tr>
-<tr>
-<td><code>page</code></td>
-<td>integer</td>
-<td>No</td>
-<td>Page number (default: 1)</td>
-</tr>
-<tr>
-<td><code>page_size</code></td>
-<td>integer</td>
-<td>No</td>
-<td>Number of results per page (default: 20, max: 500)</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="request-examples">Request Examples<a class="headerlink" href="#request-examples" title="Permanent link">&para;</a></h2>
-<p><strong>Basic search:</strong></p>
-<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/trips/search/?query=fun&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your-token&gt;&quot;</span>
-</code></pre></div>
-
-<p><strong>Search with level filter:</strong></p>
-<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/trips/search/?query=adventure&amp;level=10&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your-token&gt;&quot;</span>
-</code></pre></div>
-
-<p><strong>Search with date range:</strong></p>
-<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/trips/search/?query=expedition&amp;start_date_min=2024-01-01&amp;end_date_max=2024-12-31&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your-token&gt;&quot;</span>
-</code></pre></div>
-
-<p><strong>Search by meeting point:</strong></p>
-<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/trips/search/?query=beach&amp;meeting_point=1&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your-token&gt;&quot;</span>
-</code></pre></div>
-
-<p><strong>Search by area:</strong></p>
-<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/trips/search/?query=desert&amp;area=DUBAI&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your-token&gt;&quot;</span>
-</code></pre></div>
-
-<p><strong>Paginated search:</strong></p>
-<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/trips/search/?query=trip&amp;page=1&amp;page_size=10&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your-token&gt;&quot;</span>
-</code></pre></div>
-
-<hr />
-<h2 id="success-response-200-ok">Success Response (200 OK)<a class="headerlink" href="#success-response-200-ok" title="Permanent link">&para;</a></h2>
+<h1 id="vehicles">Vehicles<a class="headerlink" href="#vehicles" title="Permanent link">&para;</a></h1>
+<p>This document outlines the API endpoints for managing member vehicles. Members can now register multiple vehicles, with a configurable limit set in global settings.</p>
+<h2 id="vehicle-list">Vehicle List<a class="headerlink" href="#vehicle-list" title="Permanent link">&para;</a></h2>
+<p>Retrieve all vehicles for the authenticated user.</p>
+<p><strong>GET</strong> <code>/api/vehicles/</code></p>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p><strong>Query Parameters:</strong>
+- <code>page</code> - Page number (default: 1)
+- <code>page_size</code> - Number of results per page (default: 20, max: 500)</p>
+<p><strong>Success Response:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;next&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://api.example.com/api/trips/search/?query=adventure&amp;page=2&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;next&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;previous&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;results&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Fun Offroad Adventure&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A great trip for beginners&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Intermediate&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;numericLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Intermediate&quot;</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nt">&quot;lead&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;triplead1&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;firstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Trip&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;lastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Lead1&quot;</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nt">&quot;deputyLeads&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
-<span class="w">      </span><span class="nt">&quot;meetingPoint&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dubai Marina&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;lat&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">25.1972</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;lon&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">55.2741</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;area&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DUBAI&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;link&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://example.com&quot;</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nt">&quot;startTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-15T10:00:00+04:00&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;endTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-15T16:00:00+04:00&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;capacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;approvalStatus&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;APPROVED&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;waitlistCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;registeredCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;isRegistered&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;isWaitlisted&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;allowWaitlist&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://example.com/image.jpg&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;galleryId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gallery-123&quot;</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;My Land Cruiser&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;brand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TOYOTA&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;brandDisplay&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toyota&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Land Cruiser&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2020</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;White&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;isPrimary&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Nissan Patrol&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;brand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NISSAN&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;brandDisplay&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Nissan&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Patrol&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2019</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Black&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;isPrimary&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
 
-<hr />
-<h2 id="error-responses">Error Responses<a class="headerlink" href="#error-responses" title="Permanent link">&para;</a></h2>
-<p><strong>Error Response</strong> (400 Bad Request - Missing query):</p>
+<h2 id="create-vehicle">Create Vehicle<a class="headerlink" href="#create-vehicle" title="Permanent link">&para;</a></h2>
+<p>Create a new vehicle for the authenticated user.</p>
+<p><strong>POST</strong> <code>/api/vehicles/</code></p>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p><strong>Request Body:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;My Land Cruiser&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;brand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TOYOTA&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Land Cruiser&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2020</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;White&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;isPrimary&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Fields:</strong>
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| <code>name</code> | string | No | User-friendly name for the vehicle |
+| <code>brand</code> | string | Yes | Car brand code (e.g., "TOYOTA", "NISSAN") |
+| <code>model</code> | string | No | Vehicle model |
+| <code>year</code> | integer | No | Year of manufacture |
+| <code>color</code> | string | No | Vehicle color |
+| <code>image</code> | file | No | Vehicle image (multipart/form-data) |
+| <code>isPrimary</code> | boolean | No | Set as primary vehicle (default: false) |</p>
+<p><strong>Validation:</strong>
+- Maximum number of vehicles is limited by <code>vehicle_limit_per_member</code> setting (default: 3)
+- <code>brand</code> must be a valid CarBrand choice</p>
+<p><strong>Success Response:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;member&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;My Land Cruiser&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;brand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TOYOTA&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;brandDisplay&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toyota&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Land Cruiser&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2020</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;White&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;isPrimary&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;createdAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-05T00:00:00.000Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;updatedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-05T00:00:00.000Z&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Error Response (limit reached):</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;query_parameter_required&quot;</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Maximum number of vehicles (3) reached. Please delete an existing vehicle first.&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
 
-<p><strong>Error Response</strong> (400 Bad Request - Query too short):</p>
+<h2 id="get-vehicle">Get Vehicle<a class="headerlink" href="#get-vehicle" title="Permanent link">&para;</a></h2>
+<p>Get details of a specific vehicle.</p>
+<p><strong>GET</strong> <code>/api/vehicles/{id}/</code></p>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p><strong>Success Response:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;query_too_short&quot;</span>
+<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;member&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;My Land Cruiser&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;brand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TOYOTA&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;brandDisplay&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toyota&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Land Cruiser&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2020</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;White&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/media/vehicles/2026/03/vehicle_abc123.jpg&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;isPrimary&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;createdAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-05T00:00:00.000Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;updatedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-05T00:00:00.000Z&quot;</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
-<p><strong>Error Response</strong> (403 Forbidden):</p>
+<h2 id="update-vehicle">Update Vehicle<a class="headerlink" href="#update-vehicle" title="Permanent link">&para;</a></h2>
+<p>Update a vehicle's details.</p>
+<p><strong>PATCH</strong> <code>/api/vehicles/{id}/</code></p>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p><strong>Request Body:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;You do not have permission to perform this action.&quot;</span>
+<span class="w">  </span><span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2021</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Silver&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
 
-<hr />
-<h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
+<p><strong>Note:</strong> Users can only update their own vehicles.</p>
+<h2 id="delete-vehicle">Delete Vehicle<a class="headerlink" href="#delete-vehicle" title="Permanent link">&para;</a></h2>
+<p>Delete a vehicle.</p>
+<p><strong>DELETE</strong> <code>/api/vehicles/{id}/</code></p>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p><strong>Note:</strong> If the deleted vehicle was the primary vehicle, the most recently created remaining vehicle will be automatically set as primary.</p>
+<h2 id="set-primary-vehicle">Set Primary Vehicle<a class="headerlink" href="#set-primary-vehicle" title="Permanent link">&para;</a></h2>
+<p>Set a vehicle as the primary vehicle. Only one vehicle can be primary at a time.</p>
+<p><strong>POST</strong> <code>/api/vehicles/{id}/set_primary/</code></p>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p><strong>Success Response:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;member&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Nissan Patrol&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;brand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NISSAN&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;brandDisplay&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Nissan&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Patrol&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2019</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Black&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;isPrimary&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="err">...</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="car-brand-choices">Car Brand Choices<a class="headerlink" href="#car-brand-choices" title="Permanent link">&para;</a></h2>
+<p>Get available car brand choices.</p>
+<p><strong>GET</strong> <code>/api/choices/carbrands/</code></p>
+<p>See <a href="../api-concepts/#choices-endpoints">Choices API</a> for details.</p>
+<h2 id="global-settings">Global Settings<a class="headerlink" href="#global-settings" title="Permanent link">&para;</a></h2>
+<p>The vehicle limit per member can be configured in global settings:</p>
 <ul>
-<li>The search is case-insensitive and performs partial matching (contains) on trip titles</li>
-<li>Query must be at least 3 characters long</li>
-<li>Results are ordered by <code>start_time</code> (descending), then by <code>id</code> (ascending)</li>
-<li>Results are paginated using standard pagination (20 items per page by default)</li>
-<li><strong>Level filtering</strong>: Use <code>level</code> for exact level match, or <code>min_level</code>/<code>max_level</code> for range filtering</li>
-<li>Example: <code>?level=10</code> returns only Newbie trips</li>
-<li>Example: <code>?min_level=100</code> returns Intermediate and higher level trips</li>
-<li>Example: <code>?max_level=100</code> returns Newbie and Intermediate level trips</li>
-<li><strong>Date filtering</strong>: Use <code>start_date_min/max</code> and <code>end_date_min/max</code> to filter by date ranges</li>
-<li>Trips that have ended (<code>cut_off</code> is in the past) are automatically excluded from results</li>
-<li>If <code>end_date_max</code> is set without <code>end_date_min</code>, only trips ending on or before that date are included</li>
-<li>Similarly for start dates</li>
-<li><strong>Meeting point filtering</strong>: Use <code>meeting_point</code> to filter by exact meeting point ID</li>
-<li><strong>Area filtering</strong>: Use <code>area</code> to filter by meeting point area code</li>
-<li><strong>Permission Required</strong>: Users must have <code>SEARCH_TRIPS</code> permission. By default, this is granted to Newbie level and above.</li>
-<li><strong>Performance Note</strong>: This endpoint searches trip titles efficiently. Searching by trip lead's user info (username, first name, last name) requires additional database joins and can be slower with many trips. Use title-based search for better performance.</li>
-<li><strong>User-specific information</strong>: For authenticated users, the response includes trip-specific registration status:</li>
-<li><code>isRegistered</code>: Whether the authenticated user is registered for this trip</li>
-<li><code>isWaitlisted</code>: Whether the authenticated user is on the waitlist for this trip</li>
-<li><code>waitlistCount</code>: Current number of users on the waitlist</li>
-<li><code>registeredCount</code>: Current number of users registered for this trip</li>
+<li><code>vehicle_limit_per_member</code> - Maximum number of vehicles a member can register (default: 3)</li>
 </ul>
-<hr />
-<h2 id="use-cases">Use Cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Finding specific trips by title search</li>
-<li>Browsing available trips for a specific level (e.g., Newbie trips only)</li>
-<li>Discovering trip activities by date range</li>
-<li>Finding trips at specific meeting points</li>
-<li>Exploring trips in specific geographic areas</li>
-<li>Checking trip history for a user or level</li>
-<li>Building trip calendars or schedules</li>
-</ul>
+<p>See <a href="../global-settings/">Global Settings</a> for more details.</p>
 
 
 
