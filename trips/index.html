@@ -1504,6 +1504,10 @@
 <ul>
 <li><strong>POST</strong> <code>/api/trips/{id}/register/</code><ul>
 <li>Registers the authenticated user for the trip.</li>
+<li><strong>Request Body:</strong> <code>{"vehicleId": &lt;vehicle_id&gt;}</code></li>
+<li><strong>Required:</strong> Users must have at least one vehicle registered. The <code>vehicleId</code> is required.</li>
+<li>Returns <code>vehicle_required</code> error if no vehicle is provided.</li>
+<li>Returns <code>vehicle_not_found</code> error if the vehicle doesn't exist or doesn't belong to the user.</li>
 </ul>
 </li>
 <li><strong>POST</strong> <code>/api/trips/{id}/waitlist/</code><ul>

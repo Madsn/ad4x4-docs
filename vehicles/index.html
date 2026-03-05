@@ -546,6 +546,56 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#trip-registration-with-vehicle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trip Registration with Vehicle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Trip Registration with Vehicle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#register-for-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register for Trip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trip-registration-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trip Registration Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trip-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trip Export
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1289,6 +1339,56 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#trip-registration-with-vehicle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trip Registration with Vehicle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Trip Registration with Vehicle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#register-for-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register for Trip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trip-registration-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trip Registration Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trip-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trip Export
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1471,6 +1571,82 @@
 <p>The vehicle limit per member can be configured in global settings:</p>
 <ul>
 <li><code>vehicle_limit_per_member</code> - Maximum number of vehicles a member can register (default: 3)</li>
+</ul>
+<hr />
+<h2 id="trip-registration-with-vehicle">Trip Registration with Vehicle<a class="headerlink" href="#trip-registration-with-vehicle" title="Permanent link">&para;</a></h2>
+<p>When registering for a trip, members must select which vehicle they will use. The vehicle information is stored with the trip registration and displayed in the trip details and export.</p>
+<h3 id="register-for-trip">Register for Trip<a class="headerlink" href="#register-for-trip" title="Permanent link">&para;</a></h3>
+<p><strong>POST</strong> <code>/api/trips/{tripId}/register</code></p>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p><strong>Request Body:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;vehicleId&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Fields:</strong>
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| <code>vehicleId</code> | integer | Yes | ID of the vehicle to register with |</p>
+<p><strong>Validation:</strong>
+- User must have at least one vehicle registered
+- Vehicle must belong to the user
+- Vehicle is required (returns 400 error if not provided)</p>
+<p><strong>Success Response:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;trip_registered&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Error Responses:</strong></p>
+<p>No vehicles registered:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vehicle_required&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Vehicle not found or doesn't belong to user:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vehicle_not_found&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="trip-registration-response">Trip Registration Response<a class="headerlink" href="#trip-registration-response" title="Permanent link">&para;</a></h3>
+<p>When retrieving trip details, each registration includes the selected vehicle:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;registered&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;member&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;johndoe&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;firstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;lastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Doe&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;vehicle&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">456</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;My Land Cruiser&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;brand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TOYOTA&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;brandDisplay&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toyota&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Land Cruiser&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2020</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;White&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;isPrimary&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;checkedIn&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;registrationDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-05T10:00:00.000Z&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="trip-export">Trip Export<a class="headerlink" href="#trip-export" title="Permanent link">&para;</a></h3>
+<p>When exporting trip registrants, the CSV includes the selected vehicle:</p>
+<ul>
+<li>Column: <code>car_brand_model_color</code> - Contains the vehicle brand, model, and color from the selected vehicle</li>
 </ul>
 <p>See <a href="../global-settings/">Global Settings</a> for more details.</p>
 
