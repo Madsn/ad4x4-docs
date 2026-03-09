@@ -12,7 +12,7 @@
         <meta name="author" content="Redbeard">
       
       
-        <link rel="canonical" href="https://api.ad4x4.com/readme/logbook-migration-design/">
+        <link rel="canonical" href="https://api.ad4x4.com/readme/logbook-migration/">
       
       
         <link rel="prev" href="../logbook/">
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#logbook-migration-design-document" class="md-skip">
+        <a href="#logbook-migration" class="md-skip">
           Skip to content
         </a>
       
@@ -903,17 +903,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#permissions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Permissions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#validation-rules" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -932,45 +921,6 @@
       
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#admin-interface" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Admin Interface
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Admin Interface">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pending-migrations-dashboard" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pending Migrations Dashboard
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#review-screen" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Review Screen
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -999,45 +949,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#migration-notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Migration Notes
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Migration Notes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#database-migration-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Database Migration Steps
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#future-enhancements-out-of-scope" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Future Enhancements (Out of Scope)
-      
-    </span>
-  </a>
   
 </li>
       
@@ -1736,17 +1647,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#permissions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Permissions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#validation-rules" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1765,45 +1665,6 @@
       
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#admin-interface" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Admin Interface
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Admin Interface">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pending-migrations-dashboard" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pending Migrations Dashboard
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#review-screen" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Review Screen
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1835,45 +1696,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#migration-notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Migration Notes
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Migration Notes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#database-migration-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Database Migration Steps
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#future-enhancements-out-of-scope" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Future Enhancements (Out of Scope)
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1891,10 +1713,9 @@
 
 
 
-<h1 id="logbook-migration-design-document">Logbook Migration - Design Document<a class="headerlink" href="#logbook-migration-design-document" title="Permanent link">&para;</a></h1>
+<h1 id="logbook-migration">Logbook Migration<a class="headerlink" href="#logbook-migration" title="Permanent link">&para;</a></h1>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>NOTE: This has not yet been implemented.</p>
-<p>This document outlines the backend design for migrating from paper-based logbooks to digital logbooks. The system allows users who have already purchased paper logbooks to migrate their existing signatures and skills to the digital system.</p>
+<p>This document outlines the endpoints related to migration from paper-based logbooks to digital logbooks. The system allows users who have already purchased paper logbooks to migrate their existing signatures and skills to the digital system.</p>
 <h2 id="use-cases">Use Cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h2>
 <h3 id="1-member-initiated-migration">1. Member-Initiated Migration<a class="headerlink" href="#1-member-initiated-migration" title="Permanent link">&para;</a></h3>
 <p>Any member can submit a migration request to transfer skills from their physical logbook to the digital system. This includes:
@@ -2404,34 +2225,6 @@
 - Set <code>status</code> = PENDING (back into review queue)
 - Clear <code>reviewed_by</code>, <code>reviewed_at</code> (fresh review)</p>
 <hr />
-<h2 id="permissions">Permissions<a class="headerlink" href="#permissions" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Permission</th>
-<th>Who</th>
-<th>What</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>(authenticated)</td>
-<td>Any member</td>
-<td>Create own migration request, view own requests, edit own RETURNED requests</td>
-</tr>
-<tr>
-<td>APPROVE<em>LOGBOOK</em>MIGRATION</td>
-<td>Marshals/Admins</td>
-<td>View all requests, approve/return/reject, download PDFs</td>
-</tr>
-<tr>
-<td>APPROVE<em>LOGBOOK</em>MIGRATION + Trip Manager role</td>
-<td>Trip Managers</td>
-<td>All of the above + create MANAGER_DIRECT requests for any member</td>
-</tr>
-</tbody>
-</table>
-<hr />
 <h2 id="validation-rules">Validation Rules<a class="headerlink" href="#validation-rules" title="Permanent link">&para;</a></h2>
 <ol>
 <li><strong>PDF Upload:</strong></li>
@@ -2518,23 +2311,6 @@
 <li>Allow <code>trip_description</code> as fallback (no limit on usage)</li>
 </ol>
 <hr />
-<h2 id="admin-interface">Admin Interface<a class="headerlink" href="#admin-interface" title="Permanent link">&para;</a></h2>
-<h3 id="pending-migrations-dashboard">Pending Migrations Dashboard<a class="headerlink" href="#pending-migrations-dashboard" title="Permanent link">&para;</a></h3>
-<ul>
-<li>List all PENDING requests</li>
-<li>Filter by migration<em>type, target</em>level</li>
-<li>Show member info, upload date, type, target level</li>
-<li>Quick actions: Approve, Return, Reject</li>
-</ul>
-<h3 id="review-screen">Review Screen<a class="headerlink" href="#review-screen" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Display uploaded PDF</li>
-<li>Show claimed trips/skills</li>
-<li>Form to modify/verify skills before approval</li>
-<li>For RETURNED requests: show accumulated return comments</li>
-<li>Approve/Return/Reject buttons</li>
-</ul>
-<hr />
 <h2 id="integration-points">Integration Points<a class="headerlink" href="#integration-points" title="Permanent link">&para;</a></h2>
 <h3 id="existing-systems">Existing Systems<a class="headerlink" href="#existing-systems" title="Permanent link">&para;</a></h3>
 <ol>
@@ -2567,22 +2343,6 @@
 <li>Notify approvers of new pending requests</li>
 </ol>
 <hr />
-<h2 id="migration-notes">Migration Notes<a class="headerlink" href="#migration-notes" title="Permanent link">&para;</a></h2>
-<h3 id="database-migration-steps">Database Migration Steps<a class="headerlink" href="#database-migration-steps" title="Permanent link">&para;</a></h3>
-<ol>
-<li>Add <code>entered_by</code> (FK to Member, nullable) to <code>LogbookSkillReference</code></li>
-<li>Add <code>entered_at</code> (DateTimeField, nullable) to <code>LogbookSkillReference</code></li>
-<li>Create <code>LogbookMigrationRequest</code> table</li>
-<li>Create <code>LogbookMigrationSkillEntry</code> table (with M2M to LogbookSkill)</li>
-<li>Add <code>APPROVE_LOGBOOK_MIGRATION</code> permission to the permission matrix</li>
-</ol>
-<hr />
-<h2 id="future-enhancements-out-of-scope">Future Enhancements (Out of Scope)<a class="headerlink" href="#future-enhancements-out-of-scope" title="Permanent link">&para;</a></h2>
-<ol>
-<li><strong>PDF parsing:</strong> Auto-extract skills from PDF (future)</li>
-<li><strong>Multiple uploads:</strong> Support incremental skill migration</li>
-<li><strong>Audit trail:</strong> Full history of approval actions</li>
-</ol>
 
 
 
