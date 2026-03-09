@@ -698,10 +698,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-new-member-migration-new_member" class="md-nav__link">
+  <a href="#1-member-initiated-migration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. New Member Migration (NEW_MEMBER)
+        1. Member-Initiated Migration
       
     </span>
   </a>
@@ -709,10 +709,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-skill-migration-skill_migration" class="md-nav__link">
+  <a href="#2-manager-direct-migration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Skill Migration (SKILL_MIGRATION)
+        2. Manager Direct Migration
       
     </span>
   </a>
@@ -865,10 +865,32 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#return-migration-request-for-amendments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Return Migration Request for Amendments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#reject-migration-request" class="md-nav__link">
     <span class="md-ellipsis">
       
         Reject Migration Request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit-and-resubmit-member-after-returned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edit and Resubmit (Member, after RETURNED)
       
     </span>
   </a>
@@ -888,34 +910,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Permissions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#user-permissions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        User Permissions
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#admin-permissions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Admin Permissions
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1537,10 +1531,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-new-member-migration-new_member" class="md-nav__link">
+  <a href="#1-member-initiated-migration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. New Member Migration (NEW_MEMBER)
+        1. Member-Initiated Migration
       
     </span>
   </a>
@@ -1548,10 +1542,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-skill-migration-skill_migration" class="md-nav__link">
+  <a href="#2-manager-direct-migration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Skill Migration (SKILL_MIGRATION)
+        2. Manager Direct Migration
       
     </span>
   </a>
@@ -1704,10 +1698,32 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#return-migration-request-for-amendments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Return Migration Request for Amendments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#reject-migration-request" class="md-nav__link">
     <span class="md-ellipsis">
       
         Reject Migration Request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit-and-resubmit-member-after-returned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edit and Resubmit (Member, after RETURNED)
       
     </span>
   </a>
@@ -1727,34 +1743,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Permissions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#user-permissions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        User Permissions
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#admin-permissions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Admin Permissions
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1908,15 +1896,17 @@
 <p>NOTE: This has not yet been implemented.</p>
 <p>This document outlines the backend design for migrating from paper-based logbooks to digital logbooks. The system allows users who have already purchased paper logbooks to migrate their existing signatures and skills to the digital system.</p>
 <h2 id="use-cases">Use Cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h2>
-<h3 id="1-new-member-migration-new_member">1. New Member Migration (NEW_MEMBER)<a class="headerlink" href="#1-new-member-migration-new_member" title="Permanent link">&para;</a></h3>
-<p>Users who have purchased a logbook but have not yet been upgraded to paid member can upload their logbook PDF to prove completion. Upon approval, they become paid members.</p>
-<h3 id="2-skill-migration-skill_migration">2. Skill Migration (SKILL_MIGRATION)<a class="headerlink" href="#2-skill-migration-skill_migration" title="Permanent link">&para;</a></h3>
-<p>Existing paid members who have skills signed off in their paper logbook can upload their logbook and specify which trips and skills they claim. Upon approval, these skills are added to their digital logbook and count toward upgrade eligibility.</p>
+<h3 id="1-member-initiated-migration">1. Member-Initiated Migration<a class="headerlink" href="#1-member-initiated-migration" title="Permanent link">&para;</a></h3>
+<p>Any member can submit a migration request to transfer skills from their physical logbook to the digital system. This includes:
+- <strong>Non-paid members</strong> (e.g., Newbie level): Can submit with empty skill_entries to become paid members upon approval
+- <strong>Paid members</strong>: Must include skill entries to migrate their skills</p>
+<h3 id="2-manager-direct-migration">2. Manager Direct Migration<a class="headerlink" href="#2-manager-direct-migration" title="Permanent link">&para;</a></h3>
+<p>A trip manager (marshal with elevated permissions) can sit with a member physically and enter the data directly. This bypasses the review cycle - the request is approved immediately upon creation.</p>
 <hr />
 <h2 id="data-models">Data Models<a class="headerlink" href="#data-models" title="Permanent link">&para;</a></h2>
 <h3 id="existing-models-extended">Existing Models (Extended)<a class="headerlink" href="#existing-models-extended" title="Permanent link">&para;</a></h3>
 <h4 id="logbookskillreference">LogbookSkillReference<a class="headerlink" href="#logbookskillreference" title="Permanent link">&para;</a></h4>
-<p>Extended with generic fields for future admin use (signing on behalf of marshals):</p>
+<p>Extended with generic fields for migration audit trail:</p>
 <table>
 <thead>
 <tr>
@@ -1954,7 +1944,7 @@
 <tr>
 <td>entered_by</td>
 <td>ForeignKey (Member)</td>
-<td><strong>NEW</strong> - Who entered into system</td>
+<td><strong>NEW</strong> - Who entered into system (approver for migrations)</td>
 </tr>
 <tr>
 <td>entered_at</td>
@@ -1989,21 +1979,27 @@
 <td>User submitting the request</td>
 </tr>
 <tr>
+<td>target_level</td>
+<td>ForeignKey (Level)</td>
+<td>NOT NULL</td>
+<td>The level being upgraded TO (e.g., Intermediate for Newbie-to-Intermediate)</td>
+</tr>
+<tr>
 <td>status</td>
 <td>CharField</td>
-<td>choices: PENDING, APPROVED, REJECTED</td>
+<td>choices: PENDING, APPROVED, RETURNED, REJECTED</td>
 <td>Request status</td>
 </tr>
 <tr>
 <td>migration_type</td>
 <td>CharField</td>
-<td>choices: NEW<em>MEMBER, SKILL</em>MIGRATION</td>
+<td>choices: MEMBER<em>INITIATED, MANAGER</em>DIRECT</td>
 <td>Type of migration</td>
 </tr>
 <tr>
 <td>uploaded_pdf</td>
 <td>FileField</td>
-<td>max<em>length=..., max</em>file_size=3MB</td>
+<td>nullable, max<em>length=..., max</em>file_size=3MB</td>
 <td>Uploaded PDF document</td>
 </tr>
 <tr>
@@ -2011,6 +2007,12 @@
 <td>TextField</td>
 <td>nullable</td>
 <td>Reason if rejected</td>
+</tr>
+<tr>
+<td>return_comment</td>
+<td>TextField</td>
+<td>nullable</td>
+<td>Comment when returned for amendments (accumulates)</td>
 </tr>
 <tr>
 <td>reviewed_by</td>
@@ -2040,7 +2042,12 @@
 </table>
 <p><strong>Notes:</strong>
 - File upload path: <code>logbook_migrations/{year}/{month}/{member_id}/{filename}</code>
-- Status transitions: PENDING → APPROVED or PENDING → REJECTED</p>
+- Status transitions:
+  - <code>PENDING</code> → <code>APPROVED</code> (admin approves, skills created)
+  - <code>PENDING</code> → <code>RETURNED</code> (admin sends back with comment)
+  - <code>PENDING</code> → <code>REJECTED</code> (admin rejects with reason)
+  - <code>RETURNED</code> → <code>PENDING</code> (member edits and resubmits)
+  - For <code>MANAGER_DIRECT</code>: goes directly to <code>APPROVED</code> on creation</p>
 <h4 id="logbookmigrationskillentry">LogbookMigrationSkillEntry<a class="headerlink" href="#logbookmigrationskillentry" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -2061,55 +2068,50 @@
 <tr>
 <td>migration_request</td>
 <td>ForeignKey (LogbookMigrationRequest)</td>
-<td>NOT NULL</td>
+<td>NOT NULL, CASCADE</td>
 <td>Parent migration request</td>
 </tr>
 <tr>
 <td>trip</td>
 <td>ForeignKey (Trip)</td>
 <td>nullable</td>
-<td>Trip in system (if exists)</td>
+<td>Trip in system (if found)</td>
 </tr>
 <tr>
 <td>trip_description</td>
 <td>CharField</td>
 <td>max_length=200, nullable</td>
-<td>Fallback if trip not in system</td>
-</tr>
-<tr>
-<td>marshal_name</td>
-<td>CharField</td>
-<td>max_length=100</td>
-<td>Name of marshal who signed</td>
+<td>Fallback description if trip not in system</td>
 </tr>
 <tr>
 <td>signed_by</td>
 <td>ForeignKey (Member)</td>
-<td>NOT NULL</td>
-<td>Original signer from paper logbook</td>
+<td>nullable</td>
+<td>Marshal who signed in physical book (auto-populated from trip.lead, can be null)</td>
+</tr>
+<tr>
+<td>marshal_name</td>
+<td>CharField</td>
+<td>max_length=100, nullable</td>
+<td>Free-text marshal name from physical book (fallback if signed_by unknown)</td>
 </tr>
 <tr>
 <td>skills</td>
 <td>ManyToManyField (LogbookSkill)</td>
 <td></td>
-<td>Skills claimed in this entry</td>
+<td>Skills/equipment claimed in this trip entry</td>
 </tr>
 <tr>
-<td>migrated_by</td>
-<td>ForeignKey (Member)</td>
-<td>NOT NULL</td>
-<td>Approver who entered</td>
-</tr>
-<tr>
-<td>migrated_at</td>
+<td>created_at</td>
 <td>DateTimeField</td>
 <td>auto<em>now</em>add</td>
-<td>When migration was approved</td>
+<td>Entry creation timestamp</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Notes:</strong>
-- Either <code>trip</code> OR <code>trip_description</code> must be provided
+- Either <code>trip</code> OR <code>trip_description</code> must be provided (not both null)
+- <code>signed_by</code> is nullable - auto-populated from trip.lead, but can be null if marshal unknown
 - Multiple skills can be claimed per trip entry</p>
 <hr />
 <h2 id="api-endpoints">API Endpoints<a class="headerlink" href="#api-endpoints" title="Permanent link">&para;</a></h2>
@@ -2117,29 +2119,55 @@
 <p><strong>POST</strong> <code>/api/logbook-migrations/</code></p>
 <p><strong>Authentication:</strong> Required (Bearer token)</p>
 <p><strong>Request Body (multipart/form-data):</strong></p>
-<p>NEW_MEMBER type:</p>
+<p>MEMBER_INITIATED type:</p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;migration_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NEW_MEMBER&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;uploaded_pdf&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;</span><span class="kc">f</span><span class="err">ile&gt;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>SKILL_MIGRATION type:</p>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;migration_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SKILL_MIGRATION&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;migration_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MEMBER_INITIATED&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;target_level&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;uploaded_pdf&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;</span><span class="kc">f</span><span class="err">ile&gt;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;skill_entries&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;trip&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;marshal_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John Marshal&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;signed_by&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;marshal_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John Marshal&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;skills&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;trip_description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Desert Trip - Jan 2024&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;marshal_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Jane Lead&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;trip&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">456</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;signed_by&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">67</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;marshal_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Jane Lead&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;skills&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;trip_description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Desert Trip - Jan 2024 (not in system)&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;marshal_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Marshal Ali&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;signed_by&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;skills&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>MEMBER_INITIATED with no skills (non-paid member becoming paid):</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;migration_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MEMBER_INITIATED&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;target_level&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;uploaded_pdf&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;</span><span class="kc">f</span><span class="err">ile&gt;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;skill_entries&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>MANAGER_DIRECT type:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;migration_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MANAGER_DIRECT&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;member&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">789</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;target_level&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;uploaded_pdf&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;</span><span class="kc">f</span><span class="err">ile</span><span class="p">,</span><span class="w"> </span><span class="err">op</span><span class="kc">t</span><span class="err">io</span><span class="kc">nal</span><span class="err">&gt;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;skill_entries&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;trip&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;signed_by&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;marshal_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Marshal Zour&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;skills&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">]</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
@@ -2150,44 +2178,42 @@
 <span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;member&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;member&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">789</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;targetLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Intermediate&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;numericLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PENDING&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;migration_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SKILL_MIGRATION&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;uploaded_pdf&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/media/logbook_migrations/2026/03/123_abc.pdf&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;skill_entries&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;migrationType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MEMBER_INITIATED&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;uploadedPdf&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/media/logbook_migrations/2026/03/123_abc.pdf&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;skillEntries&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span>
 <span class="w">    </span><span class="nt">&quot;createdAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-09T10:00:00.000Z&quot;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <p><strong>Validation:</strong>
-- User must have at least one vehicle registered (for SKILL<em>MIGRATION)
-- PDF file size must not exceed 3MB
-- PDF must be a valid file type (pdf only)
-- For SKILL</em>MIGRATION: user must select at least one skill entry</p>
+- <code>target_level</code> must be valid and appropriate for the member's current level
+- For <code>MEMBER_INITIATED</code>: at least one skill entry required if member is already paid
+- For <code>MANAGER_DIRECT</code>: <code>member</code> field required + at least one skill entry
+- PDF max size: 3MB, type: application/pdf
+- Skills in entries must belong to the target level (or the level below for equipment)
+- Prevent duplicate submissions: don't allow a new PENDING request for the same member + target_level if one already exists</p>
+<p><strong>Special behavior for <code>MANAGER_DIRECT</code>:</strong>
+- Status is set to <code>APPROVED</code> immediately
+- <code>reviewed_by</code> = the trip manager
+- <code>reviewed_at</code> = now
+- LogbookEntry and LogbookSkillReference records created immediately</p>
 <hr />
 <h3 id="list-migration-requests">List Migration Requests<a class="headerlink" href="#list-migration-requests" title="Permanent link">&para;</a></h3>
 <p><strong>GET</strong> <code>/api/logbook-migrations/</code></p>
 <p><strong>Authentication:</strong> Required</p>
 <p><strong>Query Parameters:</strong>
-- <code>status</code> - Filter by status (PENDING, APPROVED, REJECTED)
-- <code>migration_type</code> - Filter by type (NEW<em>MEMBER, SKILL</em>MIGRATION)
-- <code>page</code> - Page number</p>
-<p><strong>Regular User Response:</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;results&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PENDING&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;migrationType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SKILL_MIGRATION&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;createdAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-09T10:00:00.000Z&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p><strong>Admin/Approver Response:</strong> (with APPROVE<em>LOGBOOK</em>MIGRATION permission)</p>
+- <code>status</code> - Filter: PENDING, APPROVED, RETURNED, REJECTED
+- <code>migration_type</code> - Filter: MEMBER<em>INITIATED, MANAGER</em>DIRECT
+- <code>member</code> - Filter by member ID (admin only)
+- <code>target_level</code> - Filter by target level ID
+- <code>page</code>, <code>pageSize</code> - Pagination</p>
+<p><strong>Regular user:</strong> sees only their own requests.
+<strong>Admin/Marshal with APPROVE<em>LOGBOOK</em>MIGRATION permission:</strong> sees all requests.</p>
+<p><strong>Response:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;results&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -2199,8 +2225,9 @@
 <span class="w">        </span><span class="nt">&quot;firstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">&quot;lastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Doe&quot;</span>
 <span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;targetLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Intermediate&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">      </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PENDING&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;migrationType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SKILL_MIGRATION&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;migrationType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MEMBER_INITIATED&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;uploadedPdf&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/media/logbook_migrations/2026/03/123_abc.pdf&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;skillEntries&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span>
 <span class="w">      </span><span class="nt">&quot;createdAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-09T10:00:00.000Z&quot;</span>
@@ -2224,10 +2251,12 @@
 <span class="w">      </span><span class="nt">&quot;firstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;lastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Doe&quot;</span>
 <span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;targetLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Intermediate&quot;</span><span class="w"> </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PENDING&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;migrationType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SKILL_MIGRATION&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;migrationType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MEMBER_INITIATED&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;uploadedPdf&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/media/logbook_migrations/2026/03/123_abc.pdf&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;rejectionReason&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;returnComment&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;reviewedBy&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;reviewedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;skillEntries&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -2256,42 +2285,95 @@
 <p><strong>PATCH</strong> <code>/api/logbook-migrations/{id}/approve/</code></p>
 <p><strong>Authentication:</strong> Required</p>
 <p><strong>Permissions:</strong> APPROVE<em>LOGBOOK</em>MIGRATION</p>
-<p><strong>Request Body:</strong></p>
+<p><strong>Request Body (optional — admin can modify entries before approving):</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;skill_entries&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;trip&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;signed_by&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">67</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;skills&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
 
-<p><strong>Notes:</strong>
-- For SKILL<em>MIGRATION: approver can modify/verify skills before approval
-- For NEW</em>MEMBER: no request body needed</p>
 <p><strong>Response (200 OK):</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Migration approved successfully&quot;</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Migration approved successfully. X skill references created, Y duplicates skipped.&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <p><strong>On Approval Processing:</strong></p>
-<p>NEW<em>MEMBER type:
-1. Set member's <code>paid_member</code> to True
-2. Set request status to APPROVED
-3. Set reviewed</em>by and reviewed_at</p>
-<p>SKILL<em>MIGRATION type:
-1. For each verified skill entry:
-   - Create <code>LogbookEntry</code> (trip, member, signed</em>by, skills<em>verified)
-   - Create <code>LogbookSkillReference</code> for each skill:
-     - signed</em>by = original signer from paper
-     - entered<em>by = migrated</em>by (approver)
-     - entered<em>at = migrated</em>at (now)
-2. Set request status to APPROVED
-3. Set reviewed<em>by and reviewed</em>at</p>
+<ol>
+<li>
+<p><strong>If member is not paid</strong>, set member's <code>paid_member</code> to True</p>
+</li>
+<li>
+<p><strong>Backfill trip registrations</strong> — For each skill entry with a <code>trip</code>:</p>
+</li>
+<li>Check if member is registered for that trip</li>
+<li>
+<p>If NOT registered: call forceRegisterMember(tripId, memberId) internally</p>
+</li>
+<li>
+<p><strong>Create LogbookEntry records</strong> — For each skill entry:</p>
+</li>
+<li>
+<p>Create one <code>LogbookEntry</code> with:</p>
+<ul>
+<li><code>member</code> = the migrating member</li>
+<li><code>trip</code> = the trip from the entry</li>
+<li><code>signedBy</code> = <code>signed_by</code> from the entry (or the reviewer if signed_by is null)</li>
+<li><code>skillsVerified</code> = the skill IDs from the entry</li>
+<li><code>comment</code> = "Migrated from physical logbook (Migration Request #{id})"</li>
+</ul>
+</li>
+<li>
+<p><strong>Create LogbookSkillReference records</strong> — For each skill in each entry:</p>
+</li>
+<li><strong>Check for duplicates first:</strong> Skip if a reference already exists for <code>member + logbookSkill + trip</code></li>
+<li>
+<p>Create <code>LogbookSkillReference</code> with:</p>
+<ul>
+<li><code>member</code> = the migrating member</li>
+<li><code>logbookSkill</code> = the skill ID</li>
+<li><code>trip</code> = the trip from the entry</li>
+<li><code>signed_by</code> = the original marshal from the physical book (from entry's <code>signed_by</code>)</li>
+<li><code>entered_by</code> = the reviewer/approver</li>
+<li><code>entered_at</code> = now</li>
+</ul>
+</li>
+<li>
+<p><strong>Update request status:</strong></p>
+</li>
+<li><code>status</code> = APPROVED</li>
+<li><code>reviewed_by</code> = the approver</li>
+<li><code>reviewed_at</code> = now</li>
+</ol>
+<hr />
+<h3 id="return-migration-request-for-amendments">Return Migration Request for Amendments<a class="headerlink" href="#return-migration-request-for-amendments" title="Permanent link">&para;</a></h3>
+<p><strong>PATCH</strong> <code>/api/logbook-migrations/{id}/return/</code></p>
+<p><strong>Authentication:</strong> Required</p>
+<p><strong>Permissions:</strong> APPROVE<em>LOGBOOK</em>MIGRATION</p>
+<p><strong>Request Body:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;return_comment&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Skills 3 and 5 are not visible in the PDF scan on page 2. Please upload clearer images or correct the claimed skills.&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Processing:</strong>
+- Set <code>status</code> = RETURNED
+- Append <code>return_comment</code> (keep history of all return comments)
+- Set <code>reviewed_by</code> = reviewer, <code>reviewed_at</code> = now</p>
+<p><strong>Response (200 OK):</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Migration returned for amendments&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
 <hr />
 <h3 id="reject-migration-request">Reject Migration Request<a class="headerlink" href="#reject-migration-request" title="Permanent link">&para;</a></h3>
 <p><strong>PATCH</strong> <code>/api/logbook-migrations/{id}/reject/</code></p>
@@ -2299,7 +2381,7 @@
 <p><strong>Permissions:</strong> APPROVE<em>LOGBOOK</em>MIGRATION</p>
 <p><strong>Request Body:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;rejection_reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PDF is illegible, please upload a clearer copy&quot;</span>
+<span class="w">  </span><span class="nt">&quot;rejection_reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The PDF appears to belong to a different member. Please verify and submit a new request.&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -2311,46 +2393,41 @@
 </code></pre></div>
 
 <hr />
+<h3 id="edit-and-resubmit-member-after-returned">Edit and Resubmit (Member, after RETURNED)<a class="headerlink" href="#edit-and-resubmit-member-after-returned" title="Permanent link">&para;</a></h3>
+<p><strong>PUT</strong> <code>/api/logbook-migrations/{id}/</code></p>
+<p><strong>Authentication:</strong> Required (must be the request owner)</p>
+<p><strong>Conditions:</strong> Only allowed when <code>status</code> = RETURNED</p>
+<p><strong>Request Body:</strong> Same structure as creation (can update skill_entries, upload new PDF)</p>
+<p><strong>Processing:</strong>
+- Update skill entries (replace all)
+- Update PDF if new one provided
+- Set <code>status</code> = PENDING (back into review queue)
+- Clear <code>reviewed_by</code>, <code>reviewed_at</code> (fresh review)</p>
+<hr />
 <h2 id="permissions">Permissions<a class="headerlink" href="#permissions" title="Permanent link">&para;</a></h2>
-<h3 id="user-permissions">User Permissions<a class="headerlink" href="#user-permissions" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
 <th>Permission</th>
-<th>Description</th>
+<th>Who</th>
+<th>What</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>(authenticated)</td>
-<td>Can create migration request</td>
-</tr>
-<tr>
-<td>(authenticated)</td>
-<td>Can view own migration requests</td>
-</tr>
-</tbody>
-</table>
-<h3 id="admin-permissions">Admin Permissions<a class="headerlink" href="#admin-permissions" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Permission</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>APPROVE<em>LOGBOOK</em>MIGRATION</td>
-<td>Can approve/reject migration requests</td>
+<td>Any member</td>
+<td>Create own migration request, view own requests, edit own RETURNED requests</td>
 </tr>
 <tr>
 <td>APPROVE<em>LOGBOOK</em>MIGRATION</td>
-<td>Can view all migration requests</td>
+<td>Marshals/Admins</td>
+<td>View all requests, approve/return/reject, download PDFs</td>
 </tr>
 <tr>
-<td>APPROVE<em>LOGBOOK</em>MIGRATION</td>
-<td>Can download uploaded PDFs</td>
+<td>APPROVE<em>LOGBOOK</em>MIGRATION + Trip Manager role</td>
+<td>Trip Managers</td>
+<td>All of the above + create MANAGER_DIRECT requests for any member</td>
 </tr>
 </tbody>
 </table>
@@ -2364,20 +2441,38 @@
 <p>File path: <code>logbook_migrations/{year}/{month}/{member_id}/{uuid_filename}.pdf</code></p>
 </li>
 <li>
-<p><strong>Skill Entries (SKILL_MIGRATION):</strong></p>
+<p><strong>Skill Entries:</strong></p>
 </li>
-<li>At least one skill entry required</li>
-<li>Each entry must have either <code>trip</code> OR <code>trip_description</code></li>
+<li>Each entry must have either <code>trip</code> (FK) OR <code>trip_description</code> (text), not both null</li>
 <li>At least one skill must be selected per entry</li>
+<li>For paid members: at least one skill entry required</li>
 <li>
-<p>User must have participated in the trip (must be in trip.registered)</p>
+<p>For non-paid members: skill_entries can be empty (becoming paid only)</p>
+</li>
+<li>
+<p><strong>Target Level:</strong></p>
+</li>
+<li>
+<p>Must be a valid level appropriate for the member's current level progression</p>
+</li>
+<li>
+<p><strong>Duplicate Prevention:</strong></p>
+</li>
+<li>Cannot create new PENDING request for same member + target_level if one exists</li>
+<li>
+<p>On approval, skip (don't fail) if <code>member + logbookSkill + trip</code> combo already exists</p>
 </li>
 <li>
 <p><strong>Approval:</strong></p>
 </li>
-<li>Only PENDING requests can be approved/rejected</li>
-<li>Approver cannot approve their own request</li>
-<li>For SKILL_MIGRATION: trip must exist in system (if trip provided)</li>
+<li>Only PENDING requests can be approved/returned/rejected</li>
+<li>
+<p>Approver cannot approve their own MEMBER_INITIATED request</p>
+</li>
+<li>
+<p><strong>Skills:</strong></p>
+</li>
+<li>Skills must belong to target level (or the corresponding equipment level)</li>
 </ol>
 <hr />
 <h2 id="edge-cases">Edge Cases<a class="headerlink" href="#edge-cases" title="Permanent link">&para;</a></h2>
@@ -2405,25 +2500,39 @@
 <p>Keep LogbookEntry and LogbookSkillReference (no CASCADE)</p>
 </li>
 <li>
-<p><strong>Approver uploads PDF for themselves:</strong></p>
+<p><strong>Approver approves their own request:</strong></p>
 </li>
-<li>Not allowed (self-approval)</li>
+<li>
+<p>Not allowed for MEMBER_INITIATED</p>
+</li>
+<li>
+<p><strong>Marshal not found in system:</strong></p>
+</li>
+<li>Allow <code>marshal_name</code> free-text entry</li>
+<li>
+<p>Admin can try to match to system member during review</p>
+</li>
+<li>
+<p><strong>Trip not in system:</strong></p>
+</li>
+<li>Allow <code>trip_description</code> as fallback (no limit on usage)</li>
 </ol>
 <hr />
 <h2 id="admin-interface">Admin Interface<a class="headerlink" href="#admin-interface" title="Permanent link">&para;</a></h2>
 <h3 id="pending-migrations-dashboard">Pending Migrations Dashboard<a class="headerlink" href="#pending-migrations-dashboard" title="Permanent link">&para;</a></h3>
 <ul>
 <li>List all PENDING requests</li>
-<li>Filter by migration_type</li>
-<li>Show member info, upload date, type</li>
-<li>Quick actions: Approve, Reject</li>
+<li>Filter by migration<em>type, target</em>level</li>
+<li>Show member info, upload date, type, target level</li>
+<li>Quick actions: Approve, Return, Reject</li>
 </ul>
 <h3 id="review-screen">Review Screen<a class="headerlink" href="#review-screen" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Display uploaded PDF</li>
-<li>For SKILL_MIGRATION: show claimed trips/skills</li>
+<li>Show claimed trips/skills</li>
 <li>Form to modify/verify skills before approval</li>
-<li>Approve/Reject buttons</li>
+<li>For RETURNED requests: show accumulated return comments</li>
+<li>Approve/Return/Reject buttons</li>
 </ul>
 <hr />
 <h2 id="integration-points">Integration Points<a class="headerlink" href="#integration-points" title="Permanent link">&para;</a></h2>
@@ -2431,13 +2540,13 @@
 <ol>
 <li><strong>Member Model:</strong></li>
 <li>
-<p><code>paid_member</code> field updated on NEW_MEMBER approval</p>
+<p><code>paid_member</code> field updated if member is not paid on approval</p>
 </li>
 <li>
 <p><strong>LogbookEntry:</strong></p>
 </li>
 <li>
-<p>Created for each skill entry on SKILL_MIGRATION approval</p>
+<p>Created for each skill entry on approval</p>
 </li>
 <li>
 <p><strong>LogbookSkillReference:</strong></p>
@@ -2446,25 +2555,30 @@
 <p>Extended with entered<em>by, entered</em>at fields</p>
 </li>
 <li>
+<p><strong>Trip Registration:</strong></p>
+</li>
+<li>
+<p>forceRegisterMember called if member not registered for trip</p>
+</li>
+<li>
 <p><strong>Notifications:</strong></p>
 </li>
-<li>Send notification when request approved/rejected</li>
+<li>Send notification when request approved/returned/rejected</li>
 <li>Notify approvers of new pending requests</li>
 </ol>
 <hr />
 <h2 id="migration-notes">Migration Notes<a class="headerlink" href="#migration-notes" title="Permanent link">&para;</a></h2>
 <h3 id="database-migration-steps">Database Migration Steps<a class="headerlink" href="#database-migration-steps" title="Permanent link">&para;</a></h3>
 <ol>
+<li>Add <code>entered_by</code> (FK to Member, nullable) to <code>LogbookSkillReference</code></li>
+<li>Add <code>entered_at</code> (DateTimeField, nullable) to <code>LogbookSkillReference</code></li>
 <li>Create <code>LogbookMigrationRequest</code> table</li>
-<li>Create <code>LogbookMigrationSkillEntry</code> table</li>
-<li>Add fields to <code>LogbookSkillReference</code>:</li>
-<li><code>entered_by</code> (FK to Member, nullable)</li>
-<li><code>entered_at</code> (DateTimeField, nullable)</li>
+<li>Create <code>LogbookMigrationSkillEntry</code> table (with M2M to LogbookSkill)</li>
+<li>Add <code>APPROVE_LOGBOOK_MIGRATION</code> permission to the permission matrix</li>
 </ol>
 <hr />
 <h2 id="future-enhancements-out-of-scope">Future Enhancements (Out of Scope)<a class="headerlink" href="#future-enhancements-out-of-scope" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Admin direct entry:</strong> Allow admins to sign off skills on behalf of marshals directly (using the new entered<em>by/entered</em>at fields)</li>
 <li><strong>PDF parsing:</strong> Auto-extract skills from PDF (future)</li>
 <li><strong>Multiple uploads:</strong> Support incremental skill migration</li>
 <li><strong>Audit trail:</strong> Full history of approval actions</li>
