@@ -559,10 +559,76 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#endpoints-that-support-vehicle-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoints That Support Vehicle Registration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#register-for-trip" class="md-nav__link">
     <span class="md-ellipsis">
       
         Register for Trip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-trip-lead-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create Trip (Lead Registration)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#force-register-for-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Force Register for Trip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approve-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approve Trip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#join-waitlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Join Waitlist
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accept-from-waitlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accept from Waitlist
       
     </span>
   </a>
@@ -1379,10 +1445,76 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#endpoints-that-support-vehicle-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoints That Support Vehicle Registration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#register-for-trip" class="md-nav__link">
     <span class="md-ellipsis">
       
         Register for Trip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-trip-lead-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create Trip (Lead Registration)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#force-register-for-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Force Register for Trip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approve-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approve Trip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#join-waitlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Join Waitlist
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accept-from-waitlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accept from Waitlist
       
     </span>
   </a>
@@ -1602,21 +1734,65 @@
 <hr />
 <h2 id="trip-registration-with-vehicle">Trip Registration with Vehicle<a class="headerlink" href="#trip-registration-with-vehicle" title="Permanent link">&para;</a></h2>
 <p>When registering for a trip, members must select which vehicle they will use. The vehicle information is stored with the trip registration and displayed in the trip details and export.</p>
+<h3 id="endpoints-that-support-vehicle-registration">Endpoints That Support Vehicle Registration<a class="headerlink" href="#endpoints-that-support-vehicle-registration" title="Permanent link">&para;</a></h3>
+<p>The following endpoints support optional <code>vehicle_id</code> parameter for vehicle association:</p>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Description</th>
+<th>Vehicle Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST /api/trips/</code></td>
+<td>Create trip (lead registered)</td>
+<td>Optional; defaults to lead's primary</td>
+</tr>
+<tr>
+<td><code>POST /api/trips/{id}/register/</code></td>
+<td>User registers for trip</td>
+<td>Required for regular users; optional for staff</td>
+</tr>
+<tr>
+<td><code>POST /api/trips/{id}/force-register/</code></td>
+<td>Staff force-register a member</td>
+<td>Optional; defaults to member's primary</td>
+</tr>
+<tr>
+<td><code>POST /api/trips/{id}/approve/</code></td>
+<td>Approve trip (approver registered)</td>
+<td>Optional; defaults to approver's primary</td>
+</tr>
+<tr>
+<td><code>POST /api/trips/{id}/waitlist/</code></td>
+<td>Join waitlist</td>
+<td>Optional; stored with waitlist entry</td>
+</tr>
+<tr>
+<td><code>POST /api/trips/{id}/accept-waitlist/</code></td>
+<td>Move member from waitlist to registered</td>
+<td>Uses vehicle from waitlist entry</td>
+</tr>
+</tbody>
+</table>
 <h3 id="register-for-trip">Register for Trip<a class="headerlink" href="#register-for-trip" title="Permanent link">&para;</a></h3>
 <p><strong>POST</strong> <code>/api/trips/{tripId}/register</code></p>
 <p><strong>Authentication:</strong> Required (Bearer token)</p>
 <p><strong>Request Body:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;vehicleId&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span>
+<span class="w">  </span><span class="nt">&quot;vehicle_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <p><strong>Fields:</strong>
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| <code>vehicleId</code> | integer | Yes | ID of the vehicle to register with |</p>
+| <code>vehicle_id</code> | integer | Yes* | ID of the vehicle to register with |</p>
+<p>*Required for regular users. Users with <code>edit_trip_registrations</code> permission (staff/marshals) can omit - defaults to their primary vehicle.</p>
 <p><strong>Validation:</strong>
-- User must have at least one vehicle registered
+- User must have at least one vehicle registered (unless staff with permission)
 - Vehicle must belong to the user
 - Vehicle is required (returns 400 error if not provided)</p>
 <p><strong>Success Response:</strong></p>
@@ -1641,6 +1817,87 @@
 <span class="p">}</span>
 </code></pre></div>
 
+<h3 id="create-trip-lead-registration">Create Trip (Lead Registration)<a class="headerlink" href="#create-trip-lead-registration" title="Permanent link">&para;</a></h3>
+<p>When a trip is created, the lead is automatically registered to the trip.</p>
+<p><strong>POST</strong> <code>/api/trips/</code></p>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p><strong>Request Body:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Desert Trip&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;lead&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;start_time&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-15T08:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;end_time&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-15T18:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;cut_off&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-14T20:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;capacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;vehicle_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">456</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Vehicle Field:</strong>
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| <code>vehicle_id</code> | integer | No | ID of the vehicle the lead will use. Defaults to lead's primary vehicle if not specified. |</p>
+<h3 id="force-register-for-trip">Force Register for Trip<a class="headerlink" href="#force-register-for-trip" title="Permanent link">&para;</a></h3>
+<p>Staff can force-register a member for a trip, bypassing level requirements.</p>
+<p><strong>POST</strong> <code>/api/trips/{tripId}/force-register/</code></p>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p><strong>Request Body:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;member&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">456</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;vehicle_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">789</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Fields:</strong>
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| <code>member</code> | integer | Yes | ID of the member to register |
+| <code>vehicle_id</code> | integer | No | ID of the vehicle. Defaults to member's primary vehicle if not specified. |</p>
+<h3 id="approve-trip">Approve Trip<a class="headerlink" href="#approve-trip" title="Permanent link">&para;</a></h3>
+<p>When a marshal approves a trip, they are automatically registered as a deputy lead.</p>
+<p><strong>POST</strong> <code>/api/trips/{tripId}/approve/</code></p>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p><strong>Request Body:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;vehicle_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Fields:</strong>
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| <code>vehicle_id</code> | integer | No | ID of the vehicle the approver will use. Defaults to their primary vehicle if not specified. |</p>
+<h3 id="join-waitlist">Join Waitlist<a class="headerlink" href="#join-waitlist" title="Permanent link">&para;</a></h3>
+<p>Members can join a trip waitlist and optionally specify their vehicle.</p>
+<p><strong>POST</strong> <code>/api/trips/{tripId}/waitlist/</code></p>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p><strong>Request Body:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;vehicle_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Fields:</strong>
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| <code>vehicle_id</code> | integer | No | ID of the vehicle. Defaults to user's primary vehicle if not specified. |</p>
+<p>The vehicle is stored with the waitlist entry and will be used when the member is moved from waitlist to registered.</p>
+<h3 id="accept-from-waitlist">Accept from Waitlist<a class="headerlink" href="#accept-from-waitlist" title="Permanent link">&para;</a></h3>
+<p>When a lead/marshal moves a member from waitlist to registered, the vehicle stored with the waitlist entry is used.</p>
+<p><strong>POST</strong> <code>/api/trips/{tripId}/accept-waitlist/</code></p>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p><strong>Request Body:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;member&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">456</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Fields:</strong>
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| <code>member</code> | integer | Yes | ID of the member to move from waitlist |</p>
+<p>The vehicle is automatically taken from the waitlist entry. If no vehicle was specified when joining the waitlist, the member's primary vehicle is used.</p>
 <h3 id="trip-registration-response">Trip Registration Response<a class="headerlink" href="#trip-registration-response" title="Permanent link">&para;</a></h3>
 <p>When retrieving trip details, each registration includes the selected vehicle:</p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>

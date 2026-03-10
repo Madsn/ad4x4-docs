@@ -683,6 +683,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#trip-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trip Creation
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1428,6 +1439,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#trip-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trip Creation
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1452,7 +1474,7 @@
 <li><strong>Creation</strong>: A trip is created via a <code>POST</code> request. Depending on the creator's permissions, it may be automatically approved or require manual approval.</li>
 <li><strong>Approval</strong>: Trips requiring approval must be approved by a user with the appropriate permissions before they become visible to regular members.</li>
 <li><strong>Registration</strong>: Once a trip is approved, members can register for it until the <code>cut_off</code> time is reached or the <code>capacity</code> is filled.</li>
-<li><strong>Waitlist</strong>: If a trip is full and <code>allow_waitlist</code> is enabled, members can join the waitlist. They will be automatically moved to the registered list if a spot becomes available.</li>
+<li><strong>Waitlist</strong>: If a trip is full and <code>allow_waitlist</code> is enabled, members can join the waitlist. They can optionally specify a vehicle when joining. The vehicle is stored and used when moved to registered. Members will be automatically moved to the registered list if a spot becomes available.</li>
 <li><strong>Check-in/Check-out</strong>: The trip lead or a deputy can check members in and out of the trip.</li>
 </ol>
 <h2 id="endpoints">Endpoints<a class="headerlink" href="#endpoints" title="Permanent link">&para;</a></h2>
@@ -1524,6 +1546,8 @@
 <ul>
 <li><strong>POST</strong> <code>/api/trips/{id}/approve/</code><ul>
 <li>Approves a trip that is pending approval. Requires the <code>APPROVE_TRIP</code> permission.</li>
+<li>The approver is automatically registered as a deputy lead.</li>
+<li><strong>Request Body:</strong> <code>{"vehicle_id": &lt;vehicle_id&gt;}</code> (optional - defaults to approver's primary vehicle)</li>
 </ul>
 </li>
 </ul>
@@ -1531,14 +1555,15 @@
 <ul>
 <li><strong>POST</strong> <code>/api/trips/{id}/register/</code><ul>
 <li>Registers the authenticated user for the trip.</li>
-<li><strong>Request Body:</strong> <code>{"vehicleId": &lt;vehicle_id&gt;}</code></li>
-<li><strong>Required:</strong> Users must have at least one vehicle registered. The <code>vehicleId</code> is required.</li>
+<li><strong>Request Body:</strong> <code>{"vehicle_id": &lt;vehicle_id&gt;}</code></li>
+<li><strong>Required for regular users:</strong> Users must have at least one vehicle registered. Staff users (with <code>edit_trip_registrations</code> permission) can omit - defaults to their primary vehicle.</li>
 <li>Returns <code>vehicle_required</code> error if no vehicle is provided.</li>
 <li>Returns <code>vehicle_not_found</code> error if the vehicle doesn't exist or doesn't belong to the user.</li>
 </ul>
 </li>
 <li><strong>POST</strong> <code>/api/trips/{id}/waitlist/</code><ul>
 <li>Adds the authenticated user to the waitlist if the trip is full.</li>
+<li><strong>Request Body:</strong> <code>{"vehicle_id": &lt;vehicle_id&gt;}</code> (optional - defaults to user's primary vehicle)</li>
 </ul>
 </li>
 <li><strong>POST</strong> <code>/api/trips/{id}/unregister/</code><ul>
@@ -1596,6 +1621,15 @@
 </li>
 </ul>
 <p>See also the <a href="../logbook/">Digital Logbook</a> page for information on how to manage logbook entries for a trip.</p>
+<h2 id="trip-creation">Trip Creation<a class="headerlink" href="#trip-creation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>POST</strong> <code>/api/trips/</code><ul>
+<li>Creates a new trip. The lead is automatically registered to the trip upon creation.</li>
+<li><strong>Request Body:</strong> Includes standard trip fields plus optional <code>vehicle_id</code> for the lead's vehicle.</li>
+<li>If <code>vehicle_id</code> is not specified, the lead's primary vehicle is used.</li>
+</ul>
+</li>
+</ul>
 
 
 
