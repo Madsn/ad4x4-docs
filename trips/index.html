@@ -1509,7 +1509,7 @@
 <h3 id="delete-a-trip">Delete a Trip<a class="headerlink" href="#delete-a-trip" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>DELETE</strong> <code>/api/trips/{id}/</code><ul>
-<li>Deletes a trip. This is a soft-delete, meaning the trip's <code>approval_status</code> is set to <code>DELETED</code>.</li>
+<li>Deletes a trip. This is a soft-delete, meaning the trip's <code>approval_status</code> is set to <code>CANCELED</code>.</li>
 <li><strong>Restrictions</strong>:<ul>
 <li>A configurable cutoff time (in minutes before the trip's <code>start_time</code>) determines when deleting is restricted. The default is 0 minutes, meaning deleting is disabled once the trip starts.</li>
 <li><strong>Before the cutoff time</strong>: The trip's <code>lead</code> and users with the <code>DELETE_TRIPS</code> permission can delete the trip.</li>
