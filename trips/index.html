@@ -1578,11 +1578,14 @@
 <ul>
 <li><strong>GET</strong> <code>/api/members/{id}/tripcounts/</code><ul>
 <li>Retrieves a summary of a member's completed trips, grouped by trip level.</li>
-<li>
-<blockquote>
-<p><strong>Note:</strong> This endpoint only includes trips with an <code>APPROVED</code> status where the member was successfully checked in.</p>
-</blockquote>
+<li>Includes trips where the member was:<ul>
+<li>Registered and checked in (as participant)</li>
+<li>Lead of the trip</li>
+<li>Deputy lead of the trip</li>
+</ul>
 </li>
+<li>Only includes trips with an <code>APPROVED</code> status.</li>
+<li>Trips are counted once even if member has multiple roles (lead + registered).</li>
 </ul>
 </li>
 </ul>

@@ -1501,6 +1501,8 @@
 <ul>
 <li><strong>GET</strong> <code>/api/members/{id}/logbookentries</code><ul>
 <li>Retrieves a list of logbook entries for a specific member.</li>
+<li>Each entry includes <code>created_at</code> and <code>updated_at</code> timestamps for audit trail purposes.</li>
+<li>When skills are verified, <code>LogbookSkillReference</code> records are created with <code>signed_by</code>, <code>entered_by</code>, and <code>entered_at</code> fields.</li>
 </ul>
 </li>
 </ul>
