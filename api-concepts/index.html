@@ -396,8 +396,41 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#token-expiration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Token Expiration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-error-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Error Responses
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cross-origin-requests-cors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-Origin Requests (CORS)
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1781,8 +1814,41 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#token-expiration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Token Expiration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-error-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Error Responses
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cross-origin-requests-cors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-Origin Requests (CORS)
+      
+    </span>
+  </a>
   
 </li>
       
@@ -2343,6 +2409,75 @@
       "access": "eyJ0eXAiOiJKV1QiLCJhbGc..."
     }</code></li>
 </ul>
+<h3 id="token-expiration">Token Expiration<a class="headerlink" href="#token-expiration" title="Permanent link">&para;</a></h3>
+<p>JWT access tokens expire after <strong>1 day</strong> (24 hours). When a token expires, you will receive a <code>401 Unauthorized</code> response. Use the refresh token endpoint to obtain a new access token.</p>
+<h3 id="authentication-error-responses">Authentication Error Responses<a class="headerlink" href="#authentication-error-responses" title="Permanent link">&para;</a></h3>
+<p>The API returns standard HTTP status codes for authentication errors:</p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Detail Message</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>401</td>
+<td><code>Expired JWT.</code></td>
+<td>Token has expired. Obtain a new token via refresh.</td>
+</tr>
+<tr>
+<td>401</td>
+<td><code>User account is disabled.</code></td>
+<td>User account has been deactivated.</td>
+</tr>
+<tr>
+<td>401</td>
+<td><code>Token has been invalidated.</code></td>
+<td>Password was changed, or token was revoked. Re-authenticate.</td>
+</tr>
+<tr>
+<td>401</td>
+<td><code>Invalid JWT payload.</code></td>
+<td>Token is malformed or tampered with.</td>
+</tr>
+<tr>
+<td>401</td>
+<td><code>User not found.</code></td>
+<td>User associated with token no longer exists.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cross-origin-requests-cors">Cross-Origin Requests (CORS)<a class="headerlink" href="#cross-origin-requests-cors" title="Permanent link">&para;</a></h2>
+<p>The API supports Cross-Origin Resource Sharing (CORS) for specific allowed origins:</p>
+<table>
+<thead>
+<tr>
+<th>Origin</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>http://localhost</code></td>
+<td>Local development</td>
+</tr>
+<tr>
+<td><code>http://127.0.0.1</code></td>
+<td>Local development</td>
+</tr>
+<tr>
+<td><code>https://ap.ad4x4.com</code></td>
+<td>Production web app</td>
+</tr>
+<tr>
+<td><code>https://sandbox.novita.ai</code></td>
+<td>Sandbox environment</td>
+</tr>
+</tbody>
+</table>
+<p>Requests from other origins will be rejected. If you need to access the API from a new origin, contact the administrators.</p>
 <h2 id="response-format">Response Format<a class="headerlink" href="#response-format" title="Permanent link">&para;</a></h2>
 <p>Most endpoints return responses in the following formats. Note that the <code>message</code> field can be either a string or an object depending on the endpoint.</p>
 <h3 id="success-response-unified">Success Response (Unified)<a class="headerlink" href="#success-response-unified" title="Permanent link">&para;</a></h3>

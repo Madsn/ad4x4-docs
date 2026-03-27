@@ -1088,6 +1088,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nginx-rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nginx Rate Limiting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#django-drf-rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Django DRF Rate Limiting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1171,6 +1199,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nginx-rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nginx Rate Limiting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#django-drf-rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Django DRF Rate Limiting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1202,9 +1258,30 @@
 
 
 <h1 id="rate-limiting">Rate Limiting<a class="headerlink" href="#rate-limiting" title="Permanent link">&para;</a></h1>
-<p>To ensure the stability and reliability of the AD4x4 API, we have implemented rate limiting. This means that each client is limited to a certain number of requests per minute.</p>
+<p>To ensure the stability and reliability of the AD4x4 API, we have implemented rate limiting at two levels: Nginx and Django REST Framework (DRF).</p>
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
-<p>The rate limiting is configured in the Nginx <code>default.conf.template</code> file. The current limit is set to <strong>100 requests per minute</strong> per IP address.</p>
+<h3 id="nginx-rate-limiting">Nginx Rate Limiting<a class="headerlink" href="#nginx-rate-limiting" title="Permanent link">&para;</a></h3>
+<p>The rate limiting is configured in the Nginx <code>default.conf.template</code> file. The current limit is set to <strong>100 requests per minute</strong> per IP address for most API endpoints, with stricter limits on registration endpoints.</p>
+<h3 id="django-drf-rate-limiting">Django DRF Rate Limiting<a class="headerlink" href="#django-drf-rate-limiting" title="Permanent link">&para;</a></h3>
+<p>The API also implements Django REST Framework throttling:</p>
+<table>
+<thead>
+<tr>
+<th>User Type</th>
+<th>Rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Anonymous users</td>
+<td>100 requests/minute</td>
+</tr>
+<tr>
+<td>Authenticated users</td>
+<td>200 requests/minute</td>
+</tr>
+</tbody>
+</table>
 <h2 id="http-429-response">HTTP 429 Response<a class="headerlink" href="#http-429-response" title="Permanent link">&para;</a></h2>
 <p>If you exceed the rate limit, the API will respond with an <code>HTTP 429 Too Many Requests</code> status code. When you receive this response, you should:</p>
 <ul>

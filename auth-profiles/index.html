@@ -1355,6 +1355,7 @@
 </code></pre></div>
 
 <p><em>Note: <code>password</code> and <code>password2</code> must match.</em></p>
+<p><strong>Important:</strong> When a user changes their password, all existing JWT tokens are automatically invalidated. Users will need to log in again with their new password to obtain a fresh token.</p>
 <h3 id="other-endpoints">Other Endpoints<a class="headerlink" href="#other-endpoints" title="Permanent link">&para;</a></h3>
 <p>The <code>rest_registration</code> library also provides endpoints for:
 *   Resetting a forgotten password
