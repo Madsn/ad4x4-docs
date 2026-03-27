@@ -1704,18 +1704,34 @@ A successful update will return a <code>200 OK</code> status code and the update
 <p><strong>Query Parameters:</strong>
 - <code>checked_in</code> - Include only trips where member is checked in (default: false)
 - <code>start_time</code> - Filter by start time</p>
+<p><strong>Permissions:</strong>
+- Users can always view their own trip history.
+- To view another member's trip history, users need the <code>VIEW_MEMBER_TRIP_HISTORY</code> permission.
+- Superusers can view any member's trip history.</p>
 <h2 id="member-upgrade-history">Member Upgrade History<a class="headerlink" href="#member-upgrade-history" title="Permanent link">&para;</a></h2>
 <p>Retrieve a member's upgrade request history.</p>
 <p><strong>GET</strong> <code>/api/members/{id}/upgraderequests/</code></p>
 <h2 id="member-logbook-entries">Member Logbook Entries<a class="headerlink" href="#member-logbook-entries" title="Permanent link">&para;</a></h2>
 <p>Retrieve a member's logbook entries.</p>
 <p><strong>GET</strong> <code>/api/members/{id}/logbookentries/</code></p>
+<p><strong>Permissions:</strong>
+- Users can always view their own logbook entries.
+- To view another member's logbook entries, users need the <code>VIEW_MEMBER_TRIP_HISTORY</code> permission.
+- Superusers can view any member's logbook entries.</p>
 <h2 id="member-logbook-skills">Member Logbook Skills<a class="headerlink" href="#member-logbook-skills" title="Permanent link">&para;</a></h2>
 <p>Retrieve a member's logbook skill references.</p>
 <p><strong>GET</strong> <code>/api/members/{id}/logbookskills/</code></p>
+<p><strong>Permissions:</strong>
+- Users can always view their own logbook skills.
+- To view another member's logbook skills, users need the <code>VIEW_MEMBER_TRIP_HISTORY</code> permission.
+- Superusers can view any member's logbook skills.</p>
 <h2 id="member-trip-requests">Member Trip Requests<a class="headerlink" href="#member-trip-requests" title="Permanent link">&para;</a></h2>
 <p>Retrieve a member's trip requests.</p>
 <p><strong>GET</strong> <code>/api/members/{id}/triprequests/</code></p>
+<p><strong>Permissions:</strong>
+- Users can always view their own trip requests.
+- To view another member's trip requests, users need the <code>VIEW_MEMBER_TRIP_HISTORY</code> permission.
+- Superusers can view any member's trip requests.</p>
 <h2 id="member-feedback">Member Feedback<a class="headerlink" href="#member-feedback" title="Permanent link">&para;</a></h2>
 <p>Retrieve a member's feedback.</p>
 <p><strong>GET</strong> <code>/api/members/{id}/feedback/</code></p>
