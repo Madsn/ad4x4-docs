@@ -1,0 +1,3368 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Next gen API for Abu Dhabi 4x4">
+      
+      
+        <meta name="author" content="Redbeard">
+      
+      
+        <link rel="canonical" href="https://api.ad4x4.com/readme/workfolder/SECURITY_AUDIT_REPORT/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>AD4x4 Security Audit Report - AD4x4 API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ad4x4-security-audit-report" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="AD4x4 API" class="md-header__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AD4x4 API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AD4x4 Security Audit Report
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AD4x4 API" class="md-nav__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AD4x4 API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practical-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Practical Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../auth-profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Auth and Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vehicles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vehicles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trip-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lead-trip-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lead Trip History
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trips
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trip-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trip-reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meeting-points/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meeting Points
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../logbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Logbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../logbook-migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logbook Migration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../club-news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Club News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faqs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feedback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sponsorships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sponsorships
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notifications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gallery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gallery Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../here-maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HERE Maps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../global-settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Global Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../background-tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background Tasks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editable-strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../account-deletion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Account Deletion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../swagger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swagger UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintenance-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintenance Mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rate-limiting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rate Limiting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#critical-findings-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CRITICAL FINDINGS (5)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CRITICAL FINDINGS (5)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c1-firebase-service-account-private-key-committed-to-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C1: Firebase Service Account Private Key Committed to Repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c2-jwt-tokens-have-no-expiration-permanent-authentication-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C2: JWT Tokens Have No Expiration (Permanent Authentication Tokens)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c3-path-traversal-vulnerability-in-media-file-serving" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C3: Path Traversal Vulnerability in Media File Serving
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c4-cors-allows-all-origins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C4: CORS Allows All Origins
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c5-sensitive-data-logged-in-plaintext-passwords-in-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C5: Sensitive Data Logged in Plaintext (Passwords in Logs)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c6-deactivateddeleted-users-can-still-authenticate-via-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C6: Deactivated/Deleted Users Can Still Authenticate via JWT
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-findings-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HIGH FINDINGS (17)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="HIGH FINDINGS (17)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#h1-no-email-verification-on-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H1: No Email Verification on Registration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h2-zero-dependency-version-pinning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H2: Zero Dependency Version Pinning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h3-8-missing-django-security-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H3: 8 Missing Django Security Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h4-hardcoded-secret-key-in-source-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H4: Hardcoded Secret Key in Source Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h5-idor-vulnerabilities-on-5-member-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H5: IDOR Vulnerabilities on 5 Member Endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h6-mass-assignment-risk-via-exclude-pattern-in-serializers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H6: Mass Assignment Risk via exclude Pattern in Serializers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h7-no-rate-limiting-on-authentication-endpoints-django-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H7: No Rate Limiting on Authentication Endpoints (Django Level)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h8-password-change-doesnt-invalidate-existing-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H8: Password Change Doesn't Invalidate Existing Tokens
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h9-debug-falls-to-true-without-environment-variable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H9: DEBUG Falls to True Without Environment Variable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h10-real-backup-password-in-envexample" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H10: Real Backup Password in .env.example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h11-unauthenticated-member-profile-listing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H11: Unauthenticated Member Profile Listing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h12-django-oidc-provider-is-unmaintained" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H12: django-oidc-provider is Unmaintained
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h13-nginx-rate-limiting-broken-behind-cloudflare" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H13: Nginx Rate Limiting Broken Behind Cloudflare
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h14-open-redirect-vulnerability-in-login-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H14: Open Redirect Vulnerability in Login View
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h15-no-file-type-validation-on-upload-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H15: No File Type Validation on Upload Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h16-csrf-exemption-on-paypal-webhook-without-robust-alternative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H16: CSRF Exemption on PayPal Webhook Without Robust Alternative
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h17-nginx-missing-content-security-policy-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H17: Nginx Missing Content-Security-Policy Header
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#medium-findings-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MEDIUM FINDINGS (13)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MEDIUM FINDINGS (13)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#m1-every-jwt-authentication-triggers-database-write" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        M1: Every JWT Authentication Triggers Database Write
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m2-use_tz-false-can-cause-token-timing-bugs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        M2: USE_TZ = False Can Cause Token Timing Bugs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m3-error-responses-leak-internal-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        M3: Error Responses Leak Internal Details
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m4-paypal-webhook-signature-verification-skippable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        M4: PayPal Webhook Signature Verification Skippable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m5-psycopg2-binary-used-instead-of-psycopg2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        M5: psycopg2-binary Used Instead of psycopg2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m6-access-control-allow-origin-on-media-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        M6: Access-Control-Allow-Origin: * on Media Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m7-permission-matrix-exposed-publicly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        M7: Permission Matrix Exposed Publicly
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m8-global-settings-readable-by-public" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        M8: Global Settings Readable by Public
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m9-jwt-access-token-lifetime-too-long-1-day" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        M9: JWT Access Token Lifetime Too Long (1 Day)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m10-docker-build-runs-commands-as-root-before-user-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        M10: Docker Build Runs Commands as Root Before User Switch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m11-logbookentryserializer-uses-fields-__all__" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        M11: LogbookEntrySerializer Uses fields = '__all__'
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m12-password_reset-url-logged-to-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        M12: password_reset URL Logged to Console
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m13-raw-sql-in-geocodingcachetruncate-without-parameterization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        M13: Raw SQL in GeocodingCache.truncate() Without Parameterization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#low-findings-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LOW FINDINGS (6)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LOW FINDINGS (6)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#l1-bandit-sast-94-low-severity-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L1: Bandit SAST - 94 Low Severity Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#l2-admin-email-hardcoded" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L2: Admin Email Hardcoded
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#l3-telegram-chat-id-as-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L3: Telegram Chat ID as Default
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#l4-no-docker-health-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L4: No Docker Health Checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#l5-max-page-size-of-500-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L5: Max Page Size of 500 Records
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#l6-swaggerredoc-publicly-accessible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L6: Swagger/ReDoc Publicly Accessible
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-vulnerability-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Vulnerability Report
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dependency Vulnerability Report">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pip-audit-results-28-known-cves" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pip-audit Results (28 Known CVEs)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bandit-sast-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bandit SAST Results
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-remediation-priority" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Remediation Priority
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Remediation Priority">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#immediate-this-week" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Immediate (This Week)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#urgent-within-2-weeks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Urgent (Within 2 Weeks)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#planned-within-1-month" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Planned (Within 1 Month)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ongoing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ongoing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compliance-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compliance Notes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Compliance Notes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#owasp-top-10-2021-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OWASP Top 10 (2021) Coverage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ad4x4-security-audit-report">AD4x4 Security Audit Report<a class="headerlink" href="#ad4x4-security-audit-report" title="Permanent link">&para;</a></h1>
+<p><strong>Project</strong>: AD4x4 Django REST API
+<strong>Audit Date</strong>: 2026-03-24
+<strong>Auditor</strong>: Automated + Manual Code Review
+<strong>Scope</strong>: Full codebase, dependencies, configuration, infrastructure
+<strong>Codebase Size</strong>: 13,177 lines of Python across 80+ files
+<strong>Django Version</strong>: 5.1 | DRF: 3.17.1 | Python: 3.13</p>
+<hr />
+<h2 id="executive-summary">Executive Summary<a class="headerlink" href="#executive-summary" title="Permanent link">&para;</a></h2>
+<p>This audit identified <strong>42 security findings</strong> across the AD4x4 Django application:</p>
+<table>
+<thead>
+<tr>
+<th>Severity</th>
+<th>Count</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CRITICAL</strong></td>
+<td>6</td>
+<td>Immediate exploitation risk, could lead to full system compromise</td>
+</tr>
+<tr>
+<td><strong>HIGH</strong></td>
+<td>17</td>
+<td>Significant vulnerabilities requiring urgent remediation</td>
+</tr>
+<tr>
+<td><strong>MEDIUM</strong></td>
+<td>13</td>
+<td>Notable weaknesses requiring planned remediation</td>
+</tr>
+<tr>
+<td><strong>LOW</strong></td>
+<td>6</td>
+<td>Minor issues and hardening recommendations</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Top 3 Risks</strong>:
+1. <strong>Firebase service account private key committed to Git</strong> - allows full Firebase project takeover
+2. <strong>JWT tokens never expire</strong> - permanent authentication bypass if any token is leaked
+3. <strong>Path traversal in media serving</strong> - arbitrary file read from server filesystem</p>
+<hr />
+<h2 id="critical-findings-5">CRITICAL FINDINGS (5)<a class="headerlink" href="#critical-findings-5" title="Permanent link">&para;</a></h2>
+<h3 id="c1-firebase-service-account-private-key-committed-to-repository">C1: Firebase Service Account Private Key Committed to Repository<a class="headerlink" href="#c1-firebase-service-account-private-key-committed-to-repository" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Severity</strong></td>
+<td>CRITICAL</td>
+</tr>
+<tr>
+<td><strong>CVSS</strong></td>
+<td>9.8</td>
+</tr>
+<tr>
+<td><strong>CWE</strong></td>
+<td>CWE-798 (Use of Hard-coded Credentials)</td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>infra/app/config/ad4x4-5ce99.json</code></td>
+</tr>
+<tr>
+<td><strong>OWASP</strong></td>
+<td>A07:2021 - Identification and Authentication Failures</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Evidence</strong>:</p>
+<div class="codehilite"><pre><span></span><code>Type: service_account
+Project ID: ad4x4-5ce99
+Client Email: firebase-adminsdk-cjegh@ad4x4-5ce99.iam.gserviceaccount.com
+Private Key ID: d4f776920783b6e45a11da2696d7badeb5893225
+Has Private Key: True (full RSA private key, 1704 bytes)
+</code></pre></div>
+
+<p>The complete Firebase Admin SDK service account JSON file, including the <strong>full RSA private key</strong>, is committed to the Git repository (commit <code>2f188d3</code> - "Add FCM config to git"). Anyone with repository access can:
+- Send push notifications to any user
+- Create custom Firebase auth tokens for any user
+- Access any Firebase service the service account has permissions for
+- Impersonate the backend server</p>
+<p><strong>Remediation</strong>:
+1. <strong>IMMEDIATELY</strong> rotate the Firebase service account key in the Google Cloud Console
+2. Remove the file from Git history using <code>git filter-repo</code> or BFG Repo-Cleaner
+3. Add <code>*.json</code> service account patterns to <code>.gitignore</code>
+4. Store credentials in a secrets manager (HashiCorp Vault, AWS Secrets Manager, etc.)</p>
+<hr />
+<h3 id="c2-jwt-tokens-have-no-expiration-permanent-authentication-tokens">C2: JWT Tokens Have No Expiration (Permanent Authentication Tokens)<a class="headerlink" href="#c2-jwt-tokens-have-no-expiration-permanent-authentication-tokens" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Severity</strong></td>
+<td>CRITICAL</td>
+</tr>
+<tr>
+<td><strong>CVSS</strong></td>
+<td>9.1</td>
+</tr>
+<tr>
+<td><strong>CWE</strong></td>
+<td>CWE-613 (Insufficient Session Expiration)</td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>api/util.py:38-47</code></td>
+</tr>
+<tr>
+<td><strong>OWASP</strong></td>
+<td>A07:2021 - Identification and Authentication Failures</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Evidence</strong> (<code>api/util.py</code> lines 38-47):</p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AuthJWTManager</span><span class="p">(</span><span class="n">AbstractAuthTokenManager</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">provide_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">:</span> <span class="s1">&#39;AbstractBaseUser&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AuthToken</span><span class="p">:</span>
+        <span class="n">encoded_jwt</span> <span class="o">=</span> <span class="n">jwt</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+            <span class="p">{</span><span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">pk</span><span class="p">},</span>      <span class="c1"># &lt;-- NO &quot;exp&quot; claim</span>
+            <span class="n">settings</span><span class="o">.</span><span class="n">SECRET_KEY</span><span class="p">,</span>
+            <span class="n">algorithm</span><span class="o">=</span><span class="n">JWTAuthentication</span><span class="o">.</span><span class="n">ALGORITHM</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">AuthToken</span><span class="p">(</span><span class="n">encoded_jwt</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The <code>provide_token()</code> method generates JWTs with only <code>{"user_id": &lt;pk&gt;}</code> and <strong>no <code>exp</code> (expiration) claim</strong>. While <code>SIMPLE_JWT</code> settings configure <code>ACCESS_TOKEN_LIFETIME = 1 day</code>, the custom <code>AuthJWTManager</code> bypasses SimpleJWT entirely by using raw <code>jwt.encode()</code>.</p>
+<p>The <code>JWTAuthentication.authenticate()</code> method (line 70-96) only catches <code>jwt.ExpiredSignatureError</code> but never encounters it because no <code>exp</code> is set. These tokens are <strong>valid forever</strong>.</p>
+<p>Additionally, <code>revoke_token()</code> (line 49-51) raises <code>AuthTokenNotRevoked()</code>, meaning tokens <strong>cannot be invalidated</strong> even when a user changes their password or is deactivated.</p>
+<p><strong>Impact</strong>: If any JWT token is leaked (logs, browser storage, network intercept), it provides <strong>permanent</strong> access to the associated account with no way to revoke it.</p>
+<p><strong>Remediation</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">provide_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">:</span> <span class="s1">&#39;AbstractBaseUser&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AuthToken</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span><span class="p">,</span> <span class="n">timezone</span>
+    <span class="n">encoded_jwt</span> <span class="o">=</span> <span class="n">jwt</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">pk</span><span class="p">,</span>
+            <span class="s2">&quot;exp&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+            <span class="s2">&quot;iat&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">),</span>
+        <span class="p">},</span>
+        <span class="n">settings</span><span class="o">.</span><span class="n">SECRET_KEY</span><span class="p">,</span>
+        <span class="n">algorithm</span><span class="o">=</span><span class="n">JWTAuthentication</span><span class="o">.</span><span class="n">ALGORITHM</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">AuthToken</span><span class="p">(</span><span class="n">encoded_jwt</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Also implement token revocation via a blocklist or token versioning.</p>
+<hr />
+<h3 id="c3-path-traversal-vulnerability-in-media-file-serving">C3: Path Traversal Vulnerability in Media File Serving<a class="headerlink" href="#c3-path-traversal-vulnerability-in-media-file-serving" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Severity</strong></td>
+<td>CRITICAL</td>
+</tr>
+<tr>
+<td><strong>CVSS</strong></td>
+<td>8.6</td>
+</tr>
+<tr>
+<td><strong>CWE</strong></td>
+<td>CWE-22 (Path Traversal)</td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>api/views/views_media.py:10-15</code></td>
+</tr>
+<tr>
+<td><strong>OWASP</strong></td>
+<td>A01:2021 - Broken Access Control</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Evidence</strong> (<code>api/views/views_media.py</code>):</p>
+<div class="codehilite"><pre><span></span><code><span class="nd">@api_view</span><span class="p">([</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">serve_media</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">MEDIA_ROOT</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">full_path</span><span class="p">)</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">full_path</span><span class="p">):</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">FileResponse</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">full_path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">),</span> <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;application/octet-stream&#39;</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">[</span><span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span>
+        <span class="k">return</span> <span class="n">response</span>
+</code></pre></div>
+
+<p><strong>Proof of Concept</strong> (tested in sandbox):</p>
+<div class="codehilite"><pre><span></span><code>Input: ../../../etc/passwd
+  os.path.join result: /app/uploads/../../../etc/passwd
+  Normalized: /etc/passwd
+  Stays within MEDIA_ROOT: False  &lt;-- ESCAPES!
+
+Input: avatars/../../../etc/passwd
+  os.path.join result: /app/uploads/avatars/../../../etc/passwd
+  Normalized: /etc/passwd
+  Stays within MEDIA_ROOT: False  &lt;-- ESCAPES!
+</code></pre></div>
+
+<p>The <code>path</code> parameter from the URL <code>uploads/&lt;path:path&gt;</code> is passed directly to <code>os.path.join()</code> without any validation that the resulting path stays within <code>MEDIA_ROOT</code>. Django's <code>&lt;path:path&gt;</code> URL converter accepts <code>../</code> sequences.</p>
+<p><strong>Impact</strong>: An attacker can read any file on the server that the application user has read access to, including:
+- <code>/app/config/*.json</code> (Firebase service account keys)
+- <code>/etc/passwd</code> (system user enumeration)
+- Application source code
+- Environment variables from <code>/proc/self/environ</code></p>
+<p><strong>Remediation</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.http</span><span class="w"> </span><span class="kn">import</span> <span class="n">FileResponse</span><span class="p">,</span> <span class="n">HttpResponseNotFound</span><span class="p">,</span> <span class="n">HttpResponseForbidden</span>
+
+<span class="nd">@api_view</span><span class="p">([</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">serve_media</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">MEDIA_ROOT</span><span class="p">,</span> <span class="n">path</span><span class="p">))</span>
+    <span class="n">media_root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">MEDIA_ROOT</span><span class="p">)</span>
+
+    <span class="c1"># Prevent path traversal</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">full_path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">media_root</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">HttpResponseForbidden</span><span class="p">(</span><span class="s1">&#39;Access denied&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">full_path</span><span class="p">)</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">full_path</span><span class="p">):</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">FileResponse</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">full_path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">response</span>
+    <span class="k">return</span> <span class="n">HttpResponseNotFound</span><span class="p">(</span><span class="s1">&#39;File not found&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<hr />
+<h3 id="c4-cors-allows-all-origins">C4: CORS Allows All Origins<a class="headerlink" href="#c4-cors-allows-all-origins" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Severity</strong></td>
+<td>CRITICAL</td>
+</tr>
+<tr>
+<td><strong>CVSS</strong></td>
+<td>8.1</td>
+</tr>
+<tr>
+<td><strong>CWE</strong></td>
+<td>CWE-942 (Permissive Cross-domain Policy)</td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>ad4x4/settings.py:406</code></td>
+</tr>
+<tr>
+<td><strong>OWASP</strong></td>
+<td>A05:2021 - Security Misconfiguration</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Evidence</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">CORS_ORIGIN_ALLOW_ALL</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+<p>This allows <strong>any website on the internet</strong> to make authenticated cross-origin requests to the API. Combined with <code>SessionAuthentication</code> being enabled, an attacker can create a malicious webpage that makes API requests using a victim's session cookies.</p>
+<p><strong>Remediation</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">CORS_ORIGIN_ALLOW_ALL</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">CORS_ALLOWED_ORIGINS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;https://ap.ad4x4.com&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;https://your-frontend-domain.com&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">CORS_ALLOW_CREDENTIALS</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+<hr />
+<h3 id="c5-sensitive-data-logged-in-plaintext-passwords-in-logs">C5: Sensitive Data Logged in Plaintext (Passwords in Logs)<a class="headerlink" href="#c5-sensitive-data-logged-in-plaintext-passwords-in-logs" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Severity</strong></td>
+<td>CRITICAL</td>
+</tr>
+<tr>
+<td><strong>CVSS</strong></td>
+<td>7.5</td>
+</tr>
+<tr>
+<td><strong>CWE</strong></td>
+<td>CWE-532 (Insertion of Sensitive Information into Log File)</td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>api/views/views_auth.py:29</code></td>
+</tr>
+<tr>
+<td><strong>OWASP</strong></td>
+<td>A09:2021 - Security Logging and Monitoring Failures</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Evidence</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># views_auth.py:29</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Invalid change password request: </span><span class="si">{</span><span class="n">serializer</span><span class="o">.</span><span class="n">errors</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>When a password change request fails validation, <code>request.data</code> is logged verbatim. This dict contains <code>old_password</code>, <code>password</code>, and potentially <code>password2</code> in plaintext. These values are written to:
+- Console output
+- Log files on disk
+- Sentry (if error propagates)
+- Admin email (via <code>mail_admins</code> handler)</p>
+<p><strong>Additional instances</strong> of <code>request.data</code> being logged:
+- <code>views_trip.py:61</code> - trip creation data
+- <code>views_trip.py:131</code> - trip edit data
+- <code>views_upgraderequest.py:41</code> - upgrade request data
+- <code>views_upgraderequest.py:180</code> - upgrade request comment data</p>
+<p><strong>Remediation</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Never log request.data directly - sanitize first</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Invalid change password request: </span><span class="si">{</span><span class="n">serializer</span><span class="o">.</span><span class="n">errors</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="c1"># Or create a sanitize function:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sanitize_log_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">sensitive_keys</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;password&#39;</span><span class="p">,</span> <span class="s1">&#39;old_password&#39;</span><span class="p">,</span> <span class="s1">&#39;password1&#39;</span><span class="p">,</span> <span class="s1">&#39;password2&#39;</span><span class="p">,</span> <span class="s1">&#39;token&#39;</span><span class="p">}</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="s1">&#39;***&#39;</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">sensitive_keys</span> <span class="k">else</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+</code></pre></div>
+
+<hr />
+<h3 id="c6-deactivateddeleted-users-can-still-authenticate-via-jwt">C6: Deactivated/Deleted Users Can Still Authenticate via JWT<a class="headerlink" href="#c6-deactivateddeleted-users-can-still-authenticate-via-jwt" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Severity</strong></td>
+<td>CRITICAL</td>
+</tr>
+<tr>
+<td><strong>CVSS</strong></td>
+<td>8.8</td>
+</tr>
+<tr>
+<td><strong>CWE</strong></td>
+<td>CWE-863 (Incorrect Authorization)</td>
+</tr>
+<tr>
+<td><strong>Location</strong></td>
+<td><code>api/util.py:92-108</code></td>
+</tr>
+<tr>
+<td><strong>OWASP</strong></td>
+<td>A07:2021 - Identification and Authentication Failures</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Evidence</strong> (<code>api/util.py</code> lines 98-103):</p>
+<div class="codehilite"><pre><span></span><code><span class="n">user_class</span> <span class="o">=</span> <span class="n">get_user_model</span><span class="p">()</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">user_class</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="n">user_id</span><span class="p">)</span>   <span class="c1"># &lt;-- No is_active check!</span>
+<span class="k">except</span> <span class="n">user_class</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;User not found.&#39;</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="n">AuthenticationFailed</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
+</code></pre></div>
+
+<p>The custom <code>JWTAuthentication.authenticate()</code> method retrieves the user by primary key but <strong>never checks <code>user.is_active</code></strong>. Combined with:
+- The <code>anonymize_data()</code> method in <code>models_member.py</code> which sets <code>is_active = False</code> but does <strong>not</strong> invalidate tokens
+- The <code>AccountDeletionRequest</code> flow which deactivates accounts after 3 days
+- The fact that tokens never expire (C2)</p>
+<p>This means a deactivated, suspended, or deleted user's existing JWT token <strong>continues to work indefinitely</strong>.</p>
+<p><strong>Impact</strong>: Users who have been banned, suspended, or who requested account deletion can continue accessing all API endpoints using their old tokens.</p>
+<p><strong>Remediation</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">user</span> <span class="o">=</span> <span class="n">user_class</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="n">user_id</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="o">.</span><span class="n">is_active</span><span class="p">:</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">_</span><span class="p">(</span><span class="s1">&#39;User account is disabled.&#39;</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="n">AuthenticationFailed</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
+</code></pre></div>
+
+<hr />
+<h2 id="high-findings-17">HIGH FINDINGS (17)<a class="headerlink" href="#high-findings-17" title="Permanent link">&para;</a></h2>
+<h3 id="h1-no-email-verification-on-registration">H1: No Email Verification on Registration<a class="headerlink" href="#h1-no-email-verification-on-registration" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>settings.py:361-362</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CWE</strong></td>
+<td>CWE-287 (Improper Authentication)</td>
+</tr>
+</tbody>
+</table>
+<div class="codehilite"><pre><span></span><code><span class="s1">&#39;REGISTER_VERIFICATION_ENABLED&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="s1">&#39;REGISTER_EMAIL_VERIFICATION_ENABLED&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+</code></pre></div>
+
+<p>Anyone can register with any email address without verification. This enables:
+- Account creation with fake emails
+- Impersonation via others' email addresses
+- Spam account creation (limited only by Nginx rate limiting at 4 req/min)</p>
+<p><strong>Remediation</strong>: Set both to <code>True</code>.</p>
+<hr />
+<h3 id="h2-zero-dependency-version-pinning">H2: Zero Dependency Version Pinning<a class="headerlink" href="#h2-zero-dependency-version-pinning" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>requirements.txt</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CWE</strong></td>
+<td>CWE-1104 (Use of Unmaintained Third Party Components)</td>
+</tr>
+</tbody>
+</table>
+<p>All 24 dependencies are unpinned:</p>
+<div class="codehilite"><pre><span></span><code>drf-spectacular
+django-rest-registration
+djangorestframework
+djangorestframework-camel-case
+djangorestframework-simplejwt
+psycopg2-binary
+firebase-admin
+...
+</code></pre></div>
+
+<p><strong>Impact</strong>: A compromised or broken upstream package update is automatically pulled into production on next deployment.</p>
+<p><strong>pip-audit found 28 known CVEs</strong> in the current resolved dependency tree:</p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Version</th>
+<th>CVEs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pillow</code></td>
+<td>11.2.1</td>
+<td>PYSEC-2025-61, CVE-2026-25990</td>
+</tr>
+<tr>
+<td><code>aiohttp</code></td>
+<td>3.11.18</td>
+<td>9 CVEs including CVE-2025-53643</td>
+</tr>
+<tr>
+<td><code>urllib3</code></td>
+<td>2.5.0</td>
+<td>3 CVEs including CVE-2026-21441</td>
+</tr>
+<tr>
+<td><code>tornado</code></td>
+<td>6.5.1</td>
+<td>CVE-2026-31958</td>
+</tr>
+<tr>
+<td><code>nltk</code></td>
+<td>3.9.1</td>
+<td>4 CVEs</td>
+</tr>
+<tr>
+<td><code>orjson</code></td>
+<td>3.10.18</td>
+<td>CVE-2025-67221</td>
+</tr>
+<tr>
+<td><code>pip</code></td>
+<td>25.0.1</td>
+<td>2 CVEs</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Remediation</strong>: Pin all dependencies with exact versions. Run <code>pip freeze &gt; requirements.txt</code>. Add <code>pip-audit</code> to CI/CD pipeline.</p>
+<hr />
+<h3 id="h3-8-missing-django-security-settings">H3: 8 Missing Django Security Settings<a class="headerlink" href="#h3-8-missing-django-security-settings" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>ad4x4/settings.py</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The following security settings are <strong>completely absent</strong> from <code>settings.py</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Purpose</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SECURE_SSL_REDIRECT</code></td>
+<td>Force HTTPS</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td><code>SECURE_HSTS_SECONDS</code></td>
+<td>HTTP Strict Transport Security</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>SECURE_HSTS_INCLUDE_SUBDOMAINS</code></td>
+<td>HSTS for subdomains</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td><code>SECURE_HSTS_PRELOAD</code></td>
+<td>HSTS preload list</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td><code>SESSION_COOKIE_SECURE</code></td>
+<td>Cookies only over HTTPS</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td><code>SESSION_COOKIE_HTTPONLY</code></td>
+<td>No JS access to session cookie</td>
+<td><code>True</code> (default, but should be explicit)</td>
+</tr>
+<tr>
+<td><code>CSRF_COOKIE_SECURE</code></td>
+<td>CSRF cookie only over HTTPS</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td><code>SECURE_CONTENT_TYPE_NOSNIFF</code></td>
+<td>Prevent MIME sniffing</td>
+<td><code>False</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Remediation</strong> (add to production settings):</p>
+<div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="ow">not</span> <span class="n">DEV</span><span class="p">:</span>
+    <span class="n">SECURE_SSL_REDIRECT</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">SECURE_HSTS_SECONDS</span> <span class="o">=</span> <span class="mi">31536000</span>  <span class="c1"># 1 year</span>
+    <span class="n">SECURE_HSTS_INCLUDE_SUBDOMAINS</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">SECURE_HSTS_PRELOAD</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">SESSION_COOKIE_SECURE</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">CSRF_COOKIE_SECURE</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">SECURE_CONTENT_TYPE_NOSNIFF</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">SECURE_BROWSER_XSS_FILTER</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+
+<hr />
+<h3 id="h4-hardcoded-secret-key-in-source-code">H4: Hardcoded Secret Key in Source Code<a class="headerlink" href="#h4-hardcoded-secret-key-in-source-code" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>ad4x4/settings.py:75</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CWE</strong></td>
+<td>CWE-798</td>
+</tr>
+</tbody>
+</table>
+<div class="codehilite"><pre><span></span><code><span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s1">&#39;dev-secret-key-123463sdf12349erwh2837h&#39;</span>
+</code></pre></div>
+
+<p>While only used when <code>DJANGO_SECRET_KEY</code> env var is not set, this key is:
+- In the Git repository history permanently
+- Could be accidentally used in production if env var is misconfigured
+- Used for JWT signing, CSRF tokens, session signing, and password reset tokens</p>
+<p><strong>Remediation</strong>: Generate a random key at runtime for dev mode: <code>SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', get_random_secret_key())</code></p>
+<hr />
+<h3 id="h5-idor-vulnerabilities-on-5-member-endpoints">H5: IDOR Vulnerabilities on 5 Member Endpoints<a class="headerlink" href="#h5-idor-vulnerabilities-on-5-member-endpoints" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>api/views/views_member.py</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CWE</strong></td>
+<td>CWE-639 (Authorization Bypass Through User-Controlled Key)</td>
+</tr>
+<tr>
+<td><strong>OWASP</strong></td>
+<td>A01:2021 - Broken Access Control</td>
+</tr>
+</tbody>
+</table>
+<p>The following endpoints accept an arbitrary member <code>pk</code> in the URL and return that member's data without verifying the requesting user is authorized to view it:</p>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Data Exposed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /api/members/&lt;pk&gt;/triphistory</code></td>
+<td>Full trip history with registration dates</td>
+</tr>
+<tr>
+<td><code>GET /api/members/&lt;pk&gt;/triprequests</code></td>
+<td>All trip requests</td>
+</tr>
+<tr>
+<td><code>GET /api/members/&lt;pk&gt;/logbookentries</code></td>
+<td>Logbook entries with comments</td>
+</tr>
+<tr>
+<td><code>GET /api/members/&lt;pk&gt;/logbookskills</code></td>
+<td>Skill references and sign-offs</td>
+</tr>
+<tr>
+<td><code>GET /api/members/&lt;pk&gt;/tripcounts</code></td>
+<td>Detailed trip statistics per level</td>
+</tr>
+</tbody>
+</table>
+<p>Any authenticated user can enumerate through member IDs (1, 2, 3, ...) and extract all other members' activity data.</p>
+<p><strong>Remediation</strong>: Add ownership check or limit to <code>request.user.pk == pk</code> (with admin override).</p>
+<hr />
+<h3 id="h6-mass-assignment-risk-via-exclude-pattern-in-serializers">H6: Mass Assignment Risk via <code>exclude</code> Pattern in Serializers<a class="headerlink" href="#h6-mass-assignment-risk-via-exclude-pattern-in-serializers" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>api/serializers/serializers_member.py</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CWE</strong></td>
+<td>CWE-915 (Improperly Controlled Modification of Dynamically-Determined Object Attributes)</td>
+</tr>
+</tbody>
+</table>
+<p>Three serializers use <code>exclude</code> instead of explicit <code>fields</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">EditMemberSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Member</span>
+        <span class="n">exclude</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">,</span><span class="s1">&#39;is_staff&#39;</span><span class="p">,</span><span class="s1">&#39;is_superuser&#39;</span><span class="p">,</span><span class="s1">&#39;is_active&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;date_joined&#39;</span><span class="p">,</span><span class="s1">&#39;last_login&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The <code>level</code>, <code>trip_count</code>, <code>paid_member</code>, and <code>title</code> fields are <strong>not excluded</strong>, meaning:
+- <code>level</code> (ReadOnlyField) is safe due to serializer field override
+- <code>trip_count</code> — NOT protected, user could manipulate their trip count
+- <code>paid_member</code> — NOT protected, user could set themselves as paid
+- <code>title</code> — NOT protected</p>
+<p>If any new sensitive field is added to the <code>Member</code> model in the future, it becomes automatically writable via the API.</p>
+<p><strong>Remediation</strong>: Switch all serializers from <code>exclude</code> to explicit <code>fields</code> lists.</p>
+<hr />
+<h3 id="h7-no-rate-limiting-on-authentication-endpoints-django-level">H7: No Rate Limiting on Authentication Endpoints (Django Level)<a class="headerlink" href="#h7-no-rate-limiting-on-authentication-endpoints-django-level" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>ad4x4/settings.py</code> - REST_FRAMEWORK</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CWE</strong></td>
+<td>CWE-307 (Improper Restriction of Excessive Authentication Attempts)</td>
+</tr>
+</tbody>
+</table>
+<p>There are <strong>no</strong> <code>DEFAULT_THROTTLE_CLASSES</code> or <code>DEFAULT_THROTTLE_RATES</code> configured in DRF settings. While Nginx provides some rate limiting (200 req/min on <code>/api/</code>, 4 req/min on <code>/api/auth/register</code>), the following endpoints have <strong>no Django-level throttling</strong>:</p>
+<ul>
+<li><code>POST /api/token/</code> (JWT token obtain)</li>
+<li><code>POST /api/auth/login/</code> (login)</li>
+<li><code>POST /api/auth/send-reset-password-link/</code> (password reset)</li>
+<li><code>POST /api/auth/change-password/</code> (password change)</li>
+</ul>
+<p>Nginx rate limiting is also <strong>broken</strong> because Cloudflare <code>set_real_ip_from</code> directives are all commented out (see H13).</p>
+<p><strong>Remediation</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">REST_FRAMEWORK</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;DEFAULT_THROTTLE_CLASSES&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;rest_framework.throttling.AnonRateThrottle&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;rest_framework.throttling.UserRateThrottle&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;DEFAULT_THROTTLE_RATES&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;anon&#39;</span><span class="p">:</span> <span class="s1">&#39;20/minute&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="s1">&#39;60/minute&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h3 id="h8-password-change-doesnt-invalidate-existing-tokens">H8: Password Change Doesn't Invalidate Existing Tokens<a class="headerlink" href="#h8-password-change-doesnt-invalidate-existing-tokens" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>api/views/views_auth.py:23-34</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CWE</strong></td>
+<td>CWE-613</td>
+</tr>
+</tbody>
+</table>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
+    <span class="n">serializer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_serializer</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+    <span class="o">...</span>
+    <span class="n">user</span><span class="o">.</span><span class="n">set_password</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">validated_data</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])</span>
+    <span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;password_changed&#39;</span><span class="p">})</span>
+</code></pre></div>
+
+<p>After a password change, <strong>all existing JWT tokens remain valid</strong> because:
+1. The JWT payload only contains <code>user_id</code> (no password hash, no token version)
+2. Tokens never expire (see C2)
+3. Token revocation raises <code>AuthTokenNotRevoked()</code></p>
+<p>If an account is compromised and the password is changed, the attacker's stolen token <strong>still works forever</strong>.</p>
+<p><strong>Remediation</strong>: Implement a token version/generation counter on the User model. Increment on password change. Validate in <code>JWTAuthentication.authenticate()</code>.</p>
+<hr />
+<h3 id="h9-debug-falls-to-true-without-environment-variable">H9: <code>DEBUG</code> Falls to <code>True</code> Without Environment Variable<a class="headerlink" href="#h9-debug-falls-to-true-without-environment-variable" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>ad4x4/settings.py:69-79</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="codehilite"><pre><span></span><code><span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;DJANGO_SECRET_KEY&#39;</span><span class="p">):</span>
+    <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;DJANGO_SECRET_KEY&#39;</span><span class="p">)</span>
+    <span class="n">DEV</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s1">&#39;dev-secret-key-...&#39;</span>
+    <span class="n">DEV</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># &lt;-- Enabled when env var missing</span>
+</code></pre></div>
+
+<p>If <code>DJANGO_SECRET_KEY</code> is accidentally unset or the env file is not loaded, the application runs with <code>DEBUG=True</code> in production, exposing:
+- Full stack traces with source code
+- Django debug toolbar (if installed)
+- Database query logs
+- All settings values
+- Template variable dump</p>
+<p><strong>Remediation</strong>: <code>DEBUG = os.getenv('DJANGO_DEBUG', 'False').lower() == 'true'</code> — Never default to True.</p>
+<hr />
+<h3 id="h10-real-backup-password-in-envexample">H10: Real Backup Password in <code>.env.example</code><a class="headerlink" href="#h10-real-backup-password-in-envexample" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>infra/.env.example:32</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CWE</strong></td>
+<td>CWE-798</td>
+</tr>
+</tbody>
+</table>
+<div class="codehilite"><pre><span></span><code>RESTIC_PASSWORD=ad4x4-r3st1c-Redbeard
+</code></pre></div>
+
+<p>This appears to be the <strong>actual</strong> Restic backup password, not a placeholder. The naming pattern (<code>ad4x4-r3st1c-Redbeard</code>) is specific and follows the project's naming conventions, unlike the clearly-placeholder values for other fields (<code>your-b2-app-key-id</code>, <code>your-paypal-client-id</code>).</p>
+<p>If this is the real password, anyone with repo access can decrypt all Restic backups stored on Backblaze B2.</p>
+<p><strong>Remediation</strong>: Change the Restic password immediately. Replace with <code>your-restic-password-here</code> in <code>.env.example</code>.</p>
+<hr />
+<h3 id="h11-unauthenticated-member-profile-listing">H11: Unauthenticated Member Profile Listing<a class="headerlink" href="#h11-unauthenticated-member-profile-listing" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>api/views/views_member.py:124-125</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CWE</strong></td>
+<td>CWE-200 (Exposure of Sensitive Information)</td>
+</tr>
+</tbody>
+</table>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_permissions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">action</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;list&#39;</span><span class="p">,</span> <span class="s1">&#39;retrieve&#39;</span><span class="p">]:</span>
+        <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">(</span><span class="n">drf_permissions</span><span class="o">.</span><span class="n">IsAuthenticatedOrReadOnly</span><span class="p">,)</span>
+</code></pre></div>
+
+<p><code>IsAuthenticatedOrReadOnly</code> allows <strong>unauthenticated</strong> GET requests. The <code>ProfileSerializer</code> exposes:
+- Username, email, full name
+- Phone number (via <code>ContactInfoMemberSerializer</code>)
+- Date of birth
+- Emergency contact name and phone
+- City, gender, nationality
+- Avatar URL
+- Member level and trip count</p>
+<p>This is a <strong>PII disclosure</strong> to anyone who can access the API.</p>
+<p><strong>Remediation</strong>: Change to <code>IsAuthenticated</code> for list and retrieve. Consider a <code>PublicMemberSerializer</code> with minimal fields for unauthenticated access if needed.</p>
+<hr />
+<h3 id="h12-django-oidc-provider-is-unmaintained">H12: <code>django-oidc-provider</code> is Unmaintained<a class="headerlink" href="#h12-django-oidc-provider-is-unmaintained" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>requirements.txt:20</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><code>django-oidc-provider==0.9.0</code> — The <a href="https://pypi.org/project/django-oidc-provider/">last release</a> was in 2022. The project has limited maintenance and may contain unpatched vulnerabilities.</p>
+<p><strong>Remediation</strong>: Evaluate migration to <code>mozilla-django-oidc</code> or <code>django-oauth-toolkit</code> which are actively maintained.</p>
+<hr />
+<h3 id="h13-nginx-rate-limiting-broken-behind-cloudflare">H13: Nginx Rate Limiting Broken Behind Cloudflare<a class="headerlink" href="#h13-nginx-rate-limiting-broken-behind-cloudflare" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>infra/nginx/secure/default.conf.template:6-30</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>All Cloudflare <code>set_real_ip_from</code> directives and <code>real_ip_header CF-Connecting-IP</code> are <strong>commented out</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">#set_real_ip_from 173.245.48.0/20;</span>
+<span class="k">...</span>
+<span class="c1">#real_ip_header CF-Connecting-IP;</span>
+</code></pre></div>
+
+<p>Nginx rate limiting uses <code>$binary_remote_addr</code>, which behind Cloudflare resolves to <strong>Cloudflare's IP</strong>, not the client's. This means:
+- All users share the same rate limit bucket
+- Rate limiting is effectively disabled
+- A single user's traffic can exhaust the limit for all users</p>
+<p><strong>Remediation</strong>: Uncomment the Cloudflare IP ranges and <code>real_ip_header CF-Connecting-IP</code>.</p>
+<hr />
+<h3 id="h14-open-redirect-vulnerability-in-login-view">H14: Open Redirect Vulnerability in Login View<a class="headerlink" href="#h14-open-redirect-vulnerability-in-login-view" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>website/views.py:54-55</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CWE</strong></td>
+<td>CWE-601 (URL Redirection to Untrusted Site)</td>
+</tr>
+<tr>
+<td><strong>OWASP</strong></td>
+<td>A01:2021 - Broken Access Control</td>
+</tr>
+</tbody>
+</table>
+<div class="codehilite"><pre><span></span><code><span class="n">next_url</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;next&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">next_url</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The <code>next</code> parameter is taken directly from user input and used in a redirect without validation. An attacker can craft a URL like:</p>
+<div class="codehilite"><pre><span></span><code>https://ap.ad4x4.com/login/?next=https://evil.com/phishing
+</code></pre></div>
+
+<p>After a victim logs in, they are redirected to the attacker's site, which can mimic the AD4x4 site to steal credentials or session tokens.</p>
+<p><strong>Remediation</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">django.utils.http</span><span class="w"> </span><span class="kn">import</span> <span class="n">url_has_allowed_host_and_scheme</span>
+
+<span class="n">next_url</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;next&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">url_has_allowed_host_and_scheme</span><span class="p">(</span><span class="n">next_url</span><span class="p">,</span> <span class="n">allowed_hosts</span><span class="o">=</span><span class="p">{</span><span class="n">request</span><span class="o">.</span><span class="n">get_host</span><span class="p">()}):</span>
+    <span class="n">next_url</span> <span class="o">=</span> <span class="s1">&#39;/&#39;</span>
+<span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">next_url</span><span class="p">)</span>
+</code></pre></div>
+
+<hr />
+<h3 id="h15-no-file-type-validation-on-upload-fields">H15: No File Type Validation on Upload Fields<a class="headerlink" href="#h15-no-file-type-validation-on-upload-fields" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th>Multiple models</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CWE</strong></td>
+<td>CWE-434 (Unrestricted Upload of File with Dangerous Type)</td>
+</tr>
+</tbody>
+</table>
+<p>The project has 11 <code>ImageField</code>/<code>FileField</code> upload points across models:
+- <code>Member.avatar</code> — Only validates size (2.5 MB), not type
+- <code>UpgradeRequest.attachment</code> — No <code>upload_to</code> path, no validation at all
+- <code>LogbookMigrationPDF.uploaded_pdf</code> — FileField accepts any file type
+- <code>TripReport.track_file</code> — FileField accepts any file type
+- <code>ClubNews.image</code>, <code>Feedback.image</code>, <code>Sponsor.image</code>, <code>Vehicle.image</code>, <code>Trip.image</code>, <code>TripReportImage.image</code></p>
+<p>While Django's <code>ImageField</code> uses Pillow to verify image headers, this can be bypassed with polyglot files (valid image + embedded script). The <code>FileField</code> instances have no content validation at all.</p>
+<p>The avatar <code>clean()</code> method only checks size:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">clean</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">avatar</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">avatar</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mf">2.5</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;Avatar file size must be less than 2.5 MB.&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Remediation</strong>: Add file type validation using <code>django-upload-validator</code> or custom validators. Enforce allowed MIME types. Serve uploaded files from a separate domain.</p>
+<hr />
+<h3 id="h16-csrf-exemption-on-paypal-webhook-without-robust-alternative">H16: CSRF Exemption on PayPal Webhook Without Robust Alternative<a class="headerlink" href="#h16-csrf-exemption-on-paypal-webhook-without-robust-alternative" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>website/views.py:526</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CWE</strong></td>
+<td>CWE-352 (Cross-Site Request Forgery)</td>
+</tr>
+</tbody>
+</table>
+<div class="codehilite"><pre><span></span><code><span class="nd">@csrf_exempt</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">paypal_webhook</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+</code></pre></div>
+
+<p>The webhook endpoint has CSRF protection disabled. While this is standard for webhook receivers, the compensating control (PayPal signature verification) is <strong>conditional</strong> — it only runs if <code>PAYPAL_WEBHOOK_ID</code> is configured (see M4). Without it, any actor can send forged POST requests to this endpoint.</p>
+<p>Combined with the lack of IP allowlisting (PayPal webhook source IPs are well-documented), this creates a viable attack vector.</p>
+<p><strong>Remediation</strong>: Make webhook signature verification mandatory (not optional). Add PayPal IP allowlisting as defense in depth.</p>
+<hr />
+<h3 id="h17-nginx-missing-content-security-policy-header">H17: Nginx Missing Content-Security-Policy Header<a class="headerlink" href="#h17-nginx-missing-content-security-policy-header" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>infra/nginx/secure/default.conf.template</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Current security headers:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">add_header</span><span class="w"> </span><span class="s">X-Frame-Options</span><span class="w"> </span><span class="s">&quot;DENY&quot;</span><span class="p">;</span>
+<span class="k">add_header</span><span class="w"> </span><span class="s">X-Content-Type-Options</span><span class="w"> </span><span class="s">&quot;nosniff&quot;</span><span class="p">;</span>
+<span class="k">add_header</span><span class="w"> </span><span class="s">Referrer-Policy</span><span class="w"> </span><span class="s">&quot;no-referrer-when-downgrade&quot;</span><span class="p">;</span>
+</code></pre></div>
+
+<p><strong>Missing</strong>:
+- <code>Content-Security-Policy</code> — prevents XSS, clickjacking, data injection
+- <code>Strict-Transport-Security</code> — forces HTTPS
+- <code>Permissions-Policy</code> — controls browser features</p>
+<hr />
+<h2 id="medium-findings-13">MEDIUM FINDINGS (13)<a class="headerlink" href="#medium-findings-13" title="Permanent link">&para;</a></h2>
+<h3 id="m1-every-jwt-authentication-triggers-database-write">M1: Every JWT Authentication Triggers Database Write<a class="headerlink" href="#m1-every-jwt-authentication-triggers-database-write" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>api/util.py:93-95</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="codehilite"><pre><span></span><code><span class="c1"># In JWTAuthentication.authenticate():</span>
+<span class="n">obj</span><span class="p">,</span> <span class="n">created</span> <span class="o">=</span> <span class="n">NotificationSettings</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get_or_create</span><span class="p">(</span><span class="n">member</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+<span class="n">obj</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>  <span class="c1"># Triggers auto_now on last_user_activity</span>
+</code></pre></div>
+
+<p>Every single authenticated API request writes to the database. Under load, this creates:
+- Unnecessary database writes (potentially thousands/min)
+- Increased latency on every request
+- Lock contention on the notification_settings table</p>
+<p><strong>Remediation</strong>: Use caching to batch updates, or update only once per hour per user.</p>
+<hr />
+<h3 id="m2-use_tz-false-can-cause-token-timing-bugs">M2: <code>USE_TZ = False</code> Can Cause Token Timing Bugs<a class="headerlink" href="#m2-use_tz-false-can-cause-token-timing-bugs" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>ad4x4/settings.py:319</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><code>USE_TZ = False</code> means all datetimes are timezone-naive. This can cause:
+- Trip cutoff comparisons to fail across timezone boundaries
+- Token expiration checks (if implemented) to be off by hours
+- Inconsistent behavior during daylight saving time transitions</p>
+<hr />
+<h3 id="m3-error-responses-leak-internal-details">M3: Error Responses Leak Internal Details<a class="headerlink" href="#m3-error-responses-leak-internal-details" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th>Multiple views</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="codehilite"><pre><span></span><code><span class="c1"># views_firebase.py:52</span>
+<span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s1">&#39;detail&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Firebase error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="c1"># views_firebase.py:58</span>
+<span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s1">&#39;detail&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;An unexpected error occurred: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Internal error messages, stack traces, and exception details are returned to the client, potentially revealing:
+- Internal architecture (Firebase, Redis, PostgreSQL)
+- File paths and package versions
+- SQL query structures</p>
+<hr />
+<h3 id="m4-paypal-webhook-signature-verification-skippable">M4: PayPal Webhook Signature Verification Skippable<a class="headerlink" href="#m4-paypal-webhook-signature-verification-skippable" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>website/views.py:536-546</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="codehilite"><pre><span></span><code><span class="n">webhook_id</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="s1">&#39;PAYPAL_WEBHOOK_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">webhook_id</span><span class="p">:</span>  <span class="c1"># &lt;-- Skips verification if not configured</span>
+    <span class="n">is_valid</span> <span class="o">=</span> <span class="n">paypal_client</span><span class="o">.</span><span class="n">verify_webhook_signature</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</code></pre></div>
+
+<p>If <code>PAYPAL_WEBHOOK_ID</code> is not configured in environment, webhook signature verification is <strong>completely skipped</strong>. An attacker could send forged webhook events to:
+- Mark any user as <code>paid_member = True</code>
+- Update payment records</p>
+<hr />
+<h3 id="m5-psycopg2-binary-used-instead-of-psycopg2">M5: <code>psycopg2-binary</code> Used Instead of <code>psycopg2</code><a class="headerlink" href="#m5-psycopg2-binary-used-instead-of-psycopg2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>requirements.txt:6</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><code>psycopg2-binary</code> ships pre-compiled binaries not optimized for the deployment platform. It is <a href="https://www.psycopg.org/docs/install.html#binary-install">explicitly documented</a> as not suitable for production.</p>
+<hr />
+<h3 id="m6-access-control-allow-origin-on-media-files">M6: Access-Control-Allow-Origin: * on Media Files<a class="headerlink" href="#m6-access-control-allow-origin-on-media-files" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>api/middleware.py:18-26</code> and <code>api/views/views_media.py:14</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="codehilite"><pre><span></span><code><span class="c1"># MediaCorsMiddleware</span>
+<span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;/uploads/&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;/media/&#39;</span><span class="p">):</span>
+    <span class="n">response</span><span class="p">[</span><span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span>
+
+<span class="c1"># serve_media</span>
+<span class="n">response</span><span class="p">[</span><span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span>
+</code></pre></div>
+
+<p>All uploaded files (including user avatars and trip images) are served with <code>Access-Control-Allow-Origin: *</code>, allowing any website to embed and access these files.</p>
+<hr />
+<h3 id="m7-permission-matrix-exposed-publicly">M7: Permission Matrix Exposed Publicly<a class="headerlink" href="#m7-permission-matrix-exposed-publicly" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>api/views/views_permissionmatrix.py</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="codehilite"><pre><span></span><code><span class="n">permission_classes</span> <span class="o">=</span> <span class="p">(</span><span class="n">permissions</span><span class="o">.</span><span class="n">IsAuthenticatedOrReadOnly</span><span class="p">,)</span>
+</code></pre></div>
+
+<p>The full permission matrix (which groups have which permissions) is readable by unauthenticated users. This reveals the application's entire authorization structure to potential attackers.</p>
+<hr />
+<h3 id="m8-global-settings-readable-by-public">M8: Global Settings Readable by Public<a class="headerlink" href="#m8-global-settings-readable-by-public" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>api/views/views_configurablesettings.py:33</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_permissions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">AllowAny</span><span class="p">()]</span>  <span class="c1"># For read (list/retrieve)</span>
+</code></pre></div>
+
+<p>Configurable settings (potentially including internal business logic parameters) are publicly readable.</p>
+<hr />
+<h3 id="m9-jwt-access-token-lifetime-too-long-1-day">M9: JWT Access Token Lifetime Too Long (1 Day)<a class="headerlink" href="#m9-jwt-access-token-lifetime-too-long-1-day" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>ad4x4/settings.py:422</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="codehilite"><pre><span></span><code><span class="n">SIMPLE_JWT</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;ACCESS_TOKEN_LIFETIME&quot;</span><span class="p">:</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Industry standard is 15-60 minutes for access tokens with a separate refresh token mechanism. A 24-hour token window increases the risk if a token is compromised.</p>
+<p>Note: This is moot for the custom JWT (C2) which has NO expiration, but applies to any tokens generated via the SimpleJWT <code>TokenObtainPairView</code>.</p>
+<hr />
+<h3 id="m10-docker-build-runs-commands-as-root-before-user-switch">M10: Docker Build Runs Commands as Root Before User Switch<a class="headerlink" href="#m10-docker-build-runs-commands-as-root-before-user-switch" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>Dockerapp:67-74</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="codehilite"><pre><span></span><code><span class="k">RUN</span><span class="w"> </span>python3<span class="w"> </span>manage.py<span class="w"> </span>collectstatic<span class="w"> </span>--noinput
+<span class="k">RUN</span><span class="w"> </span>python3<span class="w"> </span>manage.py<span class="w"> </span>createsuperuser<span class="w"> </span>--noinput<span class="w"> </span><span class="o">||</span><span class="w"> </span>true
+<span class="k">USER</span><span class="w"> </span><span class="s">appuser  # &lt;-- Switch happens AFTER running as root</span>
+</code></pre></div>
+
+<p><code>collectstatic</code> and <code>createsuperuser</code> run as root. If either command is exploited during build, it has full container access. The <code>createsuperuser</code> command at build time also means the superuser credentials must be available as build-time environment variables.</p>
+<hr />
+<h3 id="m11-logbookentryserializer-uses-fields-__all__">M11: <code>LogbookEntrySerializer</code> Uses <code>fields = '__all__'</code><a class="headerlink" href="#m11-logbookentryserializer-uses-fields-__all__" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>api/serializers/serializers_other.py</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">LogbookEntrySerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">LogbookEntry</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="s1">&#39;__all__&#39;</span>
+</code></pre></div>
+
+<p>This exposes ALL model fields for both read and write operations, including any fields that should be server-controlled (like <code>signed_by</code>, <code>created</code>).</p>
+<hr />
+<h3 id="m12-password_reset-url-logged-to-console">M12: <code>password_reset</code> URL Logged to Console<a class="headerlink" href="#m12-password_reset-url-logged-to-console" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>website/views.py:640</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="codehilite"><pre><span></span><code><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Password reset requested for user </span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s1">. Reset URL: </span><span class="si">{</span><span class="n">reset_url</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The full password reset URL (including cryptographic signature) is logged. Anyone with log access can reset any user's password.</p>
+<hr />
+<h3 id="m13-raw-sql-in-geocodingcachetruncate-without-parameterization">M13: Raw SQL in GeocodingCache.truncate() Without Parameterization<a class="headerlink" href="#m13-raw-sql-in-geocodingcachetruncate-without-parameterization" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th><code>api/models/models_geocoding_cache.py:58-61</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CWE</strong></td>
+<td>CWE-89 (SQL Injection)</td>
+</tr>
+</tbody>
+</table>
+<div class="codehilite"><pre><span></span><code><span class="nd">@classmethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">truncate</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+    <span class="n">table</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">db_table</span>
+    <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;TRUNCATE TABLE &quot;</span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s1">&quot; RESTART IDENTITY CASCADE;&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>While the table name comes from Django's model metadata (not user input) and is therefore not directly injectable, this use of raw SQL:
+- Bypasses Django's ORM safety net
+- Sets a risky pattern that developers may copy with user-supplied values
+- Is called from a signal (<code>api/signals.py:170</code>) that could be triggered unexpectedly</p>
+<p><strong>Remediation</strong>: Use <code>cls.objects.all().delete()</code> instead, or if TRUNCATE is needed for performance, add a comment explaining why raw SQL is safe here.</p>
+<hr />
+<h2 id="low-findings-6">LOW FINDINGS (6)<a class="headerlink" href="#low-findings-6" title="Permanent link">&para;</a></h2>
+<h3 id="l1-bandit-sast-94-low-severity-issues">L1: Bandit SAST - 94 Low Severity Issues<a class="headerlink" href="#l1-bandit-sast-94-low-severity-issues" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>75x</strong> <code>B101</code>: Assert statements used in test code (acceptable)</li>
+<li><strong>8x</strong> <code>B106</code>: Possible hardcoded passwords (mostly false positives from Django settings patterns)</li>
+<li><strong>5x</strong> <code>B105</code>: Hardcoded password strings (settings defaults)</li>
+<li><strong>1x</strong> <code>B110</code>: Try/Except/Pass (silent exception swallowing)</li>
+</ul>
+<h3 id="l2-admin-email-hardcoded">L2: Admin Email Hardcoded<a class="headerlink" href="#l2-admin-email-hardcoded" title="Permanent link">&para;</a></h3>
+<p>| Location | <code>settings.py:38</code> |</p>
+<div class="codehilite"><pre><span></span><code><span class="n">ADMINS</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;Mikkel&#39;</span><span class="p">,</span> <span class="s1">&#39;mikkel3@gmail.com&#39;</span><span class="p">)]</span>
+</code></pre></div>
+
+<h3 id="l3-telegram-chat-id-as-default">L3: Telegram Chat ID as Default<a class="headerlink" href="#l3-telegram-chat-id-as-default" title="Permanent link">&para;</a></h3>
+<p>| Location | <code>settings.py:354</code> |</p>
+<div class="codehilite"><pre><span></span><code><span class="n">TELEGRAM_CHAT_ID</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;TELEGRAM_CHAT_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;-1002589316403&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="l4-no-docker-health-checks">L4: No Docker Health Checks<a class="headerlink" href="#l4-no-docker-health-checks" title="Permanent link">&para;</a></h3>
+<p>Neither the Dockerfile nor docker-compose.yml define health checks for the Django application container.</p>
+<h3 id="l5-max-page-size-of-500-records">L5: Max Page Size of 500 Records<a class="headerlink" href="#l5-max-page-size-of-500-records" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">StandardResultsSetPagination</span><span class="p">(</span><span class="n">PageNumberPagination</span><span class="p">):</span>
+    <span class="n">max_page_size</span> <span class="o">=</span> <span class="mi">500</span>
+</code></pre></div>
+
+<p>Could be used for bulk data extraction. Recommend reducing to 100.</p>
+<h3 id="l6-swaggerredoc-publicly-accessible">L6: Swagger/ReDoc Publicly Accessible<a class="headerlink" href="#l6-swaggerredoc-publicly-accessible" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>/docs/swagger-ui/</code> — Full API documentation</li>
+<li><code>/docs/redoc/</code> — Alternative API docs</li>
+<li><code>/api/schema/</code> — Raw OpenAPI schema</li>
+</ul>
+<p>These expose the entire API surface to unauthenticated users.</p>
+<hr />
+<h2 id="dependency-vulnerability-report">Dependency Vulnerability Report<a class="headerlink" href="#dependency-vulnerability-report" title="Permanent link">&para;</a></h2>
+<h3 id="pip-audit-results-28-known-cves">pip-audit Results (28 Known CVEs)<a class="headerlink" href="#pip-audit-results-28-known-cves" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Installed</th>
+<th>CVEs</th>
+<th>Fix Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pillow</code></td>
+<td>11.2.1</td>
+<td>PYSEC-2025-61, CVE-2026-25990</td>
+<td>12.1.1</td>
+</tr>
+<tr>
+<td><code>aiohttp</code></td>
+<td>3.11.18</td>
+<td>CVE-2025-53643, CVE-2025-69223-69230 (9 CVEs)</td>
+<td>3.13.3</td>
+</tr>
+<tr>
+<td><code>urllib3</code></td>
+<td>2.5.0</td>
+<td>CVE-2025-66418, CVE-2025-66471, CVE-2026-21441</td>
+<td>2.6.3</td>
+</tr>
+<tr>
+<td><code>tornado</code></td>
+<td>6.5.1</td>
+<td>GHSA-78cv-mqj4-43f7, CVE-2026-31958</td>
+<td>6.5.5</td>
+</tr>
+<tr>
+<td><code>nltk</code></td>
+<td>3.9.1</td>
+<td>CVE-2025-14009, CVE-2026-33230, CVE-2026-33231</td>
+<td>3.9.3</td>
+</tr>
+<tr>
+<td><code>orjson</code></td>
+<td>3.10.18</td>
+<td>CVE-2025-67221</td>
+<td>3.11.6</td>
+</tr>
+<tr>
+<td><code>fonttools</code></td>
+<td>4.58.4</td>
+<td>CVE-2025-66034</td>
+<td>4.60.2</td>
+</tr>
+<tr>
+<td><code>nbconvert</code></td>
+<td>7.16.6</td>
+<td>CVE-2025-53000</td>
+<td>7.17.0</td>
+</tr>
+<tr>
+<td><code>bokeh</code></td>
+<td>3.7.3</td>
+<td>CVE-2026-21883</td>
+<td>3.8.2</td>
+</tr>
+</tbody>
+</table>
+<p>Note: <code>aiohttp</code>, <code>tornado</code>, <code>nltk</code>, <code>bokeh</code>, <code>nbconvert</code>, and <code>fonttools</code> are transitive dependencies (not directly in requirements.txt) but are pulled in by the dependency tree.</p>
+<hr />
+<h2 id="bandit-sast-results">Bandit SAST Results<a class="headerlink" href="#bandit-sast-results" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Severity</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>High</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Low</td>
+<td>94</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Medium Findings</strong>:
+1. <code>B104</code> - Binding to all interfaces <code>0.0.0.0</code> in <code>ALLOWED_HOSTS</code> (CWE-605)
+2. <code>B113</code> - False positive on <code>.delete()</code> method name matching <code>requests</code> library pattern</p>
+<hr />
+<h2 id="recommended-remediation-priority">Recommended Remediation Priority<a class="headerlink" href="#recommended-remediation-priority" title="Permanent link">&para;</a></h2>
+<h3 id="immediate-this-week">Immediate (This Week)<a class="headerlink" href="#immediate-this-week" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>C1</strong>: Rotate Firebase service account key, remove from Git history</li>
+<li><strong>C2</strong>: Add <code>exp</code> claim to JWT tokens</li>
+<li><strong>C3</strong>: Fix path traversal in <code>serve_media</code></li>
+<li><strong>C5</strong>: Remove <code>request.data</code> from all logger calls</li>
+<li><strong>C6</strong>: Add <code>is_active</code> check to JWT authentication</li>
+<li><strong>H10</strong>: Change Restic backup password</li>
+</ol>
+<h3 id="urgent-within-2-weeks">Urgent (Within 2 Weeks)<a class="headerlink" href="#urgent-within-2-weeks" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>C4</strong>: Restrict CORS to specific origins</li>
+<li><strong>H1</strong>: Enable email verification</li>
+<li><strong>H2</strong>: Pin all dependency versions</li>
+<li><strong>H3</strong>: Add missing security settings</li>
+<li><strong>H7</strong>: Add DRF throttle classes</li>
+<li><strong>H8</strong>: Implement token invalidation on password change</li>
+<li><strong>H13</strong>: Uncomment Cloudflare real_ip directives</li>
+<li><strong>H14</strong>: Fix open redirect in login view</li>
+<li><strong>H16</strong>: Make PayPal webhook signature verification mandatory</li>
+</ol>
+<h3 id="planned-within-1-month">Planned (Within 1 Month)<a class="headerlink" href="#planned-within-1-month" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>H5</strong>: Add IDOR protections on member endpoints</li>
+<li><strong>H6</strong>: Convert serializers from <code>exclude</code> to <code>fields</code></li>
+<li><strong>H11</strong>: Fix unauthenticated member listing</li>
+<li><strong>H15</strong>: Add file upload type validation</li>
+<li><strong>H17</strong>: Add Content-Security-Policy header</li>
+<li>All remaining MEDIUM and LOW findings</li>
+</ol>
+<h3 id="ongoing">Ongoing<a class="headerlink" href="#ongoing" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Add <code>pip-audit</code> and <code>bandit</code> to CI/CD pipeline</li>
+<li>Implement security regression tests</li>
+<li>Schedule quarterly dependency updates</li>
+<li>Annual penetration testing</li>
+</ul>
+<hr />
+<h2 id="compliance-notes">Compliance Notes<a class="headerlink" href="#compliance-notes" title="Permanent link">&para;</a></h2>
+<h3 id="owasp-top-10-2021-coverage">OWASP Top 10 (2021) Coverage<a class="headerlink" href="#owasp-top-10-2021-coverage" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Category</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A01</td>
+<td>Broken Access Control</td>
+<td><strong>FAIL</strong> - IDOR, CORS, path traversal, open redirect</td>
+</tr>
+<tr>
+<td>A02</td>
+<td>Cryptographic Failures</td>
+<td><strong>WARN</strong> - Missing HSTS, cookie flags</td>
+</tr>
+<tr>
+<td>A03</td>
+<td>Injection</td>
+<td><strong>PASS</strong> - ORM usage, minimal raw SQL</td>
+</tr>
+<tr>
+<td>A04</td>
+<td>Insecure Design</td>
+<td><strong>WARN</strong> - No email verification</td>
+</tr>
+<tr>
+<td>A05</td>
+<td>Security Misconfiguration</td>
+<td><strong>FAIL</strong> - 8 missing settings, DEBUG risk</td>
+</tr>
+<tr>
+<td>A06</td>
+<td>Vulnerable Components</td>
+<td><strong>FAIL</strong> - 28 known CVEs, unpinned deps</td>
+</tr>
+<tr>
+<td>A07</td>
+<td>Auth Failures</td>
+<td><strong>FAIL</strong> - No-expiry JWTs, no rate limiting, deactivated user bypass</td>
+</tr>
+<tr>
+<td>A08</td>
+<td>Software &amp; Data Integrity</td>
+<td><strong>WARN</strong> - Unpinned dependencies</td>
+</tr>
+<tr>
+<td>A09</td>
+<td>Logging &amp; Monitoring</td>
+<td><strong>FAIL</strong> - Passwords in logs, reset URLs logged</td>
+</tr>
+<tr>
+<td>A10</td>
+<td>SSRF</td>
+<td><strong>PASS</strong> - No user-controlled URL fetching</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Report generated: 2026-03-24</em>
+<em>Methodology: OWASP ASVS v4.0, OWASP Top 10 2021, CWE/SANS Top 25</em>
+<em>Tools: Bandit 1.9.4, pip-audit 2.10.0, manual code review</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
