@@ -1607,6 +1607,11 @@
 <td>Filter by partial last name</td>
 </tr>
 <tr>
+<td><code>level__id</code></td>
+<td>integer</td>
+<td>Filter by level ID</td>
+</tr>
+<tr>
 <td><code>nationality</code></td>
 <td>string</td>
 <td>Filter by exact nationality code</td>
@@ -1615,6 +1620,16 @@
 <td><code>city</code></td>
 <td>string</td>
 <td>Filter by exact city</td>
+</tr>
+<tr>
+<td><code>date_joined_after</code></td>
+<td>date</td>
+<td>Filter members who joined after this date (e.g., <code>2026-03-01</code>)</td>
+</tr>
+<tr>
+<td><code>date_joined_before</code></td>
+<td>date</td>
+<td>Filter members who joined before this date (e.g., <code>2026-04-01</code>)</td>
 </tr>
 <tr>
 <td><code>page</code></td>
@@ -1906,6 +1921,98 @@ Returns a count of approved completed trips grouped by level, counting each trip
 - Users can always view their own trip history.
 - To view another member's trip history, users need the <code>VIEW_MEMBER_TRIP_HISTORY</code> permission.
 - Superusers can view any member's trip history.</p>
+<p><strong>Response Fields:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>Trip ID</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>string</td>
+<td>Trip title</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>Trip description</td>
+</tr>
+<tr>
+<td><code>startTime</code></td>
+<td>datetime</td>
+<td>Trip start time</td>
+</tr>
+<tr>
+<td><code>endTime</code></td>
+<td>datetime</td>
+<td>Trip end time</td>
+</tr>
+<tr>
+<td><code>lead</code></td>
+<td>object</td>
+<td>Trip lead <code>{id, username}</code></td>
+</tr>
+<tr>
+<td><code>level</code></td>
+<td>object</td>
+<td>Level <code>{id, name, numericLevel, minTripsForUpgrade, active, displayName}</code></td>
+</tr>
+<tr>
+<td><code>checkedIn</code></td>
+<td>boolean</td>
+<td>Whether the member is checked in for this trip</td>
+</tr>
+<tr>
+<td><code>image</code></td>
+<td>string/null</td>
+<td>Trip cover image URL</td>
+</tr>
+<tr>
+<td><code>meetingPoint</code></td>
+<td>object/null</td>
+<td>Meeting point <code>{id, name, area, lat, lon, link}</code></td>
+</tr>
+<tr>
+<td><code>registeredCount</code></td>
+<td>integer</td>
+<td>Number of registered members</td>
+</tr>
+<tr>
+<td><code>capacity</code></td>
+<td>integer</td>
+<td>Trip capacity</td>
+</tr>
+<tr>
+<td><code>allowWaitlist</code></td>
+<td>boolean</td>
+<td>Whether the trip allows waitlisting</td>
+</tr>
+<tr>
+<td><code>approvalStatus</code></td>
+<td>string</td>
+<td>Approval status (<code>A</code>, <code>P</code>, <code>C</code>)</td>
+</tr>
+<tr>
+<td><code>isRegistered</code></td>
+<td>boolean</td>
+<td>Whether the target member is registered</td>
+</tr>
+<tr>
+<td><code>isWaitlisted</code></td>
+<td>boolean</td>
+<td>Whether the target member is on the waitlist</td>
+</tr>
+</tbody>
+</table>
 <h2 id="member-upgrade-history">Member Upgrade History<a class="headerlink" href="#member-upgrade-history" title="Permanent link">&para;</a></h2>
 <p>Retrieve a member's upgrade request history.</p>
 <p><strong>GET</strong> <code>/api/members/{id}/upgraderequests</code></p>

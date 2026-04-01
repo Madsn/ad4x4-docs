@@ -1644,11 +1644,112 @@
 <h2 id="endpoints">Endpoints<a class="headerlink" href="#endpoints" title="Permanent link">&para;</a></h2>
 <h3 id="list-and-retrieve-trips">List and Retrieve Trips<a class="headerlink" href="#list-and-retrieve-trips" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>GET</strong> <code>/api/trips/</code><ul>
+<li>
+<p><strong>GET</strong> <code>/api/trips/</code></p>
+<ul>
 <li>Retrieves a list of all approved trips.</li>
-</ul>
+<li>
+<p><strong>Query Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lead</code></td>
+<td>integer</td>
+<td>Filter by trip lead (member ID)</td>
+</tr>
+<tr>
+<td><code>deputy_leads</code></td>
+<td>integer</td>
+<td>Filter by deputy lead (member ID)</td>
+</tr>
+<tr>
+<td><code>meeting_point</code></td>
+<td>integer</td>
+<td>Filter by meeting point ID</td>
+</tr>
+<tr>
+<td><code>meeting_point__area</code></td>
+<td>string</td>
+<td>Filter by meeting point area code (e.g., <code>DXB</code>, <code>AUH</code>)</td>
+</tr>
+<tr>
+<td><code>level__id</code></td>
+<td>integer</td>
+<td>Filter by level ID</td>
+</tr>
+<tr>
+<td><code>level__numeric_level</code></td>
+<td>integer</td>
+<td>Filter by exact numeric level</td>
+</tr>
+<tr>
+<td><code>level__numeric_level__range</code></td>
+<td>string</td>
+<td>Filter by numeric level range (e.g., <code>100,500</code>)</td>
+</tr>
+<tr>
+<td><code>approval_status</code></td>
+<td>string</td>
+<td>Filter by approval status (<code>A</code>=Approved, <code>P</code>=Pending, <code>C</code>=Cancelled)</td>
+</tr>
+<tr>
+<td><code>start_time_after</code></td>
+<td>datetime</td>
+<td>Filter trips starting after this date</td>
+</tr>
+<tr>
+<td><code>start_time_before</code></td>
+<td>datetime</td>
+<td>Filter trips starting before this date</td>
+</tr>
+<tr>
+<td><code>end_time_after</code></td>
+<td>datetime</td>
+<td>Filter trips ending after this date</td>
+</tr>
+<tr>
+<td><code>end_time_before</code></td>
+<td>datetime</td>
+<td>Filter trips ending before this date</td>
+</tr>
+<tr>
+<td><code>registered</code></td>
+<td>boolean</td>
+<td>Filter to only trips where the authenticated user is registered (<code>true</code>) or not registered (<code>false</code>). Requires authentication.</td>
+</tr>
+<tr>
+<td><code>waitlisted</code></td>
+<td>boolean</td>
+<td>Filter to only trips where the authenticated user is on the waitlist (<code>true</code>) or not waitlisted (<code>false</code>). Requires authentication.</td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td>integer</td>
+<td>Page number (default: 1)</td>
+</tr>
+<tr>
+<td><code>page_size</code></td>
+<td>integer</td>
+<td>Number of results per page (default: 20)</td>
+</tr>
+</tbody>
+</table>
 </li>
-<li><strong>GET</strong> <code>/api/trips/{id}/</code><ul>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> Both <code>camelCase</code> and <code>snake_case</code> parameter names are accepted (e.g., <code>approvalStatus</code> and <code>approval_status</code> are equivalent, <code>startTimeAfter</code> and <code>start_time_after</code> are equivalent).</p>
+</blockquote>
+</li>
+<li>
+<p><strong>GET</strong> <code>/api/trips/{id}/</code></p>
+<ul>
 <li>Retrieves the full details of a single trip, including registered members and the waitlist.</li>
 <li><strong>Contact Info</strong>: The trip lead and deputy leads' contact info (email, phone) is always visible to authenticated users. Other members' contact info requires <code>VIEW_CONTACT_INFO</code> permission.</li>
 </ul>
@@ -1756,17 +1857,23 @@
 <li>Returns <code>vehicle_required</code> error if no vehicle is provided.</li>
 <li>Returns <code>vehicle_not_found</code> error if the vehicle doesn't exist or doesn't belong to the user.</li>
 <li>Additional validations: <code>trip_not_approved</code>, <code>level_insufficient</code>, <code>trip_cutoff_exceeded</code>, <code>trip_already_registered</code>, <code>trip_full</code>.</li>
+<li><strong>Success Response:</strong> Returns the updated trip object alongside the success message:
+    <code>json
+    {"success": true, "message": "trip_registered", "trip": { ...full trip object... }}</code>
+    The <code>trip</code> field contains the complete trip object (same schema as <code>GET /api/trips/{id}/</code> list response) with updated <code>registeredCount</code>, <code>isRegistered</code>, <code>isWaitlisted</code>, etc. This eliminates the need for a follow-up GET request.</li>
 </ul>
 </li>
 <li><strong>POST</strong> <code>/api/trips/{id}/waitlist</code><ul>
 <li>Adds the authenticated user to the waitlist if the trip is full.</li>
 <li><strong>Request Body:</strong> <code>{"vehicle_id": &lt;vehicle_id&gt;}</code> (optional - defaults to user's primary vehicle)</li>
 <li>Returns <code>trip_waitlist_disabled_for_this_trip</code> if waitlist is not enabled.</li>
+<li><strong>Success Response:</strong> <code>{"success": true, "message": "trip_waitlisted", "trip": { ...full trip object... }}</code></li>
 </ul>
 </li>
 <li><strong>POST</strong> <code>/api/trips/{id}/unregister</code><ul>
 <li>Cancels the authenticated user's registration for the trip (from either the registered list or the waitlist).</li>
 <li>Trip leads cannot unregister themselves (<code>trip_lead_cannot_unregister</code>).</li>
+<li><strong>Success Response:</strong> <code>{"success": true, "message": "trip_registration_cancelled", "trip": { ...full trip object... }}</code></li>
 </ul>
 </li>
 </ul>

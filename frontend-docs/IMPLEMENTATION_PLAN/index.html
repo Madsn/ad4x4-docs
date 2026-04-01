@@ -1,0 +1,1918 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Next gen API for Abu Dhabi 4x4">
+      
+      
+        <meta name="author" content="Redbeard">
+      
+      
+        <link rel="canonical" href="https://api.ad4x4.com/readme/frontend-docs/IMPLEMENTATION_PLAN/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Backend Enhancement Implementation Plan - AD4x4 API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#backend-enhancement-implementation-plan" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="AD4x4 API" class="md-header__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AD4x4 API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Backend Enhancement Implementation Plan
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AD4x4 API" class="md-nav__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AD4x4 API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practical-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Practical Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../auth-profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Auth and Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vehicles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vehicles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trip-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lead-trip-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lead Trip History
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trips
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trip-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trip-reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meeting-points/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meeting Points
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../logbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Logbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../logbook-migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logbook Migration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../club-news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Club News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faqs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feedback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sponsorships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sponsorships
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notifications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gallery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gallery Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../here-maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HERE Maps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../global-settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Global Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../background-tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background Tasks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editable-strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../account-deletion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Account Deletion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../swagger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swagger UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintenance-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintenance Mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rate-limiting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rate Limiting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-1-add-registered-and-waitlisted-filters-to-trips-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change 1: Add registered and waitlisted Filters to Trips Endpoint
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Change 1: Add registered and waitlisted Filters to Trips Endpoint">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#breaking-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Breaking Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Impact
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-2-enrich-member-trip-history-serializer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change 2: Enrich Member Trip History Serializer
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Change 2: Enrich Member Trip History Serializer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#breaking-changes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Breaking Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#impact_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Impact
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-3-add-date_joined-range-filter-to-members" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change 3: Add date_joined Range Filter to Members
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Change 3: Add date_joined Range Filter to Members">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#breaking-changes_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Breaking Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#impact_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Impact
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-4-return-updated-trip-in-registration-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change 4: Return Updated Trip in Registration Responses
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Change 4: Return Updated Trip in Registration Responses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#breaking-changes_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Breaking Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#impact_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Impact
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-5-add-level__id-filter-to-members" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change 5: Add level__id Filter to Members
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Change 5: Add level__id Filter to Members">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#breaking-changes_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Breaking Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-6-add-cache-control-headers-to-static-ish-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change 6: Add Cache-Control Headers to Static-ish Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Change 6: Add Cache-Control Headers to Static-ish Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#endpoints-and-ttls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoints and TTLs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#breaking-changes_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Breaking Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#impact_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Impact
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-we-are-not-doing-and-why" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What We Are NOT Doing (and Why)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentation Updates
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="backend-enhancement-implementation-plan">Backend Enhancement Implementation Plan<a class="headerlink" href="#backend-enhancement-implementation-plan" title="Permanent link">&para;</a></h1>
+<p><strong>Date</strong>: 2026-04-01
+<strong>Scope</strong>: Address legitimate findings from Flutter and Website team audits
+<strong>Principle</strong>: Industry-standard patterns, zero breaking changes</p>
+<hr />
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>After cross-referencing all three frontend audit documents against the actual backend code and current API documentation, we identified 6 actionable items. All documentation issues from the live test audit were already fixed in prior sessions. The items below are <strong>code changes only</strong>.</p>
+<hr />
+<h2 id="change-1-add-registered-and-waitlisted-filters-to-trips-endpoint">Change 1: Add <code>registered</code> and <code>waitlisted</code> Filters to Trips Endpoint<a class="headerlink" href="#change-1-add-registered-and-waitlisted-filters-to-trips-endpoint" title="Permanent link">&para;</a></h2>
+<p><strong>Priority</strong>: HIGH
+<strong>Source</strong>: BACK<em>END</em>TODO #1, Performance Audit T3
+<strong>File</strong>: <code>api/filters.py</code></p>
+<h3 id="what">What<a class="headerlink" href="#what" title="Permanent link">&para;</a></h3>
+<p>Add two custom filter methods to <code>TripsFilter</code> so that <code>GET /api/trips/?registered=true</code> returns only trips where the authenticated user is registered (and similarly for <code>waitlisted=true</code>).</p>
+<h3 id="how">How<a class="headerlink" href="#how" title="Permanent link">&para;</a></h3>
+<p>Add two <code>BooleanFilter</code> fields with custom <code>method=</code> handlers to <code>TripsFilter</code>. Each method will filter using <code>Exists()</code> subqueries against <code>TripRegistration</code> / <code>TripWaitlist</code>, referencing <code>request.user</code>. This is the standard django-filters pattern for request-aware filtering.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># In TripsFilter:</span>
+<span class="n">registered</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">BooleanFilter</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;filter_registered&#39;</span><span class="p">)</span>
+<span class="n">waitlisted</span> <span class="o">=</span> <span class="n">filters</span><span class="o">.</span><span class="n">BooleanFilter</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;filter_waitlisted&#39;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">filter_registered</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queryset</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">queryset</span>
+    <span class="n">subquery</span> <span class="o">=</span> <span class="n">TripRegistration</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">trip</span><span class="o">=</span><span class="n">OuterRef</span><span class="p">(</span><span class="s1">&#39;pk&#39;</span><span class="p">),</span> <span class="n">member</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">queryset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">Exists</span><span class="p">(</span><span class="n">subquery</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">queryset</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">Exists</span><span class="p">(</span><span class="n">subquery</span><span class="p">))</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">filter_waitlisted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queryset</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="c1"># Same pattern with TripWaitlist</span>
+</code></pre></div>
+
+<h3 id="breaking-changes">Breaking Changes<a class="headerlink" href="#breaking-changes" title="Permanent link">&para;</a></h3>
+<p><strong>None.</strong> This is purely additive. Existing requests without the <code>registered</code>/<code>waitlisted</code> params behave identically.</p>
+<h3 id="impact">Impact<a class="headerlink" href="#impact" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Website team: Eliminates fetching all 3,305 trips and filtering client-side. Expected load time drop from 17-30s to &lt;1s.</li>
+<li>Flutter app: Can use same filter for "My Trips" screens.</li>
+</ul>
+<hr />
+<h2 id="change-2-enrich-member-trip-history-serializer">Change 2: Enrich Member Trip History Serializer<a class="headerlink" href="#change-2-enrich-member-trip-history-serializer" title="Permanent link">&para;</a></h2>
+<p><strong>Priority</strong>: HIGH
+<strong>Source</strong>: BACK<em>END</em>TODO #1 (Option B)
+<strong>Files</strong>: <code>api/serializers/serializers_trip.py</code>, <code>api/views/views_member.py</code></p>
+<h3 id="what_1">What<a class="headerlink" href="#what_1" title="Permanent link">&para;</a></h3>
+<p>Add missing fields to <code>MemberTripHistorySerializer</code> so the website team doesn't need N+1 individual trip detail calls. Fields to add: <code>image</code>, <code>meeting_point</code>, <code>registered_count</code>, <code>capacity</code>, <code>is_registered</code>, <code>is_waitlisted</code>, <code>allow_waitlist</code>, <code>approval_status</code>.</p>
+<h3 id="how_1">How<a class="headerlink" href="#how_1" title="Permanent link">&para;</a></h3>
+<p><strong>Serializer changes</strong> — Extend <code>MemberTripHistorySerializer</code> to include the missing fields. Use the same patterns already established in <code>ListTripSerializer</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MemberTripHistorySerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+    <span class="n">lead</span> <span class="o">=</span> <span class="n">ConciseMemberSerializer</span><span class="p">()</span>
+    <span class="n">level</span> <span class="o">=</span> <span class="n">LevelSerializer</span><span class="p">()</span>
+    <span class="n">meeting_point</span> <span class="o">=</span> <span class="n">MeetingPointSerializer</span><span class="p">()</span>
+    <span class="n">checked_in</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s1">&#39;member_checked_in&#39;</span><span class="p">)</span>
+    <span class="n">registered_count</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">read_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">is_registered</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">read_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">is_waitlisted</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">read_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Trip</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;start_time&#39;</span><span class="p">,</span> <span class="s1">&#39;end_time&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;lead&#39;</span><span class="p">,</span> <span class="s1">&#39;level&#39;</span><span class="p">,</span> <span class="s1">&#39;checked_in&#39;</span><span class="p">,</span> <span class="s1">&#39;image&#39;</span><span class="p">,</span> <span class="s1">&#39;meeting_point&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;registered_count&#39;</span><span class="p">,</span> <span class="s1">&#39;capacity&#39;</span><span class="p">,</span> <span class="s1">&#39;allow_waitlist&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;approval_status&#39;</span><span class="p">,</span> <span class="s1">&#39;is_registered&#39;</span><span class="p">,</span> <span class="s1">&#39;is_waitlisted&#39;</span><span class="p">,</span>
+        <span class="p">)</span>
+</code></pre></div>
+
+<p><strong>View changes</strong> — Update the <code>MemberTripHistory</code> queryset to annotate <code>registered_count</code>, <code>is_registered</code>, and <code>is_waitlisted</code> using <code>Count()</code> and <code>Exists()</code> subqueries (same pattern already used in the view for <code>member_checked_in</code>). Also add <code>select_related('meeting_point')</code> which is already in the base mixin.</p>
+<h3 id="breaking-changes_1">Breaking Changes<a class="headerlink" href="#breaking-changes_1" title="Permanent link">&para;</a></h3>
+<p><strong>None (additive only).</strong> All existing fields remain. New fields are added to the response. The camelCase renderer will automatically convert <code>registered_count</code> -&gt; <code>registeredCount</code>, <code>is_registered</code> -&gt; <code>isRegistered</code>, etc.</p>
+<h3 id="impact_1">Impact<a class="headerlink" href="#impact_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Website team: Can use <code>GET /api/members/{id}/triphistory</code> as a drop-in replacement for fetching all trips. Response goes from 8 fields to 16 fields. Eliminates N+1 individual trip detail calls (each 3-13s).</li>
+<li>Flutter app: Gets richer trip history data without extra calls.</li>
+</ul>
+<hr />
+<h2 id="change-3-add-date_joined-range-filter-to-members">Change 3: Add <code>date_joined</code> Range Filter to Members<a class="headerlink" href="#change-3-add-date_joined-range-filter-to-members" title="Permanent link">&para;</a></h2>
+<p><strong>Priority</strong>: MEDIUM
+<strong>Source</strong>: Live Test Audit item 21.2
+<strong>File</strong>: <code>api/filters.py</code></p>
+<h3 id="what_2">What<a class="headerlink" href="#what_2" title="Permanent link">&para;</a></h3>
+<p>Add <code>date_joined</code> as a <code>DateFromToRangeFilter</code> to <code>MembersFilter</code>, enabling <code>GET /api/members/?date_joined_after=2026-03-01&amp;date_joined_before=2026-04-01</code>.</p>
+<h3 id="how_2">How<a class="headerlink" href="#how_2" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MembersFilter</span><span class="p">(</span><span class="n">filters</span><span class="o">.</span><span class="n">FilterSet</span><span class="p">):</span>
+    <span class="n">date_joined</span> <span class="o">=</span> <span class="n">DateFromToRangeFilter</span><span class="p">()</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Member</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="c1"># ... existing fields ...</span>
+            <span class="s1">&#39;level__id&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;exact&#39;</span><span class="p">],</span>  <span class="c1"># Also add this (Change 5)</span>
+        <span class="p">}</span>
+</code></pre></div>
+
+<p>This follows the exact same pattern as <code>start_time</code> in <code>TripsFilter</code> and <code>verdict_date</code> in <code>UpgradeRequestsFilter</code>.</p>
+<h3 id="breaking-changes_2">Breaking Changes<a class="headerlink" href="#breaking-changes_2" title="Permanent link">&para;</a></h3>
+<p><strong>None.</strong> Purely additive filter.</p>
+<h3 id="impact_2">Impact<a class="headerlink" href="#impact_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Admin users can filter members by join date (e.g., "new members this month").</li>
+<li>Both frontend teams can use this for admin dashboard features.</li>
+</ul>
+<hr />
+<h2 id="change-4-return-updated-trip-in-registration-responses">Change 4: Return Updated Trip in Registration Responses<a class="headerlink" href="#change-4-return-updated-trip-in-registration-responses" title="Permanent link">&para;</a></h2>
+<p><strong>Priority</strong>: MEDIUM
+<strong>Source</strong>: Performance Audit T3
+<strong>Files</strong>: <code>api/views/views_trip.py</code></p>
+<h3 id="what_3">What<a class="headerlink" href="#what_3" title="Permanent link">&para;</a></h3>
+<p>After a successful register/unregister/waitlist action, include the updated trip object in the response alongside the existing success message. This follows the <strong>Stripe/Uber pattern</strong> — mutations return the updated resource.</p>
+<h3 id="how_3">How<a class="headerlink" href="#how_3" title="Permanent link">&para;</a></h3>
+<p>After each successful registration action, serialize the trip using <code>ListTripSerializer</code> and include it in the response:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># In RegisterForTrip.post(), after successful registration:</span>
+<span class="n">trip</span><span class="o">.</span><span class="n">refresh_from_db</span><span class="p">()</span>
+<span class="n">trip_data</span> <span class="o">=</span> <span class="n">ListTripSerializer</span><span class="p">(</span><span class="n">trip</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;request&#39;</span><span class="p">:</span> <span class="n">request</span><span class="p">})</span><span class="o">.</span><span class="n">data</span>
+<span class="k">return</span> <span class="n">Response</span><span class="p">({</span>
+    <span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> 
+    <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="n">msg</span><span class="p">,</span>
+    <span class="s1">&#39;trip&#39;</span><span class="p">:</span> <span class="n">trip_data</span>
+<span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Apply the same pattern to <code>CancelTripRegistration</code> and <code>RegisterForTripWaitlist</code>.</p>
+<p><strong>Queryset optimization</strong>: Before serializing, ensure the trip has proper prefetches:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">trip</span> <span class="o">=</span> <span class="n">Trip</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s1">&#39;lead&#39;</span><span class="p">,</span> <span class="s1">&#39;level&#39;</span><span class="p">,</span> <span class="s1">&#39;meeting_point&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">prefetch_related</span><span class="p">(</span><span class="s1">&#39;tripregistration_set__member&#39;</span><span class="p">,</span> <span class="s1">&#39;tripwaitlist_set__member&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+        <span class="n">registered_count</span><span class="o">=</span><span class="n">Count</span><span class="p">(</span><span class="s1">&#39;tripregistration&#39;</span><span class="p">),</span>
+        <span class="n">waitlist_count</span><span class="o">=</span><span class="n">Count</span><span class="p">(</span><span class="s1">&#39;tripwaitlist&#39;</span><span class="p">)</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="n">trip</span><span class="o">.</span><span class="n">pk</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="breaking-changes_3">Breaking Changes<a class="headerlink" href="#breaking-changes_3" title="Permanent link">&para;</a></h3>
+<p><strong>None.</strong> The existing <code>success</code> and <code>message</code> fields are preserved. The new <code>trip</code> field is additive. Frontends that don't read <code>trip</code> are unaffected.</p>
+<h3 id="impact_3">Impact<a class="headerlink" href="#impact_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Eliminates 3-5 follow-up GET calls per session after registration actions.</li>
+<li>Both frontend teams get immediate UI updates without a second round-trip.</li>
+</ul>
+<hr />
+<h2 id="change-5-add-level__id-filter-to-members">Change 5: Add <code>level__id</code> Filter to Members<a class="headerlink" href="#change-5-add-level__id-filter-to-members" title="Permanent link">&para;</a></h2>
+<p><strong>Priority</strong>: LOW
+<strong>Source</strong>: Live Test Audit item 21.1
+<strong>File</strong>: <code>api/filters.py</code></p>
+<h3 id="what_4">What<a class="headerlink" href="#what_4" title="Permanent link">&para;</a></h3>
+<p>Add <code>level__id</code> to <code>MembersFilter.Meta.fields</code> so admins can filter members by level ID.</p>
+<h3 id="how_4">How<a class="headerlink" href="#how_4" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># In MembersFilter.Meta.fields, add:</span>
+<span class="s1">&#39;level__id&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;exact&#39;</span><span class="p">],</span>
+</code></pre></div>
+
+<p>One line. The <code>level__numeric_level</code> and <code>level__name</code> filters already work, but <code>level__id</code> is the most natural way to filter when you have a level dropdown that returns IDs.</p>
+<h3 id="breaking-changes_4">Breaking Changes<a class="headerlink" href="#breaking-changes_4" title="Permanent link">&para;</a></h3>
+<p><strong>None.</strong> Additive filter.</p>
+<hr />
+<h2 id="change-6-add-cache-control-headers-to-static-ish-endpoints">Change 6: Add Cache-Control Headers to Static-ish Endpoints<a class="headerlink" href="#change-6-add-cache-control-headers-to-static-ish-endpoints" title="Permanent link">&para;</a></h2>
+<p><strong>Priority</strong>: LOW
+<strong>Source</strong>: Performance Audit L1, L2, C1
+<strong>Files</strong>: <code>api/views/</code> (multiple view files)</p>
+<h3 id="what_5">What<a class="headerlink" href="#what_5" title="Permanent link">&para;</a></h3>
+<p>Add <code>Cache-Control</code> headers to endpoints that serve rarely-changing data, using Django's built-in <code>@cache_control</code> decorator. This is the standard HTTP caching pattern used by every CDN-aware service.</p>
+<h3 id="endpoints-and-ttls">Endpoints and TTLs<a class="headerlink" href="#endpoints-and-ttls" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>TTL</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /api/logbookskills/</code></td>
+<td>10 min (600s)</td>
+<td>Skills catalog changes only when admin edits definitions</td>
+</tr>
+<tr>
+<td><code>GET /api/levels/</code></td>
+<td>30 min (1800s)</td>
+<td>Levels almost never change</td>
+</tr>
+<tr>
+<td><code>GET /api/meetingpoints/</code></td>
+<td>10 min (600s)</td>
+<td>Meeting points rarely change</td>
+</tr>
+<tr>
+<td><code>GET /api/sponsors/</code></td>
+<td>30 min (1800s)</td>
+<td>Sponsor list changes rarely</td>
+</tr>
+<tr>
+<td><code>GET /api/faqs/</code></td>
+<td>30 min (1800s)</td>
+<td>FAQ content changes rarely</td>
+</tr>
+<tr>
+<td><code>GET /api/choices/carbrand</code></td>
+<td>60 min (3600s)</td>
+<td>Car brand list is essentially static</td>
+</tr>
+</tbody>
+</table>
+<h3 id="how_5">How<a class="headerlink" href="#how_5" title="Permanent link">&para;</a></h3>
+<p>Use Django's <code>@method_decorator(cache_control(...))</code> on the <code>list</code> action of each ViewSet:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">django.utils.decorators</span><span class="w"> </span><span class="kn">import</span> <span class="n">method_decorator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.views.decorators.cache</span><span class="w"> </span><span class="kn">import</span> <span class="n">cache_control</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">LogbookSkillViewSet</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ReadOnlyModelViewSet</span><span class="p">):</span>
+    <span class="nd">@method_decorator</span><span class="p">(</span><span class="n">cache_control</span><span class="p">(</span><span class="n">public</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_age</span><span class="o">=</span><span class="mi">600</span><span class="p">))</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div>
+
+<p>For endpoints that include user-specific data (trips, members), we do NOT add caching headers — those must remain <code>private</code> / no-cache by default.</p>
+<h3 id="breaking-changes_5">Breaking Changes<a class="headerlink" href="#breaking-changes_5" title="Permanent link">&para;</a></h3>
+<p><strong>None.</strong> Cache-Control headers are advisory. Clients that don't implement HTTP caching are unaffected. Clients with Dio/OkHttp/Axios will automatically benefit.</p>
+<h3 id="impact_4">Impact<a class="headerlink" href="#impact_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Reduces redundant fetches of static data (logbook skills fetched by 19 Flutter files independently).</li>
+<li>Saves bandwidth on every cache hit (304 Not Modified or skip entirely).</li>
+</ul>
+<hr />
+<h2 id="implementation-order">Implementation Order<a class="headerlink" href="#implementation-order" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>1. Change 1 (registered/waitlisted filter)     — highest impact, medium effort
+2. Change 2 (enrich triphistory)                — highest impact, medium effort  
+3. Change 3 (dateJoined filter)                 — quick win, 1 line
+4. Change 5 (level__id filter)                  — quick win, 1 line
+5. Change 4 (trip registration response)        — medium impact, medium effort
+6. Change 6 (cache headers)                     — low effort, decorator on views
+</code></pre></div>
+
+<hr />
+<h2 id="what-we-are-not-doing-and-why">What We Are NOT Doing (and Why)<a class="headerlink" href="#what-we-are-not-doing-and-why" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Suggestion from audits</th>
+<th>Decision</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Composite endpoint <code>GET /api/members/{id}/summary/</code></td>
+<td>Not implementing</td>
+<td>Too complex, introduces a non-standard endpoint. The individual endpoints are fast enough when cached properly.</td>
+</tr>
+<tr>
+<td>Batch trip endpoint <code>GET /api/trips/batch/?ids=1,2,3</code></td>
+<td>Not implementing</td>
+<td>N+1 is a frontend issue (timeline provider). Frontend should use shared cache provider.</td>
+</tr>
+<tr>
+<td><code>GET /api/members/{id}/logbook-summary/</code></td>
+<td>Not implementing</td>
+<td>Same as above — composite endpoints add maintenance burden.</td>
+</tr>
+<tr>
+<td><code>?expand=skillOpportunities</code> on trip detail</td>
+<td>Not implementing</td>
+<td>GraphQL-style field expansion is over-engineering for this project size.</td>
+</tr>
+<tr>
+<td>ETag/Last-Modified on all endpoints</td>
+<td>Not implementing now</td>
+<td><code>Cache-Control</code> headers (Change 6) provide 80% of the benefit with 10% of the effort. ETags require per-endpoint <code>last_modified_func</code> implementations. Can revisit later.</td>
+</tr>
+<tr>
+<td>Notifications count endpoint</td>
+<td>Not implementing</td>
+<td>Current hard-coded limit of 20 is reasonable. Frontend can count <code>isRead: false</code> from that set.</td>
+</tr>
+<tr>
+<td>Trailing slash standardization</td>
+<td>Not implementing</td>
+<td>Already documented. Django's URL routing makes this non-trivial to change without breaking existing clients.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="documentation-updates">Documentation Updates<a class="headerlink" href="#documentation-updates" title="Permanent link">&para;</a></h2>
+<p>After implementation, update the following docs:
+- <code>docs/trips.md</code> — Document new <code>registered</code> and <code>waitlisted</code> query params
+- <code>docs/members.md</code> — Document new <code>date_joined</code> range filter and <code>level__id</code> filter
+- <code>docs/members.md</code> — Update <code>triphistory</code> response field list with new fields</p>
+<p>Then write response documents for:
+- Flutter team (responding to FRONTEND<em>API</em>PERFORMANCE<em>AUDIT.md)
+- Website team (responding to BACK</em>END_TODO.md)</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
