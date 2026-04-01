@@ -839,6 +839,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../logbook/" class="md-nav__link">
         
   
@@ -1171,6 +1198,33 @@
     
   
     UI Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
   
 
     
@@ -1583,7 +1637,7 @@
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;My Land Cruiser&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;brand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TOYOTA&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;brand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TO&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;brandDisplay&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toyota&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Land Cruiser&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2020</span><span class="p">,</span>
@@ -1593,7 +1647,7 @@
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Nissan Patrol&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;brand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NISSAN&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;brand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NI&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;brandDisplay&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Nissan&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Patrol&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2019</span><span class="p">,</span>
@@ -1611,7 +1665,7 @@
 <p><strong>Request Body:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;My Land Cruiser&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;brand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TOYOTA&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;brand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TO&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Land Cruiser&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2020</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;White&quot;</span><span class="p">,</span>
@@ -1623,7 +1677,7 @@
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | <code>name</code> | string | No | User-friendly name for the vehicle |
-| <code>brand</code> | string | Yes | Car brand code (e.g., "TOYOTA", "NISSAN") |
+| <code>brand</code> | string | Yes | 2-letter car brand code (e.g., "TO" for Toyota, "NI" for Nissan). See <a href="#car-brand-choices">Car Brand Choices</a> for all valid codes. |
 | <code>model</code> | string | No | Vehicle model |
 | <code>year</code> | integer | No | Year of manufacture |
 | <code>color</code> | string | No | Vehicle color |
@@ -1639,7 +1693,7 @@
 <span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;member&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;My Land Cruiser&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;brand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TOYOTA&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;brand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TO&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;brandDisplay&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toyota&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Land Cruiser&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2020</span><span class="p">,</span>
@@ -1670,7 +1724,7 @@
 <span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;member&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;My Land Cruiser&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;brand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TOYOTA&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;brand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TO&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;brandDisplay&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toyota&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Land Cruiser&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2020</span><span class="p">,</span>
@@ -1711,7 +1765,7 @@
 <span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;member&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Nissan Patrol&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;brand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NISSAN&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;brand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NI&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;brandDisplay&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Nissan&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Patrol&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2019</span><span class="p">,</span>
@@ -1724,8 +1778,51 @@
 
 <h2 id="car-brand-choices">Car Brand Choices<a class="headerlink" href="#car-brand-choices" title="Permanent link">&para;</a></h2>
 <p>Get available car brand choices.</p>
-<p><strong>GET</strong> <code>/api/choices/carbrands/</code></p>
-<p>See <a href="../api-concepts/#choices-endpoints">Choices API</a> for details.</p>
+<p><strong>GET</strong> <code>/api/choices/carbrand</code></p>
+<p>Brand codes are <strong>2-letter codes</strong>, not full brand names. Common examples:</p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Brand</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TO</code></td>
+<td>Toyota</td>
+</tr>
+<tr>
+<td><code>NI</code></td>
+<td>Nissan</td>
+</tr>
+<tr>
+<td><code>LR</code></td>
+<td>Land Rover</td>
+</tr>
+<tr>
+<td><code>JE</code></td>
+<td>Jeep</td>
+</tr>
+<tr>
+<td><code>MT</code></td>
+<td>Mitsubishi</td>
+</tr>
+<tr>
+<td><code>FO</code></td>
+<td>Ford</td>
+</tr>
+<tr>
+<td><code>ME</code></td>
+<td>Mercedes-Benz</td>
+</tr>
+<tr>
+<td><code>BM</code></td>
+<td>BMW</td>
+</tr>
+</tbody>
+</table>
+<p>Use the <code>/api/choices/carbrand</code> endpoint to get the full list of valid codes.</p>
 <h2 id="global-settings">Global Settings<a class="headerlink" href="#global-settings" title="Permanent link">&para;</a></h2>
 <p>The vehicle limit per member can be configured in global settings:</p>
 <ul>
@@ -1756,7 +1853,7 @@
 <td>Required for regular users; optional for staff</td>
 </tr>
 <tr>
-<td><code>POST /api/trips/{id}/force-register/</code></td>
+<td><code>POST /api/trips/{id}/forceregister</code></td>
 <td>Staff force-register a member</td>
 <td>Optional; defaults to member's primary</td>
 </tr>
@@ -1766,12 +1863,12 @@
 <td>Optional; defaults to approver's primary</td>
 </tr>
 <tr>
-<td><code>POST /api/trips/{id}/waitlist/</code></td>
+<td><code>POST /api/trips/{id}/waitlist</code></td>
 <td>Join waitlist</td>
 <td>Optional; stored with waitlist entry</td>
 </tr>
 <tr>
-<td><code>POST /api/trips/{id}/accept-waitlist/</code></td>
+<td><code>POST /api/trips/{id}/addfromwaitlist</code></td>
 <td>Move member from waitlist to registered</td>
 <td>Uses vehicle from waitlist entry</td>
 </tr>
@@ -1840,7 +1937,10 @@
 | <code>vehicle_id</code> | integer | No | ID of the vehicle the lead will use. Defaults to lead's primary vehicle if not specified. |</p>
 <h3 id="force-register-for-trip">Force Register for Trip<a class="headerlink" href="#force-register-for-trip" title="Permanent link">&para;</a></h3>
 <p>Staff can force-register a member for a trip, bypassing level requirements.</p>
-<p><strong>POST</strong> <code>/api/trips/{tripId}/force-register/</code></p>
+<p><strong>POST</strong> <code>/api/trips/{tripId}/forceregister</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a hyphen or trailing slash.</p>
+</blockquote>
 <p><strong>Authentication:</strong> Required (Bearer token)</p>
 <p><strong>Request Body:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
@@ -1870,7 +1970,10 @@
 | <code>vehicle_id</code> | integer | No | ID of the vehicle the approver will use. Defaults to their primary vehicle if not specified. |</p>
 <h3 id="join-waitlist">Join Waitlist<a class="headerlink" href="#join-waitlist" title="Permanent link">&para;</a></h3>
 <p>Members can join a trip waitlist and optionally specify their vehicle.</p>
-<p><strong>POST</strong> <code>/api/trips/{tripId}/waitlist/</code></p>
+<p><strong>POST</strong> <code>/api/trips/{tripId}/waitlist</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
 <p><strong>Authentication:</strong> Required (Bearer token)</p>
 <p><strong>Request Body:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
@@ -1885,7 +1988,10 @@
 <p>The vehicle is stored with the waitlist entry and will be used when the member is moved from waitlist to registered.</p>
 <h3 id="accept-from-waitlist">Accept from Waitlist<a class="headerlink" href="#accept-from-waitlist" title="Permanent link">&para;</a></h3>
 <p>When a lead/marshal moves a member from waitlist to registered, the vehicle stored with the waitlist entry is used.</p>
-<p><strong>POST</strong> <code>/api/trips/{tripId}/accept-waitlist/</code></p>
+<p><strong>POST</strong> <code>/api/trips/{tripId}/addfromwaitlist</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
 <p><strong>Authentication:</strong> Required (Bearer token)</p>
 <p><strong>Request Body:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
@@ -1913,7 +2019,7 @@
 <span class="w">      </span><span class="nt">&quot;vehicle&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">456</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;My Land Cruiser&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;brand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TOYOTA&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;brand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TO&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">&quot;brandDisplay&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toyota&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Land Cruiser&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2020</span><span class="p">,</span>
@@ -1921,7 +2027,7 @@
 <span class="w">        </span><span class="nt">&quot;isPrimary&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="w">      </span><span class="p">},</span>
 <span class="w">      </span><span class="nt">&quot;checkedIn&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;registrationDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-05T10:00:00.000Z&quot;</span>
+<span class="w">      </span><span class="nt">&quot;registrationDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-05T10:00:00&quot;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>

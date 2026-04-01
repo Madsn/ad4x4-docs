@@ -585,6 +585,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#trailing-slash-convention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trailing Slash Convention
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#file-uploads" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -623,6 +634,45 @@
     <span class="md-ellipsis">
       
         File Size Limits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utility-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Utility Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Utility Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Time
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-validators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Validators
       
     </span>
   </a>
@@ -1236,6 +1286,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../logbook/" class="md-nav__link">
         
   
@@ -1568,6 +1645,33 @@
     
   
     UI Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
   
 
     
@@ -2003,6 +2107,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#trailing-slash-convention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trailing Slash Convention
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#file-uploads" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2041,6 +2156,45 @@
     <span class="md-ellipsis">
       
         File Size Limits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utility-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Utility Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Utility Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Time
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-validators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Validators
       
     </span>
   </a>
@@ -2364,8 +2518,8 @@
 <h2 id="time-zone">Time Zone<a class="headerlink" href="#time-zone" title="Permanent link">&para;</a></h2>
 <p>All dates and times in the API use <strong>Asia/Dubai time zone (UTC+4)</strong> with no daylight saving time.</p>
 <p><strong>Examples:</strong>
-- <code>2024-12-15T07:00:00+04:00</code> - December 15, 2024 at 7:00 AM Dubai time
-- <code>2024-12-14T18:00:00+04:00</code> - December 14, 2024 at 6:00 PM Dubai time</p>
+- <code>2026-03-15T07:00:00+04:00</code> - March 15, 2026 at 7:00 AM Dubai time
+- <code>2026-03-14T18:00:00+04:00</code> - March 14, 2026 at 6:00 PM Dubai time</p>
 <p><strong>Important:</strong> The <code>USE_TZ</code> setting is <code>False</code>, so times are stored and returned as-is in Dubai time without UTC conversion.</p>
 <h2 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h2>
 <p>The API uses JWT (JSON Web Token) authentication. To authenticate:</p>
@@ -2472,12 +2626,14 @@
 <td>Production web app</td>
 </tr>
 <tr>
-<td><code>https://sandbox.novita.ai</code></td>
-<td>Sandbox environment</td>
+<td><code>https://*.sandbox.novita.ai</code></td>
+<td>Sandbox environments (regex match)</td>
 </tr>
 </tbody>
 </table>
-<p>Requests from other origins will be rejected. If you need to access the API from a new origin, contact the administrators.</p>
+<blockquote>
+<p><strong>Note:</strong> CORS is configured via an explicit whitelist (<code>CORS_ORIGIN_WHITELIST</code>) and a regex pattern for sandbox URLs. <code>CORS_ORIGIN_ALLOW_ALL</code> is <strong>not</strong> enabled. Requests from other origins will be rejected. If you need to access the API from a new origin, contact the administrators.</p>
+</blockquote>
 <h2 id="response-format">Response Format<a class="headerlink" href="#response-format" title="Permanent link">&para;</a></h2>
 <p>Most endpoints return responses in the following formats. Note that the <code>message</code> field can be either a string or an object depending on the endpoint.</p>
 <h3 id="success-response-unified">Success Response (Unified)<a class="headerlink" href="#success-response-unified" title="Permanent link">&para;</a></h3>
@@ -2582,6 +2738,14 @@
 <span class="p">}</span>
 </code></pre></div>
 
+<h2 id="trailing-slash-convention">Trailing Slash Convention<a class="headerlink" href="#trailing-slash-convention" title="Permanent link">&para;</a></h2>
+<p>Some endpoints use a trailing slash and others do not. This depends on how the endpoint is registered in the URL configuration.</p>
+<p><strong>General Rule:</strong>
+- <strong>Router-registered endpoints</strong> (ViewSets) use trailing slashes: <code>/api/trips/</code>, <code>/api/members/</code>, <code>/api/vehicles/</code>
+- <strong>Manually registered endpoints</strong> (explicit URL paths) typically do NOT use trailing slashes: <code>/api/members/search</code>, <code>/api/trips/456/register</code>, <code>/api/members/123/triphistory</code></p>
+<blockquote>
+<p><strong>Note:</strong> Using the wrong convention will result in a redirect or 404 error. Check the specific endpoint documentation for the correct format.</p>
+</blockquote>
 <h2 id="file-uploads">File Uploads<a class="headerlink" href="#file-uploads" title="Permanent link">&para;</a></h2>
 <p>Endpoints that accept file uploads (images, track files, etc.) use <code>multipart/form-data</code> encoding.</p>
 <h3 id="example-upload-trip-image">Example: Upload Trip Image<a class="headerlink" href="#example-upload-trip-image" title="Permanent link">&para;</a></h3>
@@ -2604,6 +2768,53 @@
 <li>Trip images: 10MB</li>
 <li>Track files: 2MB</li>
 </ul>
+<h2 id="utility-endpoints">Utility Endpoints<a class="headerlink" href="#utility-endpoints" title="Permanent link">&para;</a></h2>
+<h3 id="system-time">System Time<a class="headerlink" href="#system-time" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>GET</strong> <code>/api/systemtime/</code><ul>
+<li>Returns the current server time in Asia/Dubai (UTC+4). Useful for synchronizing client clocks with the API.</li>
+<li><strong>Authentication:</strong> Optional (public endpoint).</li>
+</ul>
+</li>
+</ul>
+<p><strong>Example Response:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;currentTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-31T14:30:00+04:00&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="field-validators">Field Validators<a class="headerlink" href="#field-validators" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>POST</strong> <code>/api/validators/</code><ul>
+<li>Validates <code>email</code>, <code>username</code>, and/or <code>phone</code> fields for uniqueness before registration. Useful for real-time form validation.</li>
+<li><strong>Authentication:</strong> Not required (public endpoint).</li>
+</ul>
+</li>
+</ul>
+<p><strong>Request Body:</strong> Include one or more fields to validate:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user@example.com&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;newuser&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;phone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;+971501234567&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Example Response:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;valid&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;valid&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Username is already taken&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;phone&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;valid&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Only the fields you provide in the request are validated and returned in the response. The <code>phone</code> field uses Django's <code>PhoneNumberField</code> for format validation.</p>
 <h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
 <ol>
 <li><strong>Always use HTTPS in production</strong></li>
@@ -2681,7 +2892,7 @@
 <p><strong>Solutions:</strong>
 1. All API times are in Asia/Dubai (UTC+4)
 2. Parse with timezone awareness
-3. Examples: <code>2024-12-15T07:00:00+04:00</code></p>
+3. Examples: <code>2026-03-15T07:00:00+04:00</code></p>
 <h3 id="file-upload-issues">File Upload Issues<a class="headerlink" href="#file-upload-issues" title="Permanent link">&para;</a></h3>
 <h4 id="request-is-not-a-multipart-request">"Request is not a multipart request"<a class="headerlink" href="#request-is-not-a-multipart-request" title="Permanent link">&para;</a></h4>
 <p><strong>Cause:</strong> Wrong Content-Type for file upload</p>

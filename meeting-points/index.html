@@ -18,7 +18,7 @@
         <link rel="prev" href="../trip-reports/">
       
       
-        <link rel="next" href="../logbook/">
+        <link rel="next" href="../levels/">
       
       
         
@@ -718,6 +718,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../logbook/" class="md-nav__link">
         
   
@@ -1069,6 +1096,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../account-deletion/" class="md-nav__link">
         
   
@@ -1331,10 +1385,37 @@
 <h3 id="list-meeting-points">List Meeting Points<a class="headerlink" href="#list-meeting-points" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>GET</strong> <code>/api/meetingpoints/</code><ul>
-<li>Retrieves a list of all available meeting points.</li>
+<li>Retrieves a list of all available meeting points, ordered by name.</li>
 </ul>
 </li>
 </ul>
+<p><strong>Query Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>Filter by exact name</td>
+</tr>
+<tr>
+<td><code>name__icontains</code></td>
+<td>string</td>
+<td>Filter by name (case-insensitive partial match)</td>
+</tr>
+<tr>
+<td><code>area</code></td>
+<td>string</td>
+<td>Filter by area code (e.g., <code>DXB</code>, <code>AUH</code>, <code>NOR</code>, <code>AAN</code>, <code>LIW</code>)</td>
+</tr>
+</tbody>
+</table>
 <h3 id="retrieve-a-meeting-point">Retrieve a Meeting Point<a class="headerlink" href="#retrieve-a-meeting-point" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>GET</strong> <code>/api/meetingpoints/{id}/</code><ul>

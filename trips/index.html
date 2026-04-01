@@ -618,6 +618,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#decline-a-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decline a Trip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#registration" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -629,10 +640,65 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#force-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Force Registration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#participant-management" class="md-nav__link">
     <span class="md-ellipsis">
       
         Participant Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trip-comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trip Comments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trip-reports-per-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trip Reports (per trip)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export-registrants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Export Registrants
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-logbooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        View Logbooks
       
     </span>
   </a>
@@ -760,6 +826,33 @@
     
   
     Meeting Points
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
   
 
     
@@ -1130,6 +1223,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../account-deletion/" class="md-nav__link">
         
   
@@ -1363,6 +1483,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#decline-a-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decline a Trip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#registration" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1374,10 +1505,65 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#force-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Force Registration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#participant-management" class="md-nav__link">
     <span class="md-ellipsis">
       
         Participant Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trip-comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trip Comments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trip-reports-per-trip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trip Reports (per trip)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export-registrants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Export Registrants
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-logbooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        View Logbooks
       
     </span>
   </a>
@@ -1471,7 +1657,10 @@
 <h3 id="create-a-trip">Create a Trip<a class="headerlink" href="#create-a-trip" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
-<p><strong>POST</strong> <code>/api/trips/</code></p>
+<p><strong>POST</strong> <code>/api/trips</code></p>
+<blockquote>
+<p><strong>Note:</strong> The create endpoint does NOT use a trailing slash. This differs from the list/retrieve endpoints which are router-registered.</p>
+</blockquote>
 <ul>
 <li>Creates a new trip. The <code>approval_status</code> will be set based on the user's permissions.</li>
 <li><strong>Request Body:</strong> See the <code>CreateTripSerializer</code> for details. Key fields include:<ul>
@@ -1493,7 +1682,12 @@
 </ul>
 <h3 id="update-a-trip">Update a Trip<a class="headerlink" href="#update-a-trip" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>PUT</strong> or <strong>PATCH</strong> <code>/api/trips/{id}/</code><ul>
+<li>
+<p><strong>PUT</strong> or <strong>PATCH</strong> <code>/api/trips/{id}</code></p>
+<blockquote>
+<p><strong>Note:</strong> The update/delete endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<ul>
 <li>Updates an existing trip.</li>
 <li><strong>Restrictions</strong>:<ul>
 <li>A configurable cutoff time (in minutes before the trip's <code>start_time</code>) determines when editing is restricted. The default is 0 minutes, meaning editing is disabled once the trip starts.</li>
@@ -1508,7 +1702,7 @@
 </ul>
 <h3 id="delete-a-trip">Delete a Trip<a class="headerlink" href="#delete-a-trip" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>DELETE</strong> <code>/api/trips/{id}/</code><ul>
+<li><strong>DELETE</strong> <code>/api/trips/{id}</code><ul>
 <li>Deletes a trip. This is a soft-delete, meaning the trip's <code>approval_status</code> is set to <code>CANCELED</code>.</li>
 <li><strong>Restrictions</strong>:<ul>
 <li>A configurable cutoff time (in minutes before the trip's <code>start_time</code>) determines when deleting is restricted. The default is 0 minutes, meaning deleting is disabled once the trip starts.</li>
@@ -1522,61 +1716,194 @@
 </ul>
 <h3 id="approve-a-trip">Approve a Trip<a class="headerlink" href="#approve-a-trip" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>POST</strong> <code>/api/trips/{id}/approve/</code><ul>
+<li>
+<p><strong>POST</strong> <code>/api/trips/{id}/approve</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<ul>
 <li>Approves a trip that is pending approval. Requires the <code>APPROVE_TRIP</code> permission.</li>
 <li>The approver is automatically registered as a deputy lead.</li>
 <li><strong>Request Body:</strong> <code>{"vehicle_id": &lt;vehicle_id&gt;}</code> (optional - defaults to approver's primary vehicle)</li>
 </ul>
 </li>
 </ul>
-<h3 id="registration">Registration<a class="headerlink" href="#registration" title="Permanent link">&para;</a></h3>
+<h3 id="decline-a-trip">Decline a Trip<a class="headerlink" href="#decline-a-trip" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>POST</strong> <code>/api/trips/{id}/register/</code><ul>
+<li>
+<p><strong>POST</strong> <code>/api/trips/{id}/decline</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<ul>
+<li>Declines a trip that is pending approval. Requires the <code>APPROVE_TRIP</code> permission.</li>
+<li>Sets the trip's <code>approval_status</code> to <code>REJECTED</code>.</li>
+<li>Triggers a trip approval notification.</li>
+<li><strong>Request Body:</strong> None required.</li>
+<li><strong>Success Response:</strong> <code>{"success": true, "message": "trip_rejected"}</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="registration">Registration<a class="headerlink" href="#registration" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>Note:</strong> All registration endpoints below do NOT use trailing slashes.</p>
+</blockquote>
+<ul>
+<li><strong>POST</strong> <code>/api/trips/{id}/register</code><ul>
 <li>Registers the authenticated user for the trip.</li>
 <li><strong>Request Body:</strong> <code>{"vehicle_id": &lt;vehicle_id&gt;}</code></li>
-<li><strong>Required for regular users:</strong> Users must have at least one vehicle registered. Staff users (with <code>edit_trip_registrations</code> permission) can omit - defaults to their primary vehicle.</li>
+<li><strong>Required for regular users:</strong> Users must have at least one vehicle registered. Staff users (with <code>EDIT_TRIP_REGISTRATIONS</code> permission) can omit - defaults to their primary vehicle.</li>
 <li>Returns <code>vehicle_required</code> error if no vehicle is provided.</li>
 <li>Returns <code>vehicle_not_found</code> error if the vehicle doesn't exist or doesn't belong to the user.</li>
+<li>Additional validations: <code>trip_not_approved</code>, <code>level_insufficient</code>, <code>trip_cutoff_exceeded</code>, <code>trip_already_registered</code>, <code>trip_full</code>.</li>
 </ul>
 </li>
-<li><strong>POST</strong> <code>/api/trips/{id}/waitlist/</code><ul>
+<li><strong>POST</strong> <code>/api/trips/{id}/waitlist</code><ul>
 <li>Adds the authenticated user to the waitlist if the trip is full.</li>
 <li><strong>Request Body:</strong> <code>{"vehicle_id": &lt;vehicle_id&gt;}</code> (optional - defaults to user's primary vehicle)</li>
+<li>Returns <code>trip_waitlist_disabled_for_this_trip</code> if waitlist is not enabled.</li>
 </ul>
 </li>
-<li><strong>POST</strong> <code>/api/trips/{id}/unregister/</code><ul>
+<li><strong>POST</strong> <code>/api/trips/{id}/unregister</code><ul>
 <li>Cancels the authenticated user's registration for the trip (from either the registered list or the waitlist).</li>
+<li>Trip leads cannot unregister themselves (<code>trip_lead_cannot_unregister</code>).</li>
+</ul>
+</li>
+</ul>
+<h3 id="force-registration">Force Registration<a class="headerlink" href="#force-registration" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>POST</strong> <code>/api/trips/{id}/forceregister</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<ul>
+<li>Force-registers a member for a trip, bypassing level requirements and capacity checks. Requires <code>BYPASS_LEVEL_REQ</code> permission.</li>
+<li><strong>Request Body:</strong>
+    <code>json
+    {
+        "member": 123,
+        "vehicle_id": 45
+    }</code></li>
+<li><code>vehicle_id</code> is optional; defaults to the member's primary vehicle.</li>
 </ul>
 </li>
 </ul>
 <h3 id="participant-management">Participant Management<a class="headerlink" href="#participant-management" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>Note:</strong> All participant management endpoints below do NOT use trailing slashes.</p>
+</blockquote>
 <ul>
-<li><strong>POST</strong> <code>/api/trips/{id}/addfromwaitlist/</code><ul>
+<li><strong>POST</strong> <code>/api/trips/{id}/addfromwaitlist</code><ul>
 <li>Manually moves a member from the waitlist to the registered list. Requires <code>EDIT_TRIP_REGISTRATIONS</code> permission or being the trip lead/deputy.</li>
 <li><strong>Request Body:</strong> <code>{"member": &lt;member_id&gt;}</code></li>
+<li><strong>Success Response:</strong> <code>{"success": true, "message": "member_moved_from_waitlist_to_registered"}</code></li>
 </ul>
 </li>
-<li><strong>POST</strong> <code>/api/trips/{id}/removemember/</code><ul>
+<li><strong>POST</strong> <code>/api/trips/{id}/removemember</code><ul>
 <li>Removes a member from the trip (from either the registered list or the waitlist). Requires <code>EDIT_TRIP_REGISTRATIONS</code> permission or being the trip lead/deputy.</li>
 <li><strong>Request Body:</strong> <code>{"member": &lt;member_id&gt;, "reason": "..."}</code></li>
+<li><strong>Success Response:</strong> <code>{"success": true, "message": "user_removed_from_trip_registered"}</code> or <code>"user_removed_from_trip_waitlist"</code></li>
 </ul>
 </li>
-<li><strong>POST</strong> <code>/api/trips/{id}/checkin/</code><ul>
-<li>Checks in one or more members to the trip.</li>
+<li><strong>POST</strong> <code>/api/trips/{id}/checkin</code><ul>
+<li>Checks in one or more members to the trip. Requires <code>EDIT_TRIP_REGISTRATIONS</code> permission or being the trip lead/deputy.</li>
 <li><strong>Request Body:</strong> <code>{"members": [&lt;member_id_1&gt;, &lt;member_id_2&gt;]}</code></li>
 </ul>
 </li>
-<li><strong>POST</strong> <code>/api/trips/{id}/checkout/</code><ul>
-<li>Checks out one or more members from the trip.</li>
+<li><strong>POST</strong> <code>/api/trips/{id}/checkout</code><ul>
+<li>Checks out one or more members from the trip. Requires <code>EDIT_TRIP_REGISTRATIONS</code> permission or being the trip lead/deputy.</li>
 <li><strong>Request Body:</strong> <code>{"members": [&lt;member_id_1&gt;, &lt;member_id_2&gt;]}</code></li>
 </ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Important:</strong> The checkin/checkout endpoints use a <strong>different response format</strong> from other trip endpoints:</p>
+<p><code>json
+{
+    "succeeded": [1, 2, 3],
+    "failed": [
+        {"member": 4, "error": "Member is not registered for this trip"}
+    ]
+}</code></p>
+<p>This is NOT wrapped in the standard <code>{"success": ..., "message": ...}</code> format.</p>
+</blockquote>
+<h3 id="trip-comments">Trip Comments<a class="headerlink" href="#trip-comments" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>GET</strong> <code>/api/trips/{id}/comments</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<ul>
+<li>Retrieves comments for a specific trip, ordered by most recent first.</li>
+<li><strong>Authentication:</strong> Required.</li>
+<li>Supports ordering via <code>ordering</code> query parameter (field: <code>created</code>).</li>
+</ul>
+<p><strong>Response item fields:</strong> <code>comment</code>, <code>member</code> (object with <code>id</code>, <code>username</code>, <code>displayName</code>), <code>trip</code>, <code>created</code></p>
+</li>
+<li>
+<p><strong>GET/POST/DELETE</strong> <code>/api/tripcomments/</code></p>
+<p>This is the router-registered ViewSet for trip comments (uses trailing slash).</p>
+<ul>
+<li><strong>GET</strong> <code>/api/tripcomments/</code> - List all comments. Filter by <code>trip</code> or <code>member</code> query params.</li>
+<li><strong>POST</strong> <code>/api/tripcomments/</code> - Create a comment. Body: <code>{"comment": "...", "trip": &lt;trip_id&gt;}</code>. The <code>member</code> field is automatically set to the authenticated user.</li>
+<li><strong>DELETE</strong> <code>/api/tripcomments/{id}/</code> - Delete a comment. Requires ownership or <code>DELETE_TRIP_COMMENTS</code> permission.</li>
+</ul>
+</li>
+</ul>
+<h3 id="trip-reports-per-trip">Trip Reports (per trip)<a class="headerlink" href="#trip-reports-per-trip" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>GET</strong> <code>/api/trips/{id}/tripreports</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<ul>
+<li>Retrieves trip reports for a specific trip, ordered by ID.</li>
+<li><strong>Authentication:</strong> Required.</li>
+</ul>
+<p>See <a href="../trip-reports/">Trip Reports</a> for the full CRUD Trip Reports API.</p>
+</li>
+</ul>
+<h3 id="export-registrants">Export Registrants<a class="headerlink" href="#export-registrants" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>GET</strong> <code>/api/trips/{id}/exportregistrants</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<ul>
+<li>Exports the trip's registered members as a CSV file.</li>
+<li><strong>Authentication:</strong> Required.</li>
+<li><strong>Response:</strong> CSV file with <code>Content-Disposition: attachment; filename="trip_{id}_registrants.csv"</code></li>
+<li><strong>CSV Columns:</strong> <code>username</code>, <code>name</code>, <code>level</code>, one column per active level for trip counts (e.g., <code>trips_newbie</code>, <code>trips_intermediate</code>), <code>car_brand_model_color</code>, <code>phone</code>, <code>city</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="view-logbooks">View Logbooks<a class="headerlink" href="#view-logbooks" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>GET</strong> <code>/api/trips/{id}/viewlogbooks</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<ul>
+<li>Returns a list of checked-in members for the trip along with their logbook entry (if one exists).</li>
+<li><strong>Authentication:</strong> Required.</li>
+<li>Each item in the response contains a <code>member</code> object and a <code>logbook_entry</code> object (or <code>null</code>).</li>
+</ul>
+<p>See <a href="../logbook/">Digital Logbook</a> for the full logbook API.</p>
 </li>
 </ul>
 <h2 id="member-specific-trip-endpoints">Member-Specific Trip Endpoints<a class="headerlink" href="#member-specific-trip-endpoints" title="Permanent link">&para;</a></h2>
 <p>These endpoints provide trip information tailored to a specific member.</p>
+<blockquote>
+<p><strong>Note:</strong> All member-specific endpoints below do NOT use trailing slashes.</p>
+</blockquote>
 <h3 id="member-trip-counts">Member Trip Counts<a class="headerlink" href="#member-trip-counts" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>GET</strong> <code>/api/members/{id}/tripcounts/</code><ul>
+<li><strong>GET</strong> <code>/api/members/{id}/tripcounts</code><ul>
 <li>Retrieves a summary of a member's completed trips, grouped by trip level.</li>
 <li>Includes trips where the member was:<ul>
 <li>Registered and checked in (as participant)</li>
@@ -1591,8 +1918,10 @@
 </ul>
 <h3 id="member-trip-history">Member Trip History<a class="headerlink" href="#member-trip-history" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>GET</strong> <code>/api/members/{id}/triphistory/</code><ul>
+<li><strong>GET</strong> <code>/api/members/{id}/triphistory</code><ul>
 <li>Retrieves a paginated history of a member's trips.</li>
+<li><strong>Query Parameters:</strong> <code>checked_in</code> (boolean, filter for checked-in trips only), <code>start_time</code> (datetime filter).</li>
+<li><strong>Permissions:</strong> Own history always viewable. Viewing another member's history requires <code>VIEW_MEMBER_TRIP_HISTORY</code> permission or superuser.</li>
 <li>
 <blockquote>
 <p><strong>Note:</strong> This endpoint only includes trips with an <code>APPROVED</code> status.</p>

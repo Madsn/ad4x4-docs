@@ -1,0 +1,1820 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Next gen API for Abu Dhabi 4x4">
+      
+      
+        <meta name="author" content="Redbeard">
+      
+      
+        <link rel="canonical" href="https://api.ad4x4.com/readme/frontend-docs/FRONTEND_API_PERFORMANCE_AUDIT/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>API Performance Audit Report - AD4x4 API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#api-performance-audit-report" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="AD4x4 API" class="md-header__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AD4x4 API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API Performance Audit Report
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AD4x4 API" class="md-nav__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AD4x4 API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practical-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Practical Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../auth-profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Auth and Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vehicles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vehicles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trip-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lead-trip-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lead Trip History
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trips
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trip-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trip-reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meeting-points/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meeting Points
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../logbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Logbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../logbook-migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logbook Migration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../club-news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Club News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faqs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feedback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sponsorships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sponsorships
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notifications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gallery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gallery Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../here-maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HERE Maps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../global-settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Global Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../background-tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background Tasks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editable-strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../account-deletion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Account Deletion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../swagger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swagger UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintenance-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintenance Mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rate-limiting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rate Limiting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-1-trips-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SECTION 1: TRIPS ENDPOINTS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SECTION 1: TRIPS ENDPOINTS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#finding-t1-trips-list-home-screen-duplicate-trip-fetches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding T1: Trips List + Home Screen = Duplicate Trip Fetches
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-t2-trip-detail-re-fetched-on-every-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding T2: Trip Detail Re-fetched on Every Navigation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-t3-trip-actions-trigger-full-list-refresh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding T3: Trip Actions Trigger Full List Refresh
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-t4-member-details-screen-6-waterfall-api-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding T4: Member Details Screen — 6+ Waterfall API Calls
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-2-logbook-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SECTION 2: LOGBOOK ENDPOINTS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SECTION 2: LOGBOOK ENDPOINTS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#finding-l1-getlogbookskills-called-by-19-files-independently-critical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding L1: getLogbookSkills() Called by 19 Files Independently (CRITICAL)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-l2-getupgradeeligibility-fetched-redundantly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding L2: getUpgradeEligibility() Fetched Redundantly
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-l3-trip-skill-opportunities-2-api-calls-per-trip-detail-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding L3: Trip Skill Opportunities = 2 API Calls Per Trip Detail View
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-l4-timeline-provider-n1-trip-detail-fetches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding L4: Timeline Provider — N+1 Trip Detail Fetches
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-l5-logbook-progress-3-cached-api-calls-but-still-3-separate-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding L5: Logbook Progress = 3 Cached API Calls, But Still 3 Separate Calls
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-3-cross-cutting-concerns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SECTION 3: CROSS-CUTTING CONCERNS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SECTION 3: CROSS-CUTTING CONCERNS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#finding-c1-no-http-level-caching-etagslast-modified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding C1: No HTTP-Level Caching (ETags/Last-Modified)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-c2-notifications-fetched-without-pagination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding C2: Notifications Fetched Without Pagination
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-c3-admin-wizard-fetches-all-trips-pagesize-200-in-a-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding C3: Admin Wizard Fetches ALL Trips (pageSize: 200 in a loop)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-c4-getlogbookskillreferences-not-using-shared-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding C4: getLogbookSkillReferences() Not Using Shared Cache
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-c5-member-details-creates-new-repository-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding C5: Member Details Creates New Repository Instance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-4-priority-ranking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SECTION 4: PRIORITY RANKING
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-5-estimated-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SECTION 5: ESTIMATED IMPACT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-6-what-big-tech-would-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SECTION 6: WHAT BIG TECH WOULD DO
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="api-performance-audit-report">API Performance Audit Report<a class="headerlink" href="#api-performance-audit-report" title="Permanent link">&para;</a></h1>
+<p><strong>Date:</strong> 2026-03-31
+<strong>Scope:</strong> Full Flutter app — all API calls, caching, and data flow patterns
+<strong>Focus:</strong> Realistic backend changes to reduce API calls and improve performance</p>
+<hr />
+<h2 id="executive-summary">Executive Summary<a class="headerlink" href="#executive-summary" title="Permanent link">&para;</a></h2>
+<p>After auditing all 331 Dart files across 16 features, I identified <strong>12 high-impact findings</strong> that can significantly reduce API calls. The app already has a solid <code>ApiCacheService</code> (TTL-based, stale-while-revalidate), but many screens and providers bypass it entirely or duplicate calls that could be consolidated.</p>
+<p>The biggest wins come from:
+1. <strong>Deduplicating the <code>getLogbookSkills()</code> catalog call</strong> — fetched independently by <strong>19 files</strong>, often multiple times per session
+2. <strong>Adding a backend composite/aggregate endpoint</strong> for Member Details (currently 6 parallel API calls)
+3. <strong>Backend-side trip filtering</strong> to eliminate client-side re-filtering</p>
+<hr />
+<h2 id="section-1-trips-endpoints">SECTION 1: TRIPS ENDPOINTS<a class="headerlink" href="#section-1-trips-endpoints" title="Permanent link">&para;</a></h2>
+<h3 id="finding-t1-trips-list-home-screen-duplicate-trip-fetches">Finding T1: Trips List + Home Screen = Duplicate Trip Fetches<a class="headerlink" href="#finding-t1-trips-list-home-screen-duplicate-trip-fetches" title="Permanent link">&para;</a></h3>
+<p><strong>Files:</strong> <code>trips_provider.dart</code>, <code>upcoming_trips_provider.dart</code>
+<strong>Impact:</strong> 2 independent API calls for the same data on app launch</p>
+<p>The home screen fetches upcoming trips via <code>upcomingTripsProvider</code> (pageSize: 100), and the trips list screen independently fetches via <code>tripsProvider.loadTrips()</code> (pageSize: 50). Both call <code>GET /api/trips/</code> with nearly identical filters (approved, endTime &gt; now).</p>
+<p><strong>Recommendation (Backend):</strong>
+No backend change needed — this is already partially addressed by the shared <code>upcomingTripsProvider</code>. However, the <code>tripsProvider</code> in the trips list screen does NOT reuse this cache. Consider having the trips list screen consume the same cached provider and apply local filters, or add a backend <code>ETag</code>/<code>Last-Modified</code> header so the Dio client can skip re-downloading identical data.</p>
+<p><strong>Recommendation (Quick backend win):</strong>
+Add <code>Cache-Control: max-age=120</code> and <code>ETag</code> headers to <code>GET /api/trips/</code>. Dio can then send <code>If-None-Match</code> and get <code>304 Not Modified</code> responses (~50 bytes) instead of the full JSON payload. This saves bandwidth even when data hasn't changed.</p>
+<hr />
+<h3 id="finding-t2-trip-detail-re-fetched-on-every-navigation">Finding T2: Trip Detail Re-fetched on Every Navigation<a class="headerlink" href="#finding-t2-trip-detail-re-fetched-on-every-navigation" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>trips_list_screen.dart:459</code>
+<strong>Impact:</strong> 1 API call every time user taps a trip card</p>
+<div class="codehilite"><pre><span></span><code><span class="n">ref</span><span class="p">.</span><span class="n">invalidate</span><span class="p">(</span><span class="n">tripDetailProvider</span><span class="p">(</span><span class="n">trip</span><span class="p">.</span><span class="n">id</span><span class="p">));</span>
+<span class="n">context</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="s1">&#39;/trips/</span><span class="si">${</span><span class="n">trip</span><span class="p">.</span><span class="n">id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+<p>The code explicitly invalidates the cached trip detail before navigating. This means every tap = fresh API call, even if the user just viewed that trip 10 seconds ago.</p>
+<p><strong>Recommendation (Backend):</strong>
+Add <code>ETag</code> support to <code>GET /api/trips/{id}/</code>. The app can then always send the request but get a <code>304</code> response when nothing changed. This gives freshness guarantees without the full payload cost.</p>
+<p><strong>Alternative (Frontend-only):</strong> Remove the <code>invalidate()</code> call and let the <code>autoDispose</code> + staleness check handle it. The trip detail provider already uses <code>FutureProvider.autoDispose</code>, so navigating away disposes it and navigating back fetches fresh.</p>
+<hr />
+<h3 id="finding-t3-trip-actions-trigger-full-list-refresh">Finding T3: Trip Actions Trigger Full List Refresh<a class="headerlink" href="#finding-t3-trip-actions-trigger-full-list-refresh" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>trips_provider.dart:557-560</code>
+<strong>Impact:</strong> After register/unregister/waitlist, the entire trips list is refetched</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">await</span><span class="w"> </span><span class="n">_ref</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">tripsProvider</span><span class="p">.</span><span class="n">notifier</span><span class="p">).</span><span class="n">refresh</span><span class="p">();</span><span class="w"> </span><span class="c1">// re-fetches ALL trips</span>
+</code></pre></div>
+
+<p>Every registration action calls <code>refresh()</code> which calls <code>loadTrips()</code> which fetches the full trips list again. This is heavy — up to 50 trips re-downloaded just because the user registered for one.</p>
+<p><strong>Recommendation (Backend):</strong>
+Return the updated trip object in the registration/unregistration response body. Currently the <code>POST /api/trips/{id}/register</code> likely returns a simple success message. If it returned the updated trip (with new <code>registeredCount</code>, <code>isRegistered</code>, <code>isFull</code>, etc.), the frontend could update just that one trip in the list without re-fetching everything.</p>
+<p><strong>Example response change:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Current: {&quot;message&quot;: &quot;Successfully registered&quot;}</span>
+<span class="c1">// Proposed: {&quot;message&quot;: &quot;Successfully registered&quot;, &quot;trip&quot;: { ...full trip object... }}</span>
+</code></pre></div>
+
+<hr />
+<h3 id="finding-t4-member-details-screen-6-waterfall-api-calls">Finding T4: Member Details Screen — 6+ Waterfall API Calls<a class="headerlink" href="#finding-t4-member-details-screen-6-waterfall-api-calls" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>member_details_screen.dart:56-82</code>
+<strong>Impact:</strong> 6 independent API calls PER member view, some with waterfalls</p>
+<div class="codehilite"><pre><span></span><code><span class="n">_loadMemberData</span><span class="p">();</span><span class="w">           </span><span class="c1">// 1. getMemberDetail()</span>
+<span class="n">_loadTripHistory</span><span class="p">(</span><span class="n">memberId</span><span class="p">);</span><span class="w">  </span><span class="c1">// 2. getMemberTripHistory()</span>
+<span class="n">_loadTripStatistics</span><span class="p">(</span><span class="n">memberId</span><span class="p">);</span><span class="w"> </span><span class="c1">// 3. getMemberTripCounts() + 4. getLeadTripHistory(pageSize:1) + 5. getLeadTripHistory(pageSize:200) + 6. getMemberTripHistory(checkedIn:false)</span>
+<span class="n">_loadUpgradeHistory</span><span class="p">(</span><span class="n">memberId</span><span class="p">);</span><span class="w"> </span><span class="c1">// 7. getMemberUpgradeRequests()</span>
+<span class="n">_loadTripRequests</span><span class="p">(</span><span class="n">memberId</span><span class="p">);</span><span class="w">   </span><span class="c1">// 8. getMemberTripRequests()</span>
+<span class="n">_loadMemberFeedback</span><span class="p">(</span><span class="n">memberId</span><span class="p">);</span><span class="w"> </span><span class="c1">// 9. getMemberFeedback()</span>
+</code></pre></div>
+
+<p>The statistics section alone does 4 sequential calls: <code>getMemberTripCounts()</code>, then <code>getLeadTripHistory(pageSize:1)</code> for total count, then <code>getLeadTripHistory(pageSize:200)</code> for per-level breakdown, then another <code>getMemberTripHistory(checkedIn:false)</code> for upcoming count.</p>
+<p><strong>Recommendation (Backend — HIGH PRIORITY):</strong>
+Create a single composite endpoint: <code>GET /api/members/{id}/summary/</code> that returns:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;profile&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...member</span><span class="w"> </span><span class="err">da</span><span class="kc">ta</span><span class="err">...</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;tripCounts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;checkedIn&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;asLeader&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;upcoming&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;leaderByLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;1&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;2&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;3&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;recentTrips&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...las</span><span class="kc">t</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="kc">tr</span><span class="err">ips...</span><span class="w"> </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;upgradeRequests&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...lis</span><span class="kc">t</span><span class="err">...</span><span class="w"> </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;tripRequests&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...lis</span><span class="kc">t</span><span class="err">...</span><span class="w"> </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;feedback&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...lis</span><span class="kc">t</span><span class="err">...</span><span class="w"> </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>This reduces <strong>9 API calls down to 1</strong>. This is a standard pattern (Google calls them "batch endpoints", Facebook uses "Graph API field expansion").</p>
+<hr />
+<h2 id="section-2-logbook-endpoints">SECTION 2: LOGBOOK ENDPOINTS<a class="headerlink" href="#section-2-logbook-endpoints" title="Permanent link">&para;</a></h2>
+<h3 id="finding-l1-getlogbookskills-called-by-19-files-independently-critical">Finding L1: <code>getLogbookSkills()</code> Called by 19 Files Independently (CRITICAL)<a class="headerlink" href="#finding-l1-getlogbookskills-called-by-19-files-independently-critical" title="Permanent link">&para;</a></h3>
+<p><strong>Impact:</strong> The skills catalog (<code>GET /api/logbookskills/</code>) is fetched independently by 19 different files. Each file calls <code>repository.getLogbookSkills(pageSize: 100-500)</code> directly without going through the cache.</p>
+<p><strong>Files making independent calls (bypassing cache):</strong>
+- <code>trip_logbook_section_v2.dart</code> — on every trip detail view
+- <code>sign_off_bottom_sheet.dart</code> — on every sign-off
+- <code>bulk_sign_off_bottom_sheet.dart</code> — on every bulk sign-off
+- <code>trip_skill_opportunities_provider.dart</code> — on every trip detail view
+- <code>member_logbook_screen.dart</code> — on every logbook view
+- <code>logbook_entry_detail_screen.dart</code> — on every entry detail
+- <code>timeline_provider.dart</code> — on every timeline view
+- <code>trip_skill_planning_provider.dart</code> — on every planning view
+- <code>certificate_provider.dart</code> — on every certificate view
+- <code>level_certificates_provider.dart</code> — on every level cert view
+- <code>migration_request_provider.dart</code> — on every migration view
+- <code>admin_sign_off_skills_screen.dart</code> — on every admin sign-off
+- <code>admin_create_logbook_entry_screen.dart</code> — on every admin entry creation
+- <code>logbook_provider.dart</code> (admin) — on every admin logbook view
+- <code>admin_logbook_data_provider.dart</code> — on every admin data view
+- <code>logbook_enrichment_service.dart</code> — on enrichment
+- <code>level_configuration_service.dart</code> — on level config</p>
+<p><strong>Only 1 file uses the cache properly:</strong> <code>logbook_skills_cache_provider.dart</code> (via <code>cachedLogbookSkillsProvider</code>)</p>
+<p><strong>Recommendation (Backend — EASY WIN):</strong>
+Add <code>Cache-Control: public, max-age=600</code> (10 minutes) to <code>GET /api/logbookskills/</code>. The skills catalog changes only when an admin modifies skill definitions — this is extremely rare. A 10-minute cache-control header would let the HTTP client skip the request entirely.</p>
+<p><strong>Recommendation (Frontend):</strong>
+Make all 19 files use <code>cachedLogbookSkillsProvider</code> instead of calling <code>repository.getLogbookSkills()</code> directly. This is a pure frontend fix but the backend cache header provides defense-in-depth.</p>
+<hr />
+<h3 id="finding-l2-getupgradeeligibility-fetched-redundantly">Finding L2: <code>getUpgradeEligibility()</code> Fetched Redundantly<a class="headerlink" href="#finding-l2-getupgradeeligibility-fetched-redundantly" title="Permanent link">&para;</a></h3>
+<p><strong>Files:</strong> <code>upgrade_progress_provider.dart</code>, <code>trip_skill_opportunities_provider.dart</code>, <code>skills_matrix_v2_screen.dart</code>, <code>certificate_provider.dart</code>, <code>upgrade_certificate_provider.dart</code>, <code>trip_skill_planning_provider_v2.dart</code>, <code>create_upgrade_request_screen.dart</code>
+<strong>Impact:</strong> 7 files call this endpoint independently, and the trip skill opportunities provider calls it ON EVERY TRIP DETAIL VIEW</p>
+<p>The upgrade eligibility data (<code>GET /api/members/{id}/upgradeeligibility</code>) changes only when a logbook entry is signed off. Yet it's fetched:
+- When viewing logbook home
+- When viewing any trip detail (skill opportunities)
+- When viewing skills matrix
+- When viewing certificates
+- When creating upgrade request</p>
+<p><strong>Recommendation (Backend):</strong>
+Add <code>Cache-Control: max-age=300</code> (5 minutes) to this endpoint. The data only changes after a logbook sign-off action, not on every page view.</p>
+<p><strong>Recommendation (Frontend):</strong>
+Create a <code>cachedUpgradeEligibilityProvider</code> similar to <code>cachedLogbookSkillsProvider</code>, using <code>ApiCacheService</code> with <code>CacheCategory.logbookProgress</code> and a 5-minute TTL. All 7 consumers would read from this single provider.</p>
+<hr />
+<h3 id="finding-l3-trip-skill-opportunities-2-api-calls-per-trip-detail-view">Finding L3: Trip Skill Opportunities = 2 API Calls Per Trip Detail View<a class="headerlink" href="#finding-l3-trip-skill-opportunities-2-api-calls-per-trip-detail-view" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>trip_skill_opportunities_provider.dart:76-115</code>
+<strong>Impact:</strong> Every trip detail view triggers <code>getUpgradeEligibility()</code> + <code>getLogbookSkills()</code></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">final</span><span class="w"> </span><span class="n">eligibilityResponse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">repository</span><span class="p">.</span><span class="n">getUpgradeEligibility</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="n">id</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">skillsResponse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">repository</span><span class="p">.</span><span class="n">getLogbookSkills</span><span class="p">(</span><span class="nl">pageSize:</span><span class="w"> </span><span class="m">200</span><span class="p">);</span>
+</code></pre></div>
+
+<p>Both are user-level data that doesn't change between trip views.</p>
+<p><strong>Recommendation (Backend):</strong>
+Merge skill opportunities into the trip detail response. Add an optional <code>?expand=skillOpportunities</code> parameter to <code>GET /api/trips/{id}/</code>. When present, the backend includes a <code>skillOpportunities</code> field with the user's relevant unmet requirements for that trip's level. This eliminates 2 extra API calls per trip view.</p>
+<hr />
+<h3 id="finding-l4-timeline-provider-n1-trip-detail-fetches">Finding L4: Timeline Provider — N+1 Trip Detail Fetches<a class="headerlink" href="#finding-l4-timeline-provider-n1-trip-detail-fetches" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>timeline_provider.dart:137-157</code>
+<strong>Impact:</strong> Fetches each trip individually via <code>getTripDetail(id)</code> in parallel — up to 15+ calls</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">final</span><span class="w"> </span><span class="n">tripFutures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tripIds</span><span class="p">.</span><span class="n">map</span><span class="p">((</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">tripResponse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">repository</span><span class="p">.</span><span class="n">getTripDetail</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">MapEntry</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">TripBasicInfo</span><span class="p">.</span><span class="n">fromJson</span><span class="p">(</span><span class="n">tripResponse</span><span class="p">));</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p>While it uses <code>Future.wait</code> (good), it's still N separate HTTP requests. For a user with 15 trips in their timeline, that's 15 concurrent API calls.</p>
+<p><strong>Recommendation (Backend):</strong>
+Add a batch trip endpoint: <code>GET /api/trips/batch/?ids=1,2,3,4,5</code> that returns multiple trips in one response. This is standard practice (Stripe, Slack, and GitHub all offer batch/bulk endpoints).</p>
+<p>Alternative: Add <code>expand=trip</code> to <code>GET /api/members/{id}/logbookentries</code> so the backend returns the trip object inline instead of just the trip ID. This eliminates the N+1 entirely.</p>
+<hr />
+<h3 id="finding-l5-logbook-progress-3-cached-api-calls-but-still-3-separate-calls">Finding L5: Logbook Progress = 3 Cached API Calls, But Still 3 Separate Calls<a class="headerlink" href="#finding-l5-logbook-progress-3-cached-api-calls-but-still-3-separate-calls" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>logbook_progress_provider.dart:36-52</code>
+<strong>Impact:</strong> 3 parallel API calls (cached with 5-min TTL) every time logbook home is visited</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">final</span><span class="w"> </span><span class="n">results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Future</span><span class="p">.</span><span class="n">wait</span><span class="p">([</span>
+<span class="w">  </span><span class="n">cacheService</span><span class="p">.</span><span class="n">getOrFetch</span><span class="p">(...</span><span class="n">getMemberLogbookSkills</span><span class="p">...),</span>
+<span class="w">  </span><span class="n">cacheService</span><span class="p">.</span><span class="n">getOrFetch</span><span class="p">(...</span><span class="n">getMemberLogbookEntries</span><span class="p">...),</span>
+<span class="w">  </span><span class="n">cacheService</span><span class="p">.</span><span class="n">getOrFetch</span><span class="p">(...</span><span class="n">getMemberTripCounts</span><span class="p">...),</span>
+<span class="p">]);</span>
+</code></pre></div>
+
+<p>Credit: This is well-implemented with caching. But 3 separate HTTP calls could still be 1.</p>
+<p><strong>Recommendation (Backend):</strong>
+Create <code>GET /api/members/{id}/logbook-summary/</code> returning:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;skills&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;results&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;entries&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;results&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;tripCounts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;checkedIn&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>This collapses 3 calls into 1. With the existing 5-minute cache, this would mean 1 call every 5 minutes instead of 3.</p>
+<hr />
+<h2 id="section-3-cross-cutting-concerns">SECTION 3: CROSS-CUTTING CONCERNS<a class="headerlink" href="#section-3-cross-cutting-concerns" title="Permanent link">&para;</a></h2>
+<h3 id="finding-c1-no-http-level-caching-etagslast-modified">Finding C1: No HTTP-Level Caching (ETags/Last-Modified)<a class="headerlink" href="#finding-c1-no-http-level-caching-etagslast-modified" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>api_client.dart</code>
+<strong>Impact:</strong> Every API call transfers the full response body, even when data hasn't changed</p>
+<p>The Dio client has no <code>If-None-Match</code> or <code>If-Modified-Since</code> interceptor. The app-level cache (<code>ApiCacheService</code>) helps, but when TTLs expire, the full payload is always re-downloaded.</p>
+<p><strong>Recommendation (Backend):</strong>
+Add <code>ETag</code> and <code>Last-Modified</code> headers to all GET endpoints. Django REST Framework supports this via <code>ConditionalGetMixin</code> or middleware. This is a one-time backend change that benefits every endpoint:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Django middleware or mixin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.utils.cache</span><span class="w"> </span><span class="kn">import</span> <span class="n">patch_cache_control</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.views.decorators.http</span><span class="w"> </span><span class="kn">import</span> <span class="n">condition</span>
+
+<span class="c1"># On DRF ViewSet:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TripViewSet</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="nd">@method_decorator</span><span class="p">(</span><span class="n">condition</span><span class="p">(</span><span class="n">last_modified_func</span><span class="o">=</span><span class="n">get_trips_last_modified</span><span class="p">))</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="o">...</span>
+</code></pre></div>
+
+<p>For the Flutter side, Dio supports <code>304</code> responses natively — no code change needed.</p>
+<hr />
+<h3 id="finding-c2-notifications-fetched-without-pagination">Finding C2: Notifications Fetched Without Pagination<a class="headerlink" href="#finding-c2-notifications-fetched-without-pagination" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>notification_provider.dart:51</code>
+<strong>Impact:</strong> Fetches ALL notifications every time, no pagination or limit</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">final</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">repository</span><span class="p">.</span><span class="n">getNotifications</span><span class="p">();</span>
+</code></pre></div>
+
+<p>No pageSize, no limit. For active users with hundreds of notifications, this transfers a large payload.</p>
+<p><strong>Recommendation (Backend):</strong>
+1. Add <code>pageSize=50</code> default to the notifications endpoint
+2. Add <code>unread_only=true</code> filter — the home badge only needs unread count, not all notification bodies
+3. Better yet: Add a lightweight <code>GET /api/notifications/count/</code> endpoint that returns just <code>{"unread": 5}</code> for the badge. The full list is only needed when the user opens the notifications screen.</p>
+<hr />
+<h3 id="finding-c3-admin-wizard-fetches-all-trips-pagesize-200-in-a-loop">Finding C3: Admin Wizard Fetches ALL Trips (pageSize: 200 in a loop)<a class="headerlink" href="#finding-c3-admin-wizard-fetches-all-trips-pagesize-200-in-a-loop" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>admin_wizard_provider.dart:62-67</code>
+<strong>Impact:</strong> Fetches ALL trips in the database, 200 at a time, in a while loop</p>
+<div class="codehilite"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">pageSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">200</span><span class="p">;</span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">hasMorePages</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">repository</span><span class="p">.</span><span class="n">getTrips</span><span class="p">(</span><span class="nl">page:</span><span class="w"> </span><span class="n">currentPage</span><span class="p">,</span><span class="w"> </span><span class="nl">pageSize:</span><span class="w"> </span><span class="n">pageSize</span><span class="p">);</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>For a club with hundreds of trips, this downloads everything to the client for client-side filtering.</p>
+<p><strong>Recommendation (Backend):</strong>
+Move the admin wizard filtering entirely to the backend. The <code>GET /api/trips/</code> endpoint already supports most of the filters (<code>level_Id</code>, <code>meetingPoint_Area</code>, <code>startTimeAfter/Before</code>, <code>lead</code>, <code>ordering</code>). The wizard should just send the final filter criteria as query params and let the backend return a single page of results. No pagination loop needed.</p>
+<hr />
+<h3 id="finding-c4-getlogbookskillreferences-not-using-shared-cache">Finding C4: <code>getLogbookSkillReferences()</code> Not Using Shared Cache<a class="headerlink" href="#finding-c4-getlogbookskillreferences-not-using-shared-cache" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>skills_comparison_provider.dart:39-58</code>
+<strong>Impact:</strong> Skills comparison fetches skill references for 2 members independently, bypassing cache</p>
+<p>The <code>cachedMemberSkillReferencesProvider</code> exists in <code>logbook_skills_cache_provider.dart</code> but the comparison provider doesn't use it — it calls <code>repository.getLogbookSkillReferences()</code> directly.</p>
+<p><strong>Recommendation (Backend):</strong> No backend change needed.
+<strong>Recommendation (Frontend):</strong> Use <code>cachedMemberSkillReferencesProvider</code> in the comparison provider.</p>
+<hr />
+<h3 id="finding-c5-member-details-creates-new-repository-instance">Finding C5: Member Details Creates New Repository Instance<a class="headerlink" href="#finding-c5-member-details-creates-new-repository-instance" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>member_details_screen.dart:28</code>
+<strong>Impact:</strong> Bypasses the Riverpod-managed repository and cache</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">final</span><span class="w"> </span><span class="n">_repository</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MainApiRepository</span><span class="p">();</span><span class="w"> </span><span class="c1">// creates new instance</span>
+</code></pre></div>
+
+<p>This creates a fresh <code>MainApiRepository</code> (and therefore a fresh <code>ApiClient</code> with a fresh <code>Dio</code> instance) instead of using the Riverpod <code>mainApiRepositoryProvider</code>. This means:
+- No connection pooling with other screens
+- No shared interceptors state
+- No shared cache</p>
+<p><strong>Recommendation (Backend):</strong> No change needed.
+<strong>Recommendation (Frontend):</strong> Use <code>ref.read(mainApiRepositoryProvider)</code> instead.</p>
+<hr />
+<h2 id="section-4-priority-ranking">SECTION 4: PRIORITY RANKING<a class="headerlink" href="#section-4-priority-ranking" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Priority</th>
+<th>Finding</th>
+<th>API Calls Saved</th>
+<th>Backend Effort</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>L1: Cache-Control on <code>/api/logbookskills/</code></td>
+<td>~15-20/session</td>
+<td>Add 1 header</td>
+</tr>
+<tr>
+<td>2</td>
+<td>T3: Return updated trip in register/unregister response</td>
+<td>~3-5/session</td>
+<td>Modify response serializer</td>
+</tr>
+<tr>
+<td>3</td>
+<td>T4: <code>GET /api/members/{id}/summary/</code> composite endpoint</td>
+<td>8 calls -&gt; 1</td>
+<td>New endpoint, reuses existing querysets</td>
+</tr>
+<tr>
+<td>4</td>
+<td>L2: Cache-Control on <code>/api/members/{id}/upgradeeligibility</code></td>
+<td>~5-7/session</td>
+<td>Add 1 header</td>
+</tr>
+<tr>
+<td>5</td>
+<td>C1: ETag/Last-Modified on all GET endpoints</td>
+<td>30-50% bandwidth</td>
+<td>Django middleware (one-time)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>L3: <code>?expand=skillOpportunities</code> on trip detail</td>
+<td>2 calls/trip view</td>
+<td>New serializer field</td>
+</tr>
+<tr>
+<td>7</td>
+<td>C2: Notification count endpoint</td>
+<td>1 call/screen view</td>
+<td>New lightweight endpoint</td>
+</tr>
+<tr>
+<td>8</td>
+<td>L5: <code>GET /api/members/{id}/logbook-summary/</code></td>
+<td>3 -&gt; 1</td>
+<td>New composite endpoint</td>
+</tr>
+<tr>
+<td>9</td>
+<td>T2: ETag on trip detail</td>
+<td>1 call/trip tap</td>
+<td>Part of C1</td>
+</tr>
+<tr>
+<td>10</td>
+<td>L4: <code>expand=trip</code> on logbook entries</td>
+<td>N calls -&gt; 0</td>
+<td>DRF expand support</td>
+</tr>
+<tr>
+<td>11</td>
+<td>C3: Backend-side admin wizard filtering</td>
+<td>Eliminates loop</td>
+<td>Already mostly supported</td>
+</tr>
+<tr>
+<td>12</td>
+<td>T1: Share trip cache between home and list</td>
+<td>1 call/launch</td>
+<td>Frontend only</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="section-5-estimated-impact">SECTION 5: ESTIMATED IMPACT<a class="headerlink" href="#section-5-estimated-impact" title="Permanent link">&para;</a></h2>
+<p><strong>Current state (typical user session):</strong>
+- App launch: ~8-10 API calls (home screen widgets + trips + notifications)
+- View trip details: ~4 API calls (trip detail + logbook skills + upgrade eligibility + skill opportunities)
+- View logbook: ~4 API calls (progress stats + skills catalog + entries + trip counts)
+- View member profile: ~9 API calls (profile + trips + stats + leader history x2 + upgrades + requests + feedback)
+- <strong>Total for a 15-minute browsing session: ~40-60 API calls</strong></p>
+<p><strong>After implementing Priority 1-6:</strong>
+- App launch: ~5-6 API calls (deduplicated, cached)
+- View trip details: ~1-2 API calls (composite response, cached skills)
+- View logbook: ~1-2 API calls (composite endpoint, cached)
+- View member profile: ~1-2 API calls (summary endpoint)
+- <strong>Total for a 15-minute browsing session: ~12-20 API calls</strong></p>
+<p><strong>Estimated reduction: 50-70% fewer API calls</strong></p>
+<hr />
+<h2 id="section-6-what-big-tech-would-do">SECTION 6: WHAT BIG TECH WOULD DO<a class="headerlink" href="#section-6-what-big-tech-would-do" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p><strong>GraphQL or field expansion</strong> (Facebook/Meta): Instead of 9 REST calls for member details, one query that specifies exactly which fields/relations to include. Django Graphene or DRF's <code>?expand=</code> pattern.</p>
+</li>
+<li>
+<p><strong>ETag + Conditional GET</strong> (Google): Every GET response includes an ETag. Subsequent requests include <code>If-None-Match</code>, getting <code>304 Not Modified</code> (zero body) when nothing changed. Django's <code>ConditionalGetMiddleware</code> does this automatically.</p>
+</li>
+<li>
+<p><strong>Response includes mutation result</strong> (Stripe/Uber): After <code>POST /register</code>, the response includes the updated trip object. No need for a follow-up GET.</p>
+</li>
+<li>
+<p><strong>Batch/composite endpoints</strong> (Google, Slack): <code>GET /api/batch?endpoints=/trips/1,/trips/2,/trips/3</code> or purpose-built summary endpoints that join related data server-side.</p>
+</li>
+<li>
+<p><strong>Cache-Control headers</strong> (Every CDN-aware service): Static-ish data (skill catalogs, level definitions, sponsors) gets <code>Cache-Control: public, max-age=3600</code>. Semi-static data gets <code>max-age=300</code>. The HTTP layer handles caching — no app code needed.</p>
+</li>
+<li>
+<p><strong>Push-based invalidation</strong> (Firebase/Supabase): Instead of polling or TTL-based cache, the server pushes "trip 123 updated" events. The app already uses Firestore for chat — the same pattern could extend to trip state changes.</p>
+</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

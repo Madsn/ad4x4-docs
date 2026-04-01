@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#trips" class="md-skip">
+        <a href="#trip-search" class="md-skip">
           Skip to content
         </a>
       
@@ -712,6 +712,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../logbook/" class="md-nav__link">
         
   
@@ -1063,6 +1090,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../account-deletion/" class="md-nav__link">
         
   
@@ -1311,11 +1365,14 @@
 
 
 
-<h1 id="trips">Trips<a class="headerlink" href="#trips" title="Permanent link">&para;</a></h1>
+<h1 id="trip-search">Trip Search<a class="headerlink" href="#trip-search" title="Permanent link">&para;</a></h1>
 <p>This document outlines the API endpoint for searching trips. For general trip management, please refer to the <a href="../trips/">Trips</a> document.</p>
 <h2 id="search-trips">Search Trips<a class="headerlink" href="#search-trips" title="Permanent link">&para;</a></h2>
 <p>Search for trips by title, with optional filters for level, date ranges, meeting point, and area. This endpoint is useful for finding specific trips, browsing trip history, or discovering trip activities.</p>
-<p><strong>Endpoint</strong>: <code>GET /api/trips/search/</code></p>
+<p><strong>Endpoint</strong>: <code>GET /api/trips/search</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
 <p><strong>Authentication:</strong> Required (Bearer token)
 <strong>Permission Required:</strong> Users must have <code>SEARCH_TRIPS</code> permission to access this endpoint.</p>
 <hr />
@@ -1333,8 +1390,8 @@
 <tr>
 <td><code>query</code></td>
 <td>string</td>
-<td>Yes</td>
-<td>Search term - must be at least 3 characters. Matches against trip title (case-insensitive partial match)</td>
+<td>No</td>
+<td>Search term - must be at least 3 characters if provided. Matches against trip title (case-insensitive partial match). At least one search parameter must be provided.</td>
 </tr>
 <tr>
 <td><code>level</code></td>
@@ -1388,7 +1445,7 @@
 <td><code>area</code></td>
 <td>string</td>
 <td>No</td>
-<td>Filter for trips in a specific area</td>
+<td>Filter for trips in a specific area (area code like <code>DXB</code>, <code>AUH</code>). Must be a string — numeric values are rejected.</td>
 </tr>
 <tr>
 <td><code>page</code></td>
@@ -1407,32 +1464,32 @@
 <hr />
 <h2 id="request-examples">Request Examples<a class="headerlink" href="#request-examples" title="Permanent link">&para;</a></h2>
 <p><strong>Basic search:</strong></p>
-<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/trips/search/?query=fun&quot;</span><span class="w"> </span><span class="se">\</span>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/trips/search?query=fun&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your-token&gt;&quot;</span>
 </code></pre></div>
 
 <p><strong>Search with level filter:</strong></p>
-<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/trips/search/?query=adventure&amp;level=10&quot;</span><span class="w"> </span><span class="se">\</span>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/trips/search?query=adventure&amp;level=10&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your-token&gt;&quot;</span>
 </code></pre></div>
 
 <p><strong>Search with date range:</strong></p>
-<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/trips/search/?query=expedition&amp;start_date_min=2024-01-01&amp;end_date_max=2024-12-31&quot;</span><span class="w"> </span><span class="se">\</span>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/trips/search?query=expedition&amp;start_date_min=2026-01-01&amp;end_date_max=2026-12-31&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your-token&gt;&quot;</span>
 </code></pre></div>
 
 <p><strong>Search by meeting point:</strong></p>
-<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/trips/search/?query=beach&amp;meeting_point=1&quot;</span><span class="w"> </span><span class="se">\</span>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/trips/search?query=beach&amp;meeting_point=1&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your-token&gt;&quot;</span>
 </code></pre></div>
 
 <p><strong>Search by area:</strong></p>
-<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/trips/search/?query=desert&amp;area=DUBAI&quot;</span><span class="w"> </span><span class="se">\</span>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/trips/search?query=desert&amp;area=DXB&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your-token&gt;&quot;</span>
 </code></pre></div>
 
 <p><strong>Paginated search:</strong></p>
-<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/trips/search/?query=trip&amp;page=1&amp;page_size=10&quot;</span><span class="w"> </span><span class="se">\</span>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/trips/search?query=trip&amp;page=1&amp;page_size=10&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your-token&gt;&quot;</span>
 </code></pre></div>
 
@@ -1440,7 +1497,7 @@
 <h2 id="success-response-200-ok">Success Response (200 OK)<a class="headerlink" href="#success-response-200-ok" title="Permanent link">&para;</a></h2>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;next&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://api.example.com/api/trips/search/?query=adventure&amp;page=2&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;next&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://api.example.com/api/trips/search?query=adventure&amp;page=2&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;previous&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;results&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
@@ -1468,8 +1525,8 @@
 <span class="w">        </span><span class="nt">&quot;area&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DUBAI&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">&quot;link&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://example.com&quot;</span>
 <span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nt">&quot;startTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-15T10:00:00+04:00&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;endTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-15T16:00:00+04:00&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;startTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-15T10:00:00&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;endTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-15T16:00:00&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;capacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;approvalStatus&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;APPROVED&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;waitlistCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
@@ -1486,10 +1543,10 @@
 
 <hr />
 <h2 id="error-responses">Error Responses<a class="headerlink" href="#error-responses" title="Permanent link">&para;</a></h2>
-<p><strong>Error Response</strong> (400 Bad Request - Missing query):</p>
+<p><strong>Error Response</strong> (400 Bad Request - No search parameters):</p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;query_parameter_required&quot;</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;no_search_parameters_provided&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -1497,6 +1554,48 @@
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;query_too_short&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Error Response</strong> (400 Bad Request - Invalid integer parameter):</p>
+<p>The <code>level</code>, <code>min_level</code>, <code>max_level</code>, and <code>meeting_point</code> parameters must be valid integers. If a non-numeric value is provided, the API returns:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;invalid_level&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Error message</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>level</code></td>
+<td><code>invalid_level</code></td>
+</tr>
+<tr>
+<td><code>min_level</code></td>
+<td><code>invalid_min_level</code></td>
+</tr>
+<tr>
+<td><code>max_level</code></td>
+<td><code>invalid_max_level</code></td>
+</tr>
+<tr>
+<td><code>meeting_point</code></td>
+<td><code>invalid_meeting_point_id</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Error Response</strong> (400 Bad Request - Invalid area format):</p>
+<p>The <code>area</code> parameter must be a string area code (e.g., <code>DXB</code>, <code>AUH</code>). Numeric values are rejected:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;invalid_area_format&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -1522,7 +1621,8 @@
 <li>If <code>end_date_max</code> is set without <code>end_date_min</code>, only trips ending on or before that date are included</li>
 <li>Similarly for start dates</li>
 <li><strong>Meeting point filtering</strong>: Use <code>meeting_point</code> to filter by exact meeting point ID</li>
-<li><strong>Area filtering</strong>: Use <code>area</code> to filter by meeting point area code</li>
+<li><strong>Area filtering</strong>: Use <code>area</code> to filter by meeting point area code (e.g., <code>DXB</code>, <code>AUH</code>, <code>AAN</code>, <code>NOR</code>, <code>LIW</code>)</li>
+<li><strong>No approval status filter</strong>: This endpoint does NOT support filtering by <code>approvalStatus</code>. It searches all trips regardless of approval status. Use the main trip list (<code>GET /api/trips/</code>) for approval status filtering.</li>
 <li><strong>Permission Required</strong>: Users must have <code>SEARCH_TRIPS</code> permission. By default, this is granted to Newbie level and above.</li>
 <li><strong>Performance Note</strong>: This endpoint searches trip titles efficiently. Searching by trip lead's user info (username, first name, last name) requires additional database joins and can be slower with many trips. Use title-based search for better performance.</li>
 <li><strong>User-specific information</strong>: For authenticated users, the response includes trip-specific registration status:</li>

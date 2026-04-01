@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://api.ad4x4.com/readme/account-deletion/">
       
       
-        <link rel="prev" href="../editable-strings/">
+        <link rel="prev" href="../choices/">
       
       
         <link rel="next" href="../swagger/">
@@ -588,6 +588,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../logbook/" class="md-nav__link">
         
   
@@ -936,6 +963,33 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -1010,22 +1064,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#api-endpoint" class="md-nav__link">
+  <a href="#endpoints" class="md-nav__link">
     <span class="md-ellipsis">
       
-        API Endpoint
+        Endpoints
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="API Endpoint">
+    <nav class="md-nav" aria-label="Endpoints">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#responses" class="md-nav__link">
+  <a href="#request-account-deletion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Responses
+        Request Account Deletion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-deletion-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        View Deletion Request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cancel-account-deletion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cancel Account Deletion
       
     </span>
   </a>
@@ -1042,6 +1118,17 @@
     <span class="md-ellipsis">
       
         Anonymization Details
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documentation
       
     </span>
   </a>
@@ -1202,22 +1289,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#api-endpoint" class="md-nav__link">
+  <a href="#endpoints" class="md-nav__link">
     <span class="md-ellipsis">
       
-        API Endpoint
+        Endpoints
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="API Endpoint">
+    <nav class="md-nav" aria-label="Endpoints">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#responses" class="md-nav__link">
+  <a href="#request-account-deletion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Responses
+        Request Account Deletion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-deletion-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        View Deletion Request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cancel-account-deletion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cancel Account Deletion
       
     </span>
   </a>
@@ -1234,6 +1343,17 @@
     <span class="md-ellipsis">
       
         Anonymization Details
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Documentation
       
     </span>
   </a>
@@ -1258,31 +1378,81 @@
 
 
 <h1 id="account-deletion">Account Deletion<a class="headerlink" href="#account-deletion" title="Permanent link">&para;</a></h1>
-<p>This document explains how a user can request the deletion of their account.</p>
+<p>This document explains how a user can request, view, and cancel the deletion of their account.</p>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>The account deletion process is designed to be simple and secure. It involves two main steps:</p>
+<p>The account deletion process is designed to be simple and secure. It involves these main steps:</p>
 <ol>
 <li>The user makes an API request to signal their intent to delete their account.</li>
-<li>A background process runs periodically, and after a 3-day grace period, it anonymizes the user's data.</li>
+<li>A 3-day grace period begins, during which the user can cancel the request.</li>
+<li>After the grace period, a background process anonymizes the user's data.</li>
 </ol>
 <p>This grace period allows for a "cooling off" period, during which the user can change their mind. The anonymization process ensures that all personally identifiable information is removed from the user's profile, while preserving the integrity of any content they may have created (e.g., trip comments).</p>
-<h2 id="api-endpoint">API Endpoint<a class="headerlink" href="#api-endpoint" title="Permanent link">&para;</a></h2>
-<p>To initiate the account deletion process, the client must make a POST request to the following endpoint:</p>
-<p><code>POST /api/members/request-deletion</code></p>
-<p>This endpoint does not require any request body. The authenticated user associated with the request will be marked for deletion.</p>
-<h3 id="responses">Responses<a class="headerlink" href="#responses" title="Permanent link">&para;</a></h3>
-<p><strong>Success</strong></p>
-<p>A successful request will return a <code>200 OK</code> status code and a JSON body indicating success:</p>
+<h2 id="endpoints">Endpoints<a class="headerlink" href="#endpoints" title="Permanent link">&para;</a></h2>
+<h3 id="request-account-deletion">Request Account Deletion<a class="headerlink" href="#request-account-deletion" title="Permanent link">&para;</a></h3>
+<p>Initiate the account deletion process.</p>
+<p><strong>POST</strong> <code>/api/members/request-deletion</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash and does not require any request body.</p>
+</blockquote>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p>The authenticated user associated with the request will be marked for deletion.</p>
+<p><strong>Success Response</strong> (200 OK):</p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;deletion_request_submitted&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
 
-<p><strong>Error: Deletion Request Already Exists</strong></p>
-<p>If the user has already requested deletion and a request is pending, the API will return a <code>400 Bad Request</code> status code and the following JSON error message:</p>
+<p><strong>Error Response</strong> (400 Bad Request - Already pending):</p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;deletion_request_already_exists&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="view-deletion-request">View Deletion Request<a class="headerlink" href="#view-deletion-request" title="Permanent link">&para;</a></h3>
+<p>Check the status of an existing deletion request.</p>
+<p><strong>GET</strong> <code>/api/members/deletion-request</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p><strong>Success Response</strong> (200 OK):</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;member&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;requestedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-15T10:00:00&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Error Response</strong> (404 Not Found):</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;deletion_request_not_found&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="cancel-account-deletion">Cancel Account Deletion<a class="headerlink" href="#cancel-account-deletion" title="Permanent link">&para;</a></h3>
+<p>Cancel a pending deletion request before the 3-day grace period expires.</p>
+<p><strong>POST</strong> <code>/api/members/cancel-deletion</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash and does not require any request body.</p>
+</blockquote>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p><strong>Success Response</strong> (200 OK):</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;deletion_request_cancelled&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Error Response</strong> (404 Not Found):</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;deletion_request_not_found&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -1294,6 +1464,10 @@
 <li>The email address will be changed to a dummy address (e.g., <code>...@deleted.com</code>).</li>
 <li>The first name will be set to "Anonymous".</li>
 <li>The last name will be cleared.</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../background-tasks/">Background Tasks</a> - The <code>process_account_deletion_requests</code> task runs daily at midnight.</li>
 </ul>
 
 

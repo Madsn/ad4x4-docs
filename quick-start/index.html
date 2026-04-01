@@ -890,6 +890,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../logbook/" class="md-nav__link">
         
   
@@ -1222,6 +1249,33 @@
     
   
     UI Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
   
 
     
@@ -1725,29 +1779,34 @@
 <span class="s1">    &quot;meetingPoint&quot;: 1,</span>
 <span class="s1">    &quot;title&quot;: &quot;Weekend Desert Safari&quot;,</span>
 <span class="s1">    &quot;description&quot;: &quot;Easy desert drive&quot;,</span>
-<span class="s1">    &quot;startTime&quot;: &quot;2024-12-15T07:00:00+04:00&quot;,</span>
-<span class="s1">    &quot;endTime&quot;: &quot;2024-12-15T15:00:00+04:00&quot;,</span>
-<span class="s1">    &quot;cutOff&quot;: &quot;2024-12-14T18:00:00+04:00&quot;,</span>
+<span class="s1">    &quot;startTime&quot;: &quot;2026-12-15T07:00:00+04:00&quot;,</span>
+<span class="s1">    &quot;endTime&quot;: &quot;2026-12-15T15:00:00+04:00&quot;,</span>
+<span class="s1">    &quot;cutOff&quot;: &quot;2026-12-14T18:00:00+04:00&quot;,</span>
 <span class="s1">    &quot;capacity&quot;: 10,</span>
 <span class="s1">    &quot;allowWaitlist&quot;: true</span>
 <span class="s1">  }&#39;</span>
 </code></pre></div>
 
 <h3 id="register-for-a-trip">Register for a Trip<a class="headerlink" href="#register-for-a-trip" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/api/trips/456/register/<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer YOUR_TOKEN&quot;</span>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/api/trips/456/register<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer YOUR_TOKEN&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;vehicleId&quot;: 1}&#39;</span>
 </code></pre></div>
 
 <h3 id="search-members">Search Members<a class="headerlink" href="#search-members" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://localhost:8000/api/members/search/?query=john&quot;</span><span class="w"> </span><span class="se">\</span>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://localhost:8000/api/members/search?query=john&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer YOUR_TOKEN&quot;</span>
 </code></pre></div>
 
 <h2 id="step-4-check-your-profile">Step 4: Check Your Profile<a class="headerlink" href="#step-4-check-your-profile" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>http://localhost:8000/api/members/me/<span class="w"> </span><span class="se">\</span>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>http://localhost:8000/api/members/<span class="o">{</span>your_member_id<span class="o">}</span>/<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer YOUR_TOKEN&quot;</span>
 </code></pre></div>
 
+<blockquote>
+<p><strong>Note:</strong> There is no <code>/api/members/me/</code> endpoint. You must use your numeric member ID.</p>
+</blockquote>
 <h2 id="response-format">Response Format<a class="headerlink" href="#response-format" title="Permanent link">&para;</a></h2>
 <h3 id="success-response">Success Response<a class="headerlink" href="#success-response" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
@@ -1773,8 +1832,8 @@
 <h2 id="time-zone-note">Time Zone Note<a class="headerlink" href="#time-zone-note" title="Permanent link">&para;</a></h2>
 <p>All dates use <strong>Asia/Dubai time zone (UTC+4)</strong> with no daylight saving time. Examples:</p>
 <ul>
-<li><code>2024-12-15T07:00:00+04:00</code> - December 15, 2024 at 7:00 AM Dubai time</li>
-<li><code>2024-12-14T18:00:00+04:00</code> - December 14, 2024 at 6:00 PM Dubai time</li>
+<li><code>2026-12-15T07:00:00+04:00</code> - December 15, 2026 at 7:00 AM Dubai time</li>
+<li><code>2026-12-14T18:00:00+04:00</code> - December 14, 2026 at 6:00 PM Dubai time</li>
 </ul>
 <h2 id="field-naming">Field Naming<a class="headerlink" href="#field-naming" title="Permanent link">&para;</a></h2>
 <ul>

@@ -612,10 +612,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#vote-on-a-trip-request" class="md-nav__link">
+  <a href="#delete-a-trip-request" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Vote on a Trip Request
+        Delete a Trip Request
       
     </span>
   </a>
@@ -782,6 +782,33 @@
     
   
     Meeting Points
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
   
 
     
@@ -1152,6 +1179,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../account-deletion/" class="md-nav__link">
         
   
@@ -1352,10 +1406,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#vote-on-a-trip-request" class="md-nav__link">
+  <a href="#delete-a-trip-request" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Vote on a Trip Request
+        Delete a Trip Request
       
     </span>
   </a>
@@ -1492,122 +1546,239 @@
 <h1 id="trip-requests">Trip Requests<a class="headerlink" href="#trip-requests" title="Permanent link">&para;</a></h1>
 <p>This document outlines the trip request (proposal) system where members can suggest trip ideas that are then voted on by the community.</p>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>Trip requests allow members to propose trip ideas. Other members can vote on these proposals, and the results are aggregated to help trip organizers understand community interest.</p>
+<p>Trip requests allow members to propose trip ideas. The results are aggregated to help trip organizers understand community interest.</p>
 <h2 id="endpoints">Endpoints<a class="headerlink" href="#endpoints" title="Permanent link">&para;</a></h2>
 <h3 id="list-trip-requests">List Trip Requests<a class="headerlink" href="#list-trip-requests" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>GET</strong> <code>/api/triprequests/</code></li>
 <li><strong>GET</strong> <code>/api/triprequests/{id}/</code></li>
-<li>Requires <code>VIEW_UPGRADE_REQ</code> permission or viewing own requests</li>
+<li>Authentication: Optional (public read access)</li>
 </ul>
 <p><strong>Response:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;next&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;previous&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;results&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;member&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;johndoe&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;firstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;lastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Doe&quot;</span>
+<span class="w">        </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;johndoe&quot;</span>
 <span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nt">&quot;timeOfDay&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MORNING&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;area&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DUBAI&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Newbie&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;numericLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nt">&quot;date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-12-20&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;voteCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-11-15T10:00:00+04:00&quot;</span>
+<span class="w">      </span><span class="nt">&quot;timeOfDay&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Morning&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;area&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dubai&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Newbie&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-04-20&quot;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
 
+<p><strong>Response Field Notes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>Unique trip request ID</td>
+</tr>
+<tr>
+<td><code>member</code></td>
+<td>object</td>
+<td>Member who created the request (<code>id</code>, <code>username</code>)</td>
+</tr>
+<tr>
+<td><code>timeOfDay</code></td>
+<td>string</td>
+<td><strong>Display name</strong> (e.g., "Morning", "Mid-day", "Afternoon", "Evening", "Any")</td>
+</tr>
+<tr>
+<td><code>area</code></td>
+<td>string</td>
+<td><strong>Display name</strong> (e.g., "Dubai", "Abu Dhabi", "Al Ain", "Northern Emirates", "Liwa")</td>
+</tr>
+<tr>
+<td><code>level</code></td>
+<td>string</td>
+<td><strong>Level name</strong> (e.g., "Newbie", "Intermediate"). This is a string, NOT a level object.</td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td>date</td>
+<td>Requested trip date</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note:</strong> The list response does NOT include <code>voteCount</code> or <code>created</code> fields. Vote counts are only available via the <a href="#aggregate-trip-requests">Aggregate endpoint</a>.</p>
+</blockquote>
 <h3 id="create-a-trip-request">Create a Trip Request<a class="headerlink" href="#create-a-trip-request" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>POST</strong> <code>/api/triprequests/</code></li>
 </ul>
 <p><strong>Request Body:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;timeOfDay&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MORNING&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;area&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DUBAI&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-12-20&quot;</span>
+<span class="w">  </span><span class="nt">&quot;timeOfDay&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MOR&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;area&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DXB&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-04-20&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
 
+<blockquote>
+<p><strong>Note:</strong> The create request uses <strong>enum codes</strong> (e.g., <code>"MOR"</code>, <code>"DXB"</code>), not display names. See <a href="#enums">Enums</a> below.</p>
+</blockquote>
 <p><strong>Response:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;member&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;timeOfDay&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MORNING&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;area&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DUBAI&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-12-20&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;voteCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-11-15T10:00:00+04:00&quot;</span>
+<span class="w">    </span><span class="nt">&quot;timeOfDay&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MOR&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;area&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DXB&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-04-20&quot;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
-<h3 id="vote-on-a-trip-request">Vote on a Trip Request<a class="headerlink" href="#vote-on-a-trip-request" title="Permanent link">&para;</a></h3>
+<h3 id="delete-a-trip-request">Delete a Trip Request<a class="headerlink" href="#delete-a-trip-request" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>POST</strong> <code>/api/triprequests/{id}/vote/</code></li>
-<li>Requires <code>VOTE_UPGRADE_REQ</code> permission</li>
+<li><strong>DELETE</strong> <code>/api/triprequests/{id}/</code></li>
+<li>Authentication: Required (Bearer token)</li>
+<li>Only the member who created the request (or superusers) can delete it.</li>
 </ul>
-<p><strong>Request Body:</strong></p>
+<p><strong>Success Response:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;vote&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;yes&quot;</span>
+<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;trip_deleted&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
 
-<p><strong>Response:</strong></p>
+<p><strong>Error Response (403 Forbidden):</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vote_registered&quot;</span>
+<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;not_allowed_to_delete_requests_by_other_members&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <h3 id="aggregate-trip-requests">Aggregate Trip Requests<a class="headerlink" href="#aggregate-trip-requests" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>GET</strong> <code>/api/triprequests/aggregate/</code></li>
-<li>Returns aggregated vote counts grouped by time of day, area, level, and date</li>
+<li><strong>GET</strong> <code>/api/triprequests/aggregate</code></li>
+<li>Returns aggregated vote counts grouped by specified fields</li>
 </ul>
-<p><strong>Query Parameters:</strong>
-- <code>includeLevel</code>: Include level in grouping
-- <code>includeArea</code>: Include area in grouping
-- <code>includeTimeOfDay</code>: Include time of day in grouping
-- <code>includeDate</code>: Include date in grouping</p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<p><strong>Query Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>include_area</code></td>
+<td>boolean</td>
+<td>Include area in grouping</td>
+</tr>
+<tr>
+<td><code>include_date</code></td>
+<td>boolean</td>
+<td>Include date in grouping</td>
+</tr>
+<tr>
+<td><code>include_level</code></td>
+<td>boolean</td>
+<td>Include level in grouping</td>
+</tr>
+<tr>
+<td><code>include_time_of_day</code></td>
+<td>boolean</td>
+<td>Include time of day in grouping</td>
+</tr>
+<tr>
+<td><code>first_sort</code></td>
+<td>string</td>
+<td>Primary sort field (<code>-voteCount</code>, <code>voteCount</code>, <code>-date</code>, <code>date</code>, <code>-level</code>, <code>level</code>)</td>
+</tr>
+<tr>
+<td><code>second_sort</code></td>
+<td>string</td>
+<td>Secondary sort field</td>
+</tr>
+<tr>
+<td><code>third_sort</code></td>
+<td>string</td>
+<td>Tertiary sort field</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note:</strong> The query parameters use <code>snake_case</code> with <code>include_</code> prefix (e.g., <code>include_area</code>, <code>include_time_of_day</code>), not <code>camelCase</code>.</p>
+</blockquote>
 <p><strong>Response:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">[</span>
 <span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;timeOfDay&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MORNING&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;area&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DUBAI&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;timeOfDay&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Morning&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;area&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dubai&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Newbie&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-12-20&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-04-20&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;voteCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">]</span>
 </code></pre></div>
 
+<blockquote>
+<p><strong>Note:</strong> <code>voteCount</code> in the aggregate response represents the COUNT of trip requests matching the grouping, not actual "votes". Field values are display names, not codes.</p>
+</blockquote>
 <h3 id="export-trip-requests-matrix">Export Trip Requests Matrix<a class="headerlink" href="#export-trip-requests-matrix" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>GET</strong> <code>/api/triprequests/export/</code></li>
-<li>Returns trip request data in CSV format</li>
+<li><strong>GET</strong> <code>/api/triprequests/export</code></li>
+<li>Returns trip request data in CSV matrix format</li>
 <li>Requires authentication</li>
 </ul>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<p><strong>Query Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>start_date</code></td>
+<td>date</td>
+<td>Start date filter (YYYY-MM-DD)</td>
+</tr>
+<tr>
+<td><code>end_date</code></td>
+<td>date</td>
+<td>End date filter (YYYY-MM-DD)</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Response:</strong></p>
 <div class="codehilite"><pre><span></span><code>Content-Type: text/csv
-Content-Disposition: attachment; filename=&quot;trip_requests_2024-11-15.csv&quot;
+Content-Disposition: attachment; filename=&quot;trip_requests_matrix_export.csv&quot;
 
-member,time_of_day,area,level,date,vote_count
-123,MORNING,DUBAI,10,2024-12-20,5
+Loc,level,Mon 20 AM,Mon 20 PM,...
+Dubai,Newbie,3,1,...
 </code></pre></div>
 
 <h2 id="query-parameters-for-list">Query Parameters for List<a class="headerlink" href="#query-parameters-for-list" title="Permanent link">&para;</a></h2>
@@ -1623,27 +1794,17 @@ member,time_of_day,area,level,date,vote_count
 <tr>
 <td><code>time_of_day</code></td>
 <td>string</td>
-<td>Filter by time of day (MORNING, AFTERNOON, EVENING)</td>
+<td>Filter by time of day code (MOR, MID, AFT, EVE, ANY)</td>
 </tr>
 <tr>
 <td><code>area</code></td>
 <td>string</td>
-<td>Filter by area (DUBAI, ABU_DHABI, etc.)</td>
+<td>Filter by area code (DXB, NOR, AUH, AAN, LIW)</td>
 </tr>
 <tr>
 <td><code>level</code></td>
 <td>integer</td>
 <td>Filter by level ID</td>
-</tr>
-<tr>
-<td><code>date</code></td>
-<td>date</td>
-<td>Filter by specific date</td>
-</tr>
-<tr>
-<td><code>member</code></td>
-<td>integer</td>
-<td>Filter by member ID</td>
 </tr>
 <tr>
 <td><code>page</code></td>
@@ -1657,27 +1818,44 @@ member,time_of_day,area,level,date,vote_count
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p><strong>Note:</strong> The <code>date</code> and <code>member</code> filters are NOT available in the <code>TripRequestFilter</code>. Only <code>time_of_day</code>, <code>area</code>, and <code>level</code> are supported.</p>
+</blockquote>
 <h2 id="enums">Enums<a class="headerlink" href="#enums" title="Permanent link">&para;</a></h2>
 <h3 id="timeofdaychoice">TimeOfDayChoice<a class="headerlink" href="#timeofdaychoice" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
-<th>Value</th>
+<th>Code</th>
+<th>Display Name</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>MORNING</code></td>
+<td><code>MOR</code></td>
+<td>Morning</td>
 <td>Morning trips</td>
 </tr>
 <tr>
-<td><code>AFTERNOON</code></td>
+<td><code>MID</code></td>
+<td>Mid-day</td>
+<td>Mid-day trips</td>
+</tr>
+<tr>
+<td><code>AFT</code></td>
+<td>Afternoon</td>
 <td>Afternoon trips</td>
 </tr>
 <tr>
-<td><code>EVENING</code></td>
+<td><code>EVE</code></td>
+<td>Evening</td>
 <td>Evening trips</td>
+</tr>
+<tr>
+<td><code>ANY</code></td>
+<td>Any</td>
+<td>Any time of day</td>
 </tr>
 </tbody>
 </table>
@@ -1685,29 +1863,35 @@ member,time_of_day,area,level,date,vote_count
 <table>
 <thead>
 <tr>
-<th>Value</th>
+<th>Code</th>
+<th>Display Name</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>DUBAI</code></td>
+<td><code>DXB</code></td>
+<td>Dubai</td>
 <td>Dubai area</td>
 </tr>
 <tr>
-<td><code>ABU_DHABI</code></td>
-<td>Abu Dhabi area</td>
-</tr>
-<tr>
-<td><code>AL_AIN</code></td>
-<td>Al Ain area</td>
-</tr>
-<tr>
-<td><code>NORTHERN</code></td>
+<td><code>NOR</code></td>
+<td>Northern Emirates</td>
 <td>Northern regions</td>
 </tr>
 <tr>
-<td><code>LIWA</code></td>
+<td><code>AUH</code></td>
+<td>Abu Dhabi</td>
+<td>Abu Dhabi area</td>
+</tr>
+<tr>
+<td><code>AAN</code></td>
+<td>Al Ain</td>
+<td>Al Ain area</td>
+</tr>
+<tr>
+<td><code>LIW</code></td>
+<td>Liwa</td>
 <td>Liwa area</td>
 </tr>
 </tbody>
@@ -1723,30 +1907,29 @@ member,time_of_day,area,level,date,vote_count
 <tbody>
 <tr>
 <td>List trip requests</td>
-<td><code>VIEW_UPGRADE_REQ</code> or own requests</td>
+<td>Any user (public)</td>
 </tr>
 <tr>
 <td>Create trip request</td>
 <td>Any authenticated user</td>
 </tr>
 <tr>
-<td>Vote on request</td>
-<td><code>VOTE_UPGRADE_REQ</code></td>
+<td>Delete trip request</td>
+<td>Creator or superuser</td>
 </tr>
 <tr>
 <td>Export requests</td>
-<td><code>VIEW_UPGRADE_REQ</code></td>
+<td>Authenticated</td>
 </tr>
 <tr>
 <td>Aggregate requests</td>
-<td>Any authenticated user</td>
+<td>Any user (public)</td>
 </tr>
 </tbody>
 </table>
 <h2 id="use-cases">Use Cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h2>
 <ol>
 <li><strong>Proposing a trip idea</strong>: Create a trip request with desired time, area, level, and date</li>
-<li><strong>Gauging interest</strong>: Other members vote on the proposal</li>
 <li><strong>Organizing trips</strong>: Trip leads can use aggregate data to see what trips members want</li>
 <li><strong>Planning</strong>: Results help organizers plan future trips based on community interest</li>
 </ol>

@@ -493,6 +493,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#firebase-custom-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Firebase Custom Token
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Firebase Custom Token">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate-firebase-custom-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generate Firebase Custom Token
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -705,6 +733,33 @@
     
   
     Meeting Points
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
   
 
     
@@ -1075,6 +1130,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../account-deletion/" class="md-nav__link">
         
   
@@ -1318,6 +1400,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#firebase-custom-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Firebase Custom Token
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Firebase Custom Token">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate-firebase-custom-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generate Firebase Custom Token
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1342,19 +1452,199 @@
 <p>The API provides endpoints for user registration and password management, powered by the <code>rest_registration</code> library.</p>
 <h3 id="registration">Registration<a class="headerlink" href="#registration" title="Permanent link">&para;</a></h3>
 <p><strong>POST</strong> <code>/api/auth/register/</code></p>
-<p>The request body should include the user's details. Refer to the <code>MemberRegistrationSerializer</code> for the full list of required and optional fields.</p>
+<p>The request body should include the user's details as defined by the <code>MemberRegistrationSerializer</code>.</p>
+<p><strong>Request Body:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;newuser&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user@example.com&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;firstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;lastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Doe&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;phone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0501234567&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;securePassword123&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;password2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;securePassword123&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;dob&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1990-01-15&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;iceName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Jane Doe&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;icePhone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0507654321&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;gender&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;M&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;nationality&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AE&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;city&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dubai&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;carBrand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TO&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;carModel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Land Cruiser&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;carColor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;White&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;carYear&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2022</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Fields:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>username</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Unique username</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Email address</td>
+</tr>
+<tr>
+<td><code>firstName</code></td>
+<td>string</td>
+<td>No</td>
+<td>First name</td>
+</tr>
+<tr>
+<td><code>lastName</code></td>
+<td>string</td>
+<td>No</td>
+<td>Last name</td>
+</tr>
+<tr>
+<td><code>phone</code></td>
+<td>string</td>
+<td>No</td>
+<td>Phone number</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Password</td>
+</tr>
+<tr>
+<td><code>password2</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Password confirmation (must match <code>password</code>)</td>
+</tr>
+<tr>
+<td><code>dob</code></td>
+<td>date</td>
+<td>No</td>
+<td>Date of birth (YYYY-MM-DD)</td>
+</tr>
+<tr>
+<td><code>iceName</code></td>
+<td>string</td>
+<td>No</td>
+<td>Emergency contact name</td>
+</tr>
+<tr>
+<td><code>icePhone</code></td>
+<td>string</td>
+<td>No</td>
+<td>Emergency contact phone</td>
+</tr>
+<tr>
+<td><code>gender</code></td>
+<td>string</td>
+<td>No</td>
+<td>Gender code (M, F, O)</td>
+</tr>
+<tr>
+<td><code>nationality</code></td>
+<td>string</td>
+<td>No</td>
+<td>Country code (e.g., "AE")</td>
+</tr>
+<tr>
+<td><code>city</code></td>
+<td>string</td>
+<td>No</td>
+<td>City name</td>
+</tr>
+<tr>
+<td><code>avatar</code></td>
+<td>file</td>
+<td>No</td>
+<td>Profile image (multipart/form-data)</td>
+</tr>
+<tr>
+<td><code>carBrand</code></td>
+<td>string</td>
+<td>No</td>
+<td>2-letter car brand code (e.g., "TO" for Toyota). If provided, a Vehicle is automatically created.</td>
+</tr>
+<tr>
+<td><code>carModel</code></td>
+<td>string</td>
+<td>No</td>
+<td>Car model name</td>
+</tr>
+<tr>
+<td><code>carColor</code></td>
+<td>string</td>
+<td>No</td>
+<td>Car color</td>
+</tr>
+<tr>
+<td><code>carYear</code></td>
+<td>integer</td>
+<td>No</td>
+<td>Car year of manufacture</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note:</strong> The <code>carBrand</code>, <code>carModel</code>, <code>carColor</code>, and <code>carYear</code> fields are write-only. When provided during registration, a Vehicle record is automatically created and set as the member's primary vehicle. See <a href="../vehicles/">Vehicles</a> for managing vehicles after registration.</p>
+</blockquote>
 <h3 id="change-password">Change Password<a class="headerlink" href="#change-password" title="Permanent link">&para;</a></h3>
 <p>Authenticated users can change their password by making a <code>POST</code> request to <code>/api/auth/change-password/</code>.</p>
 <p><strong>POST</strong> <code>/api/auth/change-password/</code></p>
 <p><strong>Request Body:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;old_password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;current_password&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;oldPassword&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;current_password&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;new_password&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;password2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;new_password_confirmation&quot;</span>
+<span class="w">    </span><span class="nt">&quot;passwordConfirm&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;new_password&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
 
-<p><em>Note: <code>password</code> and <code>password2</code> must match.</em></p>
+<p><strong>Fields:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>oldPassword</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Current password</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>New password</td>
+</tr>
+<tr>
+<td><code>passwordConfirm</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>New password confirmation (must match <code>password</code>)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note:</strong> The API accepts camelCase field names. The underlying serializer fields are <code>old_password</code>, <code>password</code>, and <code>password_confirm</code>.</p>
+</blockquote>
+<p><em>Note: <code>password</code> and <code>passwordConfirm</code> must match.</em></p>
 <p><strong>Important:</strong> When a user changes their password, all existing JWT tokens are automatically invalidated. Users will need to log in again with their new password to obtain a fresh token.</p>
 <h3 id="other-endpoints">Other Endpoints<a class="headerlink" href="#other-endpoints" title="Permanent link">&para;</a></h3>
 <p>The <code>rest_registration</code> library also provides endpoints for:
@@ -1377,23 +1667,26 @@ The response will be a JSON object containing the user's profile information. Th
 <span class="w">    </span><span class="nt">&quot;firstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Test&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;lastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;User&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;phone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1234567890&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;carBrand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toyota&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;carModel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Land Cruiser&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;carYear&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2022</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;carColor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;White&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;carImage&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;dob&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2000-01-01&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;iceName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Jane Doe&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;icePhone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0987654321&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Newbie&quot;</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Newbie&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;numericLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;minTripsForUpgrade&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;tripCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;avatar&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;permissions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;permissions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;search_members&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;levels&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
 <span class="w">    </span><span class="nt">&quot;paidMember&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;dateJoined&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-01-01T12:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;dateJoined&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-01T12:00:00&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;city&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dubai&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;gender&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;M&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;nationality&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AE&quot;</span><span class="p">,</span>
@@ -1401,13 +1694,73 @@ The response will be a JSON object containing the user's profile information. Th
 <span class="p">}</span>
 </code></pre></div>
 
+<blockquote>
+<p><strong>Note:</strong> The profile response does NOT include vehicle/car fields. Vehicles are managed separately via the <a href="../vehicles/">Vehicles</a> endpoints.</p>
+<p><strong>Note on <code>permissions</code>:</strong> Each entry has an <code>action</code> field containing the <strong>lowercase DB value</strong> of the action (e.g., <code>"search_members"</code>, <code>"create_trip"</code>). The <code>levels</code> field contains an array of level objects (<code>{id, name, numericLevel, minTripsForUpgrade}</code>) for permissions that are restricted to specific levels. An empty <code>levels</code> array means the permission applies to all levels.</p>
+</blockquote>
 <h3 id="updating-a-profile">Updating a Profile<a class="headerlink" href="#updating-a-profile" title="Permanent link">&para;</a></h3>
 <p>To update a user's profile, make a <code>PATCH</code> request to <code>/api/members/{id}/</code>. Users can only update their own profiles unless they are an administrator.</p>
 <p><strong>PATCH</strong> <code>/api/members/{id}/</code></p>
 <p><strong>Request Body:</strong>
-The request body should contain the fields to be updated. For a list of editable fields, refer to the <code>EditMemberSerializer</code>. Note that some fields like <code>username</code>, <code>email</code>, and <code>level</code> are read-only.</p>
+The request body should contain the fields to be updated. Note that some fields like <code>username</code>, <code>email</code>, <code>level</code>, <code>tripCount</code>, and <code>paidMember</code> are read-only.</p>
+<p><strong>Editable Fields:</strong>
+<code>firstName</code>, <code>lastName</code>, <code>phone</code>, <code>city</code>, <code>dob</code>, <code>iceName</code>, <code>icePhone</code>, <code>gender</code>, <code>nationality</code>, <code>avatar</code>, <code>title</code></p>
 <p><strong>Success Response:</strong>
 A successful update will return a <code>200 OK</code> status code and the updated profile data.</p>
+<h2 id="firebase-custom-token">Firebase Custom Token<a class="headerlink" href="#firebase-custom-token" title="Permanent link">&para;</a></h2>
+<h3 id="generate-firebase-custom-token">Generate Firebase Custom Token<a class="headerlink" href="#generate-firebase-custom-token" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>POST</strong> <code>/api/firebase/custom-token</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<ul>
+<li>Generates a Firebase custom authentication token for the authenticated user. This can be used by clients to authenticate with Firebase services (e.g., real-time database, Cloud Messaging).</li>
+<li><strong>Authentication:</strong> Required (Bearer token).</li>
+</ul>
+</li>
+</ul>
+<p><strong>Example Request:</strong></p>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;http://localhost:8000/api/firebase/custom-token&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your-token&gt;&quot;</span>
+</code></pre></div>
+
+<p><strong>Success Response (200 OK):</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;firebaseToken&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;expiresIn&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3600</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>firebaseToken</code></td>
+<td>string</td>
+<td>Firebase custom token (JWT)</td>
+</tr>
+<tr>
+<td><code>expiresIn</code></td>
+<td>integer</td>
+<td>Token expiry in seconds (3600 = 1 hour)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Error Response (500 Internal Server Error):</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Firebase error: &lt;error_message&gt;&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>This error occurs if the Firebase Admin SDK is not initialized or encounters an error during token creation.</p>
 
 
 

@@ -18,7 +18,7 @@
         <link rel="prev" href="../background-tasks/">
       
       
-        <link rel="next" href="../account-deletion/">
+        <link rel="next" href="../choices/">
       
       
         
@@ -588,6 +588,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../logbook/" class="md-nav__link">
         
   
@@ -1080,6 +1107,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../account-deletion/" class="md-nav__link">
         
   
@@ -1350,7 +1404,7 @@
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
 <p>The UIString feature allows for dynamic management of strings in the application's UI. Strings are stored as key-value pairs, with support for English and Arabic translations. The API provides endpoints for creating, retrieving, updating, and deleting these strings.</p>
 <h2 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h2>
-<p>All API endpoints require authentication. You must have the <code>EDIT_UI_STRINGS</code> permission to create, update, or delete UI strings.</p>
+<p><strong>GET</strong> (read) endpoints are <strong>public</strong> — no authentication required. <strong>POST</strong>, <strong>PUT</strong>, <strong>PATCH</strong>, and <strong>DELETE</strong> endpoints require authentication and the <code>EDIT_UI_STRINGS</code> permission.</p>
 <h2 id="endpoints">Endpoints<a class="headerlink" href="#endpoints" title="Permanent link">&para;</a></h2>
 <h3 id="retrieve-a-ui-string">Retrieve a UI String<a class="headerlink" href="#retrieve-a-ui-string" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1364,7 +1418,7 @@
 </ul>
 <p><strong>Example Request:</strong></p>
 <p><code>bash
-curl -X GET -H "Authorization: Bearer &lt;token&gt;" "https://example.com/api/strings/welcome_message/?lang=ar"</code></p>
+curl -X GET "https://example.com/api/strings/welcome_message/?lang=ar"</code></p>
 <p><strong>Example Response:</strong></p>
 <p><code>json
 {

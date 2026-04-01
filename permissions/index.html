@@ -537,6 +537,95 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#groups-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Groups API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Groups API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List Groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retrieve-a-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retrieve a Group
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#permission-matrix-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permission Matrix API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Permission Matrix API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-permission-matrix-entries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List Permission Matrix Entries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retrieve-a-permission-matrix-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retrieve a Permission Matrix Entry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-permission-checks-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Permission Checks Work
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -776,6 +865,33 @@
     
   
     Meeting Points
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
   
 
     
@@ -1146,6 +1262,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../account-deletion/" class="md-nav__link">
         
   
@@ -1460,6 +1603,95 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#groups-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Groups API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Groups API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List Groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retrieve-a-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retrieve a Group
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#permission-matrix-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permission Matrix API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Permission Matrix API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-permission-matrix-entries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List Permission Matrix Entries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retrieve-a-permission-matrix-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retrieve a Permission Matrix Entry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-permission-checks-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Permission Checks Work
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1496,13 +1728,16 @@
 <span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;testuser&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="err">...</span>
 <span class="w">    </span><span class="nt">&quot;permissions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">&quot;CREATE_TRIP&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;VIEW_CONTACT_INFO&quot;</span>
+<span class="w">        </span><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;create_trip&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;levels&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]},</span>
+<span class="w">        </span><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;view_contact_info&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;levels&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]}</span>
 <span class="w">    </span><span class="p">],</span>
 <span class="w">    </span><span class="err">...</span>
 <span class="p">}</span>
 </code></pre></div>
 
+<blockquote>
+<p><strong>Note:</strong> Each permission entry is an <strong>object</strong>, not a plain string. The <code>action</code> field contains the <strong>lowercase DB value</strong> (e.g., <code>"create_trip"</code>, not <code>"CREATE_TRIP"</code>). The <code>levels</code> field is an array of level objects (<code>{id, name, numericLevel, minTripsForUpgrade}</code>) for level-restricted permissions, or an empty array for permissions that apply to all levels.</p>
+</blockquote>
 <h2 id="groups-and-levels">Groups and Levels<a class="headerlink" href="#groups-and-levels" title="Permanent link">&para;</a></h2>
 <p>The following table lists the default groups and their corresponding experience levels:</p>
 <table>
@@ -1645,157 +1880,279 @@
 <li>Have all permissions.</li>
 </ul>
 <h2 id="full-list-of-permissions-actions">Full List of Permissions (Actions)<a class="headerlink" href="#full-list-of-permissions-actions" title="Permanent link">&para;</a></h2>
-<p>The following table lists all possible actions in the system.</p>
+<p>The following table lists all possible actions in the system. The <strong>Action (DB value)</strong> column shows the exact lowercase string returned by the API in the <code>action</code> field.</p>
+<blockquote>
+<p><strong>Note:</strong> Action values are all <strong>lowercase</strong> (e.g., <code>"create_trip"</code>). Two values differ from their enum names: <code>OVERRIDE_WAITLIST_SETTING</code> → <code>"override_waitlist"</code> and <code>CREATE_UPGRADE_REQ_FOR_OTHERS</code> → <code>"create_upgrade_req_for_other"</code> (singular).</p>
+</blockquote>
 <table>
 <thead>
 <tr>
-<th>Action</th>
+<th>Action (DB value)</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>CREATE_TRIP</code></td>
+<td><code>create_trip</code></td>
 <td>Create Trip</td>
 </tr>
 <tr>
-<td><code>CREATE_TRIP_WITH_APPROVAL</code></td>
+<td><code>create_trip_with_approval</code></td>
 <td>Create Trip With Approval</td>
 </tr>
 <tr>
-<td><code>CREATE_TRIP_REPORT</code></td>
+<td><code>create_trip_report</code></td>
 <td>Create Trip Report</td>
 </tr>
 <tr>
-<td><code>APPROVE_TRIP</code></td>
+<td><code>approve_trip</code></td>
 <td>Approve Trip</td>
 </tr>
 <tr>
-<td><code>OVERRIDE_WAITLIST_SETTING</code></td>
+<td><code>override_waitlist</code></td>
 <td>Override Global Waitlist Setting</td>
 </tr>
 <tr>
-<td><code>BYPASS_LEVEL_REQ</code></td>
+<td><code>bypass_level_req</code></td>
 <td>Bypass Level Requirements for Trip</td>
 </tr>
 <tr>
-<td><code>EDIT_TRIPS</code></td>
+<td><code>edit_trips</code></td>
 <td>Edit Trips</td>
 </tr>
 <tr>
-<td><code>EDIT_TRIP_MEDIA</code></td>
+<td><code>edit_trip_media</code></td>
 <td>Edit Trip Media</td>
 </tr>
 <tr>
-<td><code>EDIT_TRIP_REGISTRATIONS</code></td>
+<td><code>edit_trip_registrations</code></td>
 <td>Edit Trip Registrations</td>
 </tr>
 <tr>
-<td><code>DELETE_TRIPS</code></td>
+<td><code>delete_trips</code></td>
 <td>Delete Trips</td>
 </tr>
 <tr>
-<td><code>DELETE_TRIP_COMMENTS</code></td>
+<td><code>delete_trip_comments</code></td>
 <td>Delete Trip Comments</td>
 </tr>
 <tr>
-<td><code>CREATE_MEETING_POINTS</code></td>
+<td><code>create_meeting_points</code></td>
 <td>Create Meeting Points</td>
 </tr>
 <tr>
-<td><code>EDIT_MEETING_POINTS</code></td>
+<td><code>edit_meeting_points</code></td>
 <td>Edit Meeting Points</td>
 </tr>
 <tr>
-<td><code>DELETE_MEETING_POINTS</code></td>
+<td><code>delete_meeting_points</code></td>
 <td>Delete Meeting Points</td>
 </tr>
 <tr>
-<td><code>CREATE_UPGRADE_REQ_FOR_SELF</code></td>
+<td><code>create_upgrade_req_for_self</code></td>
 <td>Create Upgrade Request For Self</td>
 </tr>
 <tr>
-<td><code>CREATE_UPGRADE_REQ_FOR_OTHERS</code></td>
+<td><code>create_upgrade_req_for_other</code></td>
 <td>Create Upgrade Request For Others</td>
 </tr>
 <tr>
-<td><code>EDIT_UPGRADE_REQ</code></td>
+<td><code>edit_upgrade_req</code></td>
 <td>Edit Upgrade Request</td>
 </tr>
 <tr>
-<td><code>APPROVE_UPGRADE_REQ</code></td>
+<td><code>approve_upgrade_req</code></td>
 <td>Approve Upgrade Request</td>
 </tr>
 <tr>
-<td><code>DELETE_UPGRADE_REQ</code></td>
+<td><code>delete_upgrade_req</code></td>
 <td>Delete Upgrade Request</td>
 </tr>
 <tr>
-<td><code>VIEW_UPGRADE_REQ</code></td>
+<td><code>view_upgrade_req</code></td>
 <td>View Upgrade Request (ALL levels)</td>
 </tr>
 <tr>
-<td><code>VOTE_UPGRADE_REQ</code></td>
+<td><code>vote_upgrade_req</code></td>
 <td>Vote Upgrade Request</td>
 </tr>
 <tr>
-<td><code>CREATE_COMMENT_UPGRADE_REQ</code></td>
+<td><code>create_comment_upgrade_req</code></td>
 <td>Comment Upgrade Request</td>
 </tr>
 <tr>
-<td><code>DELETE_COMMENT_UPGRADE_REQ</code></td>
+<td><code>delete_comment_upgrade_req</code></td>
 <td>Delete Comment Upgrade Request</td>
 </tr>
 <tr>
-<td><code>EDIT_MEMBERSHIP_PAYMENTS</code></td>
+<td><code>edit_membership_payments</code></td>
 <td>Edit Membership Payments</td>
 </tr>
 <tr>
-<td><code>CREATE_LOGBOOK_ENTRIES</code></td>
+<td><code>create_logbook_entries</code></td>
 <td>Create Logbook Entries</td>
 </tr>
 <tr>
-<td><code>SIGN_LOGBOOK_SKILLS</code></td>
+<td><code>sign_logbook_skills</code></td>
 <td>Sign Logbook Skills</td>
 </tr>
 <tr>
-<td><code>CREATE_LOGBOOK_ENTRIES_SUPERUSER</code></td>
+<td><code>create_logbook_entries_superuser</code></td>
 <td>Create Logbook Entries (superuser bypass)</td>
 </tr>
 <tr>
-<td><code>APPROVE_LOGBOOK_MIGRATION</code></td>
+<td><code>approve_logbook_migration</code></td>
 <td>Approve Logbook Migration Requests</td>
 </tr>
 <tr>
-<td><code>ACCESS_MARSHAL_PANEL</code></td>
+<td><code>access_marshal_panel</code></td>
 <td>Access Marshal Panel</td>
 </tr>
 <tr>
-<td><code>VIEW_CONTACT_INFO</code></td>
+<td><code>view_contact_info</code></td>
 <td>View Contact Info</td>
 </tr>
 <tr>
-<td><code>VIEW_MEMBER_TRIP_HISTORY</code></td>
+<td><code>view_member_trip_history</code></td>
 <td>View Member Trip History</td>
 </tr>
 <tr>
-<td><code>SEARCH_MEMBERS</code></td>
+<td><code>search_members</code></td>
 <td>Search Members</td>
 </tr>
 <tr>
-<td><code>CAN_BE_DEPUTY_LEAD</code></td>
+<td><code>can_be_deputy_lead</code></td>
 <td>Can Be Deputy Lead</td>
 </tr>
 <tr>
-<td><code>EDIT_UI_STRINGS</code></td>
+<td><code>edit_ui_strings</code></td>
 <td>Edit UI Strings</td>
 </tr>
 <tr>
-<td><code>EDIT_GLOBAL_SETTINGS</code></td>
+<td><code>edit_global_settings</code></td>
 <td>Edit Global Settings</td>
+</tr>
+<tr>
+<td><code>search_trips</code></td>
+<td>Search Trips</td>
+</tr>
+<tr>
+<td><code>view_trips_as_lead</code></td>
+<td>View Trips as Lead</td>
 </tr>
 </tbody>
 </table>
+<h2 id="groups-api">Groups API<a class="headerlink" href="#groups-api" title="Permanent link">&para;</a></h2>
+<p>The Groups API provides read-only access to the list of user groups.</p>
+<h3 id="list-groups">List Groups<a class="headerlink" href="#list-groups" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>GET</strong> <code>/api/groups/</code><ul>
+<li>Retrieves a list of all groups, ordered by name.</li>
+<li><strong>Authentication:</strong> Optional (public for reading).</li>
+</ul>
+</li>
+</ul>
+<p><strong>Example Response:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Board members&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;permissions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Explorers&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;permissions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+
+<h3 id="retrieve-a-group">Retrieve a Group<a class="headerlink" href="#retrieve-a-group" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>GET</strong> <code>/api/groups/{id}/</code><ul>
+<li>Retrieves the details of a single group.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> Groups are managed via Django Admin. The API does not support creating, updating, or deleting groups.</p>
+</blockquote>
+<h2 id="permission-matrix-api">Permission Matrix API<a class="headerlink" href="#permission-matrix-api" title="Permanent link">&para;</a></h2>
+<p>The Permission Matrix API provides read-only access to the mapping between groups, actions, and levels.</p>
+<h3 id="list-permission-matrix-entries">List Permission Matrix Entries<a class="headerlink" href="#list-permission-matrix-entries" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>GET</strong> <code>/api/permissionmatrix/</code><ul>
+<li>Retrieves a list of all permission matrix entries, ordered by ID.</li>
+<li><strong>Authentication:</strong> Optional (public for reading).</li>
+</ul>
+</li>
+</ul>
+<p><strong>Example Response:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;create_trip&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;levels&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;group&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;approve_trip&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;levels&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">        </span><span class="nt">&quot;group&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>Unique entry ID</td>
+</tr>
+<tr>
+<td><code>action</code></td>
+<td>string</td>
+<td>Permission action identifier (see actions table above)</td>
+</tr>
+<tr>
+<td><code>levels</code></td>
+<td>array</td>
+<td>List of Level IDs this permission applies to. Empty array means it applies to <strong>all levels</strong>.</td>
+</tr>
+<tr>
+<td><code>group</code></td>
+<td>integer</td>
+<td>Group ID this permission is assigned to</td>
+</tr>
+</tbody>
+</table>
+<h3 id="retrieve-a-permission-matrix-entry">Retrieve a Permission Matrix Entry<a class="headerlink" href="#retrieve-a-permission-matrix-entry" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>GET</strong> <code>/api/permissionmatrix/{id}/</code><ul>
+<li>Retrieves a single permission matrix entry.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> The permission matrix is managed via Django Admin. The API does not support creating, updating, or deleting entries.</p>
+</blockquote>
+<h3 id="how-permission-checks-work">How Permission Checks Work<a class="headerlink" href="#how-permission-checks-work" title="Permanent link">&para;</a></h3>
+<p>When the system checks if a user has a specific permission:</p>
+<ol>
+<li>It finds all <code>PermissionMatrix</code> entries where the <code>action</code> matches and the user belongs to the associated <code>group</code>.</li>
+<li>If the entry has <strong>no levels</strong> attached (empty array), the permission applies to all levels.</li>
+<li>If the entry has <strong>specific levels</strong>, the permission only applies when the target member/trip is at one of those levels.</li>
+<li><strong>Superusers</strong> bypass all permission checks.</li>
+</ol>
 
 
 

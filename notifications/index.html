@@ -588,6 +588,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../logbook/" class="md-nav__link">
         
   
@@ -948,6 +975,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#notification-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notification Settings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#notification-purging" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1089,6 +1127,33 @@
     
   
     UI Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
   
 
     
@@ -1374,6 +1439,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#notification-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notification Settings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#notification-purging" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1423,7 +1499,7 @@
 <li><strong>Accepted from Waitlist</strong>: Sent to a member when they are moved from the waitlist to the registered list for a trip.</li>
 <li><strong>Removed from Trip Registered List</strong>: Sent to a member when they are removed from the registered list for a trip.</li>
 <li><strong>Removed from Trip Waitlist</strong>: Sent to a member when they are removed from the waitlist for a trip.</li>
-<li><strong>New Trip Comment</strong>: Sent when a new comment is added to a trip. This is used for the real-time chat feature.</li>
+<li><strong>New Trip Comment</strong>: Sent when a new comment is added to a trip. This is a push-only notification and is NOT stored in the notification log.</li>
 </ul>
 <h3 id="upgrade-requests">Upgrade Requests<a class="headerlink" href="#upgrade-requests" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1437,7 +1513,7 @@
 </ul>
 <h3 id="feedback">Feedback<a class="headerlink" href="#feedback" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Feedback Notification</strong>: Sent to the administrators when a member submits feedback.</li>
+<li><strong>Feedback Notification</strong>: Sent to administrators when a member submits feedback via email/Telegram. This is <strong>not</strong> stored as a <code>NotificationType</code> log entry and does not appear in the notification history endpoint.</li>
 </ul>
 <h2 id="notificationtype-enum-values"><code>NotificationType</code> Enum Values<a class="headerlink" href="#notificationtype-enum-values" title="Permanent link">&para;</a></h2>
 <p>The <code>type</code> field in the notification object will contain one of the following enum values:</p>
@@ -1487,10 +1563,84 @@
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p><strong>Note:</strong> Trip comment notifications are sent via push only and do not appear in the notification log. There is no <code>NEW_TRIP_COMMENT</code> enum value in <code>NotificationType</code>.</p>
+</blockquote>
 <h2 id="notification-history">Notification History<a class="headerlink" href="#notification-history" title="Permanent link">&para;</a></h2>
 <p>A log of all notifications sent to a member is stored in the database. This allows the client application to display a history of notifications to the user.</p>
 <p><strong>GET</strong> <code>/api/notifications/</code></p>
-<p>The endpoint returns a paginated list of the 20 most recent notifications for the authenticated user. Each notification object in the response now includes an <code>is_read</code> boolean field, which indicates whether the notification has been read by the user.</p>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p>The endpoint returns the 20 most recent notifications for the authenticated user, ordered by timestamp descending.</p>
+<p><strong>Response Fields:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>Unique notification ID</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>string</td>
+<td>Notification title</td>
+</tr>
+<tr>
+<td><code>body</code></td>
+<td>string</td>
+<td>Notification body text</td>
+</tr>
+<tr>
+<td><code>timestamp</code></td>
+<td>datetime</td>
+<td>When the notification was created</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>string</td>
+<td>Notification type enum value (see table above)</td>
+</tr>
+<tr>
+<td><code>relatedObjectId</code></td>
+<td>integer</td>
+<td>ID of the related object (e.g., trip ID, upgrade request ID). Can be null.</td>
+</tr>
+<tr>
+<td><code>relatedObjectType</code></td>
+<td>string</td>
+<td>Type of the related object (e.g., "trip", "upgrade_request"). Can be null.</td>
+</tr>
+<tr>
+<td><code>isRead</code></td>
+<td>boolean</td>
+<td>Whether the notification has been read</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response Example:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Trip Approved&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;body&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Your trip &#39;Desert Safari&#39; has been approved.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-15T10:00:00&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TRIP_APPR&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;relatedObjectId&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">456</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;relatedObjectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;trip&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;isRead&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+
+<blockquote>
+<p><strong>Note:</strong> The endpoint returns a plain array of the 20 most recent notifications (no pagination wrapper). All field names use camelCase in the response.</p>
+</blockquote>
 <h3 id="marking-notifications-as-read">Marking Notifications as Read<a class="headerlink" href="#marking-notifications-as-read" title="Permanent link">&para;</a></h3>
 <p>To mark one or more notifications as read, the client can make a <code>POST</code> request to the <code>/api/notifications/mark-as-read/</code> endpoint.</p>
 <p><strong>POST</strong> <code>/api/notifications/mark-as-read/</code></p>
@@ -1501,6 +1651,98 @@
 </code></pre></div>
 
 <p>The <code>notificationIds</code> field should contain a list of notification IDs to be marked as read. The endpoint will return a <code>204 No Content</code> response on success.</p>
+<p><strong>Error Response (400 Bad Request):</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;notification_ids must be provided.&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;One or more notification IDs are invalid or do not belong to the user.&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="notification-settings">Notification Settings<a class="headerlink" href="#notification-settings" title="Permanent link">&para;</a></h2>
+<p>Members can configure their notification preferences.</p>
+<p><strong>GET</strong> <code>/api/auth/profile/notificationsettings</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p><strong>Response:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;clubNewsEnabledEmail&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;clubNewsEnabledAppPush&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;newTripAlertsEnabledEmail&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;newTripAlertsEnabledAppPush&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;newTripAlertsLevelFilter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">  </span><span class="nt">&quot;upgradeRequestReminderEmail&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;tripChatEnabledAppPush&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;lastUserActivity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-15&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Fields:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>clubNewsEnabledEmail</code></td>
+<td>boolean</td>
+<td>Receive club news via email</td>
+</tr>
+<tr>
+<td><code>clubNewsEnabledAppPush</code></td>
+<td>boolean</td>
+<td>Receive club news via push notification</td>
+</tr>
+<tr>
+<td><code>newTripAlertsEnabledEmail</code></td>
+<td>boolean</td>
+<td>Receive new trip alerts via email</td>
+</tr>
+<tr>
+<td><code>newTripAlertsEnabledAppPush</code></td>
+<td>boolean</td>
+<td>Receive new trip alerts via push notification</td>
+</tr>
+<tr>
+<td><code>newTripAlertsLevelFilter</code></td>
+<td>array</td>
+<td>Level IDs to filter trip alerts. Empty = all levels.</td>
+</tr>
+<tr>
+<td><code>upgradeRequestReminderEmail</code></td>
+<td>boolean</td>
+<td>Receive upgrade request reminders via email</td>
+</tr>
+<tr>
+<td><code>tripChatEnabledAppPush</code></td>
+<td>boolean</td>
+<td>Receive push notifications for trip chat messages</td>
+</tr>
+<tr>
+<td><code>lastUserActivity</code></td>
+<td>date</td>
+<td>Last user activity date (read-only, auto-updated)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>PUT/PATCH</strong> <code>/api/auth/profile/notificationsettings</code></p>
+<p>Update notification settings. All fields except <code>lastUserActivity</code> are writable.</p>
+<p><strong>Request Body (example partial update):</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;clubNewsEnabledEmail&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;newTripAlertsLevelFilter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
 <h2 id="notification-purging">Notification Purging<a class="headerlink" href="#notification-purging" title="Permanent link">&para;</a></h2>
 <p>To prevent the notification log from growing indefinitely, a periodic background task runs daily to purge old notifications. Any notification logs older than 60 days are automatically deleted from the database.</p>
 

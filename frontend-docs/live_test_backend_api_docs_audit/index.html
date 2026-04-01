@@ -1,0 +1,4393 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Next gen API for Abu Dhabi 4x4">
+      
+      
+        <meta name="author" content="Redbeard">
+      
+      
+        <link rel="canonical" href="https://api.ad4x4.com/readme/frontend-docs/live_test_backend_api_docs_audit/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Backend API Documentation Audit - AD4x4 API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#backend-api-documentation-audit" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="AD4x4 API" class="md-header__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AD4x4 API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Backend API Documentation Audit
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AD4x4 API" class="md-nav__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AD4x4 API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practical-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Practical Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../auth-profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Auth and Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vehicles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vehicles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trip-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lead-trip-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lead Trip History
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trips
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trip-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trip-reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meeting-points/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meeting Points
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../logbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Logbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../logbook-migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logbook Migration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../club-news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Club News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faqs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feedback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sponsorships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sponsorships
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notifications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gallery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gallery Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../here-maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HERE Maps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../global-settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Global Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../background-tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background Tasks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editable-strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../account-deletion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Account Deletion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../swagger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swagger UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintenance-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintenance Mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rate-limiting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rate Limiting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary of Findings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Summary of Findings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#critical-items-backend-team-must-fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Critical Items (backend team must fix)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-findings-by-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Findings by Document
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Findings by Document">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-membersmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. members.md
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. members.md">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-get-apimembers-trailing-slash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 GET /api/members/ — Trailing Slash
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-get-apimembers-response-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 GET /api/members/ — Response Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-get-apimembers-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 GET /api/members/ — Filters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-get-apimembers-pagination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 GET /api/members/ — Pagination
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-get-apimemberssearch-trailing-slash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 GET /api/members/search — Trailing Slash
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-get-apimemberssearch-query-minimum-length" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 GET /api/members/search — Query Minimum Length
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-get-apimemberssearch-response-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7 GET /api/members/search — Response Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-get-apimembersid-profile-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.8 GET /api/members/{id}/ — Profile Detail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-member-sub-endpoints-trailing-slashes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.9 Member Sub-Endpoints — Trailing Slashes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#110-get-apimembersidtripcounts-response-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.10 GET /api/members/{id}/tripcounts — Response Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#111-get-apimembersidtriphistory-response-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.11 GET /api/members/{id}/triphistory — Response Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-tripsmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. trips.md
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. trips.md">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-get-apitrips-trailing-slash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 GET /api/trips/ — Trailing Slash
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-get-apitrips-response-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 GET /api/trips/ — Response Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-get-apitrips-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 GET /api/trips/ — Filters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-get-apitrips-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 GET /api/trips/ — Authentication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-get-apitripsid-trip-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 GET /api/trips/{id}/ — Trip Detail
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-trip-searchmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. trip-search.md
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. trip-search.md">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-trailing-slash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Trailing Slash
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-response-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Response Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-documented-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Documented Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-meeting_point-parameter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 meeting_point Parameter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-undocumentedmissing-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Undocumented/Missing Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-query-minimum-length" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 Query Minimum Length
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-meeting-pointsmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. meeting-points.md
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. meeting-points.md">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-trailing-slash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Trailing Slash
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-response-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Response Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-area-distribution-current-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Area Distribution (current data)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-vehiclesmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. vehicles.md
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. vehicles.md">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-trailing-slash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Trailing Slash
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-response-fields-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Response Fields (list)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-car-brand-choices-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Car Brand Choices Endpoint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-other-choices-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Other Choices Endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-notificationsmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. notifications.md
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. notifications.md">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-trailing-slash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Trailing Slash
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-get-apinotifications-response-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 GET /api/notifications/ — Response Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-post-apinotificationsmark-as-read-field-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 POST /api/notifications/mark-as-read/ — Field Names
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-auth-profilesmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. auth-profiles.md
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. auth-profiles.md">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-post-apitoken-token-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 POST /api/token/ — Token Endpoint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-post-apitokenrefresh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 POST /api/token/refresh/
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-post-apiauthchange-password-field-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 POST /api/auth/change-password/ — Field Names
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-get-apimembersid-profile-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 GET /api/members/{id}/ — Profile Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-feedbackmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. feedback.md
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. feedback.md">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-trailing-slash-get" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Trailing Slash / GET
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-logbookmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. logbook.md
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. logbook.md">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-get-apilogbookskills-trailing-slash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 GET /api/logbookskills — Trailing Slash
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-get-apilogbookskills-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 GET /api/logbookskills/ — Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-trip-logbook-endpoints-trailing-slashes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 Trip Logbook Endpoints — Trailing Slashes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-account-deletionmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. account-deletion.md
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. account-deletion.md">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-trailing-slash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 Trailing Slash
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-global-settingsmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. global-settings.md
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. global-settings.md">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-get-apisettings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 GET /api/settings/
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-notificationsmd-notification-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. notifications.md — Notification Settings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. notifications.md — Notification Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-get-apiauthprofilenotificationsettings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1 GET /api/auth/profile/notificationsettings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-other-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Other Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Other Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131-get-apilevels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.1 GET /api/levels/
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132-get-apidevicefcm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2 GET /api/device/fcm/
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#133-lead-trip-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.3 Lead Trip History
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-sponsorshipsmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. sponsorships.md
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. sponsorships.md">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#141-endpoint-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1 Endpoint URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#142-response-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.2 Response Format
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-club-newsmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. club-news.md
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. club-news.md">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#151-endpoint-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.1 Endpoint URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#152-response-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.2 Response Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-upgrade-requestsmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. upgrade-requests.md
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. upgrade-requests.md">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#161-endpoint-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.1 Endpoint URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#162-response-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.2 Response Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#163-member-upgrade-eligibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.3 Member Upgrade Eligibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-trip-requestsmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. trip-requests.md
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="17. trip-requests.md">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#171-endpoint-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17.1 Endpoint URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#172-response-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17.2 Response Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-trip-reportsmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. trip-reports.md
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="18. trip-reports.md">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#181-endpoint-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18.1 Endpoint URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#182-response-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18.2 Response Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-faqsmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. faqs.md
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="19. faqs.md">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#191-endpoint-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19.1 Endpoint URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#192-response-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19.2 Response Format
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#20-editable-stringsmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. editable-strings.md
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="20. editable-strings.md">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#201-endpoint-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20.1 Endpoint URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#21-membersmd-additional-filter-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. members.md — Additional Filter Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="21. members.md — Additional Filter Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211-level_id-filter-all-variants-silently-ignored" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21.1 level_Id Filter (all variants silently ignored)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212-datejoined-range-filters-silently-ignored" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21.2 dateJoined Range Filters (silently ignored)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-tripsmd-trip-approve-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22. trips.md — Trip Approve Endpoint
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comprehensive-trailing-slash-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comprehensive Trailing-Slash Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#action-items-for-backend-team" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Action Items for Backend Team
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Action Items for Backend Team">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#priority-1-wrong-documentation-fix-immediately" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Priority 1 — Wrong Documentation (fix immediately)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#priority-2-missing-documentation-add-when-possible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Priority 2 — Missing Documentation (add when possible)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discovery-lastuseractivity-field-relevant-to-backendtodo-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discovery: lastUserActivity Field (relevant to BACKENDTODO #7)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="backend-api-documentation-audit">Backend API Documentation Audit<a class="headerlink" href="#backend-api-documentation-audit" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Purpose</strong>: This report documents every discrepancy found between the backend API documentation (<code>ad4x4-backend/docs/</code>) and the actual live API behaviour. Each item tells the backend team exactly what to fix in their docs.</p>
+<p><strong>Tested by</strong>: Frontend AI developer (Session #14)
+<strong>Date</strong>: 2026-03-30
+<strong>API base</strong>: <code>https://ap.ad4x4.com</code>
+<strong>Test user</strong>: hani amj (ID 10613, Board member, admin permissions)
+<strong>Method</strong>: Every endpoint was tested with <code>curl</code> + Bearer JWT token</p>
+<p><strong>Scope limitation</strong>: All tests were performed with a <strong>Board member (admin) account</strong> that has full permissions. This means:
+- <strong>Covered</strong>: Endpoint URLs, trailing slashes, HTTP methods, response field names/structures, filter parameters, pagination, query validation — all verified.
+- <strong>NOT covered</strong>: Permission-gated behaviour. Endpoints that restrict access or hide fields based on user level were not tested with a lower-permission account. Examples:
+  - <code>GET /api/members/</code> may hide <code>phone</code>/<code>email</code> fields for users without <code>VIEW_CONTACT_INFO</code> permission.
+  - <code>GET /api/members/search</code> requires <code>SEARCH_MEMBERS</code> permission — a Newbie may get 403.
+  - <code>GET /api/upgraderequests/</code> requires <code>VIEW_UPGRADE_REQ</code> permission.
+  - Trip registration <code>vehicle_required</code> enforcement may differ for staff vs regular users.
+  - Self-only restrictions (e.g., editing own profile vs another member's) not tested.
+- <strong>Recommendation</strong>: When building features that use permission-restricted endpoints, test with a regular member account (e.g., Newbie or Intermediate level) to verify the actual permission behaviour.</p>
+</blockquote>
+<hr />
+<h2 id="summary-of-findings">Summary of Findings<a class="headerlink" href="#summary-of-findings" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Severity</th>
+<th>Count</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🔴 <strong>Wrong</strong></td>
+<td>14</td>
+<td>Docs state something that is factually incorrect</td>
+</tr>
+<tr>
+<td>🟡 <strong>Missing</strong></td>
+<td>16</td>
+<td>Docs omit important information</td>
+</tr>
+<tr>
+<td>🟢 <strong>Confirmed</strong></td>
+<td>Many</td>
+<td>Docs match reality (no action needed)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="critical-items-backend-team-must-fix">Critical Items (backend team must fix)<a class="headerlink" href="#critical-items-backend-team-must-fix" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong><code>vehicles.md</code></strong> — Wrong endpoint name: says <code>/api/choices/carbrands/</code>, reality is <code>/api/choices/carbrand</code></li>
+<li><strong><code>auth-profiles.md</code></strong> — Wrong field names for change-password: says <code>old_password, password, password2</code>, reality is <code>oldPassword, password, passwordConfirm</code></li>
+<li><strong><code>members.md</code></strong> — Documents <code>car_brand</code> and <code>car_year</code> as working filters, but they are silently ignored</li>
+<li><strong><code>logbook.md</code></strong> — Documents endpoint as <code>/api/logbookskills</code> (no slash), but that returns 301; only <code>/api/logbookskills/</code> (with slash) returns 200</li>
+<li><strong><code>global-settings.md</code></strong> — Documents <code>GET /api/settings/</code>, but endpoint returns 404 (may not be exposed to API)</li>
+<li><strong><code>trip-search.md</code></strong> — Documents <code>meeting_point</code> parameter but doesn't clarify it's a text filter; using an integer ID returns 0 results and a text name causes timeout</li>
+<li><strong><code>members.md</code></strong> — Missing documentation for <code>email</code> filter behaviour (requires exact match or <code>__icontains</code> suffix)</li>
+<li><strong><code>sponsorships.md</code></strong> — Wrong endpoint name: says <code>/api/sponsorships/</code>, reality is <code>/api/sponsors/</code> (plain array, not paginated)</li>
+<li><strong><code>club-news.md</code></strong> — Wrong response fields: docs say <code>published</code> and <code>author</code>, reality is <code>submitDate</code> (no <code>author</code> field). Actual fields: <code>id, title, content, submitDate, status, levels, image</code></li>
+<li><strong><code>members.md</code></strong> — <code>level_Id</code> filter is silently ignored on the list endpoint (<code>level_Id=9</code>, <code>level__id=9</code>, <code>levelId=9</code> all return full count 10,610)</li>
+<li><strong><code>members.md</code></strong> — <code>dateJoined</code> range filters (<code>dateJoined_Gte</code>, <code>date_joined__gte</code>) are silently ignored</li>
+<li><strong><code>lead-trip-history.md</code></strong> — Docs show URL without <code>trip-</code> prefix (just <code>lead-trip-history</code>), but reality confirms the correct URL is <code>/api/trips/lead-trip-history</code> (no trailing slash; slash returns 404)</li>
+<li><strong><code>upgrade-requests.md</code></strong> — Minor: response field names use camelCase (<code>finalApprover</code>, <code>applicantStr</code>, <code>verdictDate</code>) not snake_case as some docs imply</li>
+<li><strong><code>trips.md</code></strong> — Trip approve endpoint: <code>POST /api/trips/{id}/approve</code> works (no slash). With slash → 404. Not documented which HTTP methods are supported.</li>
+</ol>
+<hr />
+<h2 id="detailed-findings-by-document">Detailed Findings by Document<a class="headerlink" href="#detailed-findings-by-document" title="Permanent link">&para;</a></h2>
+<hr />
+<h3 id="1-membersmd">1. <code>members.md</code><a class="headerlink" href="#1-membersmd" title="Permanent link">&para;</a></h3>
+<h4 id="11-get-apimembers-trailing-slash">1.1 <code>GET /api/members/</code> — Trailing Slash<a class="headerlink" href="#11-get-apimembers-trailing-slash" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/members/</code> (with slash)</td>
+<td><strong>200</strong> ✅</td>
+<td>Works</td>
+</tr>
+<tr>
+<td><code>/api/members</code> (without slash)</td>
+<td><strong>301</strong> → 200</td>
+<td>Redirects to slash version</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Docs say</strong>: Endpoints shown with trailing slash.
+<strong>Reality</strong>: Matches docs. ✅ No fix needed.</p>
+<h4 id="12-get-apimembers-response-fields">1.2 <code>GET /api/members/</code> — Response Fields<a class="headerlink" href="#12-get-apimembers-response-fields" title="Permanent link">&para;</a></h4>
+<p><strong>Docs say</strong> (members.md): Response includes <code>id, username, firstName, lastName, level, tripCount, carBrand, carModel, carColor, carImage, paidMember</code>. Contact fields (<code>phone, email</code>) visible only with <code>VIEW_CONTACT_INFO</code> permission.</p>
+<p><strong>Reality</strong>: Response fields are <code>email, firstName, id, lastName, level, paidMember, phone, tripCount, username</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Docs</th>
+<th>Reality</th>
+<th>Issue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>✅</td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td><code>username</code></td>
+<td>✅</td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td><code>firstName</code></td>
+<td>✅</td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td><code>lastName</code></td>
+<td>✅</td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td><code>level</code></td>
+<td>Says object with id/name/numericLevel</td>
+<td><strong>String</strong> (e.g., <code>"ANIT"</code>)</td>
+<td>🔴 <strong>WRONG</strong> — list returns level as a plain string, not an object</td>
+</tr>
+<tr>
+<td><code>tripCount</code></td>
+<td>✅</td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td><code>paidMember</code></td>
+<td>✅</td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td><code>phone</code></td>
+<td>✅ (with permission)</td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td>✅ (with permission)</td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td><code>carBrand</code></td>
+<td>✅ documented</td>
+<td><strong>NOT present</strong></td>
+<td>🔴 <strong>WRONG</strong> — field does not exist in list response</td>
+</tr>
+<tr>
+<td><code>carModel</code></td>
+<td>✅ documented</td>
+<td><strong>NOT present</strong></td>
+<td>🔴 <strong>WRONG</strong> — field does not exist in list response</td>
+</tr>
+<tr>
+<td><code>carColor</code></td>
+<td>✅ documented</td>
+<td><strong>NOT present</strong></td>
+<td>🔴 <strong>WRONG</strong> — field does not exist in list response</td>
+</tr>
+<tr>
+<td><code>carImage</code></td>
+<td>✅ documented</td>
+<td><strong>NOT present</strong></td>
+<td>🔴 <strong>WRONG</strong> — field does not exist in list response</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Correction</strong>: Remove <code>carBrand</code>, <code>carModel</code>, <code>carColor</code>, <code>carImage</code> from the documented list response. The <code>level</code> field in the list response is a <strong>string</strong> (level name), not an object. The detail endpoint (<code>/api/members/{id}/</code>) returns level as an object — document this difference.</p>
+<h4 id="13-get-apimembers-filters">1.3 <code>GET /api/members/</code> — Filters<a class="headerlink" href="#13-get-apimembers-filters" title="Permanent link">&para;</a></h4>
+<p><strong>Docs say</strong>: Supports filters: <code>car_brand, car_year, trip_count, phone, level__numeric_level, level__name, email, first_name, last_name, nationality, city</code>.</p>
+<p><strong>Live test results</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Filter</th>
+<th>Test</th>
+<th>Count</th>
+<th>Expected</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>car_brand=TOYOTA</code></td>
+<td>10610</td>
+<td>&lt; 10610</td>
+<td>🔴 <strong>SILENTLY IGNORED</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>carBrand=TOYOTA</code></td>
+<td>10610</td>
+<td>&lt; 10610</td>
+<td>🔴 <strong>SILENTLY IGNORED</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>car_brand=TO</code> (2-letter code)</td>
+<td>10610</td>
+<td>&lt; 10610</td>
+<td>🔴 <strong>SILENTLY IGNORED</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>car_year=2020</code></td>
+<td>10610</td>
+<td>&lt; 10610</td>
+<td>🔴 <strong>SILENTLY IGNORED</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>car_year=2024</code></td>
+<td>10610</td>
+<td>&lt; 10610</td>
+<td>🔴 <strong>SILENTLY IGNORED</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>car_year=9999</code></td>
+<td>10610</td>
+<td>0</td>
+<td>🔴 <strong>SILENTLY IGNORED</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>trip_count=0</code></td>
+<td>8464</td>
+<td>✅</td>
+<td>✅ Works</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tripCount=0</code></td>
+<td>8464</td>
+<td>✅</td>
+<td>✅ Works (both naming conventions)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>phone=%2B971</code></td>
+<td>0</td>
+<td>?</td>
+<td>⚠️ Exact match only — no partial</td>
+<td></td>
+</tr>
+<tr>
+<td><code>phone=971</code></td>
+<td>0</td>
+<td>?</td>
+<td>⚠️ Exact match only — no partial</td>
+<td></td>
+</tr>
+<tr>
+<td><code>email=admin</code></td>
+<td>0</td>
+<td>?</td>
+<td>⚠️ Exact match only</td>
+<td></td>
+</tr>
+<tr>
+<td><code>email__icontains=admin</code></td>
+<td>3</td>
+<td>✅</td>
+<td>🟡 <strong>UNDOCUMENTED</strong> — <code>__icontains</code> suffix works</td>
+<td></td>
+</tr>
+<tr>
+<td><code>first_name=hani</code></td>
+<td>1</td>
+<td>✅</td>
+<td>✅ Works (exact match, case-sensitive?)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>firstName=hani</code></td>
+<td>1</td>
+<td>✅</td>
+<td>✅ Both naming conventions work</td>
+<td></td>
+</tr>
+<tr>
+<td><code>last_name=test</code></td>
+<td>0</td>
+<td>-</td>
+<td>Works (just no matches)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>nationality=AE</code></td>
+<td>477</td>
+<td>✅</td>
+<td>✅ Works</td>
+<td></td>
+</tr>
+<tr>
+<td><code>city=Dubai</code></td>
+<td>443</td>
+<td>✅</td>
+<td>✅ Works</td>
+<td></td>
+</tr>
+<tr>
+<td><code>level__numeric_level=800</code></td>
+<td>13</td>
+<td>✅</td>
+<td>✅ Works</td>
+<td></td>
+</tr>
+<tr>
+<td><code>level__name=Marshal</code></td>
+<td>100</td>
+<td>✅</td>
+<td>✅ Works</td>
+<td></td>
+</tr>
+<tr>
+<td><code>level_Name=Marshal</code></td>
+<td>100</td>
+<td>✅</td>
+<td>✅ Both naming conventions work</td>
+<td></td>
+</tr>
+<tr>
+<td><code>level_NumericLevel=800</code></td>
+<td>13</td>
+<td>✅</td>
+<td>✅ Both naming conventions work</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Corrections needed</strong>:
+1. 🔴 <strong>Remove <code>car_brand</code> and <code>car_year</code> from the documented filter list</strong> — they are silently ignored. With the new multi-vehicle system, car data is in the <code>vehicles</code> table, not on the member model. These filters are dead.
+2. 🟡 <strong>Document that <code>email</code> and <code>phone</code> are exact-match filters</strong>. For partial matching, <code>email__icontains</code> works but is not documented. Document the <code>__icontains</code> lookup suffix.
+3. 🟡 <strong>Document that both camelCase and snake_case naming work</strong> for filter params (e.g., <code>trip_count</code> and <code>tripCount</code> are equivalent, <code>first_name</code> and <code>firstName</code> are equivalent, <code>level_NumericLevel</code> and <code>level__numeric_level</code> are equivalent).</p>
+<h4 id="14-get-apimembers-pagination">1.4 <code>GET /api/members/</code> — Pagination<a class="headerlink" href="#14-get-apimembers-pagination" title="Permanent link">&para;</a></h4>
+<p><strong>Docs say</strong>: <code>page</code> (default 1), <code>page_size</code> (default 20, max 500).</p>
+<p><strong>Reality</strong>: Both <code>page_size</code> and <code>pageSize</code> work. Default is 20 results. ✅ Matches docs.</p>
+<p><strong>Gap</strong>: 🟡 Document that both <code>page_size</code> and <code>pageSize</code> are accepted.</p>
+<h4 id="15-get-apimemberssearch-trailing-slash">1.5 <code>GET /api/members/search</code> — Trailing Slash<a class="headerlink" href="#15-get-apimemberssearch-trailing-slash" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/members/search</code> (no slash)</td>
+<td><strong>200</strong> ✅</td>
+</tr>
+<tr>
+<td><code>/api/members/search/</code> (with slash)</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Docs say</strong> (<code>members.md</code>): <code>GET /api/members/search/</code> (with trailing slash).
+<strong>Reality</strong>: Only works <strong>without</strong> trailing slash.</p>
+<p><strong>Correction</strong>: 🔴 Change docs to <code>GET /api/members/search</code> (no trailing slash). Note: adding a trailing slash returns 404.</p>
+<h4 id="16-get-apimemberssearch-query-minimum-length">1.6 <code>GET /api/members/search</code> — Query Minimum Length<a class="headerlink" href="#16-get-apimemberssearch-query-minimum-length" title="Permanent link">&para;</a></h4>
+<p><strong>Docs say</strong>: "min 3 chars".</p>
+<p><strong>Reality</strong>:
+- <code>query=san</code> (3 chars) → ✅ Works
+- <code>query=ha</code> (2 chars) → <code>{"success": false, "message": "query_too_short"}</code>
+- <code>query=h</code> (1 char) → <code>{"success": false, "message": "query_too_short"}</code>
+- <code>query=</code> (empty) → <code>{"success": false, "message": "query_parameter_required"}</code>
+- no <code>query</code> param → <code>{"success": false, "message": "query_parameter_required"}</code></p>
+<p>✅ Matches docs (3 chars minimum).</p>
+<p><strong>Gap</strong>: 🟡 Document the exact error message strings (<code>query_too_short</code>, <code>query_parameter_required</code>) so frontends can handle them.</p>
+<h4 id="17-get-apimemberssearch-response-fields">1.7 <code>GET /api/members/search</code> — Response Fields<a class="headerlink" href="#17-get-apimemberssearch-response-fields" title="Permanent link">&para;</a></h4>
+<p><strong>Reality</strong>: Same fields as list endpoint: <code>email, firstName, id, lastName, level, paidMember, phone, tripCount, username</code>. Level is a <strong>string</strong> (level name), not an object.</p>
+<p>✅ Consistent with list endpoint. Same corrections as 1.2 apply.</p>
+<h4 id="18-get-apimembersid-profile-detail">1.8 <code>GET /api/members/{id}/</code> — Profile Detail<a class="headerlink" href="#18-get-apimembersid-profile-detail" title="Permanent link">&para;</a></h4>
+<p><strong>Docs say</strong> (<code>auth-profiles.md</code>): Response includes <code>id, username, email, firstName, lastName, phone, carBrand, carModel, carYear, carColor, carImage, dob, iceName, icePhone, level, tripCount, avatar, permissions, paidMember, dateJoined, city, gender, nationality, title</code>.</p>
+<p><strong>Reality</strong>: Fields are <code>avatar, city, dateJoined, dob, email, firstName, gender, iceName, icePhone, id, lastName, level, nationality, paidMember, permissions, phone, title, tripCount, username</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Docs</th>
+<th>Reality</th>
+<th>Issue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>carBrand</code></td>
+<td>✅ documented</td>
+<td><strong>NOT present</strong></td>
+<td>🔴 <strong>WRONG</strong> — removed in multi-vehicle update</td>
+</tr>
+<tr>
+<td><code>carModel</code></td>
+<td>✅ documented</td>
+<td><strong>NOT present</strong></td>
+<td>🔴 <strong>WRONG</strong></td>
+</tr>
+<tr>
+<td><code>carYear</code></td>
+<td>✅ documented</td>
+<td><strong>NOT present</strong></td>
+<td>🔴 <strong>WRONG</strong></td>
+</tr>
+<tr>
+<td><code>carColor</code></td>
+<td>✅ documented</td>
+<td><strong>NOT present</strong></td>
+<td>🔴 <strong>WRONG</strong></td>
+</tr>
+<tr>
+<td><code>carImage</code></td>
+<td>✅ documented</td>
+<td><strong>NOT present</strong></td>
+<td>🔴 <strong>WRONG</strong></td>
+</tr>
+<tr>
+<td><code>level</code></td>
+<td>Says flat fields</td>
+<td>Returns <strong>object</strong> <code>{id, name, numericLevel, minTripsForUpgrade}</code></td>
+<td>✅ Docs are correct for detail endpoint</td>
+</tr>
+<tr>
+<td><code>permissions</code></td>
+<td>Says array of strings</td>
+<td>Returns <strong>array of objects</strong> <code>{id, levels, action}</code></td>
+<td>🔴 <strong>WRONG</strong> — docs show simple strings, reality is nested objects</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Correction</strong>: Remove <code>carBrand, carModel, carYear, carColor, carImage</code> from the profile response docs. Vehicle data is now on the <code>/api/vehicles/</code> endpoint. Update <code>permissions</code> documentation to show the actual object structure <code>{id, levels: [{id, name, numericLevel, minTripsForUpgrade}], action}</code>.</p>
+<h4 id="19-member-sub-endpoints-trailing-slashes">1.9 Member Sub-Endpoints — Trailing Slashes<a class="headerlink" href="#19-member-sub-endpoints-trailing-slashes" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Without Slash</th>
+<th>With Slash</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/members/{id}/triphistory</code></td>
+<td><strong>200</strong> ✅</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+<tr>
+<td><code>/api/members/{id}/tripcounts</code></td>
+<td><strong>200</strong> ✅</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+<tr>
+<td><code>/api/members/{id}/logbookentries</code></td>
+<td><strong>200</strong> ✅</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+<tr>
+<td><code>/api/members/leadsearch</code></td>
+<td><strong>400</strong> (needs query)</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+<tr>
+<td><code>/api/members/activetripleads</code></td>
+<td><strong>200</strong> ✅</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Correction</strong>: 🔴 All member sub-endpoints must be documented <strong>without</strong> trailing slashes. Adding a slash returns 404 on all of them.</p>
+<h4 id="110-get-apimembersidtripcounts-response-structure">1.10 <code>GET /api/members/{id}/tripcounts</code> — Response Structure<a class="headerlink" href="#110-get-apimembersidtripcounts-response-structure" title="Permanent link">&para;</a></h4>
+<p><strong>Docs say</strong> (<code>trips.md</code>): "summary of approved trips by level, counting each trip once".</p>
+<p><strong>Reality</strong>: Returns <code>{"member": {"id": 10613, "username": "Hani AMJ"}, "tripStats": [{"levelName": "ANIT", "levelNumeric": 10, "count": 12}, ...]}</code>.</p>
+<p><strong>Gap</strong>: 🟡 Document the exact response structure. The response has a <code>member</code> object and a <code>tripStats</code> array, not a flat list.</p>
+<h4 id="111-get-apimembersidtriphistory-response-fields">1.11 <code>GET /api/members/{id}/triphistory</code> — Response Fields<a class="headerlink" href="#111-get-apimembersidtriphistory-response-fields" title="Permanent link">&para;</a></h4>
+<p><strong>Reality</strong>: Fields are <code>checkedIn, description, endTime, id, lead, level, startTime, title</code>.</p>
+<p><strong>Gap</strong>: 🟡 Confirm this matches docs. Missing fields needed by the frontend (see BACK<em>END</em>TODO #1): <code>image, meetingPoint, registeredCount, capacity, isRegistered, isWaitlisted, allowWaitlist, approvalStatus, vehicle</code>.</p>
+<hr />
+<h3 id="2-tripsmd">2. <code>trips.md</code><a class="headerlink" href="#2-tripsmd" title="Permanent link">&para;</a></h3>
+<h4 id="21-get-apitrips-trailing-slash">2.1 <code>GET /api/trips/</code> — Trailing Slash<a class="headerlink" href="#21-get-apitrips-trailing-slash" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/trips/</code> (with slash)</td>
+<td><strong>200</strong> ✅</td>
+</tr>
+<tr>
+<td><code>/api/trips</code> (without slash)</td>
+<td><strong>405</strong> Method Not Allowed</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Correction</strong>: 🟡 Document that <code>/api/trips</code> without slash returns 405 (not 301 redirect like most other endpoints). This is an unusual behaviour — most endpoints redirect 301.</p>
+<h4 id="22-get-apitrips-response-fields">2.2 <code>GET /api/trips/</code> — Response Fields<a class="headerlink" href="#22-get-apitrips-response-fields" title="Permanent link">&para;</a></h4>
+<p><strong>Reality</strong>: <code>allowWaitlist, approvalStatus, approvedBy, capacity, created, cutOff, deputyLeads, description, endTime, galleryId, id, image, isRegistered, isWaitlisted, lead, level, meetingPoint, registeredCount, startTime, title, waitlistCount</code>.</p>
+<p><strong><code>meetingPoint</code> structure</strong>: <code>{area, id, lat, link, lon, name}</code> ✅
+<strong><code>level</code> structure</strong>: <code>{active, displayName, id, minTripsForUpgrade, name, numericLevel}</code> — note: includes <code>active</code> and <code>displayName</code> fields.
+<strong><code>lead</code> structure</strong>: <code>{id, username}</code> ✅</p>
+<p><strong>Gap</strong>: 🟡 Document all response fields including <code>galleryId</code>, <code>approvedBy</code>, <code>deputyLeads</code>, <code>waitlistCount</code>, <code>created</code>, <code>cutOff</code>. The level object in trip responses includes <code>active</code> and <code>displayName</code> which may not be in the docs.</p>
+<h4 id="23-get-apitrips-filters">2.3 <code>GET /api/trips/</code> — Filters<a class="headerlink" href="#23-get-apitrips-filters" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Filter</th>
+<th>Test</th>
+<th>Works?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>approval_status=A</code></td>
+<td>count=2988 (vs 3310 total)</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>approvalStatus=A</code></td>
+<td>count=2988</td>
+<td>✅ Both naming conventions</td>
+</tr>
+<tr>
+<td><code>approval_status=P</code></td>
+<td>count=0</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>approval_status=C</code></td>
+<td>count=322</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>ordering=start_time</code></td>
+<td>First: 2018-02-09</td>
+<td>✅ Ascending works</td>
+</tr>
+<tr>
+<td><code>ordering=-start_time</code></td>
+<td>First: 2026-12-12</td>
+<td>✅ Descending works</td>
+</tr>
+<tr>
+<td><code>meetingPoint=142</code></td>
+<td>count=195</td>
+<td>✅ ID filter works</td>
+</tr>
+<tr>
+<td><code>meetingPoint_Area=DXB</code></td>
+<td>count=204</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>level_Id=4</code></td>
+<td>count=1161</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>startTimeAfter=2026-03-01</code></td>
+<td>count=37</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>startTimeBefore=2026-01-01</code></td>
+<td>count=3175</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<p>✅ All documented filters work correctly.</p>
+<p><strong>Gap</strong>: 🟡 Document that both <code>approval_status</code> (snake_case) and <code>approvalStatus</code> (camelCase) work. Document <code>ordering</code> parameter with accepted field names.</p>
+<h4 id="24-get-apitrips-authentication">2.4 <code>GET /api/trips/</code> — Authentication<a class="headerlink" href="#24-get-apitrips-authentication" title="Permanent link">&para;</a></h4>
+<p><strong>Reality</strong>: Returns 200 even <strong>without</strong> auth token (public endpoint).</p>
+<p><strong>Gap</strong>: 🟡 Document that the trips list is publicly accessible. The <code>isRegistered</code> and <code>isWaitlisted</code> fields will be <code>false</code> for unauthenticated requests.</p>
+<h4 id="25-get-apitripsid-trip-detail">2.5 <code>GET /api/trips/{id}/</code> — Trip Detail<a class="headerlink" href="#25-get-apitripsid-trip-detail" title="Permanent link">&para;</a></h4>
+<p><strong>Reality</strong>: Additional fields vs list: <code>registered</code> (array of registrations with <code>{checkedIn, id, member, registrationDate, vehicle}</code>), <code>waitlist</code> (array).</p>
+<p><strong>Vehicle in registration</strong>: <code>{brand, brandDisplay, color, id, isPrimary, model, name, year}</code> ✅ Matches <code>vehicles.md</code>.</p>
+<p>✅ Trip detail works as documented.</p>
+<hr />
+<h3 id="3-trip-searchmd">3. <code>trip-search.md</code><a class="headerlink" href="#3-trip-searchmd" title="Permanent link">&para;</a></h3>
+<h4 id="31-trailing-slash">3.1 Trailing Slash<a class="headerlink" href="#31-trailing-slash" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/trips/search</code> (no slash)</td>
+<td><strong>200</strong> ✅</td>
+</tr>
+<tr>
+<td><code>/api/trips/search/</code> (with slash)</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Docs say</strong>: Examples use <code>/api/trips/search/</code> (with trailing slash).
+<strong>Correction</strong>: 🔴 Change all examples to <code>/api/trips/search</code> (no trailing slash). The slash variant returns 404.</p>
+<h4 id="32-response-fields">3.2 Response Fields<a class="headerlink" href="#32-response-fields" title="Permanent link">&para;</a></h4>
+<p><strong>Reality</strong>: Same fields as <code>GET /api/trips/</code> list: <code>allowWaitlist, approvalStatus, approvedBy, capacity, created, cutOff, deputyLeads, description, endTime, galleryId, id, image, isRegistered, isWaitlisted, lead, level, meetingPoint, registeredCount, startTime, title, waitlistCount</code>.</p>
+<p>✅ Consistent response structure.</p>
+<h4 id="33-documented-parameters">3.3 Documented Parameters<a class="headerlink" href="#33-documented-parameters" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Test</th>
+<th>Works?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>query=sand</code></td>
+<td>count=71</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>level=100</code></td>
+<td>count=15</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>min_level=200</code></td>
+<td>count=25</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>max_level=100</code></td>
+<td>count=46</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>area=DXB</code></td>
+<td>count=8</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>start_date_min=2025-01-01&amp;start_date_max=2025-12-31</code></td>
+<td>count=38</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>page</code>, <code>page_size</code></td>
+<td>work</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<p>✅ All documented parameters work.</p>
+<h4 id="34-meeting_point-parameter">3.4 <code>meeting_point</code> Parameter<a class="headerlink" href="#34-meeting_point-parameter" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Count</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>meeting_point=117</code> (integer ID)</td>
+<td>0</td>
+<td>❌ ID doesn't work</td>
+</tr>
+<tr>
+<td><code>meetingPoint=117</code> (camelCase ID)</td>
+<td>0</td>
+<td>❌ ID doesn't work</td>
+</tr>
+<tr>
+<td><code>meeting_point=Sweihan</code> (text name)</td>
+<td><strong>TIMEOUT</strong></td>
+<td>❌ Causes server timeout</td>
+</tr>
+<tr>
+<td><code>meeting_point=Al Khazna</code> (text name)</td>
+<td><strong>TIMEOUT</strong></td>
+<td>❌ Causes server timeout</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Docs say</strong>: <code>meeting_point</code> parameter is documented with example values.</p>
+<p><strong>Correction</strong>: 🔴 The <code>meeting_point</code> parameter on the search endpoint is <strong>broken</strong>:
+- Integer IDs return 0 results (unlike the list endpoint where <code>meetingPoint=142</code> works)
+- Text names cause the server to timeout (likely an unindexed full-text scan)</p>
+<p>Document this as a known issue, or fix the parameter to accept meeting point IDs (matching the list endpoint's <code>meetingPoint</code> filter).</p>
+<h4 id="35-undocumentedmissing-parameters">3.5 Undocumented/Missing Parameters<a class="headerlink" href="#35-undocumentedmissing-parameters" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Test</th>
+<th>Works?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>approvalStatus=A</code></td>
+<td>count=71 (same as unfiltered 71)</td>
+<td>🔴 <strong>SILENTLY IGNORED</strong></td>
+</tr>
+<tr>
+<td><code>approval_status=A</code></td>
+<td>count=71 (same as unfiltered)</td>
+<td>🔴 <strong>SILENTLY IGNORED</strong></td>
+</tr>
+<tr>
+<td><code>ordering=start_time</code></td>
+<td>First result: 2026-12-03</td>
+<td>🔴 <strong>SILENTLY IGNORED</strong></td>
+</tr>
+<tr>
+<td><code>ordering=-start_time</code></td>
+<td>First result: 2026-12-03 (identical)</td>
+<td>🔴 <strong>SILENTLY IGNORED</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gap</strong>: 🟡 Document that <code>approvalStatus</code> and <code>ordering</code> are <strong>NOT supported</strong> on the search endpoint. The docs should explicitly state which parameters from the list endpoint are NOT available on search, to avoid confusion.</p>
+<h4 id="36-query-minimum-length">3.6 Query Minimum Length<a class="headerlink" href="#36-query-minimum-length" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>query=san</code> (3 chars) → ✅ Works</li>
+<li><code>query=sa</code> (2 chars) → <code>query_too_short</code></li>
+<li><code>query=s</code> (1 char) → <code>query_too_short</code></li>
+</ul>
+<p>✅ Matches docs (3 chars minimum).</p>
+<hr />
+<h3 id="4-meeting-pointsmd">4. <code>meeting-points.md</code><a class="headerlink" href="#4-meeting-pointsmd" title="Permanent link">&para;</a></h3>
+<h4 id="41-trailing-slash">4.1 Trailing Slash<a class="headerlink" href="#41-trailing-slash" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/meetingpoints/</code> (with slash)</td>
+<td><strong>200</strong> ✅</td>
+</tr>
+<tr>
+<td><code>/api/meetingpoints</code> (without slash)</td>
+<td><strong>301</strong> → 200</td>
+</tr>
+</tbody>
+</table>
+<p>✅ Matches docs.</p>
+<h4 id="42-response-fields">4.2 Response Fields<a class="headerlink" href="#42-response-fields" title="Permanent link">&para;</a></h4>
+<p><strong>Reality</strong>: <code>{area, id, lat, link, lon, name}</code>. Total: 108 meeting points.</p>
+<p>✅ Matches docs.</p>
+<h4 id="43-area-distribution-current-data">4.3 Area Distribution (current data)<a class="headerlink" href="#43-area-distribution-current-data" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AUH</td>
+<td>10</td>
+</tr>
+<tr>
+<td>AAN</td>
+<td>7</td>
+</tr>
+<tr>
+<td>DXB</td>
+<td>3</td>
+</tr>
+<tr>
+<td>LIW</td>
+<td>1</td>
+</tr>
+<tr>
+<td><em>(empty)</em></td>
+<td>87</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td>108</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gap</strong>: 🟡 Document the valid area values. The docs mention <code>DXB, NOR, AUH, AAN, LIW</code> as allowed values, but the data shows 81% of records have empty areas. See BACK<em>END</em>TODO #9 for backfill request.</p>
+<hr />
+<h3 id="5-vehiclesmd">5. <code>vehicles.md</code><a class="headerlink" href="#5-vehiclesmd" title="Permanent link">&para;</a></h3>
+<h4 id="51-trailing-slash">5.1 Trailing Slash<a class="headerlink" href="#51-trailing-slash" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/vehicles/</code> (with slash)</td>
+<td><strong>200</strong> ✅</td>
+</tr>
+<tr>
+<td><code>/api/vehicles</code> (without slash)</td>
+<td><strong>301</strong> → 200</td>
+</tr>
+</tbody>
+</table>
+<p>✅ Matches docs.</p>
+<h4 id="52-response-fields-list">5.2 Response Fields (list)<a class="headerlink" href="#52-response-fields-list" title="Permanent link">&para;</a></h4>
+<p><strong>Docs say</strong>: <code>id, name, brand, brandDisplay, model, year, color, isPrimary</code>.</p>
+<p><strong>Reality</strong>: <code>brand, brandDisplay, color, id, isPrimary, model, name, year</code>.</p>
+<p>✅ Matches docs. No <code>image</code>, <code>createdAt</code>, <code>updatedAt</code>, or <code>member</code> in the list response (those appear in create/detail responses).</p>
+<h4 id="53-car-brand-choices-endpoint">5.3 Car Brand Choices Endpoint<a class="headerlink" href="#53-car-brand-choices-endpoint" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/choices/carbrand</code> (singular, no slash)</td>
+<td><strong>200</strong> ✅ (returns 69 brands)</td>
+</tr>
+<tr>
+<td><code>/api/choices/carbrands/</code> (plural, with slash)</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+<tr>
+<td><code>/api/choices/carbrands</code> (plural, no slash)</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+<tr>
+<td><code>/api/choices/carbrand/</code> (singular, with slash)</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Docs say</strong> (<code>vehicles.md</code>): <code>GET /api/choices/carbrands/</code> — See Choices API for details.</p>
+<p><strong>Correction</strong>: 🔴 <strong>Wrong endpoint name</strong>. Change <code>GET /api/choices/carbrands/</code> to <code>GET /api/choices/carbrand</code> (singular, no trailing slash). All other variants return 404.</p>
+<h4 id="54-other-choices-endpoints">5.4 Other Choices Endpoints<a class="headerlink" href="#54-other-choices-endpoints" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Without Slash</th>
+<th>With Slash</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/choices/triprequestarea</code></td>
+<td><strong>200</strong> ✅</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gap</strong>: 🟡 Document that ALL <code>/api/choices/*</code> endpoints require NO trailing slash. With slash returns 404.</p>
+<hr />
+<h3 id="6-notificationsmd">6. <code>notifications.md</code><a class="headerlink" href="#6-notificationsmd" title="Permanent link">&para;</a></h3>
+<h4 id="61-trailing-slash">6.1 Trailing Slash<a class="headerlink" href="#61-trailing-slash" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Without Slash</th>
+<th>With Slash</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/notifications</code></td>
+<td><strong>301</strong> → 200</td>
+<td><strong>200</strong> ✅</td>
+</tr>
+<tr>
+<td><code>/api/notifications/mark-as-read</code></td>
+<td><strong>301</strong> → 204</td>
+<td><strong>204</strong> ✅</td>
+</tr>
+</tbody>
+</table>
+<p>✅ Both work with trailing slash (canonical). Without slash redirects.</p>
+<h4 id="62-get-apinotifications-response-fields">6.2 <code>GET /api/notifications/</code> — Response Fields<a class="headerlink" href="#62-get-apinotifications-response-fields" title="Permanent link">&para;</a></h4>
+<p><strong>Docs say</strong>: Each notification includes an <code>is_read</code> boolean field.</p>
+<p><strong>Reality</strong>: Field is <code>isRead</code> (camelCase), not <code>is_read</code> (snake_case).</p>
+<p>Full fields: <code>body, id, isRead, relatedObjectId, relatedObjectType, timestamp, title, type</code>.</p>
+<p><strong>Correction</strong>: 🔴 Change <code>is_read</code> to <code>isRead</code> in the docs.</p>
+<p><strong>Gap</strong>: 🟡 Document the full response field list: <code>id, title, body, timestamp, type, relatedObjectId, relatedObjectType, isRead</code>. The docs only mention <code>is_read</code>.</p>
+<h4 id="63-post-apinotificationsmark-as-read-field-names">6.3 <code>POST /api/notifications/mark-as-read/</code> — Field Names<a class="headerlink" href="#63-post-apinotificationsmark-as-read-field-names" title="Permanent link">&para;</a></h4>
+<p><strong>Docs say</strong>: <code>{"notificationIds": [1, 2, 3]}</code> (camelCase).</p>
+<p><strong>Reality</strong>: Both <code>notificationIds</code> (camelCase) and <code>notification_ids</code> (snake_case) are accepted. Error message says <code>notification_ids must be provided.</code></p>
+<p>✅ Docs are technically correct. <strong>Gap</strong>: 🟡 Mention that both field name variants are accepted.</p>
+<hr />
+<h3 id="7-auth-profilesmd">7. <code>auth-profiles.md</code><a class="headerlink" href="#7-auth-profilesmd" title="Permanent link">&para;</a></h3>
+<h4 id="71-post-apitoken-token-endpoint">7.1 <code>POST /api/token/</code> — Token Endpoint<a class="headerlink" href="#71-post-apitoken-token-endpoint" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/token/</code> (with slash)</td>
+<td><strong>200</strong> ✅</td>
+</tr>
+<tr>
+<td><code>/api/token</code> (without slash)</td>
+<td><strong>301</strong> → 200</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response fields</strong>: <code>access, refresh</code>. ✅ Matches docs.</p>
+<h4 id="72-post-apitokenrefresh">7.2 <code>POST /api/token/refresh/</code><a class="headerlink" href="#72-post-apitokenrefresh" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/token/refresh/</code> (with slash)</td>
+<td><strong>200</strong> ✅</td>
+</tr>
+<tr>
+<td><code>/api/token/refresh</code> (without slash)</td>
+<td><strong>301</strong> → 200</td>
+</tr>
+</tbody>
+</table>
+<p>✅ Works as documented.</p>
+<h4 id="73-post-apiauthchange-password-field-names">7.3 <code>POST /api/auth/change-password/</code> — Field Names<a class="headerlink" href="#73-post-apiauthchange-password-field-names" title="Permanent link">&para;</a></h4>
+<p><strong>Docs say</strong>: <code>{"old_password": "...", "password": "...", "password2": "..."}</code></p>
+<p><strong>Reality</strong> (from validation error): Required fields are <code>oldPassword, password, passwordConfirm</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Docs Field</th>
+<th>Actual Field</th>
+<th>Issue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>old_password</code></td>
+<td><code>oldPassword</code></td>
+<td>🔴 <strong>WRONG</strong> — camelCase, not snake_case</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td><code>password</code></td>
+<td>✅ Correct</td>
+</tr>
+<tr>
+<td><code>password2</code></td>
+<td><code>passwordConfirm</code></td>
+<td>🔴 <strong>WRONG</strong> — completely different name</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Correction</strong>: 🔴 Update docs to <code>{"oldPassword": "...", "password": "...", "passwordConfirm": "..."}</code>.</p>
+<p><strong>Additional</strong>: Trailing slash behaviour:
+- <code>/api/auth/change-password/</code> → 405 on GET (correct — POST only)
+- <code>/api/auth/change-password</code> → 301 redirect</p>
+<h4 id="74-get-apimembersid-profile-fields">7.4 <code>GET /api/members/{id}/</code> — Profile Fields<a class="headerlink" href="#74-get-apimembersid-profile-fields" title="Permanent link">&para;</a></h4>
+<p>See Section 1.8 above. <code>carBrand, carModel, carYear, carColor, carImage</code> no longer exist in the response. <code>permissions</code> is an array of objects, not strings.</p>
+<hr />
+<h3 id="8-feedbackmd">8. <code>feedback.md</code><a class="headerlink" href="#8-feedbackmd" title="Permanent link">&para;</a></h3>
+<h4 id="81-trailing-slash-get">8.1 Trailing Slash / GET<a class="headerlink" href="#81-trailing-slash-get" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/feedback/</code> (with slash, GET)</td>
+<td><strong>405</strong> Method Not Allowed</td>
+</tr>
+<tr>
+<td><code>/api/feedback</code> (without slash, GET)</td>
+<td><strong>301</strong> → 405</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Docs say</strong>: <code>GET /api/feedback/</code> lists feedback (admin).</p>
+<p><strong>Reality</strong>: GET returns 405. The admin list endpoint may require a different HTTP method or may only be accessible via Django admin.</p>
+<p><strong>Gap</strong>: 🟡 Verify if GET is truly supported. If the admin list endpoint uses a different auth mechanism (session-based vs JWT), document this.</p>
+<hr />
+<h3 id="9-logbookmd">9. <code>logbook.md</code><a class="headerlink" href="#9-logbookmd" title="Permanent link">&para;</a></h3>
+<h4 id="91-get-apilogbookskills-trailing-slash">9.1 <code>GET /api/logbookskills</code> — Trailing Slash<a class="headerlink" href="#91-get-apilogbookskills-trailing-slash" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/logbookskills</code> (no slash)</td>
+<td><strong>301</strong> redirect</td>
+</tr>
+<tr>
+<td><code>/api/logbookskills/</code> (with slash)</td>
+<td><strong>200</strong> ✅</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Docs say</strong>: <code>GET /api/logbookskills</code> (no trailing slash).
+<strong>Correction</strong>: 🔴 Change to <code>GET /api/logbookskills/</code> (with trailing slash). Without slash gets a 301 redirect.</p>
+<h4 id="92-get-apilogbookskills-response">9.2 <code>GET /api/logbookskills/</code> — Response<a class="headerlink" href="#92-get-apilogbookskills-response" title="Permanent link">&para;</a></h4>
+<p><strong>Reality</strong>: Paginated response with <code>count: 35</code>. Each skill: <code>{active, category, countRequirement, description, id, levelRequirement, name, order}</code>. Category is an object <code>{id, name, description}</code>.</p>
+<p><strong>Gap</strong>: 🟡 Document the full response structure including <code>active</code>, <code>order</code>, <code>levelRequirement</code> fields. Document that the response is paginated (count/next/previous/results).</p>
+<h4 id="93-trip-logbook-endpoints-trailing-slashes">9.3 Trip Logbook Endpoints — Trailing Slashes<a class="headerlink" href="#93-trip-logbook-endpoints-trailing-slashes" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Without Slash</th>
+<th>With Slash</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/trips/{id}/viewlogbooks</code></td>
+<td><strong>200</strong> ✅</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+<tr>
+<td><code>/api/trips/{id}/logbook-entries</code></td>
+<td><strong>405</strong> (POST only)</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Docs say</strong>: <code>POST /api/trips/{id}/logbook-entries</code>, <code>GET /api/trips/{id}/viewlogbooks</code>.
+<strong>Correction</strong>: 🟡 Ensure docs show these endpoints <strong>without</strong> trailing slashes. The <code>logbook-entries</code> endpoint returns 405 on GET (correct — it's POST only).</p>
+<hr />
+<h3 id="10-account-deletionmd">10. <code>account-deletion.md</code><a class="headerlink" href="#10-account-deletionmd" title="Permanent link">&para;</a></h3>
+<h4 id="101-trailing-slash">10.1 Trailing Slash<a class="headerlink" href="#101-trailing-slash" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/members/request-deletion</code> (no slash)</td>
+<td><strong>405</strong> (GET not allowed, POST only)</td>
+</tr>
+<tr>
+<td><code>/api/members/request-deletion/</code> (with slash)</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Docs say</strong>: <code>POST /api/members/request-deletion</code> (no trailing slash).
+✅ Matches docs. POST-only endpoint.</p>
+<hr />
+<h3 id="11-global-settingsmd">11. <code>global-settings.md</code><a class="headerlink" href="#11-global-settingsmd" title="Permanent link">&para;</a></h3>
+<h4 id="111-get-apisettings">11.1 <code>GET /api/settings/</code><a class="headerlink" href="#111-get-apisettings" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/settings/</code> (with slash)</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+<tr>
+<td><code>/api/settings</code> (without slash)</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Docs say</strong>: <code>GET /api/settings/</code> returns current configuration.</p>
+<p><strong>Reality</strong>: Both forms return 404. The endpoint either:
+1. Doesn't exist in the live API
+2. Requires a different URL path
+3. Requires admin session auth instead of JWT</p>
+<p><strong>Correction</strong>: 🔴 Either fix the endpoint or remove it from the docs. If it's admin-only via Django session, document this clearly.</p>
+<hr />
+<h3 id="12-notificationsmd-notification-settings">12. <code>notifications.md</code> — Notification Settings<a class="headerlink" href="#12-notificationsmd-notification-settings" title="Permanent link">&para;</a></h3>
+<h4 id="121-get-apiauthprofilenotificationsettings">12.1 <code>GET /api/auth/profile/notificationsettings</code><a class="headerlink" href="#121-get-apiauthprofilenotificationsettings" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/auth/profile/notificationsettings</code> (no slash)</td>
+<td><strong>200</strong> ✅</td>
+</tr>
+<tr>
+<td><code>/api/auth/profile/notificationsettings/</code> (with slash)</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response fields</strong>: <code>clubNewsEnabledEmail, clubNewsEnabledAppPush, newTripAlertsEnabledEmail, newTripAlertsEnabledAppPush, upgradeRequestReminderEmail, tripChatEnabledAppPush, lastUserActivity, member, newTripAlertsLevelFilter</code>.</p>
+<p><strong>Discovery</strong>: 🟡 <strong><code>lastUserActivity</code></strong> field exists! Returns <code>"2026-03-31"</code> (date string). This is relevant to BACK<em>END</em>TODO #7 — the backend may already be tracking user activity. This field is <strong>not documented anywhere</strong> in the backend docs.</p>
+<p><strong>Gap</strong>: 🟡 Document this endpoint and its response fields, especially <code>lastUserActivity</code>. This may partially solve the "Last Visited" feature request.</p>
+<hr />
+<h3 id="13-other-endpoints">13. Other Endpoints<a class="headerlink" href="#13-other-endpoints" title="Permanent link">&para;</a></h3>
+<h4 id="131-get-apilevels">13.1 <code>GET /api/levels/</code><a class="headerlink" href="#131-get-apilevels" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/levels/</code> (with slash)</td>
+<td><strong>200</strong> ✅</td>
+</tr>
+<tr>
+<td><code>/api/levels</code> (without slash)</td>
+<td><strong>301</strong> → 200</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response</strong>: Array of 9 level objects <code>{id, name, numericLevel, active, displayName, minTripsForUpgrade}</code>.</p>
+<p><strong>Gap</strong>: 🟡 No dedicated docs page for the levels endpoint. Should be documented with the full field list, especially the <code>active</code> field (Expert level has <code>active: false</code>).</p>
+<h4 id="132-get-apidevicefcm">13.2 <code>GET /api/device/fcm/</code><a class="headerlink" href="#132-get-apidevicefcm" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/device/fcm/</code> (with slash)</td>
+<td><strong>200</strong> ✅</td>
+</tr>
+<tr>
+<td><code>/api/device/fcm</code> (without slash)</td>
+<td><strong>301</strong> → 200</td>
+</tr>
+</tbody>
+</table>
+<p>✅ Works as documented.</p>
+<h4 id="133-lead-trip-history">13.3 Lead Trip History<a class="headerlink" href="#133-lead-trip-history" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/trips/lead-history</code> (no slash)</td>
+<td><strong>301</strong> redirect</td>
+</tr>
+<tr>
+<td><code>/api/trips/lead-history/</code> (with slash)</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+</tbody>
+</table>
+<p><strong>RESOLVED (Session #14 continued)</strong>:</p>
+<p>The correct endpoint URL is <code>/api/trips/lead-trip-history</code> (no trailing slash):</p>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/trips/lead-trip-history</code> (no slash)</td>
+<td><strong>200</strong> ✅ (returns paginated results)</td>
+</tr>
+<tr>
+<td><code>/api/trips/lead-trip-history/</code> (with slash)</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+<tr>
+<td><code>/api/trips/lead-history</code> (no slash)</td>
+<td><strong>301</strong> redirect (goes nowhere useful)</td>
+</tr>
+<tr>
+<td><code>/api/trips/lead-history/</code> (with slash)</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Docs say</strong> (<code>lead-trip-history.md</code>): <code>GET /api/trips/lead-trip-history?lead_id={member_id}</code> ✅ Correct URL.</p>
+<p><strong>Correction</strong>: The docs are correct about the URL. The earlier confusion was a testing error. No fix needed — but note that trailing slash returns 404 (consistent with other sub-action endpoints).</p>
+<p><strong>Response</strong>: Paginated response (count/next/previous/results). For the test user (Board member, not a trip lead), returns count=0. The endpoint likely requires the user to be a trip lead to return results.</p>
+<hr />
+<h3 id="14-sponsorshipsmd">14. <code>sponsorships.md</code><a class="headerlink" href="#14-sponsorshipsmd" title="Permanent link">&para;</a></h3>
+<h4 id="141-endpoint-url">14.1 Endpoint URL<a class="headerlink" href="#141-endpoint-url" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/sponsorships/</code> (as documented)</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+<tr>
+<td><code>/api/sponsorships</code> (no slash)</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+<tr>
+<td><code>/api/sponsors/</code> (actual endpoint)</td>
+<td><strong>200</strong> ✅</td>
+</tr>
+<tr>
+<td><code>/api/sponsors</code> (no slash)</td>
+<td><strong>301</strong> → 200</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Docs say</strong> (<code>sponsorships.md</code>): <code>GET /api/sponsorships/</code>
+<strong>Reality</strong>: Only <code>GET /api/sponsors/</code> works. The endpoint name in the docs is wrong.</p>
+<p><strong>Correction</strong>: 🔴 <strong>Wrong endpoint name</strong>. Change <code>GET /api/sponsorships/</code> to <code>GET /api/sponsors/</code> in the docs.</p>
+<h4 id="142-response-format">14.2 Response Format<a class="headerlink" href="#142-response-format" title="Permanent link">&para;</a></h4>
+<p><strong>Docs say</strong>: Paginated response with <code>count</code>, <code>results</code>.
+<strong>Reality</strong>: Returns a <strong>plain JSON array</strong> (not paginated). No <code>count</code>, <code>next</code>, <code>previous</code>, <code>results</code> wrapper.</p>
+<p><strong>Correction</strong>: 🔴 <strong>Wrong response format</strong>. Document that sponsors returns a plain array: <code>[{id, title, description, image, priority}, ...]</code>. Fields confirmed: <code>description, id, image, priority, title</code>.</p>
+<hr />
+<h3 id="15-club-newsmd">15. <code>club-news.md</code><a class="headerlink" href="#15-club-newsmd" title="Permanent link">&para;</a></h3>
+<h4 id="151-endpoint-url">15.1 Endpoint URL<a class="headerlink" href="#151-endpoint-url" title="Permanent link">&para;</a></h4>
+<p><strong>Docs say</strong>: <code>GET /api/clubnews/</code> ✅ Correct.</p>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/clubnews/</code> (with slash)</td>
+<td><strong>200</strong> ✅</td>
+</tr>
+<tr>
+<td><code>/api/clubnews</code> (no slash)</td>
+<td><strong>301</strong> → 200</td>
+</tr>
+<tr>
+<td><code>/api/news/</code> (alternative)</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+<tr>
+<td><code>/api/club-news/</code> (hyphenated)</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+</tbody>
+</table>
+<p>✅ Docs are correct about the URL.</p>
+<h4 id="152-response-fields">15.2 Response Fields<a class="headerlink" href="#152-response-fields" title="Permanent link">&para;</a></h4>
+<p><strong>Docs say</strong>: Response includes <code>id, title, content, published, author</code> (with author as object <code>{id, username, firstName, lastName}</code>).
+<strong>Reality</strong>: Actual fields are <code>content, id, image, levels, status, submitDate, title</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Docs</th>
+<th>Reality</th>
+<th>Issue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>✅</td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>✅</td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td><code>content</code></td>
+<td>✅</td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td><code>published</code></td>
+<td>✅ documented</td>
+<td><strong>NOT present</strong></td>
+<td>🔴 <strong>WRONG</strong> — field is <code>submitDate</code></td>
+</tr>
+<tr>
+<td><code>author</code></td>
+<td>✅ documented (object)</td>
+<td><strong>NOT present</strong></td>
+<td>🔴 <strong>WRONG</strong> — no author field in list response</td>
+</tr>
+<tr>
+<td><code>submitDate</code></td>
+<td>NOT documented</td>
+<td>✅ present</td>
+<td>🟡 <strong>MISSING</strong></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>NOT documented</td>
+<td>✅ present (e.g., "SENT")</td>
+<td>🟡 <strong>MISSING</strong></td>
+</tr>
+<tr>
+<td><code>levels</code></td>
+<td>NOT documented</td>
+<td>✅ present (array)</td>
+<td>🟡 <strong>MISSING</strong></td>
+</tr>
+<tr>
+<td><code>image</code></td>
+<td>NOT documented</td>
+<td>✅ present (URL)</td>
+<td>🟡 <strong>MISSING</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Correction</strong>: 🔴 Update response docs. Remove <code>published</code> (replace with <code>submitDate</code>), remove <code>author</code> from list response. Add <code>status</code>, <code>levels</code>, <code>image</code> fields.</p>
+<hr />
+<h3 id="16-upgrade-requestsmd">16. <code>upgrade-requests.md</code><a class="headerlink" href="#16-upgrade-requestsmd" title="Permanent link">&para;</a></h3>
+<h4 id="161-endpoint-url">16.1 Endpoint URL<a class="headerlink" href="#161-endpoint-url" title="Permanent link">&para;</a></h4>
+<p><strong>Docs say</strong>: <code>GET /api/upgraderequests/</code> ✅ Correct.</p>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/upgraderequests/</code> (with slash)</td>
+<td><strong>200</strong> ✅</td>
+</tr>
+<tr>
+<td><code>/api/upgraderequests</code> (no slash)</td>
+<td><strong>301</strong> → 200</td>
+</tr>
+<tr>
+<td><code>/api/upgrade-requests/</code> (hyphenated)</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+</tbody>
+</table>
+<p>✅ Docs are correct.</p>
+<h4 id="162-response-fields">16.2 Response Fields<a class="headerlink" href="#162-response-fields" title="Permanent link">&para;</a></h4>
+<p><strong>Reality</strong>: <code>applicant, applicantReason, applicantStr, attachment, created, deferVoters, finalApprover, id, noVoters, nominatedVoters, status, targetLevel, verdictDate, verdictReason, yesVoters</code></p>
+<p><strong>Gap</strong>: 🟡 Document the full response field list. The <code>applicant</code> and <code>finalApprover</code> are nested member objects with <code>{id, username, firstName, lastName, level (object), tripCount, avatar, title}</code>.</p>
+<h4 id="163-member-upgrade-eligibility">16.3 Member Upgrade Eligibility<a class="headerlink" href="#163-member-upgrade-eligibility" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/members/{id}/upgradeeligibility</code> (no slash)</td>
+<td><strong>200</strong> ✅</td>
+</tr>
+<tr>
+<td><code>/api/members/{id}/upgradeeligibility/</code> (with slash)</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response</strong>: <code>{success: true, message: {memberId, memberUsername, currentLevel, nextPotentialLevel, upgradeRequirements, isEligibleForUpgrade}}</code></p>
+<p><strong>Gap</strong>: 🟡 Docs show the response as <code>snake_case</code> (<code>member_id</code>, <code>current_level</code>, etc.), but reality uses <code>camelCase</code> (<code>memberId</code>, <code>currentLevel</code>). Update docs to match.</p>
+<hr />
+<h3 id="17-trip-requestsmd">17. <code>trip-requests.md</code><a class="headerlink" href="#17-trip-requestsmd" title="Permanent link">&para;</a></h3>
+<h4 id="171-endpoint-url">17.1 Endpoint URL<a class="headerlink" href="#171-endpoint-url" title="Permanent link">&para;</a></h4>
+<p><strong>Docs say</strong>: <code>GET /api/triprequests/</code> ✅ Correct.</p>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/triprequests/</code> (with slash)</td>
+<td><strong>200</strong> ✅</td>
+</tr>
+<tr>
+<td><code>/api/triprequests</code> (no slash)</td>
+<td><strong>301</strong> → 200</td>
+</tr>
+<tr>
+<td><code>/api/trip-requests/</code> (hyphenated)</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+</tbody>
+</table>
+<p>✅ Docs are correct.</p>
+<h4 id="172-response-fields">17.2 Response Fields<a class="headerlink" href="#172-response-fields" title="Permanent link">&para;</a></h4>
+<p><strong>Docs say</strong>: Response includes <code>id, member, timeOfDay, area, level (object), date, voteCount, created</code>.
+<strong>Reality</strong>: Actual fields are <code>area, date, id, level, member, timeOfDay</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Docs</th>
+<th>Reality</th>
+<th>Issue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>✅</td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td><code>member</code></td>
+<td>✅ (object)</td>
+<td>✅ (object)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>timeOfDay</code></td>
+<td>✅</td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td><code>area</code></td>
+<td>✅</td>
+<td>✅ (plain string, e.g., "Northern Emirates")</td>
+<td>🟡 Docs show code, reality shows full name</td>
+</tr>
+<tr>
+<td><code>level</code></td>
+<td>Object <code>{id, name, numericLevel}</code></td>
+<td><strong>String</strong> (e.g., "Newbie")</td>
+<td>🔴 <strong>WRONG</strong> — list returns level as string, not object</td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td>✅</td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td><code>voteCount</code></td>
+<td>✅ documented</td>
+<td><strong>NOT present</strong></td>
+<td>🔴 <strong>WRONG</strong> — not in list response</td>
+</tr>
+<tr>
+<td><code>created</code></td>
+<td>✅ documented</td>
+<td><strong>NOT present</strong></td>
+<td>🔴 <strong>WRONG</strong> — not in list response</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Correction</strong>: 🔴 Update response docs. <code>level</code> is a string (not an object) in the list. <code>voteCount</code> and <code>created</code> are not in the list response (may only be in detail). <code>area</code> is a display name string, not a code.</p>
+<hr />
+<h3 id="18-trip-reportsmd">18. <code>trip-reports.md</code><a class="headerlink" href="#18-trip-reportsmd" title="Permanent link">&para;</a></h3>
+<h4 id="181-endpoint-url">18.1 Endpoint URL<a class="headerlink" href="#181-endpoint-url" title="Permanent link">&para;</a></h4>
+<p><strong>Docs say</strong>: <code>GET /api/tripreports/</code> ✅ Correct.</p>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/tripreports/</code> (with slash)</td>
+<td><strong>200</strong> ✅</td>
+</tr>
+<tr>
+<td><code>/api/tripreports</code> (no slash)</td>
+<td><strong>301</strong> → 200</td>
+</tr>
+<tr>
+<td><code>/api/trip-reports/</code> (hyphenated)</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+</tbody>
+</table>
+<p>✅ Docs are correct.</p>
+<h4 id="182-response-fields">18.2 Response Fields<a class="headerlink" href="#182-response-fields" title="Permanent link">&para;</a></h4>
+<p><strong>Reality</strong>: <code>id, title, trackFile, trackImage, trip</code>.</p>
+<p><strong>Docs say</strong>: Response includes <code>id, trip, title, trackFile, trackImage</code> with more detailed nested structure.</p>
+<p>✅ List response matches (slim). Detail response may have more fields.</p>
+<hr />
+<h3 id="19-faqsmd">19. <code>faqs.md</code><a class="headerlink" href="#19-faqsmd" title="Permanent link">&para;</a></h3>
+<h4 id="191-endpoint-url">19.1 Endpoint URL<a class="headerlink" href="#191-endpoint-url" title="Permanent link">&para;</a></h4>
+<p><strong>Docs say</strong>: <code>GET /api/faqs/</code></p>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/faqs/</code> (with slash)</td>
+<td><strong>200</strong> ✅</td>
+</tr>
+<tr>
+<td><code>/api/faqs</code> (no slash)</td>
+<td><strong>301</strong> → 200</td>
+</tr>
+</tbody>
+</table>
+<p>✅ Correct.</p>
+<h4 id="192-response-format">19.2 Response Format<a class="headerlink" href="#192-response-format" title="Permanent link">&para;</a></h4>
+<p><strong>Reality</strong>: Returns a <strong>plain JSON array</strong> (not paginated). 4 FAQs. Fields: <code>answer, id, order, question</code>.</p>
+<p><strong>Docs say</strong>: Response shown as paginated object.
+<strong>Gap</strong>: 🟡 Document that FAQs returns a plain array, not a paginated response. Same pattern as sponsors.</p>
+<hr />
+<h3 id="20-editable-stringsmd">20. <code>editable-strings.md</code><a class="headerlink" href="#20-editable-stringsmd" title="Permanent link">&para;</a></h3>
+<h4 id="201-endpoint-url">20.1 Endpoint URL<a class="headerlink" href="#201-endpoint-url" title="Permanent link">&para;</a></h4>
+<p><strong>Docs say</strong>: <code>GET /api/strings/{key}/</code></p>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/strings/</code> (list)</td>
+<td><strong>200</strong> ✅ (returns <code>{count: 0, results: []}</code>)</td>
+</tr>
+<tr>
+<td><code>/api/strings/welcome_message/</code> (specific key)</td>
+<td><strong>404</strong> (no strings exist)</td>
+</tr>
+<tr>
+<td><code>/api/editablestrings/</code></td>
+<td><strong>404</strong> ❌</td>
+</tr>
+<tr>
+<td><code>/api/editable-strings/</code></td>
+<td><strong>404</strong> ❌</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Docs are correct</strong> about the URL pattern (<code>/api/strings/</code>). The 404 for <code>welcome_message</code> is because no strings exist in the database. The "editable-strings" is just the doc filename, not the URL.</p>
+<p>✅ No fix needed.</p>
+<hr />
+<h3 id="21-membersmd-additional-filter-issues">21. <code>members.md</code> — Additional Filter Issues<a class="headerlink" href="#21-membersmd-additional-filter-issues" title="Permanent link">&para;</a></h3>
+<h4 id="211-level_id-filter-all-variants-silently-ignored">21.1 <code>level_Id</code> Filter (all variants silently ignored)<a class="headerlink" href="#211-level_id-filter-all-variants-silently-ignored" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Filter</th>
+<th>Count</th>
+<th>Expected</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>level_Id=9</code> (Board member)</td>
+<td>10,610</td>
+<td>13</td>
+<td>🔴 <strong>SILENTLY IGNORED</strong></td>
+</tr>
+<tr>
+<td><code>level__id=9</code></td>
+<td>10,610</td>
+<td>13</td>
+<td>🔴 <strong>SILENTLY IGNORED</strong></td>
+</tr>
+<tr>
+<td><code>levelId=9</code></td>
+<td>10,610</td>
+<td>13</td>
+<td>🔴 <strong>SILENTLY IGNORED</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Correction</strong>: 🔴 <strong><code>level_Id</code> filter does not work</strong> on the members list endpoint. The only working level filters are <code>level_NumericLevel</code>, <code>level_NumericLevel_Range</code>, <code>level_Name</code>, <code>level_Name_Icontains</code>, and <code>level__numeric_level</code>. Remove <code>level_Id</code> from docs if documented, or implement it.</p>
+<h4 id="212-datejoined-range-filters-silently-ignored">21.2 <code>dateJoined</code> Range Filters (silently ignored)<a class="headerlink" href="#212-datejoined-range-filters-silently-ignored" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Filter</th>
+<th>Count</th>
+<th>Expected</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dateJoined_Gte=2026-03-01</code></td>
+<td>10,610</td>
+<td>&lt; 10,610</td>
+<td>🔴 <strong>SILENTLY IGNORED</strong></td>
+</tr>
+<tr>
+<td><code>date_joined__gte=2026-03-01</code></td>
+<td>10,610</td>
+<td>&lt; 10,610</td>
+<td>🔴 <strong>SILENTLY IGNORED</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Correction</strong>: 🔴 <code>dateJoined</code> range filters are silently ignored. These are important for admin panel features (finding newest members, filtering by join date). Either implement or explicitly document as unsupported.</p>
+<hr />
+<h3 id="22-tripsmd-trip-approve-endpoint">22. <code>trips.md</code> — Trip Approve Endpoint<a class="headerlink" href="#22-tripsmd-trip-approve-endpoint" title="Permanent link">&para;</a></h3>
+<p><strong>Previously thought broken</strong> (Known Issue #39 in SESSION_HANDOFF).</p>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Method</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/trips/{id}/approve</code> (no slash)</td>
+<td>POST</td>
+<td><strong>200</strong> ✅ <code>{"success":true,"message":"trip_approved"}</code></td>
+</tr>
+<tr>
+<td><code>/api/trips/{id}/approve/</code> (with slash)</td>
+<td>POST</td>
+<td><strong>404</strong> ❌</td>
+</tr>
+<tr>
+<td><code>/api/trips/{id}/approve</code> (no slash)</td>
+<td>GET</td>
+<td><strong>405</strong> Method Not Allowed</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Resolution</strong>: 🟢 Trip approval via REST <strong>DOES work</strong> — just requires POST method and NO trailing slash. The previous 405/404 errors were caused by using the wrong method (GET or PATCH) or trailing slash.</p>
+<p><strong>Gap</strong>: 🟡 Document the <code>POST /api/trips/{id}/approve</code> endpoint (no slash, POST only). Document the response format <code>{success: true, message: "trip_approved"}</code>.</p>
+<hr />
+<h2 id="comprehensive-trailing-slash-reference">Comprehensive Trailing-Slash Reference<a class="headerlink" href="#comprehensive-trailing-slash-reference" title="Permanent link">&para;</a></h2>
+<p>This table captures the slash behaviour for <strong>every endpoint tested</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Without Slash</th>
+<th>With Slash</th>
+<th>Canonical Form</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/members</code></td>
+<td>301 → 200</td>
+<td><strong>200</strong></td>
+<td>With slash</td>
+</tr>
+<tr>
+<td><code>/api/members/{id}</code></td>
+<td>301 → 200</td>
+<td><strong>200</strong></td>
+<td>With slash</td>
+</tr>
+<tr>
+<td><code>/api/members/search</code></td>
+<td><strong>200</strong></td>
+<td>404</td>
+<td><strong>No slash</strong></td>
+</tr>
+<tr>
+<td><code>/api/members/{id}/triphistory</code></td>
+<td><strong>200</strong></td>
+<td>404</td>
+<td><strong>No slash</strong></td>
+</tr>
+<tr>
+<td><code>/api/members/{id}/tripcounts</code></td>
+<td><strong>200</strong></td>
+<td>404</td>
+<td><strong>No slash</strong></td>
+</tr>
+<tr>
+<td><code>/api/members/{id}/logbookentries</code></td>
+<td><strong>200</strong></td>
+<td>404</td>
+<td><strong>No slash</strong></td>
+</tr>
+<tr>
+<td><code>/api/members/{id}/upgradeeligibility</code></td>
+<td><strong>200</strong></td>
+<td>404</td>
+<td><strong>No slash</strong></td>
+</tr>
+<tr>
+<td><code>/api/members/leadsearch</code></td>
+<td><strong>400</strong> (needs query)</td>
+<td>404</td>
+<td><strong>No slash</strong></td>
+</tr>
+<tr>
+<td><code>/api/members/activetripleads</code></td>
+<td><strong>200</strong></td>
+<td>404</td>
+<td><strong>No slash</strong></td>
+</tr>
+<tr>
+<td><code>/api/members/request-deletion</code></td>
+<td><strong>405</strong> (POST only)</td>
+<td>404</td>
+<td><strong>No slash</strong></td>
+</tr>
+<tr>
+<td><code>/api/trips</code></td>
+<td>405</td>
+<td><strong>200</strong></td>
+<td>With slash</td>
+</tr>
+<tr>
+<td><code>/api/trips/{id}</code></td>
+<td>301 → 200</td>
+<td><strong>200</strong></td>
+<td>With slash</td>
+</tr>
+<tr>
+<td><code>/api/trips/search</code></td>
+<td><strong>200</strong></td>
+<td>404</td>
+<td><strong>No slash</strong></td>
+</tr>
+<tr>
+<td><code>/api/trips/{id}/viewlogbooks</code></td>
+<td><strong>200</strong></td>
+<td>404</td>
+<td><strong>No slash</strong></td>
+</tr>
+<tr>
+<td><code>/api/trips/{id}/logbook-entries</code></td>
+<td><strong>405</strong> (POST only)</td>
+<td>404</td>
+<td><strong>No slash</strong></td>
+</tr>
+<tr>
+<td><code>/api/trips/{id}/approve</code></td>
+<td><strong>200</strong> (POST)</td>
+<td>404</td>
+<td><strong>No slash</strong></td>
+</tr>
+<tr>
+<td><code>/api/trips/lead-trip-history</code></td>
+<td><strong>200</strong></td>
+<td>404</td>
+<td><strong>No slash</strong></td>
+</tr>
+<tr>
+<td><code>/api/token</code></td>
+<td>301 → 200</td>
+<td><strong>200</strong></td>
+<td>With slash</td>
+</tr>
+<tr>
+<td><code>/api/token/refresh</code></td>
+<td>301 → 200</td>
+<td><strong>200</strong></td>
+<td>With slash</td>
+</tr>
+<tr>
+<td><code>/api/vehicles</code></td>
+<td>301 → 200</td>
+<td><strong>200</strong></td>
+<td>With slash</td>
+</tr>
+<tr>
+<td><code>/api/meetingpoints</code></td>
+<td>301 → 200</td>
+<td><strong>200</strong></td>
+<td>With slash</td>
+</tr>
+<tr>
+<td><code>/api/notifications</code></td>
+<td>301 → 200</td>
+<td><strong>200</strong></td>
+<td>With slash</td>
+</tr>
+<tr>
+<td><code>/api/notifications/mark-as-read</code></td>
+<td>301 → 204</td>
+<td><strong>204</strong></td>
+<td>With slash</td>
+</tr>
+<tr>
+<td><code>/api/feedback</code></td>
+<td>301 → 405</td>
+<td><strong>405</strong></td>
+<td>With slash</td>
+</tr>
+<tr>
+<td><code>/api/levels</code></td>
+<td>301 → 200</td>
+<td><strong>200</strong></td>
+<td>With slash</td>
+</tr>
+<tr>
+<td><code>/api/device/fcm</code></td>
+<td>301 → 200</td>
+<td><strong>200</strong></td>
+<td>With slash</td>
+</tr>
+<tr>
+<td><code>/api/logbookskills</code></td>
+<td>301 → 200</td>
+<td><strong>200</strong></td>
+<td>With slash</td>
+</tr>
+<tr>
+<td><code>/api/clubnews</code></td>
+<td>301 → 200</td>
+<td><strong>200</strong></td>
+<td>With slash</td>
+</tr>
+<tr>
+<td><code>/api/triprequests</code></td>
+<td>301 → 200</td>
+<td><strong>200</strong></td>
+<td>With slash</td>
+</tr>
+<tr>
+<td><code>/api/upgraderequests</code></td>
+<td>301 → 200</td>
+<td><strong>200</strong></td>
+<td>With slash</td>
+</tr>
+<tr>
+<td><code>/api/tripreports</code></td>
+<td>301 → 200</td>
+<td><strong>200</strong></td>
+<td>With slash</td>
+</tr>
+<tr>
+<td><code>/api/faqs</code></td>
+<td>301 → 200</td>
+<td><strong>200</strong></td>
+<td>With slash</td>
+</tr>
+<tr>
+<td><code>/api/sponsors</code></td>
+<td>301 → 200</td>
+<td><strong>200</strong></td>
+<td>With slash</td>
+</tr>
+<tr>
+<td><code>/api/strings</code></td>
+<td>301 → 200</td>
+<td><strong>200</strong></td>
+<td>With slash</td>
+</tr>
+<tr>
+<td><code>/api/settings</code></td>
+<td>404</td>
+<td>404</td>
+<td><strong>Broken</strong></td>
+</tr>
+<tr>
+<td><code>/api/sponsorships</code></td>
+<td>404</td>
+<td>404</td>
+<td><strong>Wrong name</strong> (use <code>/api/sponsors/</code>)</td>
+</tr>
+<tr>
+<td><code>/api/choices/carbrand</code></td>
+<td><strong>200</strong></td>
+<td>404</td>
+<td><strong>No slash</strong></td>
+</tr>
+<tr>
+<td><code>/api/choices/triprequestarea</code></td>
+<td><strong>200</strong></td>
+<td>404</td>
+<td><strong>No slash</strong></td>
+</tr>
+<tr>
+<td><code>/api/auth/profile/notificationsettings</code></td>
+<td><strong>200</strong></td>
+<td>404</td>
+<td><strong>No slash</strong></td>
+</tr>
+<tr>
+<td><code>/api/auth/change-password</code></td>
+<td>301</td>
+<td><strong>405</strong> (POST only)</td>
+<td>With slash</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Pattern</strong>: Main resource endpoints (members, trips, vehicles, meetingpoints, notifications, levels, logbookskills, token) work WITH trailing slash. Sub-action endpoints (search, triphistory, tripcounts, viewlogbooks, etc.) work WITHOUT trailing slash. <code>/api/choices/*</code> endpoints work WITHOUT slash. This pattern should be documented.</p>
+<hr />
+<h2 id="action-items-for-backend-team">Action Items for Backend Team<a class="headerlink" href="#action-items-for-backend-team" title="Permanent link">&para;</a></h2>
+<h3 id="priority-1-wrong-documentation-fix-immediately">Priority 1 — Wrong Documentation (fix immediately)<a class="headerlink" href="#priority-1-wrong-documentation-fix-immediately" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong><code>vehicles.md</code></strong>: Change <code>/api/choices/carbrands/</code> → <code>/api/choices/carbrand</code></li>
+<li><strong><code>auth-profiles.md</code></strong>: Change password fields from <code>old_password, password, password2</code> → <code>oldPassword, password, passwordConfirm</code></li>
+<li><strong><code>members.md</code></strong>: Remove <code>carBrand, carModel, carColor, carImage</code> from list and detail response docs (moved to vehicles)</li>
+<li><strong><code>members.md</code></strong>: Remove <code>car_brand</code> and <code>car_year</code> from documented filters (silently ignored)</li>
+<li><strong><code>members.md</code></strong>: Fix <code>/api/members/search/</code> → <code>/api/members/search</code> (no trailing slash)</li>
+<li><strong><code>notifications.md</code></strong>: Change <code>is_read</code> → <code>isRead</code> in the response docs</li>
+<li><strong><code>trip-search.md</code></strong>: Fix all example URLs from <code>/api/trips/search/</code> → <code>/api/trips/search</code> (no trailing slash)</li>
+<li><strong><code>logbook.md</code></strong>: Fix <code>/api/logbookskills</code> → <code>/api/logbookskills/</code> (needs trailing slash)</li>
+<li><strong><code>auth-profiles.md</code></strong>: Update permissions field docs — actual format is <code>[{id, levels, action}]</code>, not <code>["CREATE_TRIP", ...]</code></li>
+<li><strong><code>global-settings.md</code></strong>: <code>GET /api/settings/</code> returns 404 — either fix or remove from docs</li>
+<li><strong><code>sponsorships.md</code></strong>: Change <code>/api/sponsorships/</code> → <code>/api/sponsors/</code> (different endpoint name entirely). Also document it returns a plain array, not paginated.</li>
+<li><strong><code>club-news.md</code></strong>: Remove <code>published</code> and <code>author</code> from response docs. Add <code>submitDate</code>, <code>status</code>, <code>levels</code>, <code>image</code>.</li>
+<li><strong><code>trip-requests.md</code></strong>: Fix <code>level</code> field — list response returns a string (e.g., "Newbie"), not an object. Remove <code>voteCount</code> and <code>created</code> from list response docs (not present).</li>
+<li><strong><code>upgrade-requests.md</code></strong>: Fix <code>upgradeeligibility</code> response — uses camelCase (<code>memberId</code>, <code>currentLevel</code>), not snake_case (<code>member_id</code>, <code>current_level</code>).</li>
+</ol>
+<h3 id="priority-2-missing-documentation-add-when-possible">Priority 2 — Missing Documentation (add when possible)<a class="headerlink" href="#priority-2-missing-documentation-add-when-possible" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>All endpoints</strong>: Document that both camelCase and snake_case parameter names work (e.g., <code>page_size</code>/<code>pageSize</code>, <code>trip_count</code>/<code>tripCount</code>, <code>first_name</code>/<code>firstName</code>)</li>
+<li><strong><code>members.md</code></strong>: Document that <code>level</code> field in the <strong>list</strong> response is a string (level name), while in the <strong>detail</strong> response it's an object</li>
+<li><strong><code>members.md</code></strong>: Document exact-match behaviour for <code>email</code> and <code>phone</code> filters, and the <code>__icontains</code> lookup suffix</li>
+<li><strong><code>notifications.md</code></strong>: Document full response field list (<code>id, title, body, timestamp, type, relatedObjectId, relatedObjectType, isRead</code>)</li>
+<li><strong>Notification settings</strong>: Document <code>GET /api/auth/profile/notificationsettings</code> endpoint including the <code>lastUserActivity</code> field</li>
+<li><strong><code>levels</code></strong>: Create a documentation page for <code>GET /api/levels/</code> with full field list</li>
+<li><strong><code>trip-search.md</code></strong>: Explicitly state that <code>approvalStatus</code> and <code>ordering</code> are NOT supported</li>
+<li><strong><code>trip-search.md</code></strong>: Document that <code>meeting_point</code> filter is broken (IDs return 0, text names cause timeout)</li>
+<li><strong>All member sub-endpoints</strong>: Document that they require NO trailing slash (slash returns 404)</li>
+<li><strong>All choice endpoints</strong>: Document that <code>/api/choices/*</code> requires NO trailing slash</li>
+<li><strong>Trailing-slash reference</strong>: Add the comprehensive table from this audit to <code>api-concepts.md</code></li>
+<li><strong><code>members.md</code></strong>: Document error message strings for search validation (<code>query_too_short</code>, <code>query_parameter_required</code>)</li>
+<li><strong><code>faqs.md</code></strong>: Document that FAQs returns a plain JSON array, not a paginated response (same as sponsors)</li>
+<li><strong><code>trips.md</code></strong>: Document <code>POST /api/trips/{id}/approve</code> (no slash, POST only) with response format</li>
+<li><strong><code>members.md</code></strong>: <code>level_Id</code> filter is silently ignored — either implement or remove from docs</li>
+<li><strong><code>members.md</code></strong>: <code>dateJoined</code> range filters are silently ignored — either implement or remove from docs</li>
+</ol>
+<hr />
+<h2 id="discovery-lastuseractivity-field-relevant-to-backendtodo-7">Discovery: <code>lastUserActivity</code> Field (relevant to BACK<em>END</em>TODO #7)<a class="headerlink" href="#discovery-lastuseractivity-field-relevant-to-backendtodo-7" title="Permanent link">&para;</a></h2>
+<p>During the audit, we discovered an undocumented field <code>lastUserActivity</code> in the notification settings response:</p>
+<div class="codehilite"><pre><span></span><code>GET /api/auth/profile/notificationsettings
+→ {
+    &quot;clubNewsEnabledEmail&quot;: true,
+    &quot;clubNewsEnabledAppPush&quot;: true,
+    &quot;newTripAlertsEnabledEmail&quot;: true,
+    &quot;newTripAlertsEnabledAppPush&quot;: true,
+    &quot;upgradeRequestReminderEmail&quot;: true,
+    &quot;tripChatEnabledAppPush&quot;: true,
+    &quot;lastUserActivity&quot;: &quot;2026-03-31&quot;,
+    &quot;member&quot;: 10613,
+    &quot;newTripAlertsLevelFilter&quot;: []
+  }
+</code></pre></div>
+
+<p><strong>Key findings</strong>:
+- The <code>lastUserActivity</code> field returns a <strong>date</strong> (not datetime) — <code>"2026-03-31"</code> format.
+- It is <strong>NOT</strong> included in member list or detail responses (<code>GET /api/members/</code>, <code>GET /api/members/{id}/</code>).
+- It is <strong>only</strong> accessible via the notification settings endpoint (which is per-user, not admin-queryable).
+- For BACK<em>END</em>TODO #7 to work fully, <code>lastUserActivity</code> (or a <code>lastVisited</code> field) needs to be:
+  1. Added to the member list/detail response
+  2. Made filterable (for admin queries like "inactive 90+ days")
+  3. Made orderable (for sorting by last activity)</p>
+<p>The existence of this field suggests the backend already tracks user activity at some level, which means implementing #7 may be simpler than creating it from scratch.</p>
+<hr />
+<p><em>End of audit. Updated 2026-03-30 (Session #14 continued).</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

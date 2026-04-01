@@ -588,6 +588,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../logbook/" class="md-nav__link">
         
   
@@ -920,6 +947,33 @@
     
   
     UI Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
   
 
     
@@ -1646,7 +1700,10 @@
 
 
 <h1 id="maintenance-mode">Maintenance Mode<a class="headerlink" href="#maintenance-mode" title="Permanent link">&para;</a></h1>
-<p>Maintenance mode allows administrators to temporarily take the API offline for updates, migrations, or emergency repairs. During maintenance, all API requests receive a <code>503 Service Unavailable</code> response.</p>
+<blockquote>
+<p><strong>⚠ NOT IMPLEMENTED:</strong> This feature is <strong>not yet implemented</strong> in the codebase. The <code>maintenance_mode_enabled</code> setting does not exist in <code>ConfigurableSettings</code>, and there is no middleware or service that enforces a 503 response. This document describes the <strong>intended design</strong> for a future implementation. Do not rely on this feature in production.</p>
+</blockquote>
+<p>Maintenance mode would allow administrators to temporarily take the API offline for updates, migrations, or emergency repairs. During maintenance, all API requests would receive a <code>503 Service Unavailable</code> response.</p>
 <h2 id="how-it-works">How It Works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h2>
 <div class="codehilite"><pre><span></span><code>Client Request
     ↓
@@ -1768,12 +1825,9 @@ Disabled → Continue normal processing
 <li>Have rollback plan ready</li>
 </ul>
 <h3 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h3>
-<p>Test maintenance mode before relying on it:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># In Django admin or shell</span>
-from<span class="w"> </span>api.services.global_settings<span class="w"> </span>import<span class="w"> </span>set_maintenance_mode
-set_maintenance_mode<span class="o">(</span>True<span class="o">)</span>
-</code></pre></div>
-
+<blockquote>
+<p><strong>Note:</strong> Maintenance mode is not yet implemented. The <code>set_maintenance_mode()</code> function and <code>maintenance_mode_enabled</code> setting do not exist. This section is a placeholder for a future implementation.</p>
+</blockquote>
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
 <h3 id="maintenance-mode-not-working">Maintenance Mode Not Working<a class="headerlink" href="#maintenance-mode-not-working" title="Permanent link">&para;</a></h3>
 <p><strong>Symptom:</strong> API still responding normally

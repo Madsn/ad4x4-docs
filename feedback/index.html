@@ -588,6 +588,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../logbook/" class="md-nav__link">
         
   
@@ -817,21 +844,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#list-feedback-admin" class="md-nav__link">
+  <a href="#view-member-feedback" class="md-nav__link">
     <span class="md-ellipsis">
       
-        List Feedback (Admin)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#retrieve-feedback-admin" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Retrieve Feedback (Admin)
+        View Member Feedback
       
     </span>
   </a>
@@ -840,17 +856,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#feedback-status" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Feedback Status
-      
-    </span>
-  </a>
   
 </li>
       
@@ -1091,6 +1096,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../account-deletion/" class="md-nav__link">
         
   
@@ -1280,21 +1312,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#list-feedback-admin" class="md-nav__link">
+  <a href="#view-member-feedback" class="md-nav__link">
     <span class="md-ellipsis">
       
-        List Feedback (Admin)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#retrieve-feedback-admin" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Retrieve Feedback (Admin)
+        View Member Feedback
       
     </span>
   </a>
@@ -1303,17 +1324,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#feedback-status" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Feedback Status
-      
-    </span>
-  </a>
   
 </li>
       
@@ -1378,114 +1388,89 @@
 <li><strong>Authentication</strong>: Required</li>
 <li><strong>Permission</strong>: Any authenticated user</li>
 </ul>
-<p><strong>Request Body:</strong></p>
+<p><strong>Request Body (JSON):</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;feedbackType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BUG&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The trip registration button is not working on mobile devices.&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;screenshot&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">    </span><span class="nt">&quot;feedbackType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bug&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The trip registration button is not working on mobile devices.&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
 
-<p><strong>Feedback Types:</strong>
-| Value | Description |
-|-------|-------------|
-| <code>BUG</code> | Report a bug or issue |
-| <code>SUGGESTION</code> | Feature suggestion |
-| <code>QUESTION</code> | General question |
-| <code>OTHER</code> | Other feedback |</p>
-<p><strong>Response:</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">567</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;feedbackType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BUG&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The trip registration button is not working on mobile devices.&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SUBMITTED&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-11-13T14:25:00+04:00&quot;</span>
-<span class="p">}</span>
+<p><strong>Request Body (multipart/form-data with image):</strong></p>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/api/feedback/<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer YOUR_TOKEN&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-F<span class="w"> </span><span class="s2">&quot;feedback_type=bug&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-F<span class="w"> </span><span class="s2">&quot;message=Issue description&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-F<span class="w"> </span><span class="s2">&quot;image=@screenshot.png&quot;</span>
 </code></pre></div>
 
-<h3 id="list-feedback-admin">List Feedback (Admin)<a class="headerlink" href="#list-feedback-admin" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>GET</strong> <code>/api/feedback/</code></li>
-<li>Requires <code>EDIT_GLOBAL_SETTINGS</code> or superuser permission</li>
-</ul>
-<p><strong>Query Parameters:</strong>
-- <code>status</code> - Filter by status (SUBMITTED, IN_REVIEW, RESOLVED)
-- <code>feedback_type</code> - Filter by type
-- <code>page</code> - Page number</p>
-<p><strong>Response:</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;results&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">567</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;feedbackType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BUG&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The trip registration button...&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SUBMITTED&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-11-13T14:25:00+04:00&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;member&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;johndoe&quot;</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<h3 id="retrieve-feedback-admin">Retrieve Feedback (Admin)<a class="headerlink" href="#retrieve-feedback-admin" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>GET</strong> <code>/api/feedback/{id}/</code></li>
-<li>Requires admin permission</li>
-</ul>
-<p><strong>Response:</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">567</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;feedbackType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BUG&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The trip registration button is not working on mobile devices.&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;screenshot&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://storage.example.com/feedback/567/screenshot.png&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SUBMITTED&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-11-13T14:25:00+04:00&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;member&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;johndoe&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;john@example.com&quot;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<h2 id="feedback-status">Feedback Status<a class="headerlink" href="#feedback-status" title="Permanent link">&para;</a></h2>
+<p><strong>Feedback Types:</strong></p>
 <table>
 <thead>
 <tr>
-<th>Status</th>
+<th>Value</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>SUBMITTED</code></td>
-<td>Feedback just submitted</td>
+<td><code>bug</code></td>
+<td>Bug Report</td>
 </tr>
 <tr>
-<td><code>IN_REVIEW</code></td>
-<td>Being reviewed by admin</td>
+<td><code>feature</code></td>
+<td>Feature Request</td>
 </tr>
 <tr>
-<td><code>RESOLVED</code></td>
-<td>Addressed/completed</td>
+<td><code>general</code></td>
+<td>General Feedback</td>
+</tr>
+<tr>
+<td><code>support</code></td>
+<td>Help/Support</td>
 </tr>
 </tbody>
 </table>
-<h2 id="file-uploads">File Uploads<a class="headerlink" href="#file-uploads" title="Permanent link">&para;</a></h2>
-<p>Feedback can include a screenshot image. Use <code>multipart/form-data</code>:</p>
-<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/api/feedback/<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer YOUR_TOKEN&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-F<span class="w"> </span><span class="s2">&quot;feedbackType=BUG&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-F<span class="w"> </span><span class="s2">&quot;message=Issue description&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-F<span class="w"> </span><span class="s2">&quot;screenshot=@screenshot.png&quot;</span>
+<p><strong>Success Response (201 Created):</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;feedbackType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bug&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The trip registration button is not working on mobile devices.&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
 
+<blockquote>
+<p><strong>Note:</strong> The feedback serializer only exposes the fields <code>feedback_type</code>, <code>message</code>, and <code>image</code>. The <code>user</code> field is automatically set to the authenticated user. The <code>timestamp</code> field is auto-generated.</p>
+</blockquote>
+<h3 id="view-member-feedback">View Member Feedback<a class="headerlink" href="#view-member-feedback" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>GET</strong> <code>/api/members/{id}/feedback</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Authentication</strong>: Required</p>
+</li>
+<li><strong>Permission</strong>: Feedback owner or superuser</li>
+<li>Returns a list of feedback submitted by the specified member, ordered by most recent first.</li>
+</ul>
+<p><strong>Response item fields:</strong> <code>feedbackType</code>, <code>message</code>, <code>image</code></p>
+<h2 id="file-uploads">File Uploads<a class="headerlink" href="#file-uploads" title="Permanent link">&para;</a></h2>
+<p>Feedback can include a single image. Use <code>multipart/form-data</code>:</p>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/api/feedback/<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer YOUR_TOKEN&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-F<span class="w"> </span><span class="s2">&quot;feedback_type=bug&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-F<span class="w"> </span><span class="s2">&quot;message=Issue description&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-F<span class="w"> </span><span class="s2">&quot;image=@screenshot.png&quot;</span>
+</code></pre></div>
+
+<p>Images are stored under <code>feedback_images/{YYYY}/{MM}/</code> with a UUID suffix for uniqueness.</p>
 <h2 id="notifications">Notifications<a class="headerlink" href="#notifications" title="Permanent link">&para;</a></h2>
-<p>When feedback is submitted, administrators receive a notification via the configured channels (email, push).</p>
+<p>When feedback is submitted, a background notification is sent to administrators via the configured channels.</p>
 <p>See <a href="../notifications/">Notifications</a> for more information.</p>
 <h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
 <ul>

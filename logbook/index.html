@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://api.ad4x4.com/readme/logbook/">
       
       
-        <link rel="prev" href="../meeting-points/">
+        <link rel="prev" href="../levels/">
       
       
         <link rel="next" href="../logbook-migration/">
@@ -585,6 +585,33 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -697,6 +724,28 @@
     <span class="md-ellipsis">
       
         List Logbook Skills
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logbook-entries-viewset-crud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logbook Entries ViewSet (CRUD)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logbook-skill-references-viewset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logbook Skill References ViewSet
       
     </span>
   </a>
@@ -1147,6 +1196,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../account-deletion/" class="md-nav__link">
         
   
@@ -1357,6 +1433,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#logbook-entries-viewset-crud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logbook Entries ViewSet (CRUD)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logbook-skill-references-viewset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logbook Skill References ViewSet
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1484,7 +1582,12 @@
 <h2 id="endpoints">Endpoints<a class="headerlink" href="#endpoints" title="Permanent link">&para;</a></h2>
 <h3 id="create-a-logbook-entry">Create a Logbook Entry<a class="headerlink" href="#create-a-logbook-entry" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>POST</strong> <code>/api/trips/{id}/logbook-entries</code><ul>
+<li>
+<p><strong>POST</strong> <code>/api/trips/{id}/logbook-entries</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<ul>
 <li>Creates a new logbook entry for a trip.</li>
 <li>Requires <code>CREATE_LOGBOOK_ENTRIES</code> or <code>CREATE_LOGBOOK_ENTRIES_SUPERUSER</code> permission.</li>
 </ul>
@@ -1492,14 +1595,24 @@
 </ul>
 <h3 id="view-logbook-entries-for-a-trip">View Logbook Entries for a Trip<a class="headerlink" href="#view-logbook-entries-for-a-trip" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>GET</strong> <code>/api/trips/{id}/viewlogbooks</code><ul>
+<li>
+<p><strong>GET</strong> <code>/api/trips/{id}/viewlogbooks</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<ul>
 <li>Retrieves a list of members checked in to a trip, along with their associated logbook entry.</li>
 </ul>
 </li>
 </ul>
 <h3 id="view-logbook-entries-for-a-member">View Logbook Entries for a Member<a class="headerlink" href="#view-logbook-entries-for-a-member" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>GET</strong> <code>/api/members/{id}/logbookentries</code><ul>
+<li>
+<p><strong>GET</strong> <code>/api/members/{id}/logbookentries</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<ul>
 <li>Retrieves a list of logbook entries for a specific member.</li>
 <li>Each entry includes <code>created_at</code> and <code>updated_at</code> timestamps for audit trail purposes.</li>
 <li>When skills are verified, <code>LogbookSkillReference</code> records are created with <code>signed_by</code>, <code>entered_by</code>, and <code>entered_at</code> fields.</li>
@@ -1508,14 +1621,75 @@
 </ul>
 <h3 id="list-logbook-skills">List Logbook Skills<a class="headerlink" href="#list-logbook-skills" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>GET</strong> <code>/api/logbookskills</code><ul>
-<li>Retrieves a list of all available logbook skills.</li>
+<li>
+<p><strong>GET</strong> <code>/api/logbookskills/</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint uses a trailing slash (it is a router-registered ViewSet endpoint).</p>
+</blockquote>
+<ul>
+<li>Retrieves a list of all available logbook skills (only active skills, ordered by <code>order</code> field).</li>
 <li>The <code>count_requirement</code> field indicates the minimum number of sign-offs required for a skill.</li>
 <li>The <code>category</code> field is an object containing the ID and name of the skill category.</li>
-<li>Skills can be filtered by category using the <code>category</code> query parameter (e.g., <code>/api/logbookskills?category=1</code>).</li>
+<li><strong>Pagination:</strong> Standard pagination (default 20, max 500).</li>
 </ul>
 </li>
 </ul>
+<p><strong>Query Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>category</code></td>
+<td>integer</td>
+<td>Filter by skill category ID</td>
+</tr>
+<tr>
+<td><code>level_gte</code></td>
+<td>integer</td>
+<td>Skills for levels with ID &gt;= this value</td>
+</tr>
+<tr>
+<td><code>level_lte</code></td>
+<td>integer</td>
+<td>Skills for levels with ID &lt;= this value</td>
+</tr>
+<tr>
+<td><code>level_eq</code></td>
+<td>integer</td>
+<td>Skills for an exact level ID</td>
+</tr>
+<tr>
+<td><code>level_null</code></td>
+<td>boolean</td>
+<td>Skills with no level requirement (<code>true</code> or <code>false</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="logbook-entries-viewset-crud">Logbook Entries ViewSet (CRUD)<a class="headerlink" href="#logbook-entries-viewset-crud" title="Permanent link">&para;</a></h3>
+<p>The following router-registered endpoints provide full CRUD access to logbook entries:</p>
+<ul>
+<li><strong>GET</strong> <code>/api/logbookentries/</code> - List all logbook entries, ordered by ID.</li>
+<li><strong>GET</strong> <code>/api/logbookentries/{id}/</code> - Retrieve a single entry.</li>
+<li><strong>POST</strong> <code>/api/logbookentries/</code> - Create a new logbook entry (alternative to <code>POST /api/trips/{id}/logbook-entries</code>). Requires <code>CREATE_LOGBOOK_ENTRIES</code> permission. Body includes <code>trip</code>, <code>member</code>, <code>comment</code>, and <code>skills_verified</code> (array of skill IDs).</li>
+<li><strong>PUT/PATCH</strong> <code>/api/logbookentries/{id}/</code> - Update an entry. Same permission checks as create.</li>
+<li><strong>DELETE</strong> <code>/api/logbookentries/{id}/</code> - Delete an entry.</li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> Both the trip-specific endpoint (<code>POST /api/trips/{id}/logbook-entries</code>) and the ViewSet endpoint (<code>POST /api/logbookentries/</code>) can be used to create entries. They apply the same permission checks.</p>
+</blockquote>
+<h3 id="logbook-skill-references-viewset">Logbook Skill References ViewSet<a class="headerlink" href="#logbook-skill-references-viewset" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>GET</strong> <code>/api/logbookskillreferences/</code> - List all skill reference records.</li>
+<li><strong>GET</strong> <code>/api/logbookskillreferences/{id}/</code> - Retrieve a single skill reference.</li>
+<li>Full CRUD is available (POST, PUT, PATCH, DELETE) for authenticated users with appropriate permissions.</li>
+</ul>
+<p><strong>Skill Reference Fields:</strong> <code>id</code>, <code>logbook_skill</code>, <code>member</code>, <code>trip</code>, <code>signed_by</code>, <code>entered_by</code>, <code>entered_at</code></p>
 <h2 id="logbook-entry-permissions">Logbook Entry Permissions<a class="headerlink" href="#logbook-entry-permissions" title="Permanent link">&para;</a></h2>
 <p>Creating, updating, and deleting logbook entries is governed by a detailed permission system. The rules are as follows:</p>
 <h3 id="members-creating-entries-for-themselves">Members Creating Entries for Themselves<a class="headerlink" href="#members-creating-entries-for-themselves" title="Permanent link">&para;</a></h3>

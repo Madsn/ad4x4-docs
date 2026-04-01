@@ -588,6 +588,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../logbook/" class="md-nav__link">
         
   
@@ -775,6 +802,28 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#response-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Response Fields
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#status-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status Workflow
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1058,6 +1107,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../account-deletion/" class="md-nav__link">
         
   
@@ -1263,6 +1339,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#response-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Response Fields
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#status-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status Workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#notifications" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1304,7 +1402,7 @@
 <h1 id="club-news">Club News<a class="headerlink" href="#club-news" title="Permanent link">&para;</a></h1>
 <p>This document outlines the club news (announcements) system.</p>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>Club news allows administrators to publish announcements visible to all members.</p>
+<p>Club news allows administrators to publish announcements visible to all members. News items go through a status workflow: Draft -&gt; Approved -&gt; Sent.</p>
 <h2 id="endpoints">Endpoints<a class="headerlink" href="#endpoints" title="Permanent link">&para;</a></h2>
 <h3 id="list-club-news">List Club News<a class="headerlink" href="#list-club-news" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1312,24 +1410,24 @@
 <li><strong>Authentication</strong>: Optional (public endpoint)</li>
 <li><strong>Permission</strong>: None required</li>
 </ul>
+<p>Only items with status <code>SENT</code> are returned, ordered by <code>submitDate</code> descending.</p>
 <p><strong>Query Parameters:</strong>
 - <code>page</code> - Page number (default: 1)
 - <code>page_size</code> - Results per page (default: 20)</p>
 <p><strong>Response:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;next&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;previous&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;results&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;New Trip Guidelines&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Please review the updated trip guidelines...&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;published&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-11-15T10:00:00+04:00&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;firstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Admin&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;lastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;User&quot;</span>
-<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="nt">&quot;submitDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-15T10:00:00&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SENT&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;levels&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/media/clubnews/2026/03/guidelines.jpg&quot;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
@@ -1344,18 +1442,95 @@
 <span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;New Trip Guidelines&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Please review the updated trip guidelines for the upcoming season.&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;published&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-11-15T10:00:00+04:00&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;firstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Admin&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;lastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;User&quot;</span>
-<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nt">&quot;submitDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-15T10:00:00&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SENT&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;levels&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/media/clubnews/2026/03/guidelines.jpg&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
 
+<h2 id="response-fields">Response Fields<a class="headerlink" href="#response-fields" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>Unique identifier</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>string</td>
+<td>News title (max 100 characters)</td>
+</tr>
+<tr>
+<td><code>content</code></td>
+<td>string</td>
+<td>Full news content</td>
+</tr>
+<tr>
+<td><code>submitDate</code></td>
+<td>datetime</td>
+<td>When the news was approved/published</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>string</td>
+<td>Status code (only <code>SENT</code> items are returned via API)</td>
+</tr>
+<tr>
+<td><code>levels</code></td>
+<td>array</td>
+<td>Array of Level IDs this news targets. Empty means all members.</td>
+</tr>
+<tr>
+<td><code>image</code></td>
+<td>string</td>
+<td>Optional image URL</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note:</strong> The API does NOT include an <code>author</code> field. News items are managed by administrators via Django Admin.</p>
+</blockquote>
+<h2 id="status-workflow">Status Workflow<a class="headerlink" href="#status-workflow" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DRAFT</code></td>
+<td>Initial state, not visible to members</td>
+</tr>
+<tr>
+<td><code>APPROVED</code></td>
+<td>Approved, <code>submitDate</code> is set automatically</td>
+</tr>
+<tr>
+<td><code>SENT</code></td>
+<td>Notifications have been sent, visible via API</td>
+</tr>
+<tr>
+<td><code>ERROR</code></td>
+<td>Error occurred during notification sending</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note:</strong> Once a news item has status <code>SENT</code>, it cannot be modified.</p>
+</blockquote>
 <h2 id="notifications">Notifications<a class="headerlink" href="#notifications" title="Permanent link">&para;</a></h2>
-<p>When new club news is published, a notification is sent to all members with the <code>CLUB_NEWS</code> notification type enabled.</p>
+<p>When new club news is published, a notification is sent to all members with the <code>CLUB_NEWS</code> notification type enabled. If <code>levels</code> are specified, only members at those levels receive the notification.</p>
 <p>See <a href="../notifications/">Notifications</a> for more information.</p>
 <h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
 <ul>

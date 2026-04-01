@@ -588,6 +588,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../logbook/" class="md-nav__link">
         
   
@@ -1013,6 +1040,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#vehicle-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vehicle Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#here-maps-settings" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1122,6 +1160,33 @@
     
   
     UI Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
   
 
     
@@ -1391,6 +1456,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#vehicle-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vehicle Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#here-maps-settings" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1473,21 +1549,39 @@
 <p>Global settings are managed via the Django Admin interface under <code>ConfigurableSettings</code>. These settings control system-wide behavior without requiring code changes.</p>
 <h2 id="accessing-settings">Accessing Settings<a class="headerlink" href="#accessing-settings" title="Permanent link">&para;</a></h2>
 <h3 id="api-endpoint">API Endpoint<a class="headerlink" href="#api-endpoint" title="Permanent link">&para;</a></h3>
-<p><strong>GET</strong> <code>/api/settings/</code></p>
-<p>Returns current configuration (requires authentication):</p>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;defaultUserLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;defaultUserGroup&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;enableAutoUpgradeOnLogbookEntry&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;forceWaitlist&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;tripEditDeleteCutoffMinutes&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;hereMapsEnabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;enableGallerySystem&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;autoCreateTripGallery&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">  </span><span class="err">...</span>
-<span class="p">}</span>
+<p><strong>GET</strong> <code>/api/globalsettings/</code></p>
+<blockquote>
+<p><strong>Note:</strong> The endpoint is <code>/api/globalsettings/</code> (not <code>/api/settings/</code>). Using <code>/api/settings/</code> will return a 404.</p>
+</blockquote>
+<p>Returns current configuration (public read access, requires <code>EDIT_GLOBAL_SETTINGS</code> permission for updates):</p>
+<div class="codehilite"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;enableAutoUpgradeOnLogbookEntry&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;autoUpgradeSourceLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;autoUpgradeTargetLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;emailSupportAddress&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;support@ad4x4.com&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;forceWaitlist&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;tripEditDeleteCutoffMinutes&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;hereMapsEnabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;hereMapsApiBaseUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://revgeocode.search.hereapi.com/v1/revgeocode&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;hereMapsSelectedFields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">    </span><span class="nt">&quot;hereMapsMaxFields&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;hereMapsAvailableFields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;hereMapsRequestTimeout&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;hereMapsCacheDuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1440</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;enableGallerySystem&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;autoCreateTripGallery&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;allowManualGalleryCreation&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;galleryApiUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://media.ad4x4.com&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;galleryApiTimeout&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;vehicleLimitPerMember&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
 </code></pre></div>
 
+<blockquote>
+<p><strong>Note:</strong> The response is an <strong>array</strong> (typically with one item) because this uses a ListModelMixin ViewSet with no pagination. Several fields are excluded from the API response: <code>id</code>, <code>emailSleepPeriodMs</code>, <code>emailUnsubAddress</code>, <code>emailSendingAddress</code>, <code>defaultUserLevel</code>, <code>defaultUserGroup</code>, <code>notificationDryRun</code>. The <code>hereMapsApiKey</code> is write-only and never returned.</p>
+</blockquote>
 <h2 id="settings-reference">Settings Reference<a class="headerlink" href="#settings-reference" title="Permanent link">&para;</a></h2>
 <h3 id="user-management">User Management<a class="headerlink" href="#user-management" title="Permanent link">&para;</a></h3>
 <table>
@@ -1517,6 +1611,9 @@
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p><strong>Note:</strong> <code>default_user_level</code> and <code>default_user_group</code> are excluded from the API response and can only be configured via Django Admin.</p>
+</blockquote>
 <h3 id="auto-upgrade-settings">Auto-Upgrade Settings<a class="headerlink" href="#auto-upgrade-settings" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -1594,6 +1691,9 @@
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p><strong>Note:</strong> <code>email_sending_address</code>, <code>email_unsub_address</code>, and <code>email_sleep_period_ms</code> are excluded from the API response. Only <code>email_support_address</code> is exposed.</p>
+</blockquote>
 <h3 id="trip-settings">Trip Settings<a class="headerlink" href="#trip-settings" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -1622,6 +1722,27 @@
 </tr>
 </tbody>
 </table>
+<h3 id="vehicle-settings">Vehicle Settings<a class="headerlink" href="#vehicle-settings" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Field Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vehicle Limit Per Member</td>
+<td><code>vehicle_limit_per_member</code></td>
+<td>Integer</td>
+<td><code>3</code></td>
+<td>Maximum number of vehicles a member can register</td>
+</tr>
+</tbody>
+</table>
 <h3 id="here-maps-settings">HERE Maps Settings<a class="headerlink" href="#here-maps-settings" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -1646,7 +1767,7 @@
 <td><code>here_maps_api_key</code></td>
 <td>String</td>
 <td>null</td>
-<td>API key for HERE Maps</td>
+<td>API key for HERE Maps (write-only)</td>
 </tr>
 <tr>
 <td>HERE Maps API Base URL</td>
@@ -1775,6 +1896,9 @@
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p><strong>Note:</strong> <code>notification_dry_run</code> is excluded from the API response and can only be configured via Django Admin.</p>
+</blockquote>
 <h2 id="configuration-via-admin">Configuration via Admin<a class="headerlink" href="#configuration-via-admin" title="Permanent link">&para;</a></h2>
 <p>Settings are managed in Django Admin at <code>/admin/api/configurablesettings/</code>.</p>
 <p>Only superusers can modify these settings.</p>
@@ -1784,6 +1908,7 @@
 <li><a href="../gallery/">Gallery</a> - Gallery system configuration</li>
 <li><a href="../notifications/">Notifications</a> - Notification system</li>
 <li><a href="../trips/">Trips</a> - Trip settings and behavior</li>
+<li><a href="../vehicles/">Vehicles</a> - Vehicle limit configuration</li>
 </ul>
 
 

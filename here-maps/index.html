@@ -588,6 +588,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../logbook/" class="md-nav__link">
         
   
@@ -1036,6 +1063,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../account-deletion/" class="md-nav__link">
         
   
@@ -1267,8 +1321,8 @@
 <li><strong>Here Maps Api Base Url</strong>: The base URL for the HERE Maps reverse geocoding API.</li>
 <li><strong>Here Maps Selected Fields</strong>: A JSON list of fields to be returned by the reverse geocoding endpoint (e.g., <code>["city", "district"]</code>).</li>
 <li><strong>Here Maps Max Fields</strong>: The maximum number of fields to display in the formatted <code>area</code> string.</li>
-<li><strong>Here Maps Available Fields</strong>: A JSON object defining the available fields and their display names (e.g., <code>{"city": "City", "district": "District"}</code>).</li>
-<li><strong>Here Maps Cache Duration</strong>: The duration, in days, for which geocoding results are cached in the database.</li>
+<li><strong>Here Maps Available Fields</strong>: A JSON array of objects defining the available fields and their display names (e.g., <code>[{"name": "city", "displayName": "City"}, {"name": "district", "displayName": "District"}]</code>).</li>
+<li><strong>Here Maps Cache Duration</strong>: The duration, in <strong>minutes</strong>, for which geocoding results are cached in the database (default: 1440 minutes = 1 day).</li>
 <li><strong>Here Maps Request Timeout</strong>: The timeout, in seconds, for requests to the HERE Maps API.</li>
 </ul>
 <h2 id="api-endpoints">API Endpoints<a class="headerlink" href="#api-endpoints" title="Permanent link">&para;</a></h2>

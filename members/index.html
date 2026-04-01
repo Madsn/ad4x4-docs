@@ -476,6 +476,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#member-trip-counts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Member Trip Counts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lead-search" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -557,6 +568,17 @@
     <span class="md-ellipsis">
       
         Member Feedback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#member-payments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Member Payments
       
     </span>
   </a>
@@ -748,6 +770,33 @@
     
   
     Meeting Points
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
   
 
     
@@ -1118,6 +1167,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../account-deletion/" class="md-nav__link">
         
   
@@ -1317,6 +1393,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#member-trip-counts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Member Trip Counts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lead-search" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1404,6 +1491,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#member-payments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Member Payments
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1427,10 +1525,112 @@
 <h2 id="member-list">Member List<a class="headerlink" href="#member-list" title="Permanent link">&para;</a></h2>
 <p>You can retrieve a list of members using the standard ViewSet endpoint.</p>
 <p><strong>GET</strong> <code>/api/members/</code></p>
-<p><strong>Query Parameters:</strong>
-- <code>car_brand</code>, <code>car_year</code>, <code>trip_count</code>, <code>phone</code>, <code>level__numeric_level</code>, <code>level__name</code>, <code>email</code>, <code>first_name</code>, <code>last_name</code>, <code>nationality</code>, <code>city</code> - Filter by various member attributes
-- <code>page</code> - Page number (default: 1)
-- <code>page_size</code> - Number of results per page (default: 20, max: 500)</p>
+<p><strong>Authentication:</strong> Optional (public endpoint, but contact info requires authentication and permissions)</p>
+<p><strong>Query Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>trip_count</code></td>
+<td>integer</td>
+<td>Filter by exact trip count</td>
+</tr>
+<tr>
+<td><code>trip_count__range</code></td>
+<td>string</td>
+<td>Filter by trip count range (e.g., <code>5,20</code>)</td>
+</tr>
+<tr>
+<td><code>phone</code></td>
+<td>string</td>
+<td>Filter by exact phone number</td>
+</tr>
+<tr>
+<td><code>phone__icontains</code></td>
+<td>string</td>
+<td>Filter by partial phone number</td>
+</tr>
+<tr>
+<td><code>level__numeric_level</code></td>
+<td>integer</td>
+<td>Filter by exact numeric level</td>
+</tr>
+<tr>
+<td><code>level__numeric_level__range</code></td>
+<td>string</td>
+<td>Filter by numeric level range</td>
+</tr>
+<tr>
+<td><code>level__name</code></td>
+<td>string</td>
+<td>Filter by exact level name</td>
+</tr>
+<tr>
+<td><code>level__name__icontains</code></td>
+<td>string</td>
+<td>Filter by partial level name</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td>string</td>
+<td>Filter by exact email address</td>
+</tr>
+<tr>
+<td><code>email__icontains</code></td>
+<td>string</td>
+<td>Filter by partial email (contains)</td>
+</tr>
+<tr>
+<td><code>first_name</code></td>
+<td>string</td>
+<td>Filter by exact first name</td>
+</tr>
+<tr>
+<td><code>first_name__icontains</code></td>
+<td>string</td>
+<td>Filter by partial first name</td>
+</tr>
+<tr>
+<td><code>last_name</code></td>
+<td>string</td>
+<td>Filter by exact last name</td>
+</tr>
+<tr>
+<td><code>last_name__icontains</code></td>
+<td>string</td>
+<td>Filter by partial last name</td>
+</tr>
+<tr>
+<td><code>nationality</code></td>
+<td>string</td>
+<td>Filter by exact nationality code</td>
+</tr>
+<tr>
+<td><code>city</code></td>
+<td>string</td>
+<td>Filter by exact city</td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td>integer</td>
+<td>Page number (default: 1)</td>
+</tr>
+<tr>
+<td><code>page_size</code></td>
+<td>integer</td>
+<td>Number of results per page (default: 20, max: 500)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note:</strong> Vehicle-related filters (<code>car_brand</code>, <code>car_year</code>) are NOT supported. Vehicle data is managed separately via the <a href="../vehicles/">Vehicles</a> endpoints.</p>
+</blockquote>
 <p><strong>Success Response:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
@@ -1444,10 +1644,6 @@
 <span class="w">      </span><span class="nt">&quot;lastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;User&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Newbie&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;tripCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;carBrand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toyota&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;carModel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Land Cruiser&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;carColor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;White&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;carImage&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;paidMember&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
@@ -1455,11 +1651,14 @@
 </code></pre></div>
 
 <blockquote>
-<p><strong>Note:</strong> Contact information (email, phone) is only visible to users with the <code>VIEW_CONTACT_INFO</code> permission or when viewing their own profile.</p>
+<p><strong>Note:</strong> In the list response, <code>level</code> is returned as a <strong>string</strong> (level name). In the detail response (<code>/api/members/{id}/</code>), <code>level</code> is a full <strong>object</strong>. Contact information (email, phone) is only visible to users with the <code>VIEW_CONTACT_INFO</code> permission or when viewing their own profile.</p>
 </blockquote>
 <h2 id="search-members">Search Members<a class="headerlink" href="#search-members" title="Permanent link">&para;</a></h2>
 <p>Search for members by username, first name, or last name. This is useful for finding members when adding trip participants, looking up member profiles, or searching for trip leads.</p>
-<p><strong>GET</strong> <code>/api/members/search/</code></p>
+<p><strong>GET</strong> <code>/api/members/search</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
 <p><strong>Authentication:</strong> Required (Bearer token)</p>
 <p><strong>Query Parameters:</strong></p>
 <table>
@@ -1488,13 +1687,13 @@
 <td><code>min_level</code></td>
 <td>integer</td>
 <td>No</td>
-<td>Minimum level ID for filtering to include only members at this level or higher (inclusive)</td>
+<td>Minimum numeric level for filtering (inclusive)</td>
 </tr>
 <tr>
 <td><code>max_level</code></td>
 <td>integer</td>
 <td>No</td>
-<td>Maximum level ID for filtering to include only members at this level or lower (inclusive)</td>
+<td>Maximum numeric level for filtering (inclusive)</td>
 </tr>
 <tr>
 <td><code>page</code></td>
@@ -1512,33 +1711,25 @@
 </table>
 <p><strong>Level Filtering Examples:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="c1"># Search for Newbies (level ID 10)</span>
-GET<span class="w"> </span>/api/members/search/?query<span class="o">=</span>john<span class="p">&amp;</span><span class="nv">level</span><span class="o">=</span><span class="m">10</span>
+GET<span class="w"> </span>/api/members/search?query<span class="o">=</span>john<span class="p">&amp;</span><span class="nv">level</span><span class="o">=</span><span class="m">10</span>
 
-<span class="c1"># Search for members Newbie (10) and up to Intermediate (100) inclusive</span>
-GET<span class="w"> </span>/api/members/search/?query<span class="o">=</span>john<span class="p">&amp;</span><span class="nv">max_level</span><span class="o">=</span><span class="m">100</span>
+<span class="c1"># Search for members up to Intermediate (numeric level 100) inclusive</span>
+GET<span class="w"> </span>/api/members/search?query<span class="o">=</span>john<span class="p">&amp;</span><span class="nv">max_level</span><span class="o">=</span><span class="m">100</span>
 
-<span class="c1"># Search for members Intermediate (100) and higher inclusive</span>
-GET<span class="w"> </span>/api/members/search/?query<span class="o">=</span>john<span class="p">&amp;</span><span class="nv">min_level</span><span class="o">=</span><span class="m">100</span>
+<span class="c1"># Search for members Intermediate (numeric level 100) and higher inclusive</span>
+GET<span class="w"> </span>/api/members/search?query<span class="o">=</span>john<span class="p">&amp;</span><span class="nv">min_level</span><span class="o">=</span><span class="m">100</span>
 </code></pre></div>
 
 <p><strong>Request Example:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="c1"># Basic search</span>
-curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/members/search/?query=john&amp;page=1&amp;page_size=20&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your-token&gt;&quot;</span>
-
-<span class="c1"># Search for Newbies only</span>
-curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/members/search/?query=john&amp;level=10&amp;page=1&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your-token&gt;&quot;</span>
-
-<span class="c1"># Search for members Newbie to Intermediate inclusive</span>
-curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/members/search/?query=john&amp;max_level=100&amp;page=1&quot;</span><span class="w"> </span><span class="se">\</span>
+curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://localhost:8000/api/members/search?query=john&amp;page=1&amp;page_size=20&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your-token&gt;&quot;</span>
 </code></pre></div>
 
 <p><strong>Success Response</strong> (200 OK):</p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;next&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://api.example.com/api/members/search/?query=john&amp;page=2&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;next&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://api.example.com/api/members/search?query=john&amp;page=2&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;previous&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;results&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
@@ -1546,12 +1737,8 @@ curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span
 <span class="w">      </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;johndoe&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;firstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;lastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Doe&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Marshall&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Marshal&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;tripCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;carBrand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toyota&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;carModel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Land Cruiser&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;carColor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;White&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;carImage&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;paidMember&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
@@ -1593,11 +1780,6 @@ curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span
 - Results can be filtered by level using <code>level</code>, <code>min_level</code>, or <code>max_level</code> parameters
 - Contact information (email, phone) is only visible to users with the <code>VIEW_CONTACT_INFO</code> permission or when viewing their own profile
 - <strong>Permission Required</strong>: Users must have the <code>SEARCH_MEMBERS</code> permission to use this endpoint. By default, this is granted to Newbie level and above. ANIT members cannot use this endpoint.</p>
-<p><strong>Use Cases:</strong>
-- Finding members when adding trip participants
-- Looking up member profiles
-- Searching for trip leads or coordinators
-- Member directory lookup functionality</p>
 <h2 id="member-profile-details">Member Profile Details<a class="headerlink" href="#member-profile-details" title="Permanent link">&para;</a></h2>
 <p>Retrieve detailed information about a specific member.</p>
 <p><strong>GET</strong> <code>/api/members/{id}/</code></p>
@@ -1609,26 +1791,26 @@ curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span
 <span class="w">  </span><span class="nt">&quot;firstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Test&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;lastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;User&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;phone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1234567890&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;carBrand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toyota&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;carModel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Land Cruiser&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;carYear&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2022</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;carColor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;White&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;carImage&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;dob&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2000-01-01&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;iceName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Jane Doe&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;icePhone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0987654321&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Newbie&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;numericLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Newbie&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;active&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="nt">&quot;numericLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;minTripsForUpgrade&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="nt">&quot;tripCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;avatar&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;permissions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;permissions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;search_members&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;levels&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
 <span class="w">  </span><span class="nt">&quot;paidMember&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;dateJoined&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-01-01T12:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;dateJoined&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-01T12:00:00&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;city&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dubai&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;gender&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;M&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;nationality&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AE&quot;</span><span class="p">,</span>
@@ -1636,16 +1818,32 @@ curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span
 <span class="p">}</span>
 </code></pre></div>
 
+<blockquote>
+<p><strong>Note:</strong> The profile detail does NOT include vehicle/car fields. Vehicles are managed separately via the <a href="../vehicles/">Vehicles</a> endpoints. The <code>level</code> field is a full object in the detail view, whereas it is a string in the list view.</p>
+</blockquote>
 <h2 id="update-member-profile">Update Member Profile<a class="headerlink" href="#update-member-profile" title="Permanent link">&para;</a></h2>
 <p>Update a member's profile. Users can only update their own profiles unless they are an administrator.</p>
 <p><strong>PATCH</strong> <code>/api/members/{id}/</code></p>
 <p><strong>Request Body:</strong>
-The request body should contain the fields to be updated. Note that some fields like <code>username</code>, <code>email</code>, and <code>level</code> are read-only.</p>
+The request body should contain the fields to be updated. Note that some fields like <code>username</code>, <code>email</code>, <code>level</code>, <code>tripCount</code>, and <code>paidMember</code> are read-only.</p>
 <p><strong>Success Response:</strong>
 A successful update will return a <code>200 OK</code> status code and the updated profile data.</p>
+<h2 id="member-trip-counts">Member Trip Counts<a class="headerlink" href="#member-trip-counts" title="Permanent link">&para;</a></h2>
+<p>Retrieve a detailed breakdown of a member's trip counts by level.</p>
+<p><strong>GET</strong> <code>/api/members/{id}/tripcounts</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p><strong>Success Response:</strong>
+Returns a count of approved completed trips grouped by level, counting each trip once.</p>
 <h2 id="lead-search">Lead Search<a class="headerlink" href="#lead-search" title="Permanent link">&para;</a></h2>
 <p>Search for members who have permission to lead trips.</p>
-<p><strong>GET</strong> <code>/api/members/leadsearch/</code></p>
+<p><strong>GET</strong> <code>/api/members/leadsearch</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
 <p><strong>Query Parameters:</strong>
 - <code>search</code> - Search term (searches in username, first name, last name)
 - <code>level</code> - Level ID for filtering to include only members that have permission to lead for a given level</p>
@@ -1656,23 +1854,23 @@ A successful update will return a <code>200 OK</code> status code and the update
 <span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;johndoe&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;firstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;lastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Doe&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Marshall&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Marshal&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;tripCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;carBrand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toyota&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;carModel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Land Cruiser&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;carColor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;White&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;carImage&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;paidMember&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">]</span>
 </code></pre></div>
 
 <blockquote>
-<p><strong>Note:</strong> This endpoint returns up to 30 results without pagination.</p>
+<p><strong>Note:</strong> This endpoint returns up to 30 results without pagination. Returns a plain array, not a paginated object.</p>
 </blockquote>
 <h2 id="active-trip-leads">Active Trip Leads<a class="headerlink" href="#active-trip-leads" title="Permanent link">&para;</a></h2>
 <p>Retrieve unique leads of active trips.</p>
-<p><strong>GET</strong> <code>/api/members/activetripleads/</code></p>
+<p><strong>GET</strong> <code>/api/members/activetripleads</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
 <p><strong>Query Parameters:</strong>
 - <code>level</code> - Level ID for filtering to include only leads for trips for a specific level
 - <code>min_numeric_level</code> - Minimum trip numeric level for filtering
@@ -1684,23 +1882,23 @@ A successful update will return a <code>200 OK</code> status code and the update
 <span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;johndoe&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;firstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;lastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Doe&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Marshall&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Marshal&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;tripCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;carBrand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toyota&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;carModel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Land Cruiser&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;carColor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;White&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;carImage&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;paidMember&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">]</span>
 </code></pre></div>
 
 <blockquote>
-<p><strong>Note:</strong> This endpoint returns up to 50 results without pagination.</p>
+<p><strong>Note:</strong> This endpoint returns up to 50 results without pagination. Returns a plain array, not a paginated object.</p>
 </blockquote>
 <h2 id="member-trip-history">Member Trip History<a class="headerlink" href="#member-trip-history" title="Permanent link">&para;</a></h2>
 <p>Retrieve a member's trip history.</p>
-<p><strong>GET</strong> <code>/api/members/{id}/triphistory/</code></p>
+<p><strong>GET</strong> <code>/api/members/{id}/triphistory</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
 <p><strong>Query Parameters:</strong>
 - <code>checked_in</code> - Include only trips where member is checked in (default: false)
 - <code>start_time</code> - Filter by start time</p>
@@ -1710,31 +1908,77 @@ A successful update will return a <code>200 OK</code> status code and the update
 - Superusers can view any member's trip history.</p>
 <h2 id="member-upgrade-history">Member Upgrade History<a class="headerlink" href="#member-upgrade-history" title="Permanent link">&para;</a></h2>
 <p>Retrieve a member's upgrade request history.</p>
-<p><strong>GET</strong> <code>/api/members/{id}/upgraderequests/</code></p>
+<p><strong>GET</strong> <code>/api/members/{id}/upgraderequests</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p><strong>Permissions:</strong>
+- Requires <code>VIEW_UPGRADE_REQ</code> permission or viewing own requests.</p>
 <h2 id="member-logbook-entries">Member Logbook Entries<a class="headerlink" href="#member-logbook-entries" title="Permanent link">&para;</a></h2>
 <p>Retrieve a member's logbook entries.</p>
-<p><strong>GET</strong> <code>/api/members/{id}/logbookentries/</code></p>
+<p><strong>GET</strong> <code>/api/members/{id}/logbookentries</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
 <p><strong>Permissions:</strong>
 - Users can always view their own logbook entries.
 - To view another member's logbook entries, users need the <code>VIEW_MEMBER_TRIP_HISTORY</code> permission.
 - Superusers can view any member's logbook entries.</p>
 <h2 id="member-logbook-skills">Member Logbook Skills<a class="headerlink" href="#member-logbook-skills" title="Permanent link">&para;</a></h2>
 <p>Retrieve a member's logbook skill references.</p>
-<p><strong>GET</strong> <code>/api/members/{id}/logbookskills/</code></p>
+<p><strong>GET</strong> <code>/api/members/{id}/logbookskills</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
 <p><strong>Permissions:</strong>
 - Users can always view their own logbook skills.
 - To view another member's logbook skills, users need the <code>VIEW_MEMBER_TRIP_HISTORY</code> permission.
 - Superusers can view any member's logbook skills.</p>
 <h2 id="member-trip-requests">Member Trip Requests<a class="headerlink" href="#member-trip-requests" title="Permanent link">&para;</a></h2>
 <p>Retrieve a member's trip requests.</p>
-<p><strong>GET</strong> <code>/api/members/{id}/triprequests/</code></p>
+<p><strong>GET</strong> <code>/api/members/{id}/triprequests</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
 <p><strong>Permissions:</strong>
 - Users can always view their own trip requests.
 - To view another member's trip requests, users need the <code>VIEW_MEMBER_TRIP_HISTORY</code> permission.
 - Superusers can view any member's trip requests.</p>
 <h2 id="member-feedback">Member Feedback<a class="headerlink" href="#member-feedback" title="Permanent link">&para;</a></h2>
-<p>Retrieve a member's feedback.</p>
-<p><strong>GET</strong> <code>/api/members/{id}/feedback/</code></p>
+<p>Retrieve a member's feedback submissions.</p>
+<p><strong>GET</strong> <code>/api/members/{id}/feedback</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p><strong>Permissions:</strong>
+- Users can always view their own feedback.
+- Superusers can view any member's feedback.
+- Non-superusers cannot view another member's feedback, regardless of other permissions.</p>
+<h2 id="member-payments">Member Payments<a class="headerlink" href="#member-payments" title="Permanent link">&para;</a></h2>
+<p>Manually update the <code>paidMember</code> field for a member.</p>
+<p><strong>POST</strong> <code>/api/members/{id}/payments</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p><strong>Permission:</strong> Requires <code>EDIT_MEMBERSHIP_PAYMENTS</code> permission.</p>
+<p><strong>Request Body:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;paymentReceived&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;true&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Success Response:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;payment_status_updated&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 

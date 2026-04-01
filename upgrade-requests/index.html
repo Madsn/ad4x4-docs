@@ -588,6 +588,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../logbook/" class="md-nav__link">
         
   
@@ -784,6 +811,28 @@
     <span class="md-ellipsis">
       
         Comments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recently-approved-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recently Approved Requests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#voted-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Voted Requests
       
     </span>
   </a>
@@ -1080,6 +1129,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../account-deletion/" class="md-nav__link">
         
   
@@ -1323,6 +1399,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#recently-approved-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recently Approved Requests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#voted-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Voted Requests
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1363,88 +1461,99 @@
 </ul>
 <h3 id="get-member-upgrade-eligibility">Get Member Upgrade Eligibility<a class="headerlink" href="#get-member-upgrade-eligibility" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>GET</strong> <code>/api/members/{id}/upgradeeligibility</code><ul>
+<li>
+<p><strong>GET</strong> <code>/api/members/{id}/upgradeeligibility</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<ul>
 <li>Retrieves a detailed report on a member's eligibility for an upgrade to the next potential level. This report includes a breakdown of met/unmet requirements based on minimum trips at the current level and required logbook skills for the next level.</li>
 <li><strong>Authorization:</strong><ul>
 <li>A member can view their own eligibility (when <code>{id}</code> matches <code>request.user.id</code>).</li>
-<li>Members with the <code>view_upgrade_req</code> permission can view the eligibility of any member.</li>
+<li>Members with the <code>VIEW_UPGRADE_REQ</code> permission can view the eligibility of any member.</li>
+<li>Superusers can view any member's eligibility.</li>
 </ul>
 </li>
-<li><strong>Response Structure (Example):</strong>
-    <code>json
-    {
-        "member_id": 1,
-        "member_username": "testuser",
-        "current_level": {
-            "id": 1,
-            "name": "Beginner",
-            "numeric_level": 1
+<li>
+<p><strong>Response Structure (Example):</strong></p>
+<blockquote>
+<p><strong>Note:</strong> The backend builds the response in snake_case, but the camelCase middleware automatically converts the keys. The response you receive will use camelCase.</p>
+</blockquote>
+<p><code>json
+{
+    "memberId": 1,
+    "memberUsername": "testuser",
+    "currentLevel": {
+        "id": 1,
+        "name": "Newbie",
+        "numericLevel": 10
+    },
+    "nextPotentialLevel": {
+        "id": 2,
+        "name": "Intermediate",
+        "numericLevel": 100
+    },
+    "upgradeRequirements": [
+        {
+            "type": "min_trips",
+            "name": "Minimum trips for current level",
+            "requiredValue": 5,
+            "currentValue": 3,
+            "met": false,
+            "description": "You need 5 trips at your current level (completed at this level).",
+            "recentTripsAtLevel": [
+                {
+                    "tripId": 10,
+                    "title": "Desert Crossing",
+                    "startTime": "2026-01-15T09:00:00+04:00",
+                    "lead": {"id": 1, "username": "leader1"},
+                    "level": {"id": 1, "name": "Newbie", "numericLevel": 10}
+                },
+                {
+                    "tripId": 9,
+                    "title": "Mountain Trail",
+                    "startTime": "2025-12-20T08:00:00+04:00",
+                    "lead": {"id": 2, "username": "leader2"},
+                    "level": {"id": 1, "name": "Newbie", "numericLevel": 10}
+                }
+            ]
         },
-        "next_potential_level": {
-            "id": 2,
-            "name": "Intermediate",
-            "numeric_level": 2
+        {
+            "type": "logbook_skill",
+            "skillId": 101,
+            "skillName": "Basic Recovery",
+            "requiredCount": 2,
+            "currentCount": 1,
+            "met": false,
+            "description": "Complete 'Basic Recovery' 2 times.",
+            "signatures": [
+                {
+                    "tripId": 15,
+                    "signedBy": {"id": 5, "username": "verifier_user"},
+                    "signedDate": "2026-02-01T10:30:00+04:00"
+                }
+            ]
         },
-        "upgrade_requirements": [
-            {
-                "type": "min_trips",
-                "name": "Minimum trips for current level",
-                "required_value": 5,
-                "current_value": 3,
-                "met": false,
-                "description": "You need 5 trips at your current level (completed at this level).",
-                "recent_trips_at_level": [
-                    {
-                        "trip_id": 10,
-                        "title": "Desert Crossing",
-                        "start_time": "2025-11-15T09:00:00Z",
-                        "lead": {"id": 1, "username": "leader1"},
-                        "level": {"id": 1, "name": "Beginner", "numeric_level": 1}
-                    },
-                    {
-                        "trip_id": 9,
-                        "title": "Mountain Trail",
-                        "start_time": "2025-10-20T08:00:00Z",
-                        "lead": {"id": 2, "username": "leader2"},
-                        "level": {"id": 1, "name": "Beginner", "numeric_level": 1}
-                    }
-                ]
-            },
-            {
-                "type": "logbook_skill",
-                "skill_id": 101,
-                "skill_name": "Basic Recovery",
-                "required_count": 2,
-                "current_count": 1,
-                "met": false,
-                "description": "Complete 'Basic Recovery' 2 times.",
-                "signatures": [
-                    {
-                        "trip_id": 15,
-                        "signed_by": {"id": 5, "username": "verifier_user"},
-                        "signed_date": "2025-12-01T10:30:00Z"
-                    }
-                ]
-            },
-            {
-                "type": "logbook_skill",
-                "skill_id": 102,
-                "skill_name": "Tyre Changing",
-                "required_count": 1,
-                "current_count": 1,
-                "met": true,
-                "description": "Complete 'Tyre Changing' 1 time.",
-                "signatures": [
-                    {
-                        "trip_id": 12,
-                        "signed_by": {"id": 6, "username": "another_verifier"},
-                        "signed_date": "2025-11-25T14:00:00Z"
-                    }
-                ]
-            }
-        ],
-        "is_eligible_for_upgrade": false
-    }</code></li>
+        {
+            "type": "logbook_skill",
+            "skillId": 102,
+            "skillName": "Tyre Changing",
+            "requiredCount": 1,
+            "currentCount": 1,
+            "met": true,
+            "description": "Complete 'Tyre Changing' 1 time.",
+            "signatures": [
+                {
+                    "tripId": 12,
+                    "signedBy": {"id": 6, "username": "another_verifier"},
+                    "signedDate": "2026-01-25T14:00:00+04:00"
+                }
+            ]
+        }
+    ],
+    "isEligibleForUpgrade": false
+}</code></p>
+</li>
 </ul>
 </li>
 </ul>
@@ -1477,16 +1586,20 @@
 </ul>
 <h3 id="voting-and-approval">Voting and Approval<a class="headerlink" href="#voting-and-approval" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>POST</strong> <code>/api/upgraderequests/{id}/vote/</code><ul>
+<li>
+<p><strong>POST</strong> <code>/api/upgraderequests/{id}/vote</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<ul>
 <li>Casts a vote on an upgrade request. Requires <code>VOTE_UPGRADE_REQ</code> permission.</li>
 <li><strong>Request Body:</strong> <code>{"vote": "Y"}</code> (or "N" for No, "D" for Defer)</li>
-</ul>
-</li>
-<li><strong>POST</strong> <code>/api/upgraderequests/{id}/approve/</code><ul>
+<li><strong>Success Response:</strong> <code>{"success": true, "message": "vote_accepted"}</code></li>
+<li><strong>Error:</strong> Returns <code>upgrade_request_not_open_for_votes</code> if the request status is not <code>NEW</code> or <code>IN_PROGRESS</code>. Returns <code>invalid_vote_choice:&lt;value&gt;</code> for unrecognized vote values.</li>
+<li><strong>Note:</strong> The first vote on a <code>NEW</code> request automatically moves its status to <code>IN_PROGRESS</code>.</li>
+<li><strong>POST</strong> <code>/api/upgraderequests/{id}/approve/</code></li>
 <li>Approves an upgrade request. Requires <code>APPROVE_UPGRADE_REQ</code> permission.</li>
-</ul>
-</li>
-<li><strong>POST</strong> <code>/api/upgraderequests/{id}/decline/</code><ul>
+<li><strong>POST</strong> <code>/api/upgraderequests/{id}/decline/</code></li>
 <li>Declines an upgrade request. Requires <code>APPROVE_UPGRADE_REQ</code> permission.</li>
 <li><strong>Request Body:</strong> <code>{"verdict_reason": "..."}</code></li>
 </ul>
@@ -1505,6 +1618,52 @@
 </li>
 <li><strong>DELETE</strong> <code>/api/upgraderequestcomments/{id}/</code><ul>
 <li>Deletes a comment. Requires <code>DELETE_COMMENT_UPGRADE_REQ</code> permission.</li>
+</ul>
+</li>
+</ul>
+<h3 id="recently-approved-requests">Recently Approved Requests<a class="headerlink" href="#recently-approved-requests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>GET</strong> <code>/api/upgraderequests/latestapproved</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<ul>
+<li>Retrieves a paginated list of recently approved upgrade requests, ordered by verdict date (most recent first).</li>
+<li><strong>Authentication:</strong> Not required (public endpoint).</li>
+<li><strong>Pagination:</strong> Standard pagination (default 20, max 500).</li>
+</ul>
+</li>
+</ul>
+<h3 id="voted-requests">Voted Requests<a class="headerlink" href="#voted-requests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>GET</strong> <code>/api/upgraderequests/voted</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<ul>
+<li>Returns an array of upgrade request IDs that the current user has voted on. Only includes requests with status <code>NEW</code> or <code>IN_PROGRESS</code>.</li>
+<li><strong>Authentication:</strong> Required.</li>
+<li><strong>Response:</strong> A plain array of integers, e.g., <code>[1, 5, 12, 23]</code></li>
+</ul>
+</li>
+<li>
+<p><strong>GET</strong> <code>/api/upgraderequests/{id}/voted</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<ul>
+<li>Checks whether the current user has voted on a specific upgrade request.</li>
+<li><strong>Authentication:</strong> Required.</li>
+<li><strong>Response:</strong>
+    <code>json
+    {
+        "success": true,
+        "message": {
+            "voted": true
+        }
+    }</code></li>
 </ul>
 </li>
 </ul>
