@@ -1553,6 +1553,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ---
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1577,6 +1588,9 @@
 <hr />
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
 <p>After cross-referencing all three frontend audit documents against the actual backend code and current API documentation, we identified 6 actionable items. All documentation issues from the live test audit were already fixed in prior sessions. The items below are <strong>code changes only</strong>.</p>
+<blockquote>
+<p><strong>Update (2026-04-01)</strong>: Changes 1–6 have been implemented. See <a href="#round-2--remaining-back_end_todo-items-3-5-6-7-8-10">Round 2</a> below for the next batch of items addressing BACK<em>END</em>TODO #3, #5, #6, #7, #8, #10. Item #9 (meeting points area backfill) is deferred — areas will be filled manually by users/admins when the app is operational.</p>
+</blockquote>
 <hr />
 <h2 id="change-1-add-registered-and-waitlisted-filters-to-trips-endpoint">Change 1: Add <code>registered</code> and <code>waitlisted</code> Filters to Trips Endpoint<a class="headerlink" href="#change-1-add-registered-and-waitlisted-filters-to-trips-endpoint" title="Permanent link">&para;</a></h2>
 <p><strong>Priority</strong>: HIGH
@@ -1859,6 +1873,537 @@
 <p>Then write response documents for:
 - Flutter team (responding to FRONTEND<em>API</em>PERFORMANCE<em>AUDIT.md)
 - Website team (responding to BACK</em>END_TODO.md)</p>
+<h2 id="-">---<a class="headerlink" href="#-" title="Permanent link">&para;</a></h2>
+<h1 id="round-2-remaining-backendtodo-items-3-5-6-7-8-10">Round 2 — Remaining BACK<em>END</em>TODO Items (#3, #5, #6, #7, #8, #10)<a class="headerlink" href="#round-2-remaining-backendtodo-items-3-5-6-7-8-10" title="Permanent link">&para;</a></h1>
+<p><strong>Date</strong>: 2026-04-02
+<strong>Source</strong>: <code>BACK_END_TODO.md</code> items not yet addressed in Round 1
+<strong>Status</strong>: Plan ready for review — implementation pending approval</p>
+<hr />
+<h2 id="summary-table">Summary Table<a class="headerlink" href="#summary-table" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Summary</th>
+<th>Complexity</th>
+<th>Files Changed</th>
+<th>Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#3</td>
+<td>Member ordering (<code>OrderingFilter</code>)</td>
+<td>Low</td>
+<td><code>views_member.py</code></td>
+<td>None</td>
+</tr>
+<tr>
+<td>#5</td>
+<td><code>paidMember</code> filter</td>
+<td>Low</td>
+<td><code>filters.py</code></td>
+<td>None</td>
+</tr>
+<tr>
+<td>#6</td>
+<td>Unified member search (<code>SearchFilter</code>)</td>
+<td>Low</td>
+<td><code>views_member.py</code></td>
+<td>None</td>
+</tr>
+<tr>
+<td>#7</td>
+<td>Last Visited tracking</td>
+<td>Medium</td>
+<td>6 files + migration</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>#8</td>
+<td>Trip search: <code>approval_status</code>, <code>ordering</code>, <code>level_id</code></td>
+<td>Low</td>
+<td><code>views_trip.py</code></td>
+<td>None</td>
+</tr>
+<tr>
+<td>#9</td>
+<td>Meeting points area backfill</td>
+<td>—</td>
+<td>—</td>
+<td><strong>Deferred</strong></td>
+</tr>
+<tr>
+<td>#10</td>
+<td>Trip search <code>level_id</code></td>
+<td>Low</td>
+<td>Covered by #8</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>All changes are additive. Zero breaking changes.</strong></p>
+<hr />
+<h2 id="change-7-member-ordering-backendtodo-3">Change 7: Member Ordering (BACK<em>END</em>TODO #3)<a class="headerlink" href="#change-7-member-ordering-backendtodo-3" title="Permanent link">&para;</a></h2>
+<p><strong>Priority</strong>: HIGH
+<strong>File</strong>: <code>api/views/views_member.py</code> (lines 112–139, <code>MemberViewSet</code>)</p>
+<h3 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h3>
+<p><code>GET /api/members/?ordering=-trip_count</code> is silently ignored. The admin members table cannot offer column sorting.</p>
+<h3 id="current-state">Current State<a class="headerlink" href="#current-state" title="Permanent link">&para;</a></h3>
+<p><code>MemberViewSet</code> uses <code>filterset_class = MembersFilter</code> but has no <code>filter_backends</code> list declared, no <code>OrderingFilter</code>, and no <code>ordering_fields</code>. The queryset is hardcoded to <code>.order_by('id')</code>.</p>
+<h3 id="what-to-change">What to Change<a class="headerlink" href="#what-to-change" title="Permanent link">&para;</a></h3>
+<p>Add DRF's <code>OrderingFilter</code> to the viewset:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rest_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">filters</span> <span class="k">as</span> <span class="n">drf_filters</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django_filters.rest_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">DjangoFilterBackend</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MemberViewSet</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Member</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
+    <span class="n">filter_backends</span> <span class="o">=</span> <span class="p">[</span><span class="n">DjangoFilterBackend</span><span class="p">,</span> <span class="n">drf_filters</span><span class="o">.</span><span class="n">OrderingFilter</span><span class="p">]</span>
+    <span class="n">filterset_class</span> <span class="o">=</span> <span class="n">MembersFilter</span>
+    <span class="n">ordering_fields</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;first_name&#39;</span><span class="p">,</span> <span class="s1">&#39;last_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;trip_count&#39;</span><span class="p">,</span> <span class="s1">&#39;level__numeric_level&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;date_joined&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span>
+    <span class="p">]</span>
+    <span class="n">ordering</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>  <span class="c1"># default — preserves current behavior</span>
+</code></pre></div>
+
+<h3 id="result">Result<a class="headerlink" href="#result" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>GET /api/members/?ordering=-trip_count          → most active first
+GET /api/members/?ordering=username             → alphabetical
+GET /api/members/?ordering=-date_joined         → newest first
+GET /api/members/?ordering=level__numeric_level → lowest level first
+GET /api/members/?ordering=-trip_count,username  → multi-field supported
+</code></pre></div>
+
+<h3 id="breaking-changes_6">Breaking Changes<a class="headerlink" href="#breaking-changes_6" title="Permanent link">&para;</a></h3>
+<p><strong>None.</strong> Default ordering remains <code>id</code> ascending. The <code>ordering</code> param is optional and ignored if not provided.</p>
+<h3 id="notes-for-frontend">Notes for Frontend<a class="headerlink" href="#notes-for-frontend" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Param name is <code>ordering</code> (Django REST Framework standard)</li>
+<li>Prefix with <code>-</code> for descending (e.g., <code>ordering=-trip_count</code>)</li>
+<li>Invalid field names are silently ignored (returns default ordering)</li>
+<li>Multi-field ordering supported: <code>ordering=-trip_count,username</code></li>
+<li>Field names use snake_case with double underscores for relations (e.g., <code>level__numeric_level</code>)</li>
+</ul>
+<hr />
+<h2 id="change-8-paidmember-filter-backendtodo-5">Change 8: <code>paidMember</code> Filter (BACK<em>END</em>TODO #5)<a class="headerlink" href="#change-8-paidmember-filter-backendtodo-5" title="Permanent link">&para;</a></h2>
+<p><strong>Priority</strong>: MEDIUM
+<strong>File</strong>: <code>api/filters.py</code> (lines 111–128, <code>MembersFilter</code>)</p>
+<h3 id="problem_1">Problem<a class="headerlink" href="#problem_1" title="Permanent link">&para;</a></h3>
+<p><code>GET /api/members/?paid_member=true</code> returns all 10,610 members — the filter is silently ignored. The <code>paid_member</code> field exists on the model (line 75, <code>models_member.py</code>) and has a database index (line 85), but it's not in the filter configuration.</p>
+<h3 id="what-to-change_1">What to Change<a class="headerlink" href="#what-to-change_1" title="Permanent link">&para;</a></h3>
+<p>Add one line to <code>MembersFilter.Meta.fields</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MembersFilter</span><span class="p">(</span><span class="n">filters</span><span class="o">.</span><span class="n">FilterSet</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Member</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="c1"># ... existing fields ...</span>
+            <span class="s1">&#39;paid_member&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;exact&#39;</span><span class="p">],</span>   <span class="c1"># &lt;-- ADD THIS</span>
+        <span class="p">}</span>
+</code></pre></div>
+
+<h3 id="result_1">Result<a class="headerlink" href="#result_1" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>GET /api/members/?paid_member=true   → only paid members
+GET /api/members/?paid_member=false  → only unpaid members
+</code></pre></div>
+
+<h3 id="breaking-changes_7">Breaking Changes<a class="headerlink" href="#breaking-changes_7" title="Permanent link">&para;</a></h3>
+<p><strong>None.</strong> Purely additive filter. Requests without <code>paid_member</code> param are unaffected.</p>
+<h3 id="notes-for-frontend_1">Notes for Frontend<a class="headerlink" href="#notes-for-frontend_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The filter param name is <code>paid_member</code> (snake_case). The CamelCase middleware handles request parameter conversion, so <code>paidMember=true</code> should also work — to be verified during testing.</li>
+<li>The response field name remains <code>paidMember</code> (camelCase, as per existing serializer output).</li>
+</ul>
+<hr />
+<h2 id="change-9-unified-member-search-backendtodo-6">Change 9: Unified Member Search (BACK<em>END</em>TODO #6)<a class="headerlink" href="#change-9-unified-member-search-backendtodo-6" title="Permanent link">&para;</a></h2>
+<p><strong>Priority</strong>: HIGH
+<strong>File</strong>: <code>api/views/views_member.py</code> (lines 112–139, <code>MemberViewSet</code>)</p>
+<h3 id="problem_2">Problem<a class="headerlink" href="#problem_2" title="Permanent link">&para;</a></h3>
+<p>The frontend must switch between two endpoints with different parameter names:
+- <code>GET /api/members/</code> — has filters but NO text search
+- <code>GET /api/members/search</code> — has text search but different filters, requires <code>SEARCH_MEMBERS</code> permission, and <code>query</code> is mandatory (min 3 chars)</p>
+<h3 id="what-to-change_2">What to Change<a class="headerlink" href="#what-to-change_2" title="Permanent link">&para;</a></h3>
+<p>Add DRF's <code>SearchFilter</code> to <code>MemberViewSet.filter_backends</code> and declare <code>search_fields</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MemberViewSet</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
+    <span class="n">filter_backends</span> <span class="o">=</span> <span class="p">[</span><span class="n">DjangoFilterBackend</span><span class="p">,</span> <span class="n">drf_filters</span><span class="o">.</span><span class="n">OrderingFilter</span><span class="p">,</span> <span class="n">drf_filters</span><span class="o">.</span><span class="n">SearchFilter</span><span class="p">]</span>
+    <span class="n">search_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;first_name&#39;</span><span class="p">,</span> <span class="s1">&#39;last_name&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+<p>This is combined with Change 7 (ordering) in the same <code>filter_backends</code> list.</p>
+<h3 id="result_2">Result<a class="headerlink" href="#result_2" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code># Text search (optional)
+GET /api/members/?search=hani                                     → members matching &quot;hani&quot;
+
+# Combined search + filter + ordering
+GET /api/members/?search=hani&amp;paid_member=true&amp;ordering=-trip_count
+
+# Browse all (no search param) — existing behavior, unchanged
+GET /api/members/
+</code></pre></div>
+
+<h3 id="backward-compatibility">Backward Compatibility<a class="headerlink" href="#backward-compatibility" title="Permanent link">&para;</a></h3>
+<p>The existing <code>GET /api/members/search</code> endpoint (with <code>query</code> param, min 3 chars, <code>SEARCH_MEMBERS</code> permission) is <strong>NOT modified and NOT removed</strong>. It continues to work exactly as before. Both endpoints coexist.</p>
+<h3 id="breaking-changes_8">Breaking Changes<a class="headerlink" href="#breaking-changes_8" title="Permanent link">&para;</a></h3>
+<p><strong>None.</strong> The <code>search</code> param is optional. Omitting it returns all members (existing behavior). No existing params are renamed or removed.</p>
+<h3 id="notes-for-frontend_2">Notes for Frontend<a class="headerlink" href="#notes-for-frontend_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Param name</strong>: <code>search</code> (DRF standard) — NOT <code>query</code> or <code>q</code></li>
+<li><strong>Min length</strong>: No minimum character requirement (unlike <code>/api/members/search</code> which requires 3 chars)</li>
+<li><strong>Fields searched</strong>: <code>username</code>, <code>first_name</code>, <code>last_name</code>, <code>email</code> (case-insensitive partial match)</li>
+<li><strong>Permission</strong>: No additional permission needed. The list endpoint remains <code>IsAuthenticatedOrReadOnly</code>. The existing <code>/api/members/search</code> endpoint (with <code>SEARCH_MEMBERS</code> permission) is unchanged.</li>
+<li><strong>Combining with other params</strong>: <code>search</code> works alongside all existing filters (<code>paid_member</code>, <code>level__name</code>, <code>nationality</code>, etc.), ordering (<code>ordering=-trip_count</code>), and pagination (<code>page</code>, <code>page_size</code>).</li>
+<li>The frontend can <strong>retire the dual-endpoint switching logic</strong> and use <code>GET /api/members/</code> exclusively with <code>search</code> + filters + ordering.</li>
+</ul>
+<hr />
+<h2 id="change-10-last-visited-tracking-backendtodo-7">Change 10: Last Visited Tracking (BACK<em>END</em>TODO #7)<a class="headerlink" href="#change-10-last-visited-tracking-backendtodo-7" title="Permanent link">&para;</a></h2>
+<p><strong>Priority</strong>: HIGH
+<strong>Files</strong>: 6 files + 1 new migration</p>
+<p>This is the most complex item. It has four sub-tasks.</p>
+<h3 id="problem_3">Problem<a class="headerlink" href="#problem_3" title="Permanent link">&para;</a></h3>
+<p>There is no record of when a member last accessed the API. Admins cannot identify inactive members or measure engagement. The existing <code>last_user_activity</code> field on <code>NotificationSettings</code> is insufficient (date-only, not in member responses, not filterable).</p>
+<hr />
+<h3 id="10a-add-last_visited-field-to-member-model">10a. Add <code>last_visited</code> Field to Member Model<a class="headerlink" href="#10a-add-last_visited-field-to-member-model" title="Permanent link">&para;</a></h3>
+<p><strong>File</strong>: <code>api/models/models_member.py</code> (after line 77, <code>token_version</code>)</p>
+<div class="codehilite"><pre><span></span><code><span class="n">last_visited</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Add database index (in <code>Meta.indexes</code>):</p>
+<div class="codehilite"><pre><span></span><code><span class="n">models</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;last_visited&#39;</span><span class="p">]),</span>
+</code></pre></div>
+
+<p>Create migration: <code>python manage.py makemigrations api</code></p>
+<p><strong>Default</strong>: <code>null</code> — existing members show as "Never" until they next authenticate. No data backfill.</p>
+<hr />
+<h3 id="10b-add-lastvisitedmiddleware">10b. Add <code>LastVisitedMiddleware</code><a class="headerlink" href="#10b-add-lastvisitedmiddleware" title="Permanent link">&para;</a></h3>
+<p><strong>File</strong>: <code>api/middleware.py</code> (new class, append after <code>MediaCorsMiddleware</code>)</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">django.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">timezone</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">LastVisitedMiddleware</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">get_response</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_response</span> <span class="o">=</span> <span class="n">get_response</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_response</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">:</span>
+            <span class="n">now</span> <span class="o">=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+            <span class="n">last</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">last_visited</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">last</span> <span class="ow">or</span> <span class="p">(</span><span class="n">now</span> <span class="o">-</span> <span class="n">last</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">3600</span><span class="p">:</span>
+                <span class="nb">type</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                    <span class="n">pk</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">pk</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">last_visited</span><span class="o">=</span><span class="n">now</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span>
+</code></pre></div>
+
+<p><strong>Register in settings</strong>: <code>ad4x4/settings.py</code>, add <code>'api.middleware.LastVisitedMiddleware'</code> to <code>MIDDLEWARE</code> list after <code>AuthenticationMiddleware</code>.</p>
+<p><strong>Design decisions</strong>:
+- <strong>Throttle</strong>: Updates at most once per hour per user (avoids a DB write on every request)
+- <strong>Uses <code>.update()</code></strong>: Bypasses model <code>.save()</code> to avoid triggering signals or updating other auto-fields
+- <strong>Placed after <code>AuthenticationMiddleware</code></strong>: Ensures <code>request.user</code> is populated</p>
+<hr />
+<h3 id="10c-add-to-serializers">10c. Add to Serializers<a class="headerlink" href="#10c-add-to-serializers" title="Permanent link">&para;</a></h3>
+<p><strong>File</strong>: <code>api/serializers/serializers_member_base.py</code> (line 36)</p>
+<p>Add <code>last_visited</code> to <code>BasicMemberSerializer.Meta.fields</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;first_name&#39;</span><span class="p">,</span> <span class="s1">&#39;last_name&#39;</span><span class="p">,</span> <span class="s1">&#39;phone&#39;</span><span class="p">,</span> <span class="s1">&#39;level&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;trip_count&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;paid_member&#39;</span><span class="p">,</span> <span class="s1">&#39;last_visited&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>File</strong>: <code>api/serializers/serializers_member.py</code> (<code>ProfileSerializer</code>)</p>
+<p>Add <code>last_visited</code> to the detail serializer fields as well.</p>
+<p><strong>Response field name</strong>: <code>lastVisited</code> (camelCase via CamelCase middleware). ISO 8601 datetime with timezone (e.g., <code>"2026-03-30T14:22:00Z"</code>). Nullable — returns <code>null</code> for never-visited members.</p>
+<hr />
+<h3 id="10d-add-to-filters-and-ordering">10d. Add to Filters and Ordering<a class="headerlink" href="#10d-add-to-filters-and-ordering" title="Permanent link">&para;</a></h3>
+<p><strong>File</strong>: <code>api/filters.py</code> (<code>MembersFilter</code>)</p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MembersFilter</span><span class="p">(</span><span class="n">filters</span><span class="o">.</span><span class="n">FilterSet</span><span class="p">):</span>
+    <span class="n">date_joined</span> <span class="o">=</span> <span class="n">DateFromToRangeFilter</span><span class="p">()</span>
+    <span class="n">last_visited</span> <span class="o">=</span> <span class="n">DateTimeFromToRangeFilter</span><span class="p">()</span>   <span class="c1"># &lt;-- ADD</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Member</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="c1"># ... existing fields ...</span>
+            <span class="s1">&#39;last_visited&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;isnull&#39;</span><span class="p">],</span>           <span class="c1"># &lt;-- ADD</span>
+        <span class="p">}</span>
+</code></pre></div>
+
+<p>This enables:</p>
+<div class="codehilite"><pre><span></span><code>GET /api/members/?last_visited_after=2026-03-01       → active since March 1
+GET /api/members/?last_visited_before=2025-12-31      → inactive for 90+ days
+GET /api/members/?last_visited__isnull=true            → never visited
+GET /api/members/?last_visited__isnull=false           → visited at least once
+</code></pre></div>
+
+<p><strong>File</strong>: <code>api/views/views_member.py</code> (<code>MemberViewSet</code>)</p>
+<p>Add <code>'last_visited'</code> to <code>ordering_fields</code> (from Change 7):</p>
+<div class="codehilite"><pre><span></span><code><span class="n">ordering_fields</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;first_name&#39;</span><span class="p">,</span> <span class="s1">&#39;last_name&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;trip_count&#39;</span><span class="p">,</span> <span class="s1">&#39;level__numeric_level&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;date_joined&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;last_visited&#39;</span>        <span class="c1"># &lt;-- ADD</span>
+<span class="p">]</span>
+</code></pre></div>
+
+<p>This enables:</p>
+<div class="codehilite"><pre><span></span><code>GET /api/members/?ordering=-last_visited  → most recently active first
+GET /api/members/?ordering=last_visited   → longest-inactive first
+</code></pre></div>
+
+<h3 id="breaking-changes_9">Breaking Changes<a class="headerlink" href="#breaking-changes_9" title="Permanent link">&para;</a></h3>
+<p><strong>None.</strong> The <code>lastVisited</code> field is additive in all responses. Existing fields are unchanged. The new filter/ordering params are optional.</p>
+<h3 id="notes-for-frontend_3">Notes for Frontend<a class="headerlink" href="#notes-for-frontend_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Response field</strong>: <code>lastVisited</code> (camelCase). ISO 8601 datetime or <code>null</code>.</li>
+<li><strong>Filter params</strong>: <code>last_visited_after</code>, <code>last_visited_before</code> (DateTimeFromToRangeFilter), <code>last_visited__isnull</code> (boolean)</li>
+<li><strong>Ordering</strong>: <code>ordering=last_visited</code> / <code>ordering=-last_visited</code></li>
+<li><strong>Update frequency</strong>: At most once per hour per user (throttled middleware)</li>
+<li><strong>Initial state</strong>: All existing members will have <code>lastVisited: null</code> until they next make an authenticated request</li>
+<li><strong>Read-only</strong>: Not settable via PATCH — only updated by the middleware</li>
+</ul>
+<hr />
+<h2 id="change-11-trip-search-enhancements-backendtodo-8-10">Change 11: Trip Search Enhancements (BACK<em>END</em>TODO #8 + #10)<a class="headerlink" href="#change-11-trip-search-enhancements-backendtodo-8-10" title="Permanent link">&para;</a></h2>
+<p><strong>Priority</strong>: HIGH
+<strong>File</strong>: <code>api/views/views_trip.py</code> (lines 899–978, <code>TripSearch</code>)</p>
+<h3 id="problem_4">Problem<a class="headerlink" href="#problem_4" title="Permanent link">&para;</a></h3>
+<p>The trip search endpoint (<code>GET /api/trips/search</code>) silently ignores <code>approvalStatus</code> and <code>ordering</code>. It also lacks <code>level_id</code> support (#10) — the <code>level</code> param uses <code>numericLevel</code> values, while the list endpoint uses <code>level__id</code>.</p>
+<h3 id="current-state_1">Current State<a class="headerlink" href="#current-state_1" title="Permanent link">&para;</a></h3>
+<p><code>TripSearch</code> is a manually-coded <code>ListAPIView</code> that parses query params and builds a <code>Q()</code> filter. It supports: <code>query</code>, <code>level</code>, <code>min_level</code>, <code>max_level</code>, <code>start_date_min/max</code>, <code>end_date_min/max</code>, <code>meeting_point</code> (by ID), <code>area</code>. Results are always ordered by <code>-start_time, id</code>.</p>
+<h3 id="what-to-change_3">What to Change<a class="headerlink" href="#what-to-change_3" title="Permanent link">&para;</a></h3>
+<p>Add three new parameters to the existing manual parsing logic:</p>
+<h4 id="11a-approval_status-filter">11a. <code>approval_status</code> filter<a class="headerlink" href="#11a-approval_status-filter" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="n">approval_status</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">query_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;approval_status&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">approval_status</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">approval_status</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span>
+            <span class="p">{</span><span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;invalid_approval_status&#39;</span><span class="p">},</span>
+            <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span>
+        <span class="p">)</span>
+    <span class="n">filters</span> <span class="o">&amp;=</span> <span class="n">Q</span><span class="p">(</span><span class="n">approval_status</span><span class="o">=</span><span class="n">approval_status</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="11b-ordering-support">11b. <code>ordering</code> support<a class="headerlink" href="#11b-ordering-support" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="n">ordering</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">query_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ordering&#39;</span><span class="p">,</span> <span class="s1">&#39;-start_time&#39;</span><span class="p">)</span>
+<span class="n">valid_orderings</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;start_time&#39;</span><span class="p">,</span> <span class="s1">&#39;-start_time&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;-title&#39;</span><span class="p">}</span>
+<span class="k">if</span> <span class="n">ordering</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid_orderings</span><span class="p">:</span>
+    <span class="n">ordering</span> <span class="o">=</span> <span class="s1">&#39;-start_time&#39;</span>
+
+<span class="c1"># Then use in queryset:</span>
+<span class="n">queryset</span> <span class="o">=</span> <span class="n">Trip</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">filters</span><span class="p">)</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="n">ordering</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="11c-level_id-filter-resolves-10">11c. <code>level_id</code> filter (resolves #10)<a class="headerlink" href="#11c-level_id-filter-resolves-10" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="n">level_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">query_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;level_id&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">level_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">filters</span> <span class="o">&amp;=</span> <span class="n">Q</span><span class="p">(</span><span class="n">level__id</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">level_id</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span>
+            <span class="p">{</span><span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;invalid_level_id&#39;</span><span class="p">},</span>
+            <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span>
+        <span class="p">)</span>
+</code></pre></div>
+
+<h3 id="result_3">Result<a class="headerlink" href="#result_3" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code># Filter by approval status
+GET /api/trips/search?query=sand&amp;approval_status=A   → only approved trips
+
+# Sort by date
+GET /api/trips/search?query=sweihan&amp;ordering=start_time    → oldest first
+GET /api/trips/search?query=sweihan&amp;ordering=-start_time   → newest first (default)
+
+# Filter by level database ID
+GET /api/trips/search?query=sand&amp;level_id=4   → only Intermediate trips (db id=4)
+
+# All three combined
+GET /api/trips/search?query=sand&amp;approval_status=A&amp;ordering=start_time&amp;level_id=4
+</code></pre></div>
+
+<h3 id="meeting-point-filter-already-works">Meeting Point Filter — Already Works<a class="headerlink" href="#meeting-point-filter-already-works" title="Permanent link">&para;</a></h3>
+<p><strong>Correction from frontend audit</strong>: The <code>meeting_point</code> param on the search endpoint already works by ID (see code lines 955–960). The frontend team's test returned 0 because <code>meeting_point=117</code> combined with <code>query=sweihan</code> narrowed results to zero. The filter itself is functional. No change needed.</p>
+<h3 id="breaking-changes_10">Breaking Changes<a class="headerlink" href="#breaking-changes_10" title="Permanent link">&para;</a></h3>
+<p><strong>None.</strong> All new params are optional. Existing behavior is preserved:
+- Default ordering remains <code>-start_time, id</code> when no <code>ordering</code> param is provided
+- The existing <code>level</code> param (numericLevel) continues to work unchanged
+- <code>level_id</code> is a separate, additive param</p>
+<h3 id="notes-for-frontend_4">Notes for Frontend<a class="headerlink" href="#notes-for-frontend_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>approval_status</code> values</strong>: <code>P</code> (Pending), <code>A</code> (Approved), <code>R</code> (Rejected), <code>C</code> (Cancelled). Invalid values return 400.</li>
+<li><strong><code>ordering</code> param name</strong>: <code>ordering</code> (matches the list endpoint convention, NOT <code>order</code>)</li>
+<li><strong>Valid ordering values</strong>: <code>start_time</code>, <code>-start_time</code>, <code>title</code>, <code>-title</code>. Invalid values fall back to <code>-start_time</code>.</li>
+<li><strong><code>level_id</code> vs <code>level</code></strong>: Both work. <code>level</code> filters by numericLevel value (5, 10, 100, etc.). <code>level_id</code> filters by database ID (1–9). Use whichever is more convenient.</li>
+<li><strong>All params combinable</strong>: <code>approval_status</code>, <code>ordering</code>, <code>level_id</code>, and <code>level</code> can be combined with each other and with all existing params (<code>query</code>, <code>area</code>, <code>meeting_point</code>, dates).</li>
+</ul>
+<hr />
+<h2 id="item-9-meeting-points-area-backfill-deferred">Item #9 — Meeting Points Area Backfill — DEFERRED<a class="headerlink" href="#item-9-meeting-points-area-backfill-deferred" title="Permanent link">&para;</a></h2>
+<p><strong>Decision</strong>: <strong>Not implementing.</strong> The <code>area</code> field on meeting points will be filled manually by users and admins when the app is operational.</p>
+<p><strong>Rationale</strong>:
+- The <code>area</code> field already exists on the <code>MeetingPoint</code> model and is writable via <code>PATCH /api/meetingpoints/{id}/</code>
+- Automated backfill based on names would be error-prone — many meeting point names don't clearly indicate which emirate they belong to
+- Admin users with local knowledge are best positioned to assign correct areas
+- The <code>area</code> field is not being made required — it stays optional to avoid blocking meeting point creation</p>
+<p><strong>No code changes needed.</strong></p>
+<hr />
+<h2 id="appendix-documentation-fixes">Appendix — Documentation Fixes<a class="headerlink" href="#appendix-documentation-fixes" title="Permanent link">&para;</a></h2>
+<p>These items require no code changes — only corrections to API documentation in <code>docs/</code>.</p>
+<h3 id="appendix-b-carbrand-endpoint-name">Appendix B — <code>carbrand</code> Endpoint Name<a class="headerlink" href="#appendix-b-carbrand-endpoint-name" title="Permanent link">&para;</a></h3>
+<p><strong>File</strong>: <code>docs/vehicles.md</code>
+<strong>Change</strong>: Replace all references to <code>GET /api/choices/carbrands/</code> with <code>GET /api/choices/carbrand</code> (singular, no trailing slash).
+<strong>Reason</strong>: Live-tested — only <code>GET /api/choices/carbrand</code> returns 200. All other variants (<code>carbrands/</code>, <code>carbrands</code>, <code>carbrand/</code>) return 404.</p>
+<h3 id="appendix-i-sponsorship-endpoint-url">Appendix I — Sponsorship Endpoint URL<a class="headerlink" href="#appendix-i-sponsorship-endpoint-url" title="Permanent link">&para;</a></h3>
+<p><strong>File</strong>: <code>docs/sponsorships.md</code>
+<strong>Change</strong>: Replace <code>GET /api/sponsorships/</code> with <code>GET /api/sponsors/</code>.
+<strong>Reason</strong>: Live-tested — only <code>GET /api/sponsors/</code> returns 200. <code>/api/sponsorships/</code> returns 404.</p>
+<h3 id="appendix-j-club-news-response-fields">Appendix J — Club News Response Fields<a class="headerlink" href="#appendix-j-club-news-response-fields" title="Permanent link">&para;</a></h3>
+<p><strong>File</strong>: <code>docs/club-news.md</code>
+<strong>Changes</strong>:
+- Replace <code>published</code> field with <code>submitDate</code> in response documentation
+- Remove <code>author</code> from documented response fields
+- Correct the response field list to: <code>content</code>, <code>id</code>, <code>image</code>, <code>levels</code>, <code>status</code>, <code>submitDate</code>, <code>title</code></p>
+<hr />
+<h2 id="complete-file-change-matrix">Complete File Change Matrix<a class="headerlink" href="#complete-file-change-matrix" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Changes</th>
+<th>Items</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>api/views/views_member.py</code></td>
+<td>Add <code>filter_backends</code>, <code>ordering_fields</code>, <code>ordering</code>, <code>search_fields</code> to <code>MemberViewSet</code></td>
+<td>#3, #6</td>
+</tr>
+<tr>
+<td><code>api/filters.py</code></td>
+<td>Add <code>paid_member</code> + <code>last_visited</code> filters to <code>MembersFilter</code></td>
+<td>#5, #7</td>
+</tr>
+<tr>
+<td><code>api/models/models_member.py</code></td>
+<td>Add <code>last_visited</code> field + index</td>
+<td>#7</td>
+</tr>
+<tr>
+<td><code>api/middleware.py</code></td>
+<td>Add <code>LastVisitedMiddleware</code> class</td>
+<td>#7</td>
+</tr>
+<tr>
+<td><code>ad4x4/settings.py</code></td>
+<td>Register <code>LastVisitedMiddleware</code> in MIDDLEWARE</td>
+<td>#7</td>
+</tr>
+<tr>
+<td><code>api/serializers/serializers_member_base.py</code></td>
+<td>Add <code>last_visited</code> to <code>BasicMemberSerializer</code></td>
+<td>#7</td>
+</tr>
+<tr>
+<td><code>api/serializers/serializers_member.py</code></td>
+<td>Add <code>last_visited</code> to <code>ProfileSerializer</code></td>
+<td>#7</td>
+</tr>
+<tr>
+<td><code>api/views/views_trip.py</code></td>
+<td>Add <code>approval_status</code>, <code>ordering</code>, <code>level_id</code> to <code>TripSearch</code></td>
+<td>#8, #10</td>
+</tr>
+<tr>
+<td>New migration file</td>
+<td>For <code>last_visited</code> field on Member model</td>
+<td>#7</td>
+</tr>
+<tr>
+<td><code>docs/members.md</code></td>
+<td>Document new ordering, search, paid<em>member, last</em>visited params</td>
+<td>#3, #5, #6, #7</td>
+</tr>
+<tr>
+<td><code>docs/trip-search.md</code></td>
+<td>Document new approval<em>status, ordering, level</em>id params</td>
+<td>#8, #10</td>
+</tr>
+<tr>
+<td><code>docs/vehicles.md</code></td>
+<td>Fix carbrand endpoint name</td>
+<td>Appendix B</td>
+</tr>
+<tr>
+<td><code>docs/sponsorships.md</code></td>
+<td>Fix sponsorship URL</td>
+<td>Appendix I</td>
+</tr>
+<tr>
+<td><code>docs/club-news.md</code></td>
+<td>Fix response field names</td>
+<td>Appendix J</td>
+</tr>
+<tr>
+<td><code>docs/frontend-docs/BACK_END_TODO.md</code></td>
+<td>Fill in all Implementation Records</td>
+<td>All</td>
+</tr>
+<tr>
+<td><code>docs/frontend-docs/WEBSITE_TEAM_RESPONSE.md</code></td>
+<td>Complete rewrite covering all items</td>
+<td>All</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="implementation-order_1">Implementation Order<a class="headerlink" href="#implementation-order_1" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>Phase 1 — Zero-risk additions (no model changes, no middleware):
+  1. Change 7  (#3  — member ordering)       ]
+  2. Change 9  (#6  — unified member search)  ] Same file: views_member.py
+  3. Change 8  (#5  — paidMember filter)       — filters.py (1 line)
+  4. Change 11 (#8+#10 — trip search)          — views_trip.py
+
+Phase 2 — Model change + middleware:
+  5. Change 10a (#7 — last_visited model field + migration)
+  6. Change 10b (#7 — LastVisitedMiddleware)
+  7. Change 10c (#7 — serializer updates)
+  8. Change 10d (#7 — filter + ordering updates)
+
+Phase 3 — Documentation:
+  9.  Update API docs (members.md, trip-search.md, vehicles.md, sponsorships.md, club-news.md)
+  10. Fill in Implementation Records in BACK_END_TODO.md
+  11. Rewrite WEBSITE_TEAM_RESPONSE.md
+</code></pre></div>
+
+<hr />
+<h2 id="testing-checklist">Testing Checklist<a class="headerlink" href="#testing-checklist" title="Permanent link">&para;</a></h2>
+<p>After implementation, verify:</p>
+<p><strong>Member ordering (#3)</strong>:
+- [ ] <code>GET /api/members/?ordering=-trip_count&amp;pageSize=3</code> returns members sorted by highest trip count
+- [ ] <code>GET /api/members/?ordering=username&amp;pageSize=3</code> returns alphabetically sorted members
+- [ ] <code>GET /api/members/?ordering=invalid_field</code> falls back to default ordering (by id)</p>
+<p><strong>paidMember filter (#5)</strong>:
+- [ ] <code>GET /api/members/?paid_member=true</code> returns count &lt; total members
+- [ ] <code>GET /api/members/?paid_member=false</code> returns count = total − paid count</p>
+<p><strong>Unified search (#6)</strong>:
+- [ ] <code>GET /api/members/?search=admin</code> returns matching members
+- [ ] <code>GET /api/members/?search=admin&amp;ordering=-trip_count&amp;paid_member=true</code> combines all three
+- [ ] <code>GET /api/members/</code> (no search param) still returns all members
+- [ ] <code>GET /api/members/search?query=admin</code> still works (backward compat)</p>
+<p><strong>Last visited (#7)</strong>:
+- [ ] <code>lastVisited</code> field appears in member list and detail responses (initially <code>null</code>)
+- [ ] After an authenticated request, <code>lastVisited</code> is populated
+- [ ] <code>GET /api/members/?last_visited__isnull=true</code> returns members
+- [ ] <code>GET /api/members/?ordering=-last_visited</code> works
+- [ ] Middleware throttle: second request within 1 hour does NOT update <code>lastVisited</code></p>
+<p><strong>Trip search (#8 + #10)</strong>:
+- [ ] <code>GET /api/trips/search?query=sand&amp;approval_status=A</code> returns count &lt; unfiltered
+- [ ] <code>GET /api/trips/search?query=sweihan&amp;ordering=start_time</code> returns oldest first
+- [ ] <code>GET /api/trips/search?query=sweihan&amp;ordering=-start_time</code> returns newest first
+- [ ] <code>GET /api/trips/search?query=sand&amp;level_id=4</code> returns only Intermediate trips
+- [ ] <code>GET /api/trips/search?query=sand&amp;level=100</code> still works (existing param unchanged)
+- [ ] Invalid <code>approval_status</code> returns 400</p>
+<p><strong>Regression checks</strong>:
+- [ ] <code>GET /api/members/</code> with no new params returns same results as before
+- [ ] <code>GET /api/trips/search?query=sand</code> with no new params returns same results as before
+- [ ] All existing filter params still work unchanged</p>
+<hr />
+<p><em>This plan is ready for review. No implementation will begin until approved.</em></p>
 
 
 
