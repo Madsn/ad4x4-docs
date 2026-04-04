@@ -1448,6 +1448,24 @@
 <td>Filter for trips in a specific area (area code like <code>DXB</code>, <code>AUH</code>). Must be a string — numeric values are rejected.</td>
 </tr>
 <tr>
+<td><code>approval_status</code></td>
+<td>string</td>
+<td>No</td>
+<td>Filter by approval status. Accepted values: <code>P</code> (Pending), <code>A</code> (Approved), <code>R</code> (Rejected), <code>C</code> (Cancelled). Invalid values return 400.</td>
+</tr>
+<tr>
+<td><code>level_id</code></td>
+<td>integer</td>
+<td>No</td>
+<td>Filter by level database ID (e.g., <code>4</code> for Intermediate). This is an alternative to the <code>level</code> param which uses numericLevel values.</td>
+</tr>
+<tr>
+<td><code>ordering</code></td>
+<td>string</td>
+<td>No</td>
+<td>Sort results. Accepted values: <code>start_time</code>, <code>-start_time</code>, <code>title</code>, <code>-title</code>. Default: <code>-start_time</code> (newest first). Invalid values fall back to default.</td>
+</tr>
+<tr>
 <td><code>page</code></td>
 <td>integer</td>
 <td>No</td>
@@ -1490,6 +1508,26 @@
 
 <p><strong>Paginated search:</strong></p>
 <div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/trips/search?query=trip&amp;page=1&amp;page_size=10&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your-token&gt;&quot;</span>
+</code></pre></div>
+
+<p><strong>Filter by approval status (approved only):</strong></p>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/trips/search?query=desert&amp;approval_status=A&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your-token&gt;&quot;</span>
+</code></pre></div>
+
+<p><strong>Sort by oldest first:</strong></p>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/trips/search?query=desert&amp;ordering=start_time&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your-token&gt;&quot;</span>
+</code></pre></div>
+
+<p><strong>Filter by level database ID:</strong></p>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/trips/search?query=desert&amp;level_id=4&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your-token&gt;&quot;</span>
+</code></pre></div>
+
+<p><strong>Combined filters (approved + oldest first + specific level):</strong></p>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://api.example.com/api/trips/search?query=desert&amp;approval_status=A&amp;ordering=start_time&amp;level_id=4&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;your-token&gt;&quot;</span>
 </code></pre></div>
 

@@ -1690,7 +1690,8 @@ The response will be a JSON object containing the user's profile information. Th
 <span class="w">    </span><span class="nt">&quot;city&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dubai&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;gender&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;M&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;nationality&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AE&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;lastVisited&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-30T14:22:00Z&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -1702,7 +1703,7 @@ The response will be a JSON object containing the user's profile information. Th
 <p>To update a user's profile, make a <code>PATCH</code> request to <code>/api/members/{id}/</code>. Users can only update their own profiles unless they are an administrator.</p>
 <p><strong>PATCH</strong> <code>/api/members/{id}/</code></p>
 <p><strong>Request Body:</strong>
-The request body should contain the fields to be updated. Note that some fields like <code>username</code>, <code>email</code>, <code>level</code>, <code>tripCount</code>, and <code>paidMember</code> are read-only.</p>
+The request body should contain the fields to be updated. Note that some fields like <code>username</code>, <code>email</code>, <code>level</code>, <code>tripCount</code>, <code>paidMember</code>, and <code>lastVisited</code> are read-only.</p>
 <p><strong>Editable Fields:</strong>
 <code>firstName</code>, <code>lastName</code>, <code>phone</code>, <code>city</code>, <code>dob</code>, <code>iceName</code>, <code>icePhone</code>, <code>gender</code>, <code>nationality</code>, <code>avatar</code>, <code>title</code></p>
 <p><strong>Success Response:</strong>
