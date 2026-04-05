@@ -1550,9 +1550,7 @@
 <span class="w">      </span><span class="p">},</span>
 <span class="w">      </span><span class="nt">&quot;lead&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;triplead1&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;firstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Trip&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;lastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Lead1&quot;</span>
+<span class="w">        </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;triplead1&quot;</span>
 <span class="w">      </span><span class="p">},</span>
 <span class="w">      </span><span class="nt">&quot;deputyLeads&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
 <span class="w">      </span><span class="nt">&quot;meetingPoint&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -1566,7 +1564,7 @@
 <span class="w">      </span><span class="nt">&quot;startTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-15T10:00:00&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;endTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-15T16:00:00&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;capacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;approvalStatus&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;APPROVED&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;approvalStatus&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;waitlistCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;registeredCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;isRegistered&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
@@ -1660,7 +1658,7 @@
 <li>Similarly for start dates</li>
 <li><strong>Meeting point filtering</strong>: Use <code>meeting_point</code> to filter by exact meeting point ID</li>
 <li><strong>Area filtering</strong>: Use <code>area</code> to filter by meeting point area code (e.g., <code>DXB</code>, <code>AUH</code>, <code>AAN</code>, <code>NOR</code>, <code>LIW</code>)</li>
-<li><strong>No approval status filter</strong>: This endpoint does NOT support filtering by <code>approvalStatus</code>. It searches all trips regardless of approval status. Use the main trip list (<code>GET /api/trips/</code>) for approval status filtering.</li>
+<li><strong>Approval status filter</strong>: Use <code>approval_status</code> to filter by status (<code>P</code>, <code>A</code>, <code>R</code>, <code>C</code>). Without this parameter, all statuses are returned.</li>
 <li><strong>Permission Required</strong>: Users must have <code>SEARCH_TRIPS</code> permission. By default, this is granted to Newbie level and above.</li>
 <li><strong>Performance Note</strong>: This endpoint searches trip titles efficiently. Searching by trip lead's user info (username, first name, last name) requires additional database joins and can be slower with many trips. Use title-based search for better performance.</li>
 <li><strong>User-specific information</strong>: For authenticated users, the response includes trip-specific registration status:</li>

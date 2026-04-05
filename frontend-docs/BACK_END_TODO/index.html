@@ -2367,7 +2367,7 @@ curl<span class="w"> </span>-s<span class="w"> </span>-H<span class="w"> </span>
 
 <p>Expected impact: response size drops from ~3,305 trips (95 KB) to ~15-20 trips (~15 KB). Load time from 17-30s to &lt;1s.</p>
 <p><strong>New/updated response fields (Option B — triphistory):</strong>
-Fields increased from 8 to 17: <code>id</code>, <code>title</code>, <code>description</code>, <code>startTime</code>, <code>endTime</code>, <code>lead</code> (object), <code>level</code> (full object), <code>checkedIn</code>, <code>image</code>, <code>meetingPoint</code> (object), <code>registeredCount</code>, <code>capacity</code>, <code>isRegistered</code>, <code>isWaitlisted</code>, <code>allowWaitlist</code>, <code>approvalStatus</code></p>
+Fields increased from 8 to 17: <code>id</code>, <code>title</code>, <code>description</code>, <code>startTime</code>, <code>endTime</code>, <code>lead</code> (object, serialized with <code>ConciseMemberSerializer</code> — returns only <code>id</code> and <code>username</code>), <code>level</code> (full object), <code>checkedIn</code>, <code>image</code>, <code>meetingPoint</code> (object), <code>registeredCount</code>, <code>capacity</code>, <code>isRegistered</code>, <code>isWaitlisted</code>, <code>allowWaitlist</code>, <code>approvalStatus</code></p>
 <p><strong>Breaking changes:</strong> None — new fields are additive. Existing integrations unaffected.</p>
 <p><strong>Notes for frontend:</strong>
 - <strong>Use Option A</strong> for the "My Trips" portal page (registered/waitlisted tabs)
@@ -3625,7 +3625,7 @@ curl<span class="w"> </span>-s<span class="w"> </span>-H<span class="w"> </span>
 - <strong>Valid ordering values</strong>: <code>start_time</code>, <code>-start_time</code>, <code>title</code>, <code>-title</code>. Invalid values silently fall back to <code>-start_time</code>.
 - <strong><code>approval_status</code> values</strong>: <code>P</code> (Pending), <code>A</code> (Approved), <code>R</code> (Rejected), <code>C</code> (Cancelled). Invalid → 400 error.
 - <strong><code>level_id</code> vs <code>level</code></strong>: Both work. <code>level</code> = numericLevel values. <code>level_id</code> = database ID. Use whichever is convenient.
-- <strong><code>meeting_point</code> already works by ID</strong> — the original report of it returning 0 was because combining with <code>query=sweihan</code> narrowed results. The filter itself is functional.
+- <strong><code>meeting_point</code> already works by ID</strong> — the original report of it returning 0 was because combining with <code>query=sweihan</code> narrowed results. The filter itself is functional. Note: the query parameter name is <code>meeting_point</code> (snake_case), not <code>meetingPoint</code> (camelCase). Using <code>meetingPoint</code> will be silently ignored and return unfiltered results.
 - <strong>All params are combinable</strong> with each other and with all existing params.
 - The admin trips table can now enable status tabs and sort toggles in search mode.
 - See updated docs: <a href="../../trip-search/"><code>docs/trip-search.md</code></a></p>

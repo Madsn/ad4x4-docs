@@ -1522,15 +1522,13 @@
 <span class="w">      </span><span class="nt">&quot;endTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-15T16:00:00+04:00&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;cutOff&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-20T23:59:59+04:00&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;capacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;approvalStatus&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;APPROVED&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;approvalStatus&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;allowWaitlist&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;registeredCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;waitlistCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;lead&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">21144</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;triplead&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;firstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Trip&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;lastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Lead&quot;</span>
+<span class="w">        </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;triplead&quot;</span>
 <span class="w">      </span><span class="p">},</span>
 <span class="w">      </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
@@ -1596,7 +1594,7 @@
 <li><strong>Pagination</strong>: Standard pagination with 20 items per page (configurable up to 500).</li>
 <li><strong>Response Fields</strong>: Includes full trip details via <code>ListTripSerializer</code>:</li>
 <li>Basic trip info (title, description, dates, capacity, approval status)</li>
-<li>Lead information (id, username, firstName, lastName)</li>
+<li>Lead information (id, username)</li>
 <li>Level (id, name, numericLevel, displayName)</li>
 <li>Meeting point (id, name, lat, lon, area, link) if associated</li>
 <li>User registration status for authenticated user (<code>isRegistered</code>, <code>isWaitlisted</code>)</li>
