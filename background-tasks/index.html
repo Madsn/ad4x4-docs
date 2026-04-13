@@ -1073,10 +1073,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#periodic-cleanup-tasks" class="md-nav__link">
+  <a href="#periodic-tasks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Periodic Cleanup Tasks
+        Periodic Tasks
       
     </span>
   </a>
@@ -1624,10 +1624,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#periodic-cleanup-tasks" class="md-nav__link">
+  <a href="#periodic-tasks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Periodic Cleanup Tasks
+        Periodic Tasks
       
     </span>
   </a>
@@ -1925,7 +1925,7 @@
 <h3 id="consumer-options">Consumer Options<a class="headerlink" href="#consumer-options" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code>python<span class="w"> </span>manage.py<span class="w"> </span>run_huey<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--worker-type<span class="o">=</span>thread<span class="w"> </span><span class="se">\ </span><span class="w">     </span><span class="c1"># or &#39;process&#39;</span>
-<span class="w">  </span>--workers<span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="se">\ </span><span class="w">              </span><span class="c1"># number of workers</span>
+<span class="w">  </span>--workers<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\ </span><span class="w">              </span><span class="c1"># number of workers (production runs with 1)</span>
 <span class="w">  </span>--scheduler_interval<span class="o">=</span><span class="m">1</span><span class="w">      </span><span class="c1"># scheduler check interval (seconds)</span>
 </code></pre></div>
 
@@ -1942,12 +1942,12 @@
 <tbody>
 <tr>
 <td><code>send_trip_notification</code></td>
-<td>Trip creation</td>
+<td>Trip published</td>
 <td>2 retries, 5min delay</td>
 </tr>
 <tr>
 <td><code>send_trip_approval_notification</code></td>
-<td>Trip approval</td>
+<td>Trip approved/declined</td>
 <td>2 retries, 5min delay</td>
 </tr>
 <tr>
@@ -1976,13 +1976,8 @@
 <td>2 retries, 5min delay</td>
 </tr>
 <tr>
-<td><code>periodic_upgrade_request_reminder</code></td>
-<td>Daily at 8 PM</td>
-<td>Scheduled</td>
-</tr>
-<tr>
 <td><code>send_club_news</code></td>
-<td>News publication</td>
+<td>ClubNews status → APPROVED</td>
 <td>2 retries, 5min delay</td>
 </tr>
 <tr>
@@ -2029,7 +2024,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="periodic-cleanup-tasks">Periodic Cleanup Tasks<a class="headerlink" href="#periodic-cleanup-tasks" title="Permanent link">&para;</a></h3>
+<h3 id="periodic-tasks">Periodic Tasks<a class="headerlink" href="#periodic-tasks" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -2040,9 +2035,14 @@
 </thead>
 <tbody>
 <tr>
-<td><code>periodic_purge_old_notifications</code></td>
-<td>Daily at 4 AM</td>
-<td>Deletes notification logs older than 60 days</td>
+<td><code>process_account_deletion_requests</code></td>
+<td>Daily at 12 AM</td>
+<td>Processes accounts pending deletion after 3-day grace period</td>
+</tr>
+<tr>
+<td><code>cleanup_expired_geocoding_cache</code></td>
+<td>Daily at 1 AM</td>
+<td>Removes expired geocoding cache entries</td>
 </tr>
 <tr>
 <td><code>periodic_purge_inactive_devices</code></td>
@@ -2055,14 +2055,14 @@
 <td>Deletes trip requests older than 1 day</td>
 </tr>
 <tr>
-<td><code>process_account_deletion_requests</code></td>
-<td>Daily at 12 AM</td>
-<td>Processes accounts pending deletion after 3-day grace period</td>
+<td><code>periodic_purge_old_notifications</code></td>
+<td>Daily at 4 AM</td>
+<td>Deletes notification logs older than 60 days</td>
 </tr>
 <tr>
-<td><code>cleanup_expired_geocoding_cache</code></td>
-<td>Daily at 1 AM</td>
-<td>Removes expired geocoding cache entries</td>
+<td><code>periodic_upgrade_request_reminder</code></td>
+<td>Daily at 8 PM</td>
+<td>Sends reminder notifications for pending upgrade requests</td>
 </tr>
 </tbody>
 </table>
@@ -2155,7 +2155,7 @@
 <li><a href="../notifications/">Notifications</a> - Notification types and channels</li>
 <li><a href="../gallery/">Gallery</a> - Gallery integration</li>
 <li><a href="../global-settings/">Global Settings</a> - Feature flags</li>
-<li><a href="../AGENTS.md#development-environment">Development Environment</a> - Running huey locally</li>
+<li><a href="../quick-start/">Quick Start</a> - Running the backend locally, including the Huey consumer</li>
 </ul>
 
 

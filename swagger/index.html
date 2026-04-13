@@ -1256,31 +1256,40 @@
 
 
 <h1 id="swagger-ui">Swagger UI<a class="headerlink" href="#swagger-ui" title="Permanent link">&para;</a></h1>
-<p>Our API documentation is powered by Swagger, which provides an interactive way to explore and test the API.</p>
+<p>Our API documentation is powered by drf-spectacular, which exposes the OpenAPI schema plus two interactive UIs.</p>
 <h2 id="access-urls">Access URLs<a class="headerlink" href="#access-urls" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Environment</th>
-<th>URL</th>
+<th>Resource</th>
+<th>Production</th>
+<th>Local Development</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Production</td>
+<td>Swagger UI</td>
 <td><a href="https://ap.ad4x4.com/docs/swagger-ui/">https://ap.ad4x4.com/docs/swagger-ui/</a></td>
+<td><a href="http://localhost:8000/docs/swagger-ui/">http://localhost:8000/docs/swagger-ui/</a></td>
 </tr>
 <tr>
-<td>Local Development</td>
-<td><a href="http://localhost:8000/docs/swagger-ui/">http://localhost:8000/docs/swagger-ui/</a></td>
+<td>ReDoc UI</td>
+<td><a href="https://ap.ad4x4.com/docs/redoc/">https://ap.ad4x4.com/docs/redoc/</a></td>
+<td><a href="http://localhost:8000/docs/redoc/">http://localhost:8000/docs/redoc/</a></td>
+</tr>
+<tr>
+<td>Raw schema (JSON)</td>
+<td><a href="https://ap.ad4x4.com/api/schema/">https://ap.ad4x4.com/api/schema/</a></td>
+<td><a href="http://localhost:8000/api/schema/">http://localhost:8000/api/schema/</a></td>
 </tr>
 </tbody>
 </table>
+<p>The raw schema is also committed to the repository as <code>schema.yml</code> and is regenerated with <code>python manage.py spectacular --file schema.yml</code> after any endpoint change.</p>
 <h2 id="authorizing-with-a-bearer-token">Authorizing with a Bearer Token<a class="headerlink" href="#authorizing-with-a-bearer-token" title="Permanent link">&para;</a></h2>
 <p>To test the protected endpoints in the Swagger UI, you'll need to obtain a bearer token and authorize your requests. Here's how to do it:</p>
 <ol>
 <li>
-<p><strong>Log in to the API</strong>: Send a <code>POST</code> request to the <code>/api/auth/login/</code> endpoint with your username and password. The response will contain an <code>access</code> token.</p>
+<p><strong>Obtain a JWT token</strong>: Send a <code>POST</code> request to <code>/api/token/</code> with your <code>username</code> and <code>password</code>. The response contains an <code>access</code> token and a <code>refresh</code> token. Alternatively, <code>/api/auth/login/</code> also returns a token (legacy <code>rest_registration</code> flow).</p>
 </li>
 <li>
 <p><strong>Authorize in Swagger</strong>:</p>
@@ -1292,6 +1301,7 @@
 </ul>
 </li>
 </ol>
+<p>Tokens are valid for 24 hours. Use <code>/api/token/refresh/</code> to refresh an expired token without re-entering credentials.</p>
 <p>Once you've authorized, you can make requests to any of the protected endpoints in the Swagger UI.</p>
 
 

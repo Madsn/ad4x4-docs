@@ -1697,7 +1697,7 @@
 <tr>
 <td><code>approval_status</code></td>
 <td>string</td>
-<td>Filter by approval status (<code>A</code>=Approved, <code>P</code>=Pending, <code>C</code>=Cancelled)</td>
+<td>Filter by approval status (<code>A</code>=Approved, <code>P</code>=Pending, <code>R</code>=Rejected, <code>C</code>=Cancelled)</td>
 </tr>
 <tr>
 <td><code>start_time_after</code></td>
@@ -1824,8 +1824,14 @@
 </blockquote>
 <ul>
 <li>Approves a trip that is pending approval. Requires the <code>APPROVE_TRIP</code> permission.</li>
-<li>The approver is automatically registered as a deputy lead.</li>
-<li><strong>Request Body:</strong> <code>{"vehicle_id": &lt;vehicle_id&gt;}</code> (optional - defaults to approver's primary vehicle)</li>
+<li><strong>Side effects on the approver:</strong><ol>
+<li>The approver is added to the trip's <code>deputy_leads</code>.</li>
+<li>The approver is automatically registered as a participant (via <code>add_to_registered()</code>) using the provided <code>vehicle_id</code>, or their primary vehicle if none is given.</li>
+<li>The approver's <code>TripRegistration.checked_in</code> is set to <code>true</code> immediately (so they don't need to check themselves in on the day).</li>
+<li><code>send_trip_approval_notification</code> and <code>send_trip_notification</code> are dispatched to Huey.</li>
+</ol>
+</li>
+<li><strong>Request Body:</strong> <code>{"vehicle_id": &lt;vehicle_id&gt;}</code> (optional — defaults to the approver's primary vehicle)</li>
 </ul>
 </li>
 </ul>

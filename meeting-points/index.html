@@ -1386,6 +1386,7 @@
 <ul>
 <li><strong>GET</strong> <code>/api/meetingpoints/</code><ul>
 <li>Retrieves a list of all available meeting points, ordered by name.</li>
+<li><strong>Caching:</strong> the response carries <code>Cache-Control: public, max-age=600</code>, so clients and intermediaries may cache the list for up to 10 minutes. If your UI must reflect a newly-created meeting point immediately, bypass the cache (e.g. with a cache-busting query param) or refetch after the TTL expires.</li>
 </ul>
 </li>
 </ul>

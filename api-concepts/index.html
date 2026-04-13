@@ -2860,11 +2860,14 @@
 2. Check Swagger documentation for accepted fields
 3. Verify data type matches expected format</p>
 <h3 id="503-service-unavailable">503 Service Unavailable<a class="headerlink" href="#503-service-unavailable" title="Permanent link">&para;</a></h3>
-<p><strong>Cause:</strong> Maintenance mode is enabled</p>
+<p><strong>Cause:</strong> Either (a) an intentional maintenance window, triggered via the nginx-level toggle (<code>infra/enable_maintenance_mode.sh</code>), or (b) transient backend unavailability (upstream down, gunicorn restart, failed nginx health check).</p>
 <p><strong>Solutions:</strong>
-1. Wait and retry after a few minutes
-2. Check Club News for maintenance announcements
-3. See <a href="../maintenance-mode/">Maintenance Mode</a></p>
+1. If the response includes a <code>Retry-After</code> header (currently <code>3600</code> during intentional maintenance), back off for at least that many seconds before retrying.
+2. Check Club News for announced downtime windows.
+3. See <a href="../maintenance-mode/">Maintenance Mode</a> for the full mechanism and recommended client behaviour.</p>
+<blockquote>
+<p><strong>Note:</strong> There is no Django-level maintenance mode — 503 responses always originate from the nginx layer, either from the deliberate maintenance toggle or from an upstream failure. Clients should match on <code>503 + Retry-After</code> to detect a deliberate maintenance state, and treat it as a transient operational state rather than an application error (do not send to Sentry).</p>
+</blockquote>
 <h3 id="pagination-issues">Pagination Issues<a class="headerlink" href="#pagination-issues" title="Permanent link">&para;</a></h3>
 <h4 id="count-0-with-no-results">"count": 0 with no results<a class="headerlink" href="#count-0-with-no-results" title="Permanent link">&para;</a></h4>
 <p><strong>Causes:</strong>

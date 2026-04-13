@@ -1810,17 +1810,16 @@ Response stored in Trip.gallery_id
 <strong>Retry Policy:</strong> 3 retries, 1 hour delay between retries</p>
 <h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
 <h3 id="retry-logic">Retry Logic<a class="headerlink" href="#retry-logic" title="Permanent link">&para;</a></h3>
-<p>All gallery tasks implement exponential backoff with the following pattern:</p>
-<ol>
-<li>Initial attempt</li>
-<li>Retry after 1 hour</li>
-<li>Retry after 2 hours</li>
-<li>Retry after 4 hours</li>
-<li>... up to configured retries</li>
-</ol>
+<p>All gallery tasks retry with a <strong>fixed 1-hour delay</strong> between attempts (not exponential backoff). Huey's <code>retry_delay</code> is a constant for a given <code>@task</code> decorator:</p>
+<ul>
+<li><code>create_gallery_for_trip_task</code> — up to <strong>6 retries</strong>, 1-hour delay each (total window ≈ 6 hours)</li>
+<li><code>update_gallery_for_trip_task</code> — up to <strong>6 retries</strong>, 1-hour delay each</li>
+<li><code>delete_gallery_for_trip_task</code> — up to <strong>3 retries</strong>, 1-hour delay each</li>
+<li><code>restore_gallery_for_trip_task</code> — up to <strong>3 retries</strong>, 1-hour delay each</li>
+</ul>
 <p>After all retries are exhausted, the task stops and logs an error. Manual intervention may be required.</p>
 <h3 id="logging">Logging<a class="headerlink" href="#logging" title="Permanent link">&para;</a></h3>
-<p>Gallery operations log to the <code>ad4x4-worker</code> logger:</p>
+<p>Gallery operations log to the <code>ad4x4-web</code> logger (see <code>api/services/gallery_webhook.py</code>):</p>
 <div class="codehilite"><pre><span></span><code><span class="c1"># Success</span>
 <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gallery ID </span><span class="si">{</span><span class="n">gallery_id</span><span class="si">}</span><span class="s2"> saved to trip </span><span class="si">{</span><span class="n">trip</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 

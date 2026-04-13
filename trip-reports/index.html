@@ -1527,6 +1527,9 @@
 <span class="p">}</span>
 </code></pre></div>
 
+<blockquote>
+<p><strong>List vs retrieve asymmetry:</strong> The list response above intentionally omits <code>reportText</code>, <code>member</code>, <code>images</code>, and <code>created</code> — these fields are only returned by the retrieve endpoint below. Fetch <code>/api/tripreports/{id}/</code> for the full object.</p>
+</blockquote>
 <h3 id="create-trip-report">Create Trip Report<a class="headerlink" href="#create-trip-report" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>POST</strong> <code>/api/tripreports/</code></li>

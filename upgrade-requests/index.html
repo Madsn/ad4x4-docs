@@ -1459,6 +1459,10 @@
 </ul>
 </li>
 </ul>
+<blockquote>
+<p><strong>Voter fields — integer counts, not arrays:</strong> On both list and detail responses, <code>yesVoters</code>, <code>noVoters</code>, and <code>deferVoters</code> are returned as <strong>integer counts</strong> (the total number of members who voted yes/no/defer), <em>not</em> as arrays of member objects. <code>nominatedVoters</code>, however, IS returned as an array of member objects (the members who were nominated to vote on this request). Do not attempt to iterate <code>yesVoters</code> — use it as a number.</p>
+<p><strong>Status transitions:</strong> A request starts at <code>status=N</code> (NEW). When the first vote is cast it transitions to <code>I</code> (IN_PROGRESS). Final decisions set it to <code>A</code> (APPROVED) or <code>D</code> (DECLINED). <code>verdictDate</code> is auto-populated when status moves to APPROVED or DECLINED.</p>
+</blockquote>
 <h3 id="get-member-upgrade-eligibility">Get Member Upgrade Eligibility<a class="headerlink" href="#get-member-upgrade-eligibility" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
