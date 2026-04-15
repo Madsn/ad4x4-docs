@@ -370,10 +370,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#obtain-token-pair" class="md-nav__link">
+  <a href="#login" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Obtain Token Pair
+        Login
       
     </span>
   </a>
@@ -381,10 +381,43 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#refresh-token" class="md-nav__link">
+  <a href="#refresh" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Refresh Token
+        Refresh
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logout-single-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logout (single session)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logout-all-sessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logout all sessions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-sessions-logout-other-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List sessions / logout other devices
       
     </span>
   </a>
@@ -397,10 +430,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#token-expiration" class="md-nav__link">
+  <a href="#token-lifetimes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Token Expiration
+        Token Lifetimes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#password-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Password change
       
     </span>
   </a>
@@ -1892,10 +1936,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#obtain-token-pair" class="md-nav__link">
+  <a href="#login" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Obtain Token Pair
+        Login
       
     </span>
   </a>
@@ -1903,10 +1947,43 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#refresh-token" class="md-nav__link">
+  <a href="#refresh" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Refresh Token
+        Refresh
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logout-single-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logout (single session)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logout-all-sessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logout all sessions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-sessions-logout-other-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List sessions / logout other devices
       
     </span>
   </a>
@@ -1919,10 +1996,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#token-expiration" class="md-nav__link">
+  <a href="#token-lifetimes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Token Expiration
+        Token Lifetimes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#password-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Password change
       
     </span>
   </a>
@@ -2522,34 +2610,41 @@
 - <code>2026-03-14T18:00:00+04:00</code> - March 14, 2026 at 6:00 PM Dubai time</p>
 <p><strong>Important:</strong> The <code>USE_TZ</code> setting is <code>False</code>, so times are stored and returned as-is in Dubai time without UTC conversion.</p>
 <h2 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h2>
-<p>The API uses JWT (JSON Web Token) authentication. To authenticate:</p>
+<p>The API uses <strong>JWT access + refresh tokens</strong> via <code>djangorestframework-simplejwt</code> with the token_blacklist app enabled. To authenticate:</p>
 <ol>
-<li><strong>Obtain Token</strong>: POST to <code>/api/token/</code> with username and password</li>
-<li><strong>Use Token</strong>: Include in Authorization header as <code>Bearer &lt;token&gt;</code></li>
-<li><strong>Refresh Token</strong>: POST to <code>/api/token/refresh/</code> with refresh token</li>
+<li><strong>Obtain tokens</strong>: <code>POST /api/auth/login/</code> (or the alias <code>/api/token/</code>) with credentials. Receive an <code>access</code> and a <code>refresh</code> token.</li>
+<li><strong>Use the access token</strong>: <code>Authorization: Bearer &lt;access_token&gt;</code>.</li>
+<li><strong>Refresh when the access token expires</strong>: <code>POST /api/token/refresh/</code> with the refresh token. You get <strong>a new access token AND a new refresh token</strong>. Store the new refresh token — the old one is now blacklisted.</li>
 </ol>
+<blockquote>
+<p>⚠️ <strong>Refresh tokens rotate.</strong> Every successful refresh returns a new refresh token and blacklists the old one. Using the same refresh token twice will return <code>401</code>. Always overwrite your stored refresh token with whatever the refresh endpoint returns.</p>
+</blockquote>
 <h3 id="authentication-header-format">Authentication Header Format<a class="headerlink" href="#authentication-header-format" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>Authorization: Bearer &lt;your_jwt_token&gt;
+<div class="codehilite"><pre><span></span><code>Authorization: Bearer &lt;your_access_token&gt;
 </code></pre></div>
 
 <h3 id="token-endpoints">Token Endpoints<a class="headerlink" href="#token-endpoints" title="Permanent link">&para;</a></h3>
-<h4 id="obtain-token-pair">Obtain Token Pair<a class="headerlink" href="#obtain-token-pair" title="Permanent link">&para;</a></h4>
+<h4 id="login">Login<a class="headerlink" href="#login" title="Permanent link">&para;</a></h4>
 <ul>
-<li><strong>Endpoint</strong>: <code>POST /api/token/</code></li>
-<li><strong>Body</strong>:
+<li><strong>Endpoint</strong>: <code>POST /api/auth/login/</code></li>
+<li><strong>Body</strong> (any of <code>login</code> / <code>username</code> / <code>email</code> is accepted, all case-insensitive):
     <code>json
     {
-      "username": "your_username",
+      "login": "redbeard",
       "password": "your_password"
     }</code></li>
 <li><strong>Response</strong>:
     <code>json
     {
-      "access": "eyJ0eXAiOiJKV1QiLCJhbGc...",
-      "refresh": "eyJ0eXAiOiJKV1QiLCJhbGc..."
+      "success": true,
+      "message": {
+        "access": "eyJ0eXAiOiJKV1QiLCJhbGc...",
+        "refresh": "eyJ0eXAiOiJKV1QiLCJhbGc..."
+      }
     }</code></li>
 </ul>
-<h4 id="refresh-token">Refresh Token<a class="headerlink" href="#refresh-token" title="Permanent link">&para;</a></h4>
+<p><code>POST /api/token/</code> is an alias for this endpoint and accepts the same body.</p>
+<h4 id="refresh">Refresh<a class="headerlink" href="#refresh" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Endpoint</strong>: <code>POST /api/token/refresh/</code></li>
 <li><strong>Body</strong>:
@@ -2557,16 +2652,61 @@
     {
       "refresh": "eyJ0eXAiOiJKV1QiLCJhbGc..."
     }</code></li>
-<li><strong>Response</strong>:
+<li><strong>Response</strong> (note: new refresh token included, old one blacklisted):
     <code>json
     {
-      "access": "eyJ0eXAiOiJKV1QiLCJhbGc..."
+      "success": true,
+      "message": {
+        "access": "eyJ0eXAiOiJKV1QiLCJhbGc...",
+        "refresh": "eyJ0eXAiOiJKV1QiLCJhbGc..."
+      }
     }</code></li>
 </ul>
-<h3 id="token-expiration">Token Expiration<a class="headerlink" href="#token-expiration" title="Permanent link">&para;</a></h3>
-<p>JWT access tokens expire after <strong>1 day</strong> (24 hours). When a token expires, you will receive a <code>401 Unauthorized</code> response. Use the refresh token endpoint to obtain a new access token.</p>
+<h4 id="logout-single-session">Logout (single session)<a class="headerlink" href="#logout-single-session" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Endpoint</strong>: <code>POST /api/auth/logout/</code></li>
+<li><strong>Auth</strong>: required (pass current access token)</li>
+<li><strong>Body</strong>: <code>{"refresh": "&lt;this device's refresh token&gt;"}</code></li>
+<li>Blacklists only the supplied refresh token. Other devices on the same account are unaffected.</li>
+<li>Idempotent — blacklisting an already-blacklisted token still returns <code>200</code>.</li>
+</ul>
+<h4 id="logout-all-sessions">Logout all sessions<a class="headerlink" href="#logout-all-sessions" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Endpoint</strong>: <code>POST /api/auth/logout-all/</code></li>
+<li><strong>Auth</strong>: required</li>
+<li>Blacklists every outstanding refresh token for the user, including the one used by the current device.</li>
+</ul>
+<h4 id="list-sessions-logout-other-devices">List sessions / logout other devices<a class="headerlink" href="#list-sessions-logout-other-devices" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Endpoint</strong>: <code>GET /api/auth/sessions/</code> — returns <code>jti</code>, <code>created_at</code>, <code>expires_at</code> for every active session for the authenticated user. The raw token bytes are never returned.</li>
+<li><strong>Endpoint</strong>: <code>DELETE /api/auth/sessions/</code> with body <code>{"keep_refresh": "&lt;current session refresh token&gt;"}</code> — blacklists every session <strong>except</strong> the one whose refresh token is supplied. Omit <code>keep_refresh</code> to blacklist everything (equivalent to <code>logout-all</code>).</li>
+</ul>
+<h3 id="token-lifetimes">Token Lifetimes<a class="headerlink" href="#token-lifetimes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Token</th>
+<th>Default</th>
+<th>Env var</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Access</td>
+<td>24 hours</td>
+<td><code>ACCESS_TOKEN_MINUTES</code> (default 1440)</td>
+</tr>
+<tr>
+<td>Refresh</td>
+<td>30 days</td>
+<td><code>REFRESH_TOKEN_DAYS</code> (default 30)</td>
+</tr>
+</tbody>
+</table>
+<p>When an access token expires you will receive a <code>401 Unauthorized</code>. Use the refresh endpoint to obtain a fresh pair. When the refresh token itself expires (or is blacklisted), the user must log in again.</p>
+<h3 id="password-change">Password change<a class="headerlink" href="#password-change" title="Permanent link">&para;</a></h3>
+<p><code>POST /api/auth/change-password/</code> <strong>blacklists every outstanding refresh token</strong> for the user, including the one belonging to the device that just changed the password. Every device must log in again with the new password. This is intentional: we assume a password change may follow a suspected leak.</p>
 <h3 id="authentication-error-responses">Authentication Error Responses<a class="headerlink" href="#authentication-error-responses" title="Permanent link">&para;</a></h3>
-<p>The API returns standard HTTP status codes for authentication errors:</p>
 <table>
 <thead>
 <tr>
@@ -2578,28 +2718,28 @@
 <tbody>
 <tr>
 <td>401</td>
-<td><code>Expired JWT.</code></td>
-<td>Token has expired. Obtain a new token via refresh.</td>
+<td><code>Token is invalid or expired</code></td>
+<td>Access token expired. Call <code>/api/token/refresh/</code>.</td>
 </tr>
 <tr>
 <td>401</td>
-<td><code>User account is disabled.</code></td>
+<td><code>Token is blacklisted</code></td>
+<td>Refresh token was revoked (by logout / rotation / password change). Re-authenticate.</td>
+</tr>
+<tr>
+<td>401</td>
+<td><code>User is inactive</code></td>
 <td>User account has been deactivated.</td>
 </tr>
 <tr>
 <td>401</td>
-<td><code>Token has been invalidated.</code></td>
-<td>Password was changed, or token was revoked. Re-authenticate.</td>
+<td><code>invalid_credentials</code></td>
+<td>Login failed.</td>
 </tr>
 <tr>
 <td>401</td>
-<td><code>Invalid JWT payload.</code></td>
-<td>Token is malformed or tampered with.</td>
-</tr>
-<tr>
-<td>401</td>
-<td><code>User not found.</code></td>
-<td>User associated with token no longer exists.</td>
+<td><code>account_disabled</code></td>
+<td>User account is disabled at login time.</td>
 </tr>
 </tbody>
 </table>
