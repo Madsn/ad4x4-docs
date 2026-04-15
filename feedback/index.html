@@ -1851,7 +1851,7 @@
 <span class="p">}</span>
 </code></pre></div>
 
-<p>Returned when the <code>Authorization</code> header is missing, the JWT is expired, or the user's <code>token_version</code> has been bumped (e.g. after a password change — all prior tokens are invalidated, see <a href="../api-concepts/#authentication">API Concepts</a>).</p>
+<p>Returned when the <code>Authorization</code> header is missing, the access token has expired, or the refresh token backing the session has been blacklisted (for example after a logout or a password change — all outstanding sessions are invalidated on password change). See <a href="../api-concepts/#authentication">API Concepts → Authentication</a> for the full invalidation semantics.</p>
 <hr />
 <h2 id="2-list-a-members-feedback">2. List a Member's Feedback<a class="headerlink" href="#2-list-a-members-feedback" title="Permanent link">&para;</a></h2>
 <p><strong><code>GET /api/members/{id}/feedback</code></strong> — <strong>no trailing slash</strong></p>

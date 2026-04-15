@@ -1286,10 +1286,19 @@
 </table>
 <p>The raw schema is also committed to the repository as <code>schema.yml</code> and is regenerated with <code>python manage.py spectacular --file schema.yml</code> after any endpoint change.</p>
 <h2 id="authorizing-with-a-bearer-token">Authorizing with a Bearer Token<a class="headerlink" href="#authorizing-with-a-bearer-token" title="Permanent link">&para;</a></h2>
-<p>To test the protected endpoints in the Swagger UI, you'll need to obtain a bearer token and authorize your requests. Here's how to do it:</p>
+<p>To test the protected endpoints in the Swagger UI, you'll need to obtain a JWT access token and authorize your requests.</p>
 <ol>
 <li>
-<p><strong>Obtain a JWT token</strong>: Send a <code>POST</code> request to <code>/api/token/</code> with your <code>username</code> and <code>password</code>. The response contains an <code>access</code> token and a <code>refresh</code> token. Alternatively, <code>/api/auth/login/</code> also returns a token (legacy <code>rest_registration</code> flow).</p>
+<p><strong>Log in</strong>: Send a <code>POST</code> request to <code>/api/auth/login/</code> with a <code>login</code> (username or email) and <code>password</code>. <code>POST /api/token/</code> is an alias that accepts the same body. The response is wrapped in the project's unified envelope:
+    <code>json
+    {
+      "success": true,
+      "message": {
+        "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+        "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+      }
+    }</code>
+    Grab <code>message.access</code> for the next step. Keep <code>message.refresh</code> somewhere safe if you want to test the refresh flow.</p>
 </li>
 <li>
 <p><strong>Authorize in Swagger</strong>:</p>
@@ -1301,7 +1310,7 @@
 </ul>
 </li>
 </ol>
-<p>Tokens are valid for 24 hours. Use <code>/api/token/refresh/</code> to refresh an expired token without re-entering credentials.</p>
+<p>Access tokens are valid for <strong>24 hours</strong> (configurable via <code>ACCESS_TOKEN_MINUTES</code>); refresh tokens last <strong>30 days</strong> (<code>REFRESH_TOKEN_DAYS</code>). When the access token expires, hit <code>POST /api/token/refresh/</code> with the refresh token to get a fresh pair. Refresh tokens <strong>rotate</strong> on use — the response returns a new refresh token and blacklists the old one, so always store whatever the refresh endpoint hands back. Full detail in <a href="../api-concepts/#authentication">API Concepts → Authentication</a>.</p>
 <p>Once you've authorized, you can make requests to any of the protected endpoints in the Swagger UI.</p>
 
 

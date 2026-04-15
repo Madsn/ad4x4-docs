@@ -455,6 +455,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#login-logout-and-session-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Login, Logout, and Session Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#profile-management" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1362,6 +1373,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#login-logout-and-session-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Login, Logout, and Session Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#profile-management" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1645,12 +1667,53 @@
 <p><strong>Note:</strong> The API accepts camelCase field names. The underlying serializer fields are <code>old_password</code>, <code>password</code>, and <code>password_confirm</code>.</p>
 </blockquote>
 <p><em>Note: <code>password</code> and <code>passwordConfirm</code> must match.</em></p>
-<p><strong>Important:</strong> When a user changes their password, all existing JWT tokens are automatically invalidated. Users will need to log in again with their new password to obtain a fresh token.</p>
+<p><strong>Important:</strong> When a user changes their password, <strong>every</strong> outstanding refresh token for the user is blacklisted — including the refresh token belonging to the device that just changed the password. Every device must log in again with the new password to obtain a fresh token pair. This is intentional: a password change may follow a suspected credential leak, so we invalidate every active session. Clients should clear their stored tokens immediately after a successful change-password response and route the user to the login screen.</p>
 <h3 id="other-endpoints">Other Endpoints<a class="headerlink" href="#other-endpoints" title="Permanent link">&para;</a></h3>
 <p>The <code>rest_registration</code> library also provides endpoints for:
 *   Resetting a forgotten password
 *   Verifying registration via email</p>
 <p>Please refer to the library's documentation for details on these flows.</p>
+<h2 id="login-logout-and-session-management">Login, Logout, and Session Management<a class="headerlink" href="#login-logout-and-session-management" title="Permanent link">&para;</a></h2>
+<p>Login and session management are covered in detail in <a href="../api-concepts/#authentication">API Concepts → Authentication</a>. Quick summary of the endpoints:</p>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST /api/auth/login/</code></td>
+<td>Log in with <code>login</code> (username or email) + <code>password</code>. Returns an <code>access</code> + <code>refresh</code> token pair wrapped in the unified envelope.</td>
+</tr>
+<tr>
+<td><code>POST /api/token/</code></td>
+<td>Alias for <code>/api/auth/login/</code> with the same request/response shape.</td>
+</tr>
+<tr>
+<td><code>POST /api/token/refresh/</code></td>
+<td>Exchange a refresh token for a new <code>{access, refresh}</code> pair. Refresh tokens <strong>rotate</strong>: the old refresh token is blacklisted on use, so always store whichever refresh token the response hands back.</td>
+</tr>
+<tr>
+<td><code>POST /api/auth/logout/</code></td>
+<td>Body: <code>{"refresh": "&lt;this device's refresh token&gt;"}</code>. Blacklists only that one session; other devices keep working. Idempotent.</td>
+</tr>
+<tr>
+<td><code>POST /api/auth/logout-all/</code></td>
+<td>Blacklists every outstanding refresh token for the user, including the current one. All devices must re-login.</td>
+</tr>
+<tr>
+<td><code>GET /api/auth/sessions/</code></td>
+<td>Lists the authenticated user's active refresh-token sessions (<code>jti</code>, <code>createdAt</code>, <code>expiresAt</code> — never the raw token). Useful for a "manage devices" UI.</td>
+</tr>
+<tr>
+<td><code>DELETE /api/auth/sessions/</code></td>
+<td>Body: <code>{"keep_refresh": "&lt;current session refresh token&gt;"}</code>. Blacklists every session except the one whose refresh token is supplied. Omit <code>keep_refresh</code> to blacklist everything (equivalent to <code>logout-all</code>).</td>
+</tr>
+</tbody>
+</table>
+<p>Token lifetimes default to <strong>24 hours</strong> (access) and <strong>30 days</strong> (refresh), configurable via the <code>ACCESS_TOKEN_MINUTES</code> and <code>REFRESH_TOKEN_DAYS</code> environment variables.</p>
 <h2 id="profile-management">Profile Management<a class="headerlink" href="#profile-management" title="Permanent link">&para;</a></h2>
 <h3 id="retrieving-a-profile">Retrieving a Profile<a class="headerlink" href="#retrieving-a-profile" title="Permanent link">&para;</a></h3>
 <p>To retrieve a user's profile, make a <code>GET</code> request to <code>/api/members/{id}/</code>.</p>

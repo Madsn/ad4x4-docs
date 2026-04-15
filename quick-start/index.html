@@ -320,10 +320,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#obtain-token" class="md-nav__link">
+  <a href="#log-in-and-get-your-token-pair" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Obtain Token
+        Log in and get your token pair
       
     </span>
   </a>
@@ -331,10 +331,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#use-token-in-requests" class="md-nav__link">
+  <a href="#use-the-access-token-in-requests" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Use Token in Requests
+        Use the access token in requests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refresh-an-expired-access-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Refresh an expired access token
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log out
       
     </span>
   </a>
@@ -1473,10 +1495,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#obtain-token" class="md-nav__link">
+  <a href="#log-in-and-get-your-token-pair" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Obtain Token
+        Log in and get your token pair
       
     </span>
   </a>
@@ -1484,10 +1506,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#use-token-in-requests" class="md-nav__link">
+  <a href="#use-the-access-token-in-requests" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Use Token in Requests
+        Use the access token in requests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refresh-an-expired-access-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Refresh an expired access token
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log out
       
     </span>
   </a>
@@ -1730,28 +1774,61 @@
 <li>Time zone: Asia/Dubai (UTC+4)</li>
 </ul>
 <h2 id="step-1-authenticate">Step 1: Authenticate<a class="headerlink" href="#step-1-authenticate" title="Permanent link">&para;</a></h2>
-<h3 id="obtain-token">Obtain Token<a class="headerlink" href="#obtain-token" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/api/token/<span class="w"> </span><span class="se">\</span>
+<p>The API uses <strong>JWT access + refresh tokens</strong> (via <code>djangorestframework-simplejwt</code>). You get both from a single login call, put the access token in every request, and call the refresh endpoint when the access token expires. Full detail — including rotation semantics, session management, and error codes — lives in <a href="../api-concepts/#authentication">API Concepts → Authentication</a>.</p>
+<h3 id="log-in-and-get-your-token-pair">Log in and get your token pair<a class="headerlink" href="#log-in-and-get-your-token-pair" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/api/auth/login/<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
-<span class="s1">    &quot;username&quot;: &quot;your_username&quot;,</span>
+<span class="s1">    &quot;login&quot;: &quot;your_username_or_email&quot;,</span>
 <span class="s1">    &quot;password&quot;: &quot;your_password&quot;</span>
 <span class="s1">  }&#39;</span>
 </code></pre></div>
 
-<p><strong>Response:</strong></p>
+<p><code>login</code> accepts either a username or an email (case-insensitive). <code>POST /api/token/</code> is an alias that accepts the same body and returns the same shape.</p>
+<p><strong>Response</strong> (wrapped in the project's unified envelope like every other endpoint):</p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;access&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;refresh&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...&quot;</span>
+<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;access&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;refresh&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...&quot;</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
-<h3 id="use-token-in-requests">Use Token in Requests<a class="headerlink" href="#use-token-in-requests" title="Permanent link">&para;</a></h3>
-<p>Include the token in the Authorization header:</p>
+<p>Store <strong>both</strong> tokens. The <code>access</code> token goes in the <code>Authorization</code> header; the <code>refresh</code> token is used to get a new access token when the current one expires.</p>
+<h3 id="use-the-access-token-in-requests">Use the access token in requests<a class="headerlink" href="#use-the-access-token-in-requests" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>http://localhost:8000/api/trips/<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer YOUR_ACCESS_TOKEN&quot;</span>
 </code></pre></div>
 
+<h3 id="refresh-an-expired-access-token">Refresh an expired access token<a class="headerlink" href="#refresh-an-expired-access-token" title="Permanent link">&para;</a></h3>
+<p>Default access-token lifetime is <strong>24 hours</strong>; refresh-token lifetime is <strong>30 days</strong>. When an authenticated request returns <code>401</code>, call:</p>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/api/token/refresh/<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;refresh&quot;: &quot;YOUR_REFRESH_TOKEN&quot;}&#39;</span>
+</code></pre></div>
+
+<p>The response contains <strong>a new access token AND a new refresh token</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;access&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;refresh&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<blockquote>
+<p>⚠️ <strong>Refresh tokens rotate on use.</strong> The old refresh token is immediately blacklisted by the server. You <strong>must</strong> overwrite your stored refresh token with whatever the refresh response returns. Using the same refresh token twice will give you <code>401</code> from then on.</p>
+</blockquote>
+<h3 id="log-out">Log out<a class="headerlink" href="#log-out" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/api/auth/logout/<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer YOUR_ACCESS_TOKEN&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;refresh&quot;: &quot;YOUR_REFRESH_TOKEN&quot;}&#39;</span>
+</code></pre></div>
+
+<p>This blacklists only the supplied refresh token — other devices stay logged in. Use <code>POST /api/auth/logout-all/</code> (no body) to kill every session for the user instead. See <a href="../api-concepts/#authentication">API Concepts → Authentication</a> for the session-listing endpoint and the full logout semantics.</p>
 <h2 id="step-2-explore-available-data">Step 2: Explore Available Data<a class="headerlink" href="#step-2-explore-available-data" title="Permanent link">&para;</a></h2>
 <h3 id="list-trips">List Trips<a class="headerlink" href="#list-trips" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://localhost:8000/api/trips/?approval_status=APPROVED&quot;</span><span class="w"> </span><span class="se">\</span>
