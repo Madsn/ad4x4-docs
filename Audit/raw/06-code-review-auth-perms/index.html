@@ -1,0 +1,1675 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Next gen API for Abu Dhabi 4x4">
+      
+      
+        <meta name="author" content="Redbeard">
+      
+      
+        <link rel="canonical" href="https://api.ad4x4.com/readme/Audit/raw/06-code-review-auth-perms/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Code Review — Auth + Permissions - AD4x4 API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#code-review-auth-permissions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="AD4x4 API" class="md-header__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AD4x4 API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Code Review — Auth + Permissions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AD4x4 API" class="md-nav__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AD4x4 API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../practical-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Practical Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../auth-profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Auth and Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../vehicles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vehicles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../trip-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lead-trip-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lead Trip History
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../trips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trips
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../trip-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../trip-reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meeting-points/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meeting Points
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../logbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Logbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../logbook-migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logbook Migration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../upgrade-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../club-news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Club News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faqs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feedback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sponsorships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sponsorships
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notifications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gallery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gallery Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../here-maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HERE Maps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../global-settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Global Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background-tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background Tasks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../editable-strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../account-deletion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Account Deletion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../swagger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swagger UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../maintenance-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintenance Mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rate-limiting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rate Limiting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Findings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Findings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#f-01-sessionsviewdelete-treats-empty-keep_refresh-as-keep-nothing-edge-case-token-reuse-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-01 — SessionsView.delete treats empty keep_refresh as "keep nothing"; edge-case token reuse path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-02-sessionsviewdelete-calls-serializeris_valid-twice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-02 — SessionsView.delete calls serializer.is_valid() twice
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-03-loginview-returns-distinct-error-strings-for-bad-credentials-vs-disabled-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-03 — LoginView returns distinct error strings for "bad credentials" vs "disabled account"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-04-_resolve_login_user-swallows-multipleobjectsreturned-silently" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-04 — _resolve_login_user swallows MultipleObjectsReturned silently
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-05-sql-injection-check-all-lookups-are-safe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-05 — SQL injection check: all lookups are safe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-06-membertoken_version-field-still-present-documented-as-legacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-06 — Member.token_version field still present (documented as legacy)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-07-jwtauthenticationget_user-creates-notificationsettings-on-every-authenticated-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-07 — JWTAuthentication.get_user creates NotificationSettings on every authenticated request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-08-hascreateupgraderequestforotherpermission-can-raise-on-unknown-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-08 — HasCreateUpgradeRequestForOtherPermission can raise on unknown level
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-09-hasviewupgraderequestcommentpermission-and-hascreateupgraderequestcommentpermission-raise-on-missing-upgrade-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-09 — HasViewUpgradeRequestCommentPermission and HasCreateUpgradeRequestCommentPermission raise on missing upgrade request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-10-hasdeleteupgraderequestcommentpermission-uses-get-or-none" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-10 — HasDeleteUpgradeRequestCommentPermission uses .get(...) or None
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-11-caneditordeletetripbasepermission-has-duplicated-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-11 — CanEditOrDeleteTripBasePermission has duplicated block
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-12-permission_matrix_exists_or_user_is_superuser-empty-levels-semantics-correct" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-12 — permission_matrix_exists_or_user_is_superuser — empty-levels semantics correct
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-13-hasviewupgraderequestpermissionorisforself-compares-pk-int-with-url-kwarg-str" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-13 — HasViewUpgradeRequestPermissionOrIsForSelf compares pk (int) with URL kwarg (str)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-14-is_staff-is_superuser-in-business-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-14 — is_staff / is_superuser in business logic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-15-logoutallview-has-no-refresh-token-input-but-blacklists-all-acceptable-but-asymmetric" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-15 — LogoutAllView has no refresh-token input but blacklists all; acceptable but asymmetric
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-16-_blacklist_all_user_tokens-issues-n1-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-16 — _blacklist_all_user_tokens issues N+1 queries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-17-case-insensitive-login-authenticateusername-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-17 — Case-insensitive login: authenticate(username=…) path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-18-unifiedtokenobtainpairview-drops-simplejwts-structured-error-body" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-18 — UnifiedTokenObtainPairView drops simplejwt's structured error body
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="code-review-auth-permissions">Code Review — Auth + Permissions<a class="headerlink" href="#code-review-auth-permissions" title="Permanent link">&para;</a></h1>
+<p>Scope: <code>api/views/views_auth.py</code>, <code>api/permissions.py</code>, <code>api/util.py</code> (JWT subclass only). Mode: READ-ONLY audit.</p>
+<hr />
+<h2 id="findings">Findings<a class="headerlink" href="#findings" title="Permanent link">&para;</a></h2>
+<h3 id="f-01-sessionsviewdelete-treats-empty-keep_refresh-as-keep-nothing-edge-case-token-reuse-path">F-01 — <code>SessionsView.delete</code> treats empty <code>keep_refresh</code> as "keep nothing"; edge-case token reuse path<a class="headerlink" href="#f-01-sessionsviewdelete-treats-empty-keep_refresh-as-keep-nothing-edge-case-token-reuse-path" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Severity: medium</li>
+<li>File: <code>api/views/views_auth.py:224-253</code></li>
+<li>Confidence: high</li>
+<li>Category: token-lifecycle</li>
+<li>Evidence: In <code>SessionsView.delete</code>, when the payload omits <code>keep_refresh</code> or sends <code>""</code>, <code>keep_refresh_raw = ''</code> is falsy so <code>keep_jti</code> stays <code>None</code> and the code blacklists <strong>every</strong> outstanding token. CLAUDE.md §6 says: "Without <code>keep_refresh</code> it behaves like logout-all." Matches.
+  However, when a valid <code>keep_refresh</code> is supplied, <code>RefreshToken(keep_refresh_raw)</code> is constructed purely for payload inspection — it is <strong>not</strong> blacklisted. That's correct for this flow, but note: simplejwt's <code>RefreshToken(token)</code> constructor only runs signature+exp checks; it does <strong>not</strong> verify the refresh is not already blacklisted. A user could therefore pass a <strong>blacklisted-but-not-yet-expired</strong> refresh token as <code>keep_refresh</code> and the view would accept it and use its JTI as the "keep" target, leaving that (dead) session untouched while killing the rest. The dead session remains dead, so no real privilege escalation — but the <code>kept_jti</code> returned to the client is misleading.</li>
+<li>Recommendation: after decoding <code>keep_refresh</code>, also verify <code>BlacklistedToken.objects.filter(token__jti=keep_jti).exists()</code> is <code>False</code> before honoring it. If blacklisted, fall through to the "blacklist all" path so the response accurately reflects reality.</li>
+</ul>
+<h3 id="f-02-sessionsviewdelete-calls-serializeris_valid-twice">F-02 — <code>SessionsView.delete</code> calls <code>serializer.is_valid()</code> twice<a class="headerlink" href="#f-02-sessionsviewdelete-calls-serializeris_valid-twice" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Severity: low</li>
+<li>File: <code>api/views/views_auth.py:225-226</code></li>
+<li>Confidence: high</li>
+<li>Category: style</li>
+<li>Evidence:
+  <code>serializer.is_valid(raise_exception=False)
+  keep_refresh_raw = serializer.validated_data.get('keep_refresh', '') if serializer.is_valid() else ''</code>
+  <code>is_valid()</code> is called twice (the second call re-runs validation). Harmless today (serializer has only one optional field), but the pattern is fragile.</li>
+<li>Recommendation: capture <code>is_valid()</code> once: <code>ok = serializer.is_valid(raise_exception=False); keep_refresh_raw = serializer.validated_data.get('keep_refresh', '') if ok else ''</code>.</li>
+</ul>
+<h3 id="f-03-loginview-returns-distinct-error-strings-for-bad-credentials-vs-disabled-account">F-03 — <code>LoginView</code> returns distinct error strings for "bad credentials" vs "disabled account"<a class="headerlink" href="#f-03-loginview-returns-distinct-error-strings-for-bad-credentials-vs-disabled-account" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Severity: medium</li>
+<li>File: <code>api/views/views_auth.py:122-126</code></li>
+<li>Confidence: high</li>
+<li>Category: info-leak</li>
+<li>Evidence: The view returns <code>invalid_credentials</code> when <code>_resolve_login_user</code> fails and <code>account_disabled</code> when the user exists but is inactive. An attacker can therefore distinguish "this username/email exists but is deactivated" from "this username/email does not exist or password is wrong." This is a mild account-enumeration vector, especially relevant here because <code>anonymize_data()</code> deactivates accounts on GDPR deletion — it would leak that a specific email was previously a member.</li>
+<li>Recommendation: return <code>invalid_credentials</code> for both cases. If the backend still needs to log the distinction, log it server-side; do not expose it over the wire.</li>
+</ul>
+<h3 id="f-04-_resolve_login_user-swallows-multipleobjectsreturned-silently">F-04 — <code>_resolve_login_user</code> swallows <code>MultipleObjectsReturned</code> silently<a class="headerlink" href="#f-04-_resolve_login_user-swallows-multipleobjectsreturned-silently" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Severity: low</li>
+<li>File: <code>api/views/views_auth.py:63-66</code></li>
+<li>Confidence: high</li>
+<li>Category: other</li>
+<li>Evidence: <code>email__iexact</code> can legitimately match multiple rows if two members have emails differing only by case (e.g. <code>alice@x.com</code>, <code>Alice@x.com</code>). The <code>Member.email</code> field is declared <code>unique=True</code> at case-sensitive DB level, so this <strong>can</strong> happen if historical data pre-dates case-insensitive handling. Today the login silently fails with <code>invalid_credentials</code>, which is a genuinely confusing user-support scenario.</li>
+<li>Recommendation: either (a) add a case-insensitive DB constraint / <code>UniqueConstraint(Lower('email'))</code> on <code>Member.email</code> and enforce it during registration, or (b) at minimum log a warning when <code>MultipleObjectsReturned</code> fires so support can intervene.</li>
+</ul>
+<h3 id="f-05-sql-injection-check-all-lookups-are-safe">F-05 — SQL injection check: all lookups are safe<a class="headerlink" href="#f-05-sql-injection-check-all-lookups-are-safe" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Severity: low (no issue — positive finding)</li>
+<li>File: <code>api/views/views_auth.py:64</code>, <code>api/util.py:60-64</code></li>
+<li>Confidence: high</li>
+<li>Category: sql-injection</li>
+<li>Evidence: <code>User.objects.get(email__iexact=login_value)</code> and <code>get_user_by_lookup_dict({db_fn: value}, ...)</code> both parameterize via the Django ORM. <code>db_fn</code> values come from a whitelist (<code>'username__iexact'</code>, <code>'email__iexact'</code>) set in code, not from user input. No raw SQL, no <code>.extra()</code>, no <code>.raw()</code>. Safe.</li>
+<li>Recommendation: none — keep it this way. Do not refactor these paths to dynamic <code>filter(**{...})</code> where the key is attacker-controlled.</li>
+</ul>
+<h3 id="f-06-membertoken_version-field-still-present-documented-as-legacy">F-06 — <code>Member.token_version</code> field still present (documented as legacy)<a class="headerlink" href="#f-06-membertoken_version-field-still-present-documented-as-legacy" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Severity: nit</li>
+<li>File: <code>api/models/models_member.py:82</code></li>
+<li>Confidence: high</li>
+<li>Category: token-lifecycle</li>
+<li>Evidence: <code>token_version</code> field survives on the model. Grep confirms <strong>nothing in <code>views_auth.py</code>, <code>permissions.py</code>, or <code>util.py</code> reads or writes it</strong> — so the files under audit are clean on this point. Only migration files and the model definition reference it. CLAUDE.md §7 / §15 mark it as legacy/unused and scheduled for removal.</li>
+<li>Recommendation: out-of-scope for this audit; flagged for a follow-up cleanup PR (drop field + migration).</li>
+</ul>
+<h3 id="f-07-jwtauthenticationget_user-creates-notificationsettings-on-every-authenticated-request">F-07 — <code>JWTAuthentication.get_user</code> creates <code>NotificationSettings</code> on <strong>every</strong> authenticated request<a class="headerlink" href="#f-07-jwtauthenticationget_user-creates-notificationsettings-on-every-authenticated-request" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Severity: medium</li>
+<li>File: <code>api/util.py:31-36</code></li>
+<li>Confidence: high</li>
+<li>Category: other (performance)</li>
+<li>Evidence:
+  <code>obj, _created = NotificationSettings.objects.get_or_create(member=user)
+  obj.save()</code>
+  Every single authenticated request performs a <code>SELECT … OR INSERT …</code> and then an unconditional <code>UPDATE</code>. The comment says "update the <code>last_user_activity</code> field … by triggering a save" — but <code>save()</code> with no changed fields still writes every column. At throttle ceiling (200 req/min per user) this is 200 unnecessary <code>UPDATE</code>s per user per minute. Also: <code>LastVisitedMiddleware</code> already updates <code>Member.last_visited</code> at 1/hr (per §4). The two mechanisms overlap.</li>
+<li>Recommendation: (a) only call <code>obj.save(update_fields=['last_user_activity'])</code> to reduce write amplification, and (b) throttle the same way <code>LastVisitedMiddleware</code> does (skip if updated within the last hour). Ideally consolidate both into <code>LastVisitedMiddleware</code> and drop this side-effect from <code>get_user</code>.</li>
+</ul>
+<h3 id="f-08-hascreateupgraderequestforotherpermission-can-raise-on-unknown-level">F-08 — <code>HasCreateUpgradeRequestForOtherPermission</code> can raise on unknown level<a class="headerlink" href="#f-08-hascreateupgraderequestforotherpermission-can-raise-on-unknown-level" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Severity: high</li>
+<li>File: <code>api/permissions.py:245-251</code></li>
+<li>Confidence: high</li>
+<li>Category: perms</li>
+<li>Evidence:
+  <code>level_id = request.data.get('target_level')
+  if level_id == None:
+      return False
+  level = Level.objects.get(id=level_id)   # &lt;-- DoesNotExist is NOT caught</code>
+  A client posting <code>{"target_level": 99999}</code> (or any invalid level id) will crash the permission check with <code>Level.DoesNotExist</code> → DRF converts it into a 500 Internal Server Error (not 403/400). Compare with <code>HasCreateUpgradeRequestForSelfPermission</code> which does catch <code>DoesNotExist</code> (line 241). Inconsistent.</li>
+<li>Recommendation: wrap in <code>try/except Level.DoesNotExist: return False</code> to mirror the sibling class. Also replace <code>== None</code> with <code>is None</code> while here.</li>
+</ul>
+<h3 id="f-09-hasviewupgraderequestcommentpermission-and-hascreateupgraderequestcommentpermission-raise-on-missing-upgrade-request">F-09 — <code>HasViewUpgradeRequestCommentPermission</code> and <code>HasCreateUpgradeRequestCommentPermission</code> raise on missing upgrade request<a class="headerlink" href="#f-09-hasviewupgraderequestcommentpermission-and-hascreateupgraderequestcommentpermission-raise-on-missing-upgrade-request" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Severity: high</li>
+<li>File: <code>api/permissions.py:261-275</code></li>
+<li>Confidence: high</li>
+<li>Category: perms</li>
+<li>Evidence: Line 264 does <code>UpgradeRequest.objects.get(pk=upgrade_request_id)</code> with no exception handling — if the pk is missing/invalid it bubbles <code>UpgradeRequest.DoesNotExist</code> → 500. Line 272 uses <code>.filter(...).first()</code> so that variant is safe, but both are defensive about the applicant check only for the <em>found</em> case.</li>
+<li>Recommendation: change line 264 to <code>.filter(pk=upgrade_request_id).first()</code> plus a <code>None</code> guard, consistent with the adjacent class.</li>
+</ul>
+<h3 id="f-10-hasdeleteupgraderequestcommentpermission-uses-get-or-none">F-10 — <code>HasDeleteUpgradeRequestCommentPermission</code> uses <code>.get(...) or None</code><a class="headerlink" href="#f-10-hasdeleteupgraderequestcommentpermission-uses-get-or-none" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Severity: nit</li>
+<li>File: <code>api/permissions.py:281</code></li>
+<li>Confidence: high</li>
+<li>Category: style</li>
+<li>Evidence: <code>upgrade_request_comment = UpgradeRequestComment.objects.get(pk=comment_id) or None</code> — <code>.get()</code> never returns <code>None</code>; it returns the row or raises <code>DoesNotExist</code>. The <code>or None</code> is dead code.</li>
+<li>Recommendation: remove the <code>or None</code>; the existing <code>try/except DoesNotExist</code> already handles the missing case correctly.</li>
+</ul>
+<h3 id="f-11-caneditordeletetripbasepermission-has-duplicated-block">F-11 — <code>CanEditOrDeleteTripBasePermission</code> has duplicated block<a class="headerlink" href="#f-11-caneditordeletetripbasepermission-has-duplicated-block" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Severity: low</li>
+<li>File: <code>api/permissions.py:170-176</code></li>
+<li>Confidence: high</li>
+<li>Category: style</li>
+<li>Evidence:
+  ```
+  settings = get<em>global</em>settings()
+  cutoff<em>minutes = settings.trip</em>edit<em>delete</em>cutoff<em>minutes
+  cutoff</em>time = trip.start<em>time - timedelta(minutes=cutoff</em>minutes)</li>
+</ul>
+<p>settings = get<em>global</em>settings()
+  cutoff<em>minutes = settings.trip</em>edit<em>delete</em>cutoff<em>minutes
+  cutoff</em>time = trip.start<em>time - timedelta(minutes=cutoff</em>minutes)
+  ```
+  Three lines are literally duplicated. Functionally harmless, but each call triggers a DB hit for the singleton. At permission-check frequency (every trip edit attempt) this doubles ORM load for the settings row.
+- Recommendation: delete the duplicate three lines.</p>
+<h3 id="f-12-permission_matrix_exists_or_user_is_superuser-empty-levels-semantics-correct">F-12 — <code>permission_matrix_exists_or_user_is_superuser</code> — empty-levels semantics correct<a class="headerlink" href="#f-12-permission_matrix_exists_or_user_is_superuser-empty-levels-semantics-correct" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Severity: low (positive finding)</li>
+<li>File: <code>api/permissions.py:15-30</code></li>
+<li>Confidence: high</li>
+<li>Category: perms</li>
+<li>Evidence: The function first queries with <code>levels__isnull=True</code>. This is the raw M2M <code>isnull</code> filter — when a <code>PermissionMatrix</code> row has <strong>no</strong> related <code>Level</code> rows in the M2M, <code>isnull=True</code> on the related table returns <code>True</code>. Semantically: "no level restrictions → applies to every level." This matches CLAUDE.md §15: "An empty <code>levels</code> M2M in PermissionMatrix means the permission applies to members of any level." Correct.
+  Caveat: if the row has <em>any</em> level attached, it is still matched by the second query only when <code>level</code> is passed in. If a caller forgets to pass <code>level</code>, a "restricted-to-specific-levels" permission is silently ignored. The current codebase generally does pass a level where appropriate, but the asymmetry is worth a docstring.</li>
+<li>Recommendation: add a docstring note: "If <code>level=None</code> and the matrix row restricts to specific levels, the row is treated as non-matching. Pass the relevant <code>level</code> whenever the action is level-scoped."</li>
+</ul>
+<h3 id="f-13-hasviewupgraderequestpermissionorisforself-compares-pk-int-with-url-kwarg-str">F-13 — <code>HasViewUpgradeRequestPermissionOrIsForSelf</code> compares <code>pk</code> (int) with URL kwarg (str)<a class="headerlink" href="#f-13-hasviewupgraderequestpermissionorisforself-compares-pk-int-with-url-kwarg-str" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Severity: medium</li>
+<li>File: <code>api/permissions.py:331-336</code></li>
+<li>Confidence: high</li>
+<li>Category: perms</li>
+<li>Evidence:
+  <code>if request.user.pk == view.kwargs.get('pk'):
+      return True</code>
+  <code>view.kwargs['pk']</code> is a <strong>string</strong> (URL path segment), <code>request.user.pk</code> is an <strong>int</strong>. <code>1 == "1"</code> is <code>False</code> in Python. The "is for self" shortcut therefore <strong>never fires</strong>, and users are forced down the matrix-permission branch. In practice users who should have the "self" shortcut succeed only because they also have the matrix permission — but users who lack both get a silent denial where the self-path was supposed to let them through.</li>
+<li>Recommendation: coerce: <code>str(request.user.pk) == view.kwargs.get('pk')</code> or <code>int(view.kwargs['pk']) == request.user.pk</code> with a <code>try/except ValueError</code>.</li>
+</ul>
+<h3 id="f-14-is_staff-is_superuser-in-business-logic">F-14 — <code>is_staff</code> / <code>is_superuser</code> in business logic<a class="headerlink" href="#f-14-is_staff-is_superuser-in-business-logic" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Severity: medium</li>
+<li>File: <code>api/permissions.py</code> (multiple) + <code>api/views/views_auth.py</code> (none)</li>
+<li>Confidence: high</li>
+<li>Category: perms</li>
+<li>Evidence: CLAUDE.md §8 explicitly says "Do not use Django model-level permissions (<code>is_staff</code>, <code>is_superuser</code>) for business logic." Grep shows <strong>no <code>is_staff</code> usage</strong> in these files (good). But <code>is_superuser</code> is used as a bypass in many places: <code>permission_matrix_exists_or_user_is_superuser</code>, <code>check_upgrade_request_permission_against_perm_matrix</code>, <code>check_trip_permission_against_perm_matrix*</code>, <code>IsTripLeadOrDeputy</code>, <code>IsFeedbackOwnerOrSuperuser</code>, <code>IsOwnerOrReadOnly</code>, <code>IsCreatorOrReadOnly</code>, <code>IsAdminUserOrReadOnly</code>, <code>IsSameUserAllowEditOrReadOnly</code>, <code>IsEditingOwnProfileOrAdmin</code>, <code>CanEditOrDeleteTripBasePermission</code>, <code>HasViewTripsAsLeadPermission</code>.
+  CLAUDE.md §8 primarily warns against using them <strong>instead of</strong> matrix checks. A superuser-as-break-glass bypass is an accepted pattern, but it is very widely sprinkled here. Specifically in <code>HasEditMembershipPaymentsPermission</code> (line 302-303) there is <strong>no</strong> <code>is_superuser</code> short-circuit — inconsistent with neighbours.</li>
+<li>Recommendation: (a) document explicitly that "superuser bypass" is a project convention and accepted, (b) pick <em>one</em> place to check it — the helper <code>permission_matrix_exists_or_user_is_superuser</code> already does — and remove the redundant checks from the callers that pre-check before calling it, (c) audit every new permission class for the same bypass during review.</li>
+</ul>
+<h3 id="f-15-logoutallview-has-no-refresh-token-input-but-blacklists-all-acceptable-but-asymmetric">F-15 — <code>LogoutAllView</code> has no refresh-token input but blacklists all; acceptable but asymmetric<a class="headerlink" href="#f-15-logoutallview-has-no-refresh-token-input-but-blacklists-all-acceptable-but-asymmetric" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Severity: nit</li>
+<li>File: <code>api/views/views_auth.py:164-179</code></li>
+<li>Confidence: high</li>
+<li>Category: token-lifecycle</li>
+<li>Evidence: <code>LogoutAllView</code> relies solely on the access token (from <code>IsAuthenticated</code>) to identify the user, then blacklists all outstanding refresh tokens for that user. That's correct and matches §7. Note that the <strong>current session's access token is not invalidated</strong> — simplejwt has no access-token blacklist by default. An attacker holding a stolen access token can continue to use it until its <code>exp</code> (up to 24h per <code>ACCESS_TOKEN_MINUTES=1440</code>). Same is true of <code>LogoutView</code> and <code>CustomChangePasswordView</code>.</li>
+<li>Recommendation: this is a known simplejwt limitation and the 24h lifetime is the mitigation. Consider shortening <code>ACCESS_TOKEN_MINUTES</code> to e.g. 15-60 if not already under consideration; 24h is generous for a platform with membership/trip data. Out-of-scope for code-level changes — flagging for architecture review.</li>
+</ul>
+<h3 id="f-16-_blacklist_all_user_tokens-issues-n1-queries">F-16 — <code>_blacklist_all_user_tokens</code> issues N+1 queries<a class="headerlink" href="#f-16-_blacklist_all_user_tokens-issues-n1-queries" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Severity: low</li>
+<li>File: <code>api/views/views_auth.py:27-42</code></li>
+<li>Confidence: high</li>
+<li>Category: other (performance)</li>
+<li>Evidence: The loop runs <code>BlacklistedToken.objects.filter(token=ot).exists()</code> once per outstanding token, then <code>BlacklistedToken.objects.create(token=ot)</code>. For a user with many historical sessions this is O(n) queries. Same pattern in <code>SessionsView.delete</code> (line 243-247).</li>
+<li>Recommendation: batch via <code>already_blacklisted = set(BlacklistedToken.objects.filter(token__in=outstanding).values_list('token_id', flat=True))</code> then <code>BlacklistedToken.objects.bulk_create([BlacklistedToken(token=ot) for ot in outstanding if ot.id not in already_blacklisted])</code>. One read + one write instead of 2n.</li>
+</ul>
+<h3 id="f-17-case-insensitive-login-authenticateusername-path">F-17 — Case-insensitive login: <code>authenticate(username=…)</code> path<a class="headerlink" href="#f-17-case-insensitive-login-authenticateusername-path" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Severity: low (positive finding)</li>
+<li>File: <code>api/views/views_auth.py:57</code></li>
+<li>Confidence: high</li>
+<li>Category: sql-injection</li>
+<li>Evidence: <code>authenticate(username=login_value, …)</code> delegates to <code>MyUserManager.get_by_natural_key</code> (per CLAUDE.md §7), which Django uses with ORM filters — no raw SQL. The email fallback uses <code>email__iexact</code>, which PostgreSQL translates to <code>UPPER(email) = UPPER(%s)</code> via a parameterized query. Safe from SQL injection.</li>
+<li>Recommendation: none.</li>
+</ul>
+<h3 id="f-18-unifiedtokenobtainpairview-drops-simplejwts-structured-error-body">F-18 — <code>UnifiedTokenObtainPairView</code> drops simplejwt's structured error body<a class="headerlink" href="#f-18-unifiedtokenobtainpairview-drops-simplejwts-structured-error-body" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Severity: low</li>
+<li>File: <code>api/views/views_auth.py:269-273</code></li>
+<li>Confidence: high</li>
+<li>Category: info-leak (minor)</li>
+<li>Evidence: On failure, <code>super().post()</code> returns a DRF response with <code>response.data</code> being a dict like <code>{"detail": "No active account found with the given credentials", "code": "authorization_failed"}</code>. The wrapper re-emits that under <code>message</code>, so clients see a human-readable English string mentioning "active account" — which, like F-03, leaks whether an account is disabled vs missing.</li>
+<li>Recommendation: consider normalizing the error message to a neutral <code>invalid_credentials</code> string, matching <code>LoginView</code>. If preserved for client compatibility, document it in §7.</li>
+</ul>
+<hr />
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Severity</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>critical</td>
+<td>0</td>
+</tr>
+<tr>
+<td>high</td>
+<td>2 (F-08, F-09)</td>
+</tr>
+<tr>
+<td>medium</td>
+<td>5 (F-01, F-03, F-07, F-13, F-14)</td>
+</tr>
+<tr>
+<td>low</td>
+<td>6</td>
+</tr>
+<tr>
+<td>nit</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>Hotspots worth addressing first:
+1. <strong>F-08 / F-09</strong> — unhandled <code>DoesNotExist</code> in permission classes can cause 500s from attacker-controlled input. Quick fix, real impact.
+2. <strong>F-13</strong> — self-shortcut never fires due to str/int mismatch; a latent bug masking real authorization outcomes.
+3. <strong>F-03 / F-18</strong> — small account-enumeration leaks worth tightening.
+4. <strong>F-07</strong> — unnecessary DB writes on every authenticated request.</p>
+<p>Token-lifecycle invariants from CLAUDE.md §7 hold: logout single-session, logout-all, session-list + selective revocation, password-change cascading blacklist, and refresh-token rotation are all implemented correctly. <code>token_version</code> is <strong>not</strong> referenced by any of the three audited files. No SQL-injection vectors found. <code>PermissionMatrix.has_permission()</code>'s empty-levels semantics match the §15 gotcha.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

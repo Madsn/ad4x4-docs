@@ -1,0 +1,1520 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Next gen API for Abu Dhabi 4x4">
+      
+      
+        <meta name="author" content="Redbeard">
+      
+      
+        <link rel="canonical" href="https://api.ad4x4.com/readme/Audit/raw/02-endpoint-drift/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Step 2 — Endpoint Drift - AD4x4 API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#step-2-endpoint-drift" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="AD4x4 API" class="md-header__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AD4x4 API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Step 2 — Endpoint Drift
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AD4x4 API" class="md-nav__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AD4x4 API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../practical-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Practical Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../auth-profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Auth and Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../vehicles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vehicles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../trip-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lead-trip-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lead Trip History
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../trips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trips
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../trip-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../trip-reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meeting-points/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meeting Points
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../logbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Logbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../logbook-migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logbook Migration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../upgrade-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../club-news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Club News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faqs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feedback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sponsorships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sponsorships
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notifications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gallery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gallery Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../here-maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HERE Maps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../global-settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Global Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background-tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background Tasks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../editable-strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../account-deletion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Account Deletion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../swagger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swagger UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../maintenance-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintenance Mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rate-limiting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rate Limiting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#raw-counts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw counts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Findings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Findings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#high-confidence-high-duplicate-url-registrations-for-three-auth-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [high / confidence high] Duplicate URL registrations for three auth endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medium-confidence-high-undocumented-register-email-verify-email-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [medium / confidence high] Undocumented register-email / verify-email endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medium-confidence-high-apivehiclesintpkset_primary-is-wired-manually-not-as-viewset-action" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [medium / confidence high] api/vehicles/&lt;int:pk&gt;/set_primary/ is wired manually, not as ViewSet @action
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#low-confidence-high-separate-tripcreateview-tripeditview-outside-the-tripviewset-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [low / confidence high] Separate TripCreateView / TripEditView outside the TripViewSet router
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#low-confidence-high-router-regex-patterns-leak-into-url-conf-clubnews-etc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [low / confidence high] Router regex patterns leak into URL conf (^clubnews/$ etc.)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#low-confidence-medium-notificationlogviewset-only-exposes-list-not-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [low / confidence medium] NotificationLogViewSet only exposes list, not detail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#info-confidence-high-90-ish-distinct-api-paths-total-heaviest-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [info / confidence high] 90-ish distinct API paths total; heaviest areas:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#undocumented-or-under-documented-endpoints-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Undocumented or under-documented endpoints (summary)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-findings-verified-present-and-consistent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-findings (verified present and consistent)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-action-for-doc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended action for doc
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="step-2-endpoint-drift">Step 2 — Endpoint Drift<a class="headerlink" href="#step-2-endpoint-drift" title="Permanent link">&para;</a></h1>
+<p>Cross-reference of <code>mcp__django-ai-boost__list_urls</code> output vs <code>CLAUDE.md §6</code> vs <code>schema.yml</code>.</p>
+<h2 id="raw-counts">Raw counts<a class="headerlink" href="#raw-counts" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Count</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total URL patterns</td>
+<td>467</td>
+<td>Includes admin + DRF format variants</td>
+</tr>
+<tr>
+<td>Admin patterns</td>
+<td>257</td>
+<td>Auto-generated, not audited</td>
+</tr>
+<tr>
+<td><code>/api/</code> patterns</td>
+<td>181</td>
+<td>After filtering admin and OIDC</td>
+</tr>
+<tr>
+<td>Distinct <code>/api/</code> paths (no format variants)</td>
+<td>~90</td>
+<td>Format variants are duplicates</td>
+</tr>
+<tr>
+<td>schema.yml paths</td>
+<td>123</td>
+<td></td>
+</tr>
+<tr>
+<td>schema.yml operations</td>
+<td>174</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note on path counts:</strong> schema.yml reports 123 "paths" because drf-spectacular treats each URL with different methods as one path. Our 90 distinct URL patterns × ~2 methods avg ≈ 174 operations matches.</p>
+<h2 id="findings">Findings<a class="headerlink" href="#findings" title="Permanent link">&para;</a></h2>
+<h3 id="high-confidence-high-duplicate-url-registrations-for-three-auth-endpoints">[high / confidence high] Duplicate URL registrations for three auth endpoints<a class="headerlink" href="#high-confidence-high-duplicate-url-registrations-for-three-auth-endpoints" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Files:</strong> <code>ad4x4/urls.py</code></li>
+<li><strong>Evidence:</strong> <code>list_urls</code> reports each of these URLs twice with different view handlers:</li>
+<li><code>api/auth/login/</code> → <code>api.views.views_auth.LoginView</code> AND <code>rest_registration.api.views.login.LoginView</code></li>
+<li><code>api/auth/logout/</code> → <code>api.views.views_auth.LogoutView</code> AND <code>rest_registration.api.views.login.LogoutView</code></li>
+<li><code>api/auth/change-password/</code> → <code>api.views.views_auth.CustomChangePasswordView</code> AND <code>rest_registration.api.views.change_password.ChangePasswordView</code></li>
+<li><strong>Category:</strong> routing fragility</li>
+<li><strong>Why this matters:</strong> Django uses the first matching URL pattern. <code>CLAUDE.md §7</code> explicitly says the custom <code>LoginView</code> is mounted <strong>before</strong> <code>rest_registration</code>'s include so it "shadows" them. That works <strong>today</strong>, but a future refactor that reorders includes silently changes behavior — the <code>rest_registration</code> views don't honor the <code>login/username/email</code> case-insensitive lookup or the password-change-blacklists-all-tokens rule (§15). A regression here is silent.</li>
+<li><strong>Recommendation:</strong> Either (a) exclude those three routes from the <code>rest_registration</code> include using its <code>include_urls</code> config, or (b) add a <code>test_urls.py</code> assertion that <code>resolve('/api/auth/login/')</code> returns <code>views_auth.LoginView</code>. Prefer (a).</li>
+</ul>
+<h3 id="medium-confidence-high-undocumented-register-email-verify-email-endpoints">[medium / confidence high] Undocumented <code>register-email</code> / <code>verify-email</code> endpoints<a class="headerlink" href="#medium-confidence-high-undocumented-register-email-verify-email-endpoints" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Evidence:</strong> <code>list_urls</code> shows:</li>
+<li><code>api/auth/register-email/</code> → <code>rest_registration.api.views.register_email.RegisterEmailView</code></li>
+<li><code>api/auth/verify-email/</code> → <code>rest_registration.api.views.register_email.VerifyEmailView</code></li>
+<li><code>CLAUDE.md §6</code> documents only <code>register/</code>, <code>verify-registration/</code>, <code>reset-password/</code>, <code>send-reset-password-link/</code>, <code>change-password/</code>.</li>
+<li><strong>Category:</strong> doc-drift</li>
+<li><strong>Why this matters:</strong> Email change flow is exposed to clients but undocumented. If these are intentional, doc them. If unintentional (e.g. from default rest_registration URL include), disable them.</li>
+<li><strong>Recommendation:</strong> Decide: either remove from URL conf or add to <code>CLAUDE.md §6</code> with semantics (what body shape, what effect). Ask Mikkel (ADMINS) whether change-email flow is a supported product feature.</li>
+</ul>
+<h3 id="medium-confidence-high-apivehiclesintpkset_primary-is-wired-manually-not-as-viewset-action">[medium / confidence high] <code>api/vehicles/&lt;int:pk&gt;/set_primary/</code> is wired manually, not as ViewSet <code>@action</code><a class="headerlink" href="#medium-confidence-high-apivehiclesintpkset_primary-is-wired-manually-not-as-viewset-action" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>ad4x4/urls.py:205</code> (per member-flow review agent finding)</li>
+<li><strong>Evidence:</strong> <code>list_urls</code> shows <code>api/vehicles/&lt;int:pk&gt;/set_primary/</code> routed to <code>VehicleViewSet</code> but NOT through the router — it's a manual <code>as_view()</code> call in <code>urls.py</code>.</li>
+<li><strong>Category:</strong> framework-smell</li>
+<li><strong>Consequence:</strong> DRF <code>@action</code> decorators on the method are dead; <code>@extend_schema</code> on the method doesn't attach to the Swagger spec; permissions/throttles from the ViewSet may not apply correctly. The schema generation warning <code>drf_spectacular.W001</code> about <code>VehicleViewSet</code> (see <code>raw/01-system-check.md</code>) is a downstream symptom.</li>
+<li><strong>Recommendation:</strong> Convert to a proper <code>@action(detail=True, methods=['post'])</code> method and let the router wire it. Alternatively turn it into a standalone <code>APIView</code>.</li>
+</ul>
+<h3 id="low-confidence-high-separate-tripcreateview-tripeditview-outside-the-tripviewset-router">[low / confidence high] Separate <code>TripCreateView</code> / <code>TripEditView</code> outside the <code>TripViewSet</code> router<a class="headerlink" href="#low-confidence-high-separate-tripcreateview-tripeditview-outside-the-tripviewset-router" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>ad4x4/urls.py</code> + <code>api/views/views_trip.py</code></li>
+<li><strong>Evidence:</strong></li>
+<li><code>api/trips</code> → <code>TripCreateView</code> (note: no trailing slash)</li>
+<li><code>api/trips/&lt;int:pk&gt;</code> → <code>TripEditView</code> (also no trailing slash)</li>
+<li><code>api/trips/</code> → <code>TripViewSet</code> list/retrieve/destroy (from router, with trailing slash)</li>
+<li><strong>Category:</strong> convention-drift</li>
+<li><strong>Why this matters:</strong> <code>CLAUDE.md §6</code> lists <code>Trips (/api/trips/)</code> as "Standard CRUD" via ViewSet. In reality <code>create</code> and <code>update</code> go to dedicated views (hence the slashless variant). Trailing-slash sensitivity means a client that hits <code>POST /api/trips/</code> might not reach <code>TripCreateView</code> — depends on <code>APPEND_SLASH</code> middleware behavior.</li>
+<li><strong>Recommendation:</strong> Either merge <code>TripCreateView</code> / <code>TripEditView</code> logic back into <code>TripViewSet.create</code> / <code>update</code> (DRY and consistent), OR document this split in <code>CLAUDE.md §6</code> with a clear rationale. Also audit client calls — does the Flutter app hit <code>/api/trips</code> (no slash) or <code>/api/trips/</code>?</li>
+</ul>
+<h3 id="low-confidence-high-router-regex-patterns-leak-into-url-conf-clubnews-etc">[low / confidence high] Router regex patterns leak into URL conf (<code>^clubnews/$</code> etc.)<a class="headerlink" href="#low-confidence-high-router-regex-patterns-leak-into-url-conf-clubnews-etc" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Evidence:</strong> All router-generated URLs are prefixed with <code>^</code> (regex start anchor) because the routers are presumably being <code>include()</code>d with <code>re_path</code> instead of <code>path</code>. Visually obvious in every <code>list_urls</code> entry starting with <code>^</code>.</li>
+<li><strong>Category:</strong> style / hygiene</li>
+<li><strong>Why this matters:</strong> Works fine functionally but is unusual — Django 6 prefers <code>path</code> + <code>include</code>. Router's <code>^</code> prefix appearing in user-visible URL names is a smell.</li>
+<li><strong>Recommendation:</strong> In <code>ad4x4/urls.py</code>, ensure router includes use <code>path('api/', include(router.urls))</code>, not <code>re_path(r'^api/', include(router.urls))</code>. Cosmetic but aligns with the rest of the codebase.</li>
+</ul>
+<h3 id="low-confidence-medium-notificationlogviewset-only-exposes-list-not-detail">[low / confidence medium] <code>NotificationLogViewSet</code> only exposes list, not detail<a class="headerlink" href="#low-confidence-medium-notificationlogviewset-only-exposes-list-not-detail" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Evidence:</strong> Only <code>api/^notifications/$</code> pattern, no <code>(?P&lt;pk&gt;...)</code> variant.</li>
+<li><strong>Category:</strong> rest-surface</li>
+<li><strong>Why this matters:</strong> If the client ever wants to retrieve a specific NotificationLog by ID (e.g. for deep-linking), it can't. <code>mark-as-read</code> handles one ID at a time but it's a write endpoint.</li>
+<li><strong>Recommendation:</strong> Either confirm the product decision (list-only is intentional) and document in <code>CLAUDE.md §6</code>, or expose <code>retrieve</code>.</li>
+</ul>
+<h3 id="info-confidence-high-90-ish-distinct-api-paths-total-heaviest-areas">[info / confidence high] 90-ish distinct API paths total; heaviest areas:<a class="headerlink" href="#info-confidence-high-90-ish-distinct-api-paths-total-heaviest-areas" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>trips/</code> — 21 operations (16 in §6, rest are format variants)</li>
+<li><code>members/</code> — 17 operations (matches §6)</li>
+<li><code>auth/</code> — 11 operations (8 in §6 + 3 from rest_registration extras noted above)</li>
+<li><code>choices/</code> — 10 operations (9 listed in §6, one possibly new — <code>permissionmatrixaction</code>, confirmed present in §6)</li>
+<li><code>upgraderequests/</code> — 9 operations (matches §6)</li>
+</ul>
+<h2 id="undocumented-or-under-documented-endpoints-summary">Undocumented or under-documented endpoints (summary)<a class="headerlink" href="#undocumented-or-under-documented-endpoints-summary" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Status</th>
+<th>Recommendation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>api/auth/register-email/</code></td>
+<td>Undocumented</td>
+<td>Decide: document or disable</td>
+</tr>
+<tr>
+<td><code>api/auth/verify-email/</code></td>
+<td>Undocumented</td>
+<td>Decide: document or disable</td>
+</tr>
+<tr>
+<td><code>api/trips</code> (no slash) → TripCreateView</td>
+<td>Under-documented</td>
+<td>Note split in §6</td>
+</tr>
+<tr>
+<td><code>api/trips/&lt;pk&gt;</code> (no slash) → TripEditView</td>
+<td>Under-documented</td>
+<td>Note split in §6</td>
+</tr>
+<tr>
+<td><code>api/vehicles/&lt;pk&gt;/set_primary/</code></td>
+<td>Documented but wired wrong</td>
+<td>Convert to <code>@action</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="non-findings-verified-present-and-consistent">Non-findings (verified present and consistent)<a class="headerlink" href="#non-findings-verified-present-and-consistent" title="Permanent link">&para;</a></h2>
+<ul>
+<li>All <code>api/members/&lt;pk&gt;/*</code> subroutes match <code>CLAUDE.md §6</code></li>
+<li>All <code>api/trips/&lt;pk&gt;/*</code> action subroutes match <code>CLAUDE.md §6</code></li>
+<li><code>api/upgraderequests/&lt;pk&gt;/*</code> subroutes match (<code>approve</code>, <code>decline</code>, <code>vote</code>, <code>comments</code>)</li>
+<li><code>api/logbook-migrations/&lt;pk&gt;/*</code> subroutes (<code>approve</code>, <code>reject</code>, <code>return_request</code>) match §6</li>
+<li><code>api/choices/*</code> matches the documented enums</li>
+<li><code>api/geocoding/reverse/</code>, <code>api/firebase/custom-token</code>, <code>api/settings/here-maps-config/</code>, <code>api/systemtime/</code>, <code>api/validators/</code>, <code>api/token/</code>, <code>api/token/refresh/</code> all present and documented</li>
+</ul>
+<h2 id="recommended-action-for-doc">Recommended action for doc<a class="headerlink" href="#recommended-action-for-doc" title="Permanent link">&para;</a></h2>
+<p>Regenerate schema and commit:</p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>manage.py<span class="w"> </span>spectacular<span class="w"> </span>--file<span class="w"> </span>schema.yml
+</code></pre></div>
+
+<p>And update <code>CLAUDE.md §6</code> with:
+- New row for <code>register-email</code> + <code>verify-email</code>
+- Note on Trip create/update being separate views
+- Note on <code>set_primary</code> being a manual <code>as_view()</code> (once fixed, remove that note)</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

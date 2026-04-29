@@ -1,0 +1,1859 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Next gen API for Abu Dhabi 4x4">
+      
+      
+        <meta name="author" content="Redbeard">
+      
+      
+        <link rel="canonical" href="https://api.ad4x4.com/readme/Audit/raw/06-code-review-trip-flow/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Code Review — Trip Flow - AD4x4 API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#code-review-trip-flow" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="AD4x4 API" class="md-header__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AD4x4 API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Code Review — Trip Flow
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AD4x4 API" class="md-nav__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AD4x4 API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../practical-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Practical Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../auth-profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Auth and Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../vehicles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vehicles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../trip-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lead-trip-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lead Trip History
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../trips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trips
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../trip-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../trip-reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meeting-points/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meeting Points
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../logbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Logbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../logbook-migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logbook Migration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../upgrade-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../club-news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Club News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faqs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feedback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sponsorships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sponsorships
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notifications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gallery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gallery Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../here-maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HERE Maps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../global-settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Global Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background-tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background Tasks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../editable-strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../account-deletion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Account Deletion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../swagger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swagger UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../maintenance-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintenance Mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rate-limiting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rate Limiting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#files-reviewed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Files reviewed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Findings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Findings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#critical-canceltripregistration-calls-notification-helpers-with-wrong-signature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [critical] CancelTripRegistration calls notification helpers with wrong signature
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#critical-tripcut_off-datetimedatetimenow-violates-use_tzfalse-convention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [critical] trip.cut_off &lt; datetime.datetime.now() violates USE_TZ=False convention
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-registerfortrip-has-contradictory-permission-branching-permission-holders-skip-all-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [high] RegisterForTrip has contradictory permission branching — permission holders skip all validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-n1-in-tripexportregistrantsview-for-trip-count-per-level-computation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [high] N+1 in TripExportRegistrantsView for trip-count-per-level computation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-n1-in-tripviewlogbookview-per-member-logbook-lookup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [high] N+1 in TripViewLogbookView per-member logbook lookup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-missing-transaction-boundaries-around-multi-row-mutations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [high] Missing transaction boundaries around multi-row mutations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-race-condition-in-add_to_registered-capacity-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [high] Race condition in add_to_registered + capacity check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-add_users_from_waitlist-drops-the-waitlist-entrys-vehicle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [high] add_users_from_waitlist drops the waitlist entry's vehicle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-business-logic-leakage-views-own-trip-registration-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [high] Business logic leakage — views own trip-registration rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medium-vehicle-resolution-pattern-repeated-6-times" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [medium] Vehicle-resolution pattern repeated 6 times
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medium-tripviewsetget_queryset-prefetches-half-the-tree-list-serializer-still-triggers-n1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [medium] TripViewSet.get_queryset prefetches half the tree, list serializer still triggers N+1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medium-_serialize_updated_trip-re-fetches-on-every-mutation-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [medium] _serialize_updated_trip re-fetches on every mutation response
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medium-tripsearchlist-returns-unpaginated-response-when-page-is-none" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [medium] TripSearch.list returns unpaginated response when page is None
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medium-silent-error-swallow-in-forceregisterfortrip-permission-denied-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [medium] Silent error swallow in ForceRegisterForTrip permission-denied path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medium-tripwaitlistfilterpkuserpk-missing-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [medium] trip.waitlist.filter(pk=user.pk) missing .exists()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medium-registerfortripwaitlist-missing-permissionmatrix-action-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [medium] RegisterForTripWaitlist missing PermissionMatrix action check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medium-tripeditviewdestroy-soft-deletes-but-ignores-hasdeletetrippermission-semantics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [medium] TripEditView.destroy soft-deletes but ignores HasDeleteTripPermission semantics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medium-permission_matrix_exists_or_user_is_superuser-used-instead-of-permissionmatrixhas_permission" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [medium] permission_matrix_exists_or_user_is_superuser used instead of PermissionMatrix.has_permission
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#low-tripcreateview-uses-configurablesettingsobjectsfirst-while-tripeditviewupdate-uses-get_global_settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [low] TripCreateView uses ConfigurableSettings.objects.first() while TripEditView.update uses get_global_settings()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#low-allow_waitlist-is-not-none-and-allow_waitlist-false-is-awkward" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [low] allow_waitlist is not None and allow_waitlist == False is awkward
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#low-stale-unused-imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [low] Stale / unused imports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#low-handle_check_in_out-content-type-parser-allows-a-str-through-the-non-json-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [low] handle_check_in_out content-type parser allows a str through the non-JSON branch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#low-logger-name-is-ad4x4-web-but-this-module-is-used-by-huey-paths-too" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [low] logger name is 'ad4x4-web' but this module is used by Huey paths too
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nit-tripeditviewupdate-has-dead-prefetch-cache-reset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [nit] TripEditView.update has dead prefetch-cache reset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nit-approval_status-approvalstatusapproved-reassignment-is-redundant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [nit] approval_status = ApprovalStatus.APPROVED reassignment is redundant
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#categories-with-zero-findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Categories with zero findings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#out-of-scope-suggestions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Out-of-scope suggestions
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="code-review-trip-flow">Code Review — Trip Flow<a class="headerlink" href="#code-review-trip-flow" title="Permanent link">&para;</a></h1>
+<h2 id="files-reviewed">Files reviewed<a class="headerlink" href="#files-reviewed" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>api/views/views_trip.py</code> (1114 loc)</li>
+<li><code>api/services/trip_registration_service.py</code> (102 loc)</li>
+</ul>
+<p>Context sources: <code>CLAUDE.md</code> §7/§8/§14/§15, <code>api/permissions.py</code> (for permission-class semantics).</p>
+<h2 id="findings">Findings<a class="headerlink" href="#findings" title="Permanent link">&para;</a></h2>
+<h3 id="critical-canceltripregistration-calls-notification-helpers-with-wrong-signature">[critical] <code>CancelTripRegistration</code> calls notification helpers with wrong signature<a class="headerlink" href="#critical-canceltripregistration-calls-notification-helpers-with-wrong-signature" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>api/views/views_trip.py:436,439</code></li>
+<li><strong>Confidence:</strong> high</li>
+<li><strong>Category:</strong> error-handling / correctness</li>
+<li><strong>Evidence:</strong>
+  <code>python
+  send_removed_from_trip_registered_notification(user, trip)
+  ...
+  send_removed_from_trip_waitlist_notification(user, trip)</code>
+  Every other caller (e.g. <code>RemoveMemberFromTripRegistration</code> at line 405/409 and <code>TripRegistrationService.remove_from_registered/remove_from_waitlist</code>) passes a single <code>cancellation</code>/<code>TripRegistrationCancellationReason</code> object. Since <code>send_*</code> are Huey tasks (<code>@db_task</code>), any argument-shape mismatch will only surface when the task executes, producing silent background failures. Users will see <code>trip_registration_cancelled</code> success, but no notification is sent and the task retries 2x then dies.</li>
+<li><strong>Recommendation:</strong> Route through the service: <code>TripRegistrationService.remove_from_registered(user, trip)</code> / <code>remove_from_waitlist(user, trip)</code>, and create a <code>TripRegistrationCancellationReason</code> row (even with a default reason like <code>SELF_CANCELLED</code>) so the notification task has a consistent argument. Verify the task signature in <code>api/background.py</code> and align all call sites.</li>
+</ul>
+<h3 id="critical-tripcut_off-datetimedatetimenow-violates-use_tzfalse-convention">[critical] <code>trip.cut_off &lt; datetime.datetime.now()</code> violates <code>USE_TZ=False</code> convention<a class="headerlink" href="#critical-tripcut_off-datetimedatetimenow-violates-use_tzfalse-convention" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>api/views/views_trip.py:294, 370</code></li>
+<li><strong>Confidence:</strong> high</li>
+<li><strong>Category:</strong> other (timezone gotcha, §15)</li>
+<li><strong>Evidence:</strong>
+  <code>python
+  if trip.cut_off &lt; datetime.datetime.now():</code>
+  <code>CLAUDE.md §15</code> explicitly warns: "Never use <code>datetime.datetime.now()</code> — use <code>django.utils.timezone.now()</code>." With <code>USE_TZ=False</code> the two happen to coincide in naive Asia/Dubai time today, but any future migration to TZ-aware datetimes will silently break cutoff checks, and the project convention is already violated.</li>
+<li><strong>Recommendation:</strong> <code>from django.utils import timezone</code> and replace with <code>timezone.now()</code>. Remove the bare <code>import datetime</code> at the top of the file if no longer needed.</li>
+</ul>
+<h3 id="high-registerfortrip-has-contradictory-permission-branching-permission-holders-skip-all-validation">[high] <code>RegisterForTrip</code> has contradictory permission branching — permission holders skip all validation<a class="headerlink" href="#high-registerfortrip-has-contradictory-permission-branching-permission-holders-skip-all-validation" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>api/views/views_trip.py:273-281</code></li>
+<li><strong>Confidence:</strong> high</li>
+<li><strong>Category:</strong> perms</li>
+<li><strong>Evidence:</strong>
+  <code>python
+  if permission_matrix_exists_or_user_is_superuser(user, ActionChoice.EDIT_TRIP_REGISTRATIONS):
+      ...
+      msg = add_to_registered(user, trip, vehicle=vehicle)
+      return Response(...)</code>
+  Users with <code>EDIT_TRIP_REGISTRATIONS</code> skip <em>every</em> sanity check below: trip-approval status, level-requirement, cutoff, capacity, duplicate registration. That may be intentional for admin-driven registration, but this endpoint is <code>/api/trips/&lt;pk&gt;/register</code> (member-initiated). Admin force-registration is supposed to flow through <code>ForceRegisterForTrip</code>. Bypassing <code>trip_already_registered</code> and <code>trip_full</code> silently is a footgun — capacity can be over-run without any audit trail.</li>
+<li><strong>Recommendation:</strong> Either document the bypass explicitly, or remove the early branch and let permissioned users go through the normal flow (with a separate <code>bypass_capacity</code> flag on <code>ForceRegisterForTrip</code> for the admin path). At minimum, keep the <code>trip_already_registered</code> check above the permission branch.</li>
+</ul>
+<h3 id="high-n1-in-tripexportregistrantsview-for-trip-count-per-level-computation">[high] N+1 in <code>TripExportRegistrantsView</code> for trip-count-per-level computation<a class="headerlink" href="#high-n1-in-tripexportregistrantsview-for-trip-count-per-level-computation" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>api/views/views_trip.py:742-754</code></li>
+<li><strong>Confidence:</strong> high</li>
+<li><strong>Category:</strong> n+1</li>
+<li><strong>Evidence:</strong>
+  <code>python
+  for registration in registrations:
+      member = registration.member
+      trip_counts_by_level = {}
+      member_trip_registrations = TripRegistration.objects.filter(
+          member=member, checked_in=True
+      ).select_related('trip__level')
+      for trip_reg in member_trip_registrations:
+          ...</code>
+  For every registrant we fire a fresh query loading <em>all</em> of that member's check-ins across the entire history, then aggregate in Python. For a 50-member trip this is 50 extra queries and potentially thousands of rows materialised.</li>
+<li><strong>Recommendation:</strong> Aggregate once in SQL:
+  <code>python
+  counts = (TripRegistration.objects
+             .filter(member__in=[r.member_id for r in registrations],
+                     checked_in=True)
+             .values('member_id', 'trip__level__name')
+             .annotate(n=Count('id')))</code>
+  Build a <code>{(member_id, level_name): n}</code> dict and look up per row. One query instead of N.</li>
+</ul>
+<h3 id="high-n1-in-tripviewlogbookview-per-member-logbook-lookup">[high] N+1 in <code>TripViewLogbookView</code> per-member logbook lookup<a class="headerlink" href="#high-n1-in-tripviewlogbookview-per-member-logbook-lookup" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>api/views/views_trip.py:824-833</code></li>
+<li><strong>Confidence:</strong> high</li>
+<li><strong>Category:</strong> n+1</li>
+<li><strong>Evidence:</strong>
+  <code>python
+  .prefetch_related('member__logbook_entry_member')
+  ...
+  for registration in checked_in_registrations:
+      member = registration.member
+      logbook_entry = member.logbook_entry_member.filter(trip=trip).first()</code>
+  <code>prefetch_related('member__logbook_entry_member')</code> caches <em>all</em> logbook entries per member, but then <code>.filter(trip=trip).first()</code> triggers a new query, defeating the prefetch entirely and re-loading per member.</li>
+<li><strong>Recommendation:</strong> Use a <code>Prefetch</code> with a filtered queryset bound to this trip:
+  <code>python
+  from django.db.models import Prefetch
+  qs = TripRegistration.objects.filter(trip=trip, checked_in=True)\
+      .select_related('member')\
+      .prefetch_related(Prefetch(
+          'member__logbook_entry_member',
+          queryset=LogbookEntry.objects.filter(trip=trip).select_related('signed_by'),
+          to_attr='trip_logbook_entries'))</code>
+  Then <code>registration.member.trip_logbook_entries[0] if ... else None</code> with no extra query.</li>
+</ul>
+<h3 id="high-missing-transaction-boundaries-around-multi-row-mutations">[high] Missing transaction boundaries around multi-row mutations<a class="headerlink" href="#high-missing-transaction-boundaries-around-multi-row-mutations" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>api/views/views_trip.py:93-107, 169-178, 400-415, 510-519</code>; <code>api/services/trip_registration_service.py:14-26, 29-41</code></li>
+<li><strong>Confidence:</strong> high</li>
+<li><strong>Category:</strong> tx</li>
+<li><strong>Evidence:</strong> <code>TripCreateView.create</code> does <code>serializer.save()</code>, then <code>add_to_registered</code> (add-to-M2M + remove-from-waitlist + trip.save), then <code>TripRegistration...update(checked_in=True)</code>, then queues a Huey notification — all unwrapped. <code>TripApproveView.post</code> likewise mutates <code>approval_status</code>, <code>approved_by</code>, adds a deputy, registers the user, flips <code>checked_in</code>, and fires two notifications, again without <code>transaction.atomic</code>. <code>RemoveMemberFromTripRegistration.post</code> builds an unsaved <code>TripRegistrationCancellationReason</code>, mutates M2M, fires a Huey task, then saves the cancellation and the trip. If any step fails mid-flight you get partial state (member added but not checked in, trip approved but notification never queued, cancellation notified but cancellation row never persisted).</li>
+<li><strong>Recommendation:</strong> Wrap each multi-row endpoint in <code>with transaction.atomic():</code> and use <code>transaction.on_commit(lambda: send_*)</code> for Huey enqueues so notifications never fire for rolled-back transactions. This matters more once Huey is production-async.</li>
+</ul>
+<h3 id="high-race-condition-in-add_to_registered-capacity-check">[high] Race condition in <code>add_to_registered</code> + capacity check<a class="headerlink" href="#high-race-condition-in-add_to_registered-capacity-check" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>api/views/views_trip.py:300-301</code>, <code>api/services/trip_registration_service.py:14-26</code></li>
+<li><strong>Confidence:</strong> medium</li>
+<li><strong>Category:</strong> tx</li>
+<li><strong>Evidence:</strong> Capacity check <code>if trip.registered.count() &gt;= trip.capacity</code> in the view is followed by a non-atomic <code>add_to_registered</code> in the service. Two concurrent requests both see <code>count == capacity - 1</code>, both succeed. <code>TripRegistrationService.add_users_from_waitlist</code> also loops <code>while trip.registered.count() &lt; trip.capacity</code> with no lock.</li>
+<li><strong>Recommendation:</strong> Use <code>select_for_update()</code> on the trip row inside an atomic block, or add a database <code>UniqueConstraint</code>/<code>CheckConstraint</code> on capacity. At minimum, re-check capacity inside the service under lock.</li>
+</ul>
+<h3 id="high-add_users_from_waitlist-drops-the-waitlist-entrys-vehicle">[high] <code>add_users_from_waitlist</code> drops the waitlist entry's vehicle<a class="headerlink" href="#high-add_users_from_waitlist-drops-the-waitlist-entrys-vehicle" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>api/services/trip_registration_service.py:39</code></li>
+<li><strong>Confidence:</strong> high</li>
+<li><strong>Category:</strong> other (data loss)</li>
+<li><strong>Evidence:</strong>
+  <code>python
+  trip.registered.add(user, through_defaults={'trip': trip})</code>
+  No <code>vehicle</code> is forwarded from <code>TripWaitlist.vehicle</code>, so members promoted from the waitlist lose their previously-selected vehicle. Contrast with <code>AcceptMemberFromWaitlist.post</code> (line 479-483), which correctly reads <code>waitlist_entry.vehicle</code>. The automatic promoter and the manual accept behave inconsistently.</li>
+<li><strong>Recommendation:</strong>
+  <code>python
+  entry = waitlist_registrations.pop(0)
+  through_defaults = {'trip': trip}
+  if entry.vehicle_id:
+      through_defaults['vehicle'] = entry.vehicle
+  trip.registered.add(entry.member, through_defaults=through_defaults)</code></li>
+</ul>
+<h3 id="high-business-logic-leakage-views-own-trip-registration-rules">[high] Business logic leakage — views own trip-registration rules<a class="headerlink" href="#high-business-logic-leakage-views-own-trip-registration-rules" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>api/views/views_trip.py:93-107, 170-178, 256-257, 269-311, 324-346, 353-378, 389-416, 449-485, 488-519</code></li>
+<li><strong>Confidence:</strong> high</li>
+<li><strong>Category:</strong> style (§14 violation)</li>
+<li><strong>Evidence:</strong> <code>TripCreateView.create</code> performs force-waitlist check, vehicle resolution, registration and check-in of the lead, and notification enqueue. <code>TripEditView.update</code> strips ineligible deputy leads and re-checks-in the new lead. <code>RegisterForTrip.post</code> has six guard conditions inline. <code>TripApproveView.post</code> mutates four fields, adds a deputy, registers + checks in, and fires two notifications. Per <code>CLAUDE.md §14</code>: "Business logic goes to <code>services/</code> — views are thin". The thin shim <code>add_to_registered = TripRegistrationService.add_to_registered</code> confirms the intent; the rest of the flow just didn't follow.</li>
+<li><strong>Recommendation:</strong> Push into <code>TripRegistrationService</code>:</li>
+<li><code>register_lead_to_trip(trip, lead, vehicle_id)</code> — vehicle resolution + add + auto-check-in.</li>
+<li><code>register_member_to_trip(trip, user, vehicle_id)</code> — all six guards return structured error codes.</li>
+<li><code>approve_trip(trip, approver, vehicle_id)</code> — mutation + notifications.</li>
+<li><code>decline_trip(trip, approver)</code>.</li>
+<li><code>handle_lead_change(trip, old_lead, new_lead)</code>.
+  Views become 10-line controllers that map service result to HTTP status.</li>
+</ul>
+<h3 id="medium-vehicle-resolution-pattern-repeated-6-times">[medium] Vehicle-resolution pattern repeated 6 times<a class="headerlink" href="#medium-vehicle-resolution-pattern-repeated-6-times" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>api/views/views_trip.py:96-101, 274-279, 334-338, 357-362, 503-508</code>; also <code>AcceptMemberFromWaitlist</code> 479-481</li>
+<li><strong>Confidence:</strong> high</li>
+<li><strong>Category:</strong> style (DRY)</li>
+<li><strong>Evidence:</strong>
+  <code>python
+  vehicle = None
+  if vehicle_id:
+      vehicle = Vehicle.objects.filter(member=x, id=vehicle_id).first()
+  if not vehicle:
+      vehicle = x.vehicles.filter(is_primary=True).first()</code>
+  is copy-pasted in 6 places. Behaviour changes require 6 edits, invariably drift.</li>
+<li><strong>Recommendation:</strong> Add <code>resolve_member_vehicle(member, vehicle_id=None) -&gt; Optional[Vehicle]</code> helper in <code>trip_registration_service.py</code> (or a new <code>api/services/vehicle_service.py</code>). Use <code>.filter(...).only('id', 'brand', ...).first()</code> if serializers don't need full object.</li>
+</ul>
+<h3 id="medium-tripviewsetget_queryset-prefetches-half-the-tree-list-serializer-still-triggers-n1">[medium] <code>TripViewSet.get_queryset</code> prefetches half the tree, list serializer still triggers N+1<a class="headerlink" href="#medium-tripviewsetget_queryset-prefetches-half-the-tree-list-serializer-still-triggers-n1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>api/views/views_trip.py:243-248</code></li>
+<li><strong>Confidence:</strong> medium</li>
+<li><strong>Category:</strong> n+1</li>
+<li><strong>Evidence:</strong> <code>select_related('lead', 'level', 'meeting_point')</code> covers FKs, and <code>prefetch_related('tripregistration_set__member', 'tripwaitlist_set__member')</code> covers through-tables. But <code>ListTripSerializer</code> likely also reads <code>trip.deputy_leads.all()</code> and <code>lead.level</code> / <code>lead.avatar</code>. Without <code>prefetch_related('deputy_leads', 'deputy_leads__level')</code> and <code>select_related('lead__level')</code>, each list page still fires one query per trip for deputies.</li>
+<li><strong>Recommendation:</strong> Audit <code>ListTripSerializer</code> for accessed fields, then:
+  <code>python
+  Trip.objects.select_related('lead__level', 'level', 'meeting_point')\
+      .prefetch_related(
+          'deputy_leads__level',
+          Prefetch('tripregistration_set', queryset=TripRegistration.objects.select_related('member', 'vehicle')),
+          Prefetch('tripwaitlist_set', queryset=TripWaitlist.objects.select_related('member', 'vehicle')),
+      )</code>
+  Add <code>assertNumQueries</code> regression tests.</li>
+</ul>
+<h3 id="medium-_serialize_updated_trip-re-fetches-on-every-mutation-response">[medium] <code>_serialize_updated_trip</code> re-fetches on every mutation response<a class="headerlink" href="#medium-_serialize_updated_trip-re-fetches-on-every-mutation-response" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>api/views/views_trip.py:39-48</code></li>
+<li><strong>Confidence:</strong> medium</li>
+<li><strong>Category:</strong> other (perf)</li>
+<li><strong>Evidence:</strong> Every register/unregister/waitlist/force/remove endpoint calls <code>_serialize_updated_trip(trip, request)</code>, which does a fresh DB fetch with full prefetch tree. Most callers already have a live <code>trip</code> object in memory — they just need to invalidate prefetch caches.</li>
+<li><strong>Recommendation:</strong> Accept the existing <code>trip</code> and call <code>trip.refresh_from_db(); trip._prefetched_objects_cache = {}</code> or return a lightweight response without the full prefetch tree. Clients that need the new state can poll <code>/api/trips/&lt;pk&gt;/</code>.</li>
+</ul>
+<h3 id="medium-tripsearchlist-returns-unpaginated-response-when-page-is-none">[medium] <code>TripSearch.list</code> returns unpaginated response when <code>page is None</code><a class="headerlink" href="#medium-tripsearchlist-returns-unpaginated-response-when-page-is-none" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>api/views/views_trip.py:1000-1006</code></li>
+<li><strong>Confidence:</strong> high</li>
+<li><strong>Category:</strong> error-handling</li>
+<li><strong>Evidence:</strong>
+  <code>python
+  page = self.paginate_queryset(queryset)
+  if page is not None:
+      ...
+      return self.get_paginated_response(serializer.data)
+  serializer = self.get_serializer(queryset, many=True)
+  return self.get_paginated_response(serializer.data)</code>
+  The fallback branch calls <code>self.get_paginated_response</code> on a non-paginated serializer. With DRF's <code>StandardResultsSetPagination</code>, this only happens if <code>self.paginator</code> is None, at which point <code>get_paginated_response</code> raises. In practice this branch is dead code masking an edge-case bug.</li>
+<li><strong>Recommendation:</strong> Remove the fallback or <code>return Response(serializer.data)</code> — don't pretend it's paginated.</li>
+</ul>
+<h3 id="medium-silent-error-swallow-in-forceregisterfortrip-permission-denied-path">[medium] Silent error swallow in <code>ForceRegisterForTrip</code> permission-denied path<a class="headerlink" href="#medium-silent-error-swallow-in-forceregisterfortrip-permission-denied-path" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>api/views/views_trip.py:344-345</code></li>
+<li><strong>Confidence:</strong> high</li>
+<li><strong>Category:</strong> error-handling</li>
+<li><strong>Evidence:</strong>
+  <code>python
+  else:
+      return Response({'success': False, 'message': 'permission_denied'})</code>
+  Missing <code>status=status.HTTP_403_FORBIDDEN</code> — defaults to HTTP 200. Clients treating HTTP status as the truth (Flutter's <code>http</code> package often does) will silently log success.</li>
+<li><strong>Recommendation:</strong> Add <code>status=status.HTTP_403_FORBIDDEN</code>.</li>
+</ul>
+<h3 id="medium-tripwaitlistfilterpkuserpk-missing-exists">[medium] <code>trip.waitlist.filter(pk=user.pk)</code> missing <code>.exists()</code><a class="headerlink" href="#medium-tripwaitlistfilterpkuserpk-missing-exists" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>api/views/views_trip.py:372</code></li>
+<li><strong>Confidence:</strong> high</li>
+<li><strong>Category:</strong> style (correctness-adjacent)</li>
+<li><strong>Evidence:</strong>
+  <code>python
+  elif trip.registered.filter(pk=user.pk).exists() or trip.waitlist.filter(pk=user.pk):</code>
+  Second operand is a truthy QuerySet — it triggers <code>__bool__</code> which runs the query. Works today but is a subtle foot-gun and inconsistent with the first operand.</li>
+<li><strong>Recommendation:</strong> <code>trip.waitlist.filter(pk=user.pk).exists()</code>.</li>
+</ul>
+<h3 id="medium-registerfortripwaitlist-missing-permissionmatrix-action-check">[medium] <code>RegisterForTripWaitlist</code> missing <code>PermissionMatrix</code> action check<a class="headerlink" href="#medium-registerfortripwaitlist-missing-permissionmatrix-action-check" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>api/views/views_trip.py:348-378</code></li>
+<li><strong>Confidence:</strong> medium</li>
+<li><strong>Category:</strong> perms</li>
+<li><strong>Evidence:</strong> Only <code>permissions.IsAuthenticated</code> is enforced. Registration is arguably open to any member, but <code>CLAUDE.md §8</code> states: "every protected view must add a <code>PermissionMatrix.has_permission()</code> call — do not assume one exists." Waitlisting mutates trip state and queues notifications; it qualifies as a protected action. Similar missing check on <code>RegisterForTrip</code> (relies only on <code>IsAuthenticated</code>) and <code>CancelTripRegistration</code>.</li>
+<li><strong>Recommendation:</strong> Confirm intended access model with product; if self-registration is truly level-gated only, make that explicit via a dedicated <code>ActionChoice.SELF_REGISTER_FOR_TRIP</code> matrix entry (defaulting to all groups). Otherwise add a thin permission class.</li>
+</ul>
+<h3 id="medium-tripeditviewdestroy-soft-deletes-but-ignores-hasdeletetrippermission-semantics">[medium] <code>TripEditView.destroy</code> soft-deletes but ignores <code>HasDeleteTripPermission</code> semantics<a class="headerlink" href="#medium-tripeditviewdestroy-soft-deletes-but-ignores-hasdeletetrippermission-semantics" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>api/views/views_trip.py:193-197</code></li>
+<li><strong>Confidence:</strong> medium</li>
+<li><strong>Category:</strong> other</li>
+<li><strong>Evidence:</strong> <code>destroy()</code> only sets <code>approval_status = CANCELED</code> and saves. No <code>send_trip_cancellation_notification</code>, no waitlist cleanup, no gallery deletion webhook (cross-check <code>api/services/gallery_webhook.py</code> — per <code>CLAUDE.md §10</code> there's a <code>delete_gallery_for_trip_task</code> that should fire). If destroy is the canonical cancellation path, it is missing the downstream side effects.</li>
+<li><strong>Recommendation:</strong> Confirm with product whether cancelling a trip should: notify registered members, drop waitlist, trigger <code>delete_gallery_for_trip_task</code>. If yes, delegate to <code>TripCancellationService.cancel(trip, user)</code>.</li>
+</ul>
+<h3 id="medium-permission_matrix_exists_or_user_is_superuser-used-instead-of-permissionmatrixhas_permission">[medium] <code>permission_matrix_exists_or_user_is_superuser</code> used instead of <code>PermissionMatrix.has_permission</code><a class="headerlink" href="#medium-permission_matrix_exists_or_user_is_superuser-used-instead-of-permissionmatrixhas_permission" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>api/views/views_trip.py:273, 341, 500, 534</code></li>
+<li><strong>Confidence:</strong> medium</li>
+<li><strong>Category:</strong> perms</li>
+<li><strong>Evidence:</strong> <code>CLAUDE.md §8</code> says: "<code>PermissionMatrix.has_permission(...)</code> is the single authoritative check." The file uses the <code>permission_matrix_exists_or_user_is_superuser</code> helper defined in <code>api/permissions.py</code>, which is narrower (no <code>member</code>, no <code>require_trip_lead</code>). That's fine for straight "does this group have the action" checks, but the gap should be a documented pattern — currently there are two authoritative checks.</li>
+<li><strong>Recommendation:</strong> Either (a) alias <code>permission_matrix_exists_or_user_is_superuser</code> to <code>PermissionMatrix.has_permission</code> and update <code>CLAUDE.md §8</code>, or (b) migrate call sites to the model method. Don't leave two sources of truth.</li>
+</ul>
+<h3 id="low-tripcreateview-uses-configurablesettingsobjectsfirst-while-tripeditviewupdate-uses-get_global_settings">[low] <code>TripCreateView</code> uses <code>ConfigurableSettings.objects.first()</code> while <code>TripEditView.update</code> uses <code>get_global_settings()</code><a class="headerlink" href="#low-tripcreateview-uses-configurablesettingsobjectsfirst-while-tripeditviewupdate-uses-get_global_settings" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>api/views/views_trip.py:80, 149</code></li>
+<li><strong>Confidence:</strong> high</li>
+<li><strong>Category:</strong> style</li>
+<li><strong>Evidence:</strong> Inconsistency; <code>CLAUDE.md §15</code> warns <code>first()</code> can return <code>None</code>. Create path will crash on fresh dev DBs.</li>
+<li><strong>Recommendation:</strong> Use <code>get_global_settings()</code> everywhere. Remove <code>ConfigurableSettings</code> from the import list if unused afterwards.</li>
+</ul>
+<h3 id="low-allow_waitlist-is-not-none-and-allow_waitlist-false-is-awkward">[low] <code>allow_waitlist is not None and allow_waitlist == False</code> is awkward<a class="headerlink" href="#low-allow_waitlist-is-not-none-and-allow_waitlist-false-is-awkward" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>api/views/views_trip.py:148</code></li>
+<li><strong>Confidence:</strong> high</li>
+<li><strong>Category:</strong> style</li>
+<li><strong>Evidence:</strong> On a partial update, <code>allow_waitlist</code> is either <code>True</code>, <code>False</code>, or not in <code>validated_data</code>. <code>.get()</code> returns <code>None</code> when absent, so <code>allow_waitlist is False</code> is sufficient and clearer.</li>
+<li><strong>Recommendation:</strong> <code>if allow_waitlist is False:</code>.</li>
+</ul>
+<h3 id="low-stale-unused-imports">[low] Stale / unused imports<a class="headerlink" href="#low-stale-unused-imports" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>api/views/views_trip.py:15-18, 20-21, 25-26, 30</code></li>
+<li><strong>Confidence:</strong> high</li>
+<li><strong>Category:</strong> style</li>
+<li><strong>Evidence:</strong> <code>send_registration_from_waitlist_notification</code> imported but unused in the view (only used in the service). <code>HTTP_422_UNPROCESSABLE_ENTITY</code> imported <em>and</em> <code>status.HTTP_422_UNPROCESSABLE_ENTITY</code> used — pick one. <code>generics</code> and <code>viewsets</code> both imported where only one is needed per class. <code>AddMemberFromWaitlistSerializer</code> — check actual usage (looks used on 451). <code>ConfigurableSettings</code> — will become unused if the previous fix is applied.</li>
+<li><strong>Recommendation:</strong> <code>ruff check --select F401,F811</code> and clean up.</li>
+</ul>
+<h3 id="low-handle_check_in_out-content-type-parser-allows-a-str-through-the-non-json-branch">[low] <code>handle_check_in_out</code> content-type parser allows a <code>str</code> through the non-JSON branch<a class="headerlink" href="#low-handle_check_in_out-content-type-parser-allows-a-str-through-the-non-json-branch" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>api/views/views_trip.py:559-577</code></li>
+<li><strong>Confidence:</strong> medium</li>
+<li><strong>Category:</strong> error-handling</li>
+<li><strong>Evidence:</strong> First guard requires <code>members_ids</code> to be a <code>Sequence</code> (string is a Sequence!), so a form-encoded single value like <code>"12"</code> passes the first check, then in the non-JSON branch it's <code>.split(',')</code> correctly — but a JSON payload of <code>"12"</code> (string) also satisfies the outer check, then hits the else branch where <code>isinstance(members_ids, list)</code> is False, correctly rejecting. Works but fragile. Also: <code>collections.abc.Sequence</code> matches <code>str</code> and <code>bytes</code>, giving a misleading error message path.</li>
+<li><strong>Recommendation:</strong> Replace the first guard with <code>isinstance(members_ids, (list, str))</code> explicitly, or use a DRF serializer with <code>ListField(child=IntegerField())</code> and drop the manual parsing entirely.</li>
+</ul>
+<h3 id="low-logger-name-is-ad4x4-web-but-this-module-is-used-by-huey-paths-too">[low] <code>logger</code> name is <code>'ad4x4-web'</code> but this module is used by Huey paths too<a class="headerlink" href="#low-logger-name-is-ad4x4-web-but-this-module-is-used-by-huey-paths-too" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>api/views/views_trip.py:36</code>, <code>api/services/trip_registration_service.py:9</code></li>
+<li><strong>Confidence:</strong> low</li>
+<li><strong>Category:</strong> style</li>
+<li><strong>Evidence:</strong> The <code>-web</code> suffix implies web-only; service calls can originate from Huey tasks too.</li>
+<li><strong>Recommendation:</strong> Minor — pick <code>'ad4x4'</code> or per-module names. Not worth a dedicated PR.</li>
+</ul>
+<h3 id="nit-tripeditviewupdate-has-dead-prefetch-cache-reset">[nit] <code>TripEditView.update</code> has dead prefetch-cache reset<a class="headerlink" href="#nit-tripeditviewupdate-has-dead-prefetch-cache-reset" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>api/views/views_trip.py:176-177</code></li>
+<li><strong>Confidence:</strong> medium</li>
+<li><strong>Category:</strong> style</li>
+<li><strong>Evidence:</strong> Copy-paste from <code>TripEditMediaView</code>. <code>instance</code> was not fetched with <code>prefetch_related</code>, so <code>_prefetched_objects_cache</code> will not exist.</li>
+<li><strong>Recommendation:</strong> Remove, or verify the path actually prefetches.</li>
+</ul>
+<h3 id="nit-approval_status-approvalstatusapproved-reassignment-is-redundant">[nit] <code>approval_status = ApprovalStatus.APPROVED</code> reassignment is redundant<a class="headerlink" href="#nit-approval_status-approvalstatusapproved-reassignment-is-redundant" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>File:</strong> <code>api/views/views_trip.py:90</code></li>
+<li><strong>Confidence:</strong> high</li>
+<li><strong>Category:</strong> style</li>
+<li><strong>Evidence:</strong>
+  <code>python
+  if approval_status == ApprovalStatus.APPROVED:
+      approved_by = self.request.user
+      approval_status = ApprovalStatus.APPROVED   # already equal</code></li>
+<li><strong>Recommendation:</strong> Delete the redundant line.</li>
+</ul>
+<h2 id="categories-with-zero-findings">Categories with zero findings<a class="headerlink" href="#categories-with-zero-findings" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Bare <code>except</code> / silent fallbacks beyond those flagged:</strong> none.</li>
+<li><strong>Full vs base serializer nesting issues:</strong> nothing problematic spotted in this file; <code>ConciseMemberSerializer</code> / <code>ViewLogbookLogbookEntrySerializer</code> already follow <code>CLAUDE.md §14</code>.</li>
+</ul>
+<h2 id="out-of-scope-suggestions">Out-of-scope suggestions<a class="headerlink" href="#out-of-scope-suggestions" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Add <code>assertNumQueries</code> regression tests for <code>TripViewSet.list</code>, <code>TripViewLogbookView</code>, <code>TripExportRegistrantsView</code>.</li>
+<li>Consider extracting <code>vehicle_id</code> resolution into a serializer field that returns a <code>Vehicle</code> instance, eliminating the manual <code>Vehicle.objects.filter(...)</code> pattern across six endpoints.</li>
+<li>The <code>add_to_registered</code> / <code>add_users_from_waitlist</code> / <code>remove_from_registered</code> / <code>remove_from_waitlist</code> service methods each call <code>trip.save()</code>, which is likely unnecessary — M2M <code>.add()</code>/<code>.remove()</code> already persist. Verify and remove to avoid redundant <code>UPDATE trip</code> statements.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

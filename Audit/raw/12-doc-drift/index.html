@@ -1,0 +1,1527 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Next gen API for Abu Dhabi 4x4">
+      
+      
+        <meta name="author" content="Redbeard">
+      
+      
+        <link rel="canonical" href="https://api.ad4x4.com/readme/Audit/raw/12-doc-drift/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Step 12 — Documentation Drift - AD4x4 API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#step-12-documentation-drift" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="AD4x4 API" class="md-header__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AD4x4 API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Step 12 — Documentation Drift
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AD4x4 API" class="md-nav__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AD4x4 API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../practical-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Practical Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../auth-profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Auth and Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../vehicles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vehicles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../trip-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lead-trip-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lead Trip History
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../trips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trips
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../trip-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../trip-reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meeting-points/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meeting Points
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../logbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Logbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../logbook-migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logbook Migration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../upgrade-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../club-news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Club News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faqs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feedback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sponsorships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sponsorships
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notifications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gallery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gallery Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../here-maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HERE Maps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../global-settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Global Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background-tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background Tasks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../editable-strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../account-deletion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Account Deletion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../swagger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swagger UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../maintenance-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintenance Mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rate-limiting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rate Limiting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#drift-findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Drift findings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Drift findings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#medium-confidence-high-5-missing-11-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [medium / confidence high] §5 missing 11+ models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medium-confidence-high-7-claims-token_version-is-legacy-but-the-column-still-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [medium / confidence high] §7 claims token_version is legacy but the column still exists
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medium-confidence-high-6-undocumented-rest_registration-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [medium / confidence high] §6 undocumented rest_registration endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medium-confidence-high-6-doesnt-mention-tripcreateviewtripeditview-split" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [medium / confidence high] §6 doesn't mention TripCreateView/TripEditView split
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-confidence-high-3-13-claim-59-test-files-in-apitests-wrong-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [high / confidence high] §3 + §13 claim "~59 test files in api/tests/" — wrong location
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medium-confidence-high-10-huey-task-drift-documented-tasks-exist-but-key-mechanics-missing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [medium / confidence high] §10 Huey task drift — documented tasks exist, but key mechanics missing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medium-confidence-high-19-graphify-counts-are-stale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [medium / confidence high] §19 Graphify counts are stale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medium-confidence-high-3-says-98-migrations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [medium / confidence high] §3 says "98 migrations"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#low-confidence-high-2-python-claim-3130-but-runtime-is-31313" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [low / confidence high] §2 Python claim 3.13.0 but runtime is 3.13.13
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#low-confidence-high-11-env-var-list-lists-django_secret_key-etc-but-infraenvexample-is-the-source-of-truth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [low / confidence high] §11 env var list lists DJANGO_SECRET_KEY etc. but infra/.env.example is the source of truth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#low-confidence-medium-2-notes-django-oidc-provider-090-django-6-compatibility-should-be-verified-but-no-verification-recorded" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [low / confidence medium] §2 notes django-oidc-provider 0.9.0 Django 6 compatibility "should be verified" but no verification recorded
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#low-confidence-high-4-response-format-block-says-pagination-max-is-500-but-standardresultssetpagination-default-is-page_size-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [low / confidence high] §4 Response-format block says pagination max is 500 but StandardResultsSetPagination default is page_size 10
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#low-confidence-high-15-doesnt-mention-logbookskillreference-lacking-a-unique-constraint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [low / confidence high] §15 Doesn't mention LogbookSkillReference lacking a unique constraint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#low-confidence-high-16-gallery-api-here-maps-timeout-cache-behaviour-differs-from-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [low / confidence high] §16 Gallery API, HERE Maps timeout + cache behaviour differs from docs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#info-confidence-high-claudeskillsskillmd-mirror-not-audited" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [info / confidence high] .claude/skills/SKILL.md mirror — not audited
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-doc-update-pr-separate-from-code-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended doc-update PR (separate from code fixes)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="step-12-documentation-drift">Step 12 — Documentation Drift<a class="headerlink" href="#step-12-documentation-drift" title="Permanent link">&para;</a></h1>
+<p>Aggregation of doc-vs-reality drift from Steps 1, 2, 3, 4, 5, 6, 8, 9. Each finding cites the CLAUDE.md section and the source-of-truth file:line.</p>
+<h2 id="drift-findings">Drift findings<a class="headerlink" href="#drift-findings" title="Permanent link">&para;</a></h2>
+<h3 id="medium-confidence-high-5-missing-11-models">[medium / confidence high] <code>§5</code> missing 11+ models<a class="headerlink" href="#medium-confidence-high-5-missing-11-models" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Source of truth:</strong> <code>api/models/*.py</code></li>
+<li><strong>Drift:</strong> <code>NotificationSettings</code>, <code>TripRegistrationCancellationReason</code>, <code>TripComment</code>, <code>UpgradeRequestComment</code>, <code>LogbookMigrationSkillEntry</code>, <code>Feedback</code>, <code>TripReport</code>, <code>TripReportImage</code>, <code>MeetingPoint</code>, <code>UIString</code>, <code>FaqEntry</code>, <code>Sponsorship</code> — all exist and are referenced via endpoints in §6, but none have a §5 stanza.</li>
+<li><strong>Severity driver:</strong> <code>TripRegistrationCancellationReason</code> is especially bad — it's the audit log for cancellations, referenced by multiple async-task signatures, and completely undocumented.</li>
+<li><strong>Fix:</strong> Add stanzas to §5 for each. Template in <code>raw/03-model-schema.md</code>.</li>
+</ul>
+<h3 id="medium-confidence-high-7-claims-token_version-is-legacy-but-the-column-still-exists">[medium / confidence high] <code>§7</code> claims <code>token_version</code> is legacy but the column still exists<a class="headerlink" href="#medium-confidence-high-7-claims-token_version-is-legacy-but-the-column-still-exists" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Doc:</strong> CLAUDE.md §7 "<code>Member.token_version</code>: legacy, unused… scheduled for removal"</li>
+<li><strong>Source of truth:</strong> <code>api/models/models_member.py</code> (the field is still there per <code>list_models</code>)</li>
+<li><strong>Drift:</strong> Doc promises the cleanup PR but it hasn't landed. Either land the PR or update §7 to soften the wording ("intended for removal in a later PR — still present as of YYYY-MM-DD").</li>
+<li><strong>Fix:</strong> Preferably do the cleanup PR; otherwise add a date marker.</li>
+</ul>
+<h3 id="medium-confidence-high-6-undocumented-rest_registration-endpoints">[medium / confidence high] <code>§6</code> undocumented <code>rest_registration</code> endpoints<a class="headerlink" href="#medium-confidence-high-6-undocumented-rest_registration-endpoints" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Doc:</strong> CLAUDE.md §6 lists <code>register/</code>, <code>verify-registration/</code>, <code>reset-password/</code>, etc.</li>
+<li><strong>Source of truth:</strong> URL list from <code>list_urls</code></li>
+<li><strong>Drift:</strong> <code>api/auth/register-email/</code> and <code>api/auth/verify-email/</code> are routed to rest_registration views but not in §6.</li>
+<li><strong>Fix:</strong> Either document or remove from URL config. See <code>raw/02-endpoint-drift.md</code>.</li>
+</ul>
+<h3 id="medium-confidence-high-6-doesnt-mention-tripcreateviewtripeditview-split">[medium / confidence high] <code>§6</code> doesn't mention <code>TripCreateView</code>/<code>TripEditView</code> split<a class="headerlink" href="#medium-confidence-high-6-doesnt-mention-tripcreateviewtripeditview-split" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Doc:</strong> "Trips (/api/trips/) — Standard CRUD"</li>
+<li><strong>Source of truth:</strong> <code>ad4x4/urls.py</code> + <code>api/views/views_trip.py</code></li>
+<li><strong>Drift:</strong> <code>POST /api/trips</code> and <code>PUT /api/trips/&lt;pk&gt;</code> (no trailing slash) route to dedicated <code>TripCreateView</code> / <code>TripEditView</code>, not <code>TripViewSet</code>. CRUD is not uniform.</li>
+<li><strong>Fix:</strong> Note the split in §6 with a short rationale.</li>
+</ul>
+<h3 id="high-confidence-high-3-13-claim-59-test-files-in-apitests-wrong-location">[high / confidence high] <code>§3</code> + <code>§13</code> claim "~59 test files in <code>api/tests/</code>" — wrong location<a class="headerlink" href="#high-confidence-high-3-13-claim-59-test-files-in-apitests-wrong-location" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Source of truth:</strong> <code>ls api/tests/</code> shows 3 files; <code>ls tests/</code> at repo root shows 63 files (per Step 9 architecture agent).</li>
+<li><strong>Drift:</strong> Both §3 (repo layout) and §13 (testing conventions) point at the wrong directory.</li>
+<li><strong>Fix:</strong> Update §3 and §13 to say "~63 test files in <code>tests/</code> (repo root); <code>api/tests/</code> holds 3 app-local test files for TBD reason".</li>
+</ul>
+<h3 id="medium-confidence-high-10-huey-task-drift-documented-tasks-exist-but-key-mechanics-missing">[medium / confidence high] <code>§10</code> Huey task drift — documented tasks exist, but key mechanics missing<a class="headerlink" href="#medium-confidence-high-10-huey-task-drift-documented-tasks-exist-but-key-mechanics-missing" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Source of truth:</strong> <code>api/background.py</code> + step 8 agent findings</li>
+<li><strong>Drift:</strong></li>
+<li>§10 lists 14 async + 8 periodic tasks — step 8 agent confirmed all are present in code. No task-level drift.</li>
+<li><strong>But §15 should gain a new gotcha:</strong> "Tasks that enqueue from inside a view/signal must use <code>transaction.on_commit()</code>. The repo has zero <code>on_commit</code> usage currently." The step 8 agent confirmed this is a universal gap.</li>
+<li><strong>Fix:</strong> Add <code>on_commit</code> gotcha to §15 after the fix lands. Also cross-reference in §10.</li>
+</ul>
+<h3 id="medium-confidence-high-19-graphify-counts-are-stale">[medium / confidence high] <code>§19</code> Graphify counts are stale<a class="headerlink" href="#medium-confidence-high-19-graphify-counts-are-stale" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Doc:</strong> "2,376 nodes, 7,488 edges, 100 communities"</li>
+<li><strong>Source of truth:</strong> Actual graph reports 2,397 nodes, 7,596 edges, 115 communities (per step 9 agent).</li>
+<li><strong>Drift:</strong> Graphify has been regenerated but the doc wasn't updated.</li>
+<li><strong>Fix:</strong> Update §19 numbers. Also: the "god-node" edge counts in §19 (<code>Level</code> 564, <code>ActionChoice</code> 389, etc.) are <strong>10× inflated</strong> because Graphify counts each enum member as a node. The real ranking holds but magnitudes need a footnote.</li>
+</ul>
+<h3 id="medium-confidence-high-3-says-98-migrations">[medium / confidence high] <code>§3</code> says "98 migrations"<a class="headerlink" href="#medium-confidence-high-3-says-98-migrations" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Source of truth:</strong> 98 in <code>api/</code>, 3 in <code>website/</code> = 101 total.</li>
+<li><strong>Drift:</strong> §3 count applies only to the api app; website migrations aren't mentioned.</li>
+<li><strong>Fix:</strong> Either clarify "98 in <code>api/</code>" or update to total.</li>
+</ul>
+<h3 id="low-confidence-high-2-python-claim-3130-but-runtime-is-31313">[low / confidence high] <code>§2</code> Python claim <code>3.13.0</code> but runtime is <code>3.13.13</code><a class="headerlink" href="#low-confidence-high-2-python-claim-3130-but-runtime-is-31313" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Patch-level, trivial.</li>
+<li><strong>Fix:</strong> Update §2 Python row.</li>
+</ul>
+<h3 id="low-confidence-high-11-env-var-list-lists-django_secret_key-etc-but-infraenvexample-is-the-source-of-truth">[low / confidence high] <code>§11</code> env var list lists <code>DJANGO_SECRET_KEY</code> etc. but <code>infra/.env.example</code> is the source of truth<a class="headerlink" href="#low-confidence-high-11-env-var-list-lists-django_secret_key-etc-but-infraenvexample-is-the-source-of-truth" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Self-update protocol (§17) says <code>.env.example</code> is authoritative. Verify it still matches §11; any CLAUDE.md additions must flow from <code>.env.example</code>.</li>
+<li><strong>Fix:</strong> Diff <code>infra/.env.example</code> against §11 env var list (not done in this audit — follow-up).</li>
+</ul>
+<h3 id="low-confidence-medium-2-notes-django-oidc-provider-090-django-6-compatibility-should-be-verified-but-no-verification-recorded">[low / confidence medium] <code>§2</code> notes <code>django-oidc-provider 0.9.0</code> Django 6 compatibility "should be verified" but no verification recorded<a class="headerlink" href="#low-confidence-medium-2-notes-django-oidc-provider-090-django-6-compatibility-should-be-verified-but-no-verification-recorded" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Fix:</strong> Run the OIDC provider's integration tests (or smoke-test the <code>/openid/</code> endpoints) and record the result in §2.</li>
+</ul>
+<h3 id="low-confidence-high-4-response-format-block-says-pagination-max-is-500-but-standardresultssetpagination-default-is-page_size-10">[low / confidence high] <code>§4</code> Response-format block says pagination max is 500 but <code>StandardResultsSetPagination</code> default is page_size 10<a class="headerlink" href="#low-confidence-high-4-response-format-block-says-pagination-max-is-500-but-standardresultssetpagination-default-is-page_size-10" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Check <code>api/util.py</code> to confirm the 500 max-page-size claim.</li>
+<li><strong>Fix:</strong> Cross-reference and update §6 if the cap has changed.</li>
+</ul>
+<h3 id="low-confidence-high-15-doesnt-mention-logbookskillreference-lacking-a-unique-constraint">[low / confidence high] <code>§15</code> Doesn't mention <code>LogbookSkillReference</code> lacking a unique constraint<a class="headerlink" href="#low-confidence-high-15-doesnt-mention-logbookskillreference-lacking-a-unique-constraint" title="Permanent link">&para;</a></h3>
+<ul>
+<li>This surfaced only via Step 6's logbook review agent. New gotcha.</li>
+<li><strong>Fix:</strong> Add entry after the fix lands.</li>
+</ul>
+<h3 id="low-confidence-high-16-gallery-api-here-maps-timeout-cache-behaviour-differs-from-docs">[low / confidence high] <code>§16</code> Gallery API, HERE Maps timeout + cache behaviour differs from docs<a class="headerlink" href="#low-confidence-high-16-gallery-api-here-maps-timeout-cache-behaviour-differs-from-docs" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Per Step 6 misc-services agent, HERE Maps cache TTL has unit bug (minutes vs seconds vs days). §16 doesn't specify.</li>
+<li><strong>Fix:</strong> Add explicit TTL unit note + timeout note after fix lands.</li>
+</ul>
+<h3 id="info-confidence-high-claudeskillsskillmd-mirror-not-audited">[info / confidence high] <code>.claude/skills/SKILL.md</code> mirror — not audited<a class="headerlink" href="#info-confidence-high-claudeskillsskillmd-mirror-not-audited" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Per §17, <code>SKILL.md</code> mirrors <code>CLAUDE.md</code> on specific sections. The audit didn't diff them. Follow-up: <code>diff -r</code> both files for the mirrored sections.</li>
+</ul>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>Doc drift is <strong>present but not severe</strong>. The single biggest issue is the test-location claim (§3/§13) — anyone following the doc would look in the wrong place. Second biggest is the 11+ undocumented models in §5.</p>
+<p>Nothing in the doc drift is exploitable; it's all maintainability risk. The Self-Update Protocol (§17) exists but wasn't fully applied on recent changes.</p>
+<h2 id="recommended-doc-update-pr-separate-from-code-fixes">Recommended doc-update PR (separate from code fixes)<a class="headerlink" href="#recommended-doc-update-pr-separate-from-code-fixes" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Extend §5 with the missing model stanzas.</li>
+<li>Correct §3/§13 test location claim.</li>
+<li>Update §19 Graphify counts + add inflation caveat on god-node counts.</li>
+<li>Document the <code>register-email</code> / <code>verify-email</code> endpoints (or remove them) in §6.</li>
+<li>Note the <code>TripCreateView</code> / <code>TripEditView</code> split in §6.</li>
+<li>Update §2 Python patch level.</li>
+<li>Bump migration count from 98 to "98 in api/ + 3 in website/".</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

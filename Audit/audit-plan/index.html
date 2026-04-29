@@ -1,0 +1,1487 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Next gen API for Abu Dhabi 4x4">
+      
+      
+        <meta name="author" content="Redbeard">
+      
+      
+        <link rel="canonical" href="https://api.ad4x4.com/readme/Audit/audit-plan/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>AD4x4 Backend — Audit Plan - AD4x4 API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ad4x4-backend-audit-plan" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="AD4x4 API" class="md-header__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AD4x4 API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AD4x4 Backend — Audit Plan
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AD4x4 API" class="md-nav__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AD4x4 API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practical-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Practical Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../auth-profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Auth and Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vehicles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vehicles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trip-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lead-trip-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lead Trip History
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trips
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trip-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trip-reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meeting-points/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meeting Points
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../logbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Logbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../logbook-migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logbook Migration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../club-news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Club News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faqs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feedback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sponsorships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sponsorships
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notifications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gallery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gallery Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../here-maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HERE Maps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../global-settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Global Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../background-tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background Tasks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editable-strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../account-deletion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Account Deletion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../swagger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swagger UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintenance-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintenance Mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rate-limiting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rate Limiting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-django-system-checks-baseline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1 — Django system checks (baseline)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-endpoint-drift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2 — Endpoint drift
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-model-schema-drift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3 — Model &amp; schema drift
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-migration-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4 — Migration health
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-settings-middleware-audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5 — Settings &amp; middleware audit
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-code-review-parallel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6 — Code review (parallel)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-performance-probes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7 — Performance probes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-8-async-task-audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 8 — Async task audit
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-9-architecture-sweep" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 9 — Architecture sweep
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-10-security-pass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 10 — Security pass
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-11-dependency-audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 11 — Dependency audit
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-12-documentation-drift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 12 — Documentation drift
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consolidation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consolidation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parallelism-schedule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parallelism schedule
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ad4x4-backend-audit-plan">AD4x4 Backend — Audit Plan<a class="headerlink" href="#ad4x4-backend-audit-plan" title="Permanent link">&para;</a></h1>
+<p>12-step audit plan. Each step names: <strong>scope</strong>, <strong>tools</strong>, <strong>outputs</strong>, <strong>acceptance criteria</strong>.</p>
+<p>Raw outputs land in <code>raw/NN-&lt;slug&gt;.md</code>. Findings from each step feed the consolidated <code>audit-report.md</code>.</p>
+<hr />
+<h2 id="step-1-django-system-checks-baseline">Step 1 — Django system checks (baseline)<a class="headerlink" href="#step-1-django-system-checks-baseline" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Scope:</strong> Django's own validation of the project configuration</li>
+<li><strong>Tools:</strong> <code>mcp__django-ai-boost__run_check</code>, <code>python manage.py check --deploy</code> via bash</li>
+<li><strong>Output:</strong> <code>raw/01-system-check.md</code></li>
+<li><strong>Acceptance:</strong> All <code>check</code> messages captured, each tagged severity + confidence <code>high</code>. Production-only deploy-check warnings flagged even if dev passes.</li>
+</ul>
+<h2 id="step-2-endpoint-drift">Step 2 — Endpoint drift<a class="headerlink" href="#step-2-endpoint-drift" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Scope:</strong> Are <code>CLAUDE.md §6</code>, <code>schema.yml</code>, and actual URL patterns aligned?</li>
+<li><strong>Tools:</strong> <code>mcp__django-ai-boost__list_urls</code>, <code>Read</code> on <code>ad4x4/urls.py</code>, <code>schema.yml</code>, <code>CLAUDE.md</code></li>
+<li><strong>Output:</strong> <code>raw/02-endpoint-drift.md</code> with three lists: (a) in URL conf but undocumented, (b) documented but missing, (c) present but with wrong method/path in docs</li>
+<li><strong>Acceptance:</strong> Every <code>/api/*</code> route in URL conf accounted for. Schema regeneration recommended if endpoints exist with no <code>@extend_schema</code>.</li>
+</ul>
+<h2 id="step-3-model-schema-drift">Step 3 — Model &amp; schema drift<a class="headerlink" href="#step-3-model-schema-drift" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Scope:</strong> Do <code>CLAUDE.md §5</code>, ORM model definitions, and DB schema agree?</li>
+<li><strong>Tools:</strong> <code>mcp__django-ai-boost__list_models</code>, <code>mcp__django-ai-boost__database_schema</code>, <code>Read</code> on <code>CLAUDE.md</code>, <code>api/models/*.py</code></li>
+<li><strong>Output:</strong> <code>raw/03-model-schema.md</code> flagging: (a) FK columns without <code>db_index=True</code> that are filtered/joined in views, (b) ORM <code>db_index=True</code> not reflected in DB, (c) documented fields that don't match reality, (d) fields not in docs</li>
+<li><strong>Acceptance:</strong> Every model in <code>CLAUDE.md §5</code> verified. Index coverage assessed on all models with FK/filter-heavy usage.</li>
+</ul>
+<h2 id="step-4-migration-health">Step 4 — Migration health<a class="headerlink" href="#step-4-migration-health" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Scope:</strong> Applied vs unapplied state; migration hygiene</li>
+<li><strong>Tools:</strong> <code>mcp__django-ai-boost__list_migrations</code>, <code>Bash</code> <code>find api/migrations -name "*.py"</code></li>
+<li><strong>Output:</strong> <code>raw/04-migrations.md</code> with unapplied list, total count vs <code>CLAUDE.md §3</code> (claims 98), squash candidates (long sequences of no-op schema changes)</li>
+<li><strong>Acceptance:</strong> No silent pending migrations. Count matches docs.</li>
+</ul>
+<h2 id="step-5-settings-middleware-audit">Step 5 — Settings &amp; middleware audit<a class="headerlink" href="#step-5-settings-middleware-audit" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Scope:</strong> Production readiness, middleware order, secure defaults</li>
+<li><strong>Tools:</strong> <code>mcp__django-ai-boost__application_info</code>, <code>mcp__django-ai-boost__get_setting</code> on non-secret keys, <code>Read</code> on <code>ad4x4/settings.py</code></li>
+<li><strong>Output:</strong> <code>raw/05-settings-middleware.md</code> recording: <code>DEBUG</code>, <code>ALLOWED_HOSTS</code>, <code>SECURE_*</code>, <code>SESSION_*</code>, <code>CSRF_*</code>, <code>CORS_*</code>, middleware order, DB engine, cache backend, <code>USE_TZ</code>, <code>TIME_ZONE</code></li>
+<li><strong>Acceptance:</strong> Middleware order sane (CORS before Common, Whitenoise before custom media). No <code>get_setting</code> call ever resolves a secret value.</li>
+</ul>
+<h2 id="step-6-code-review-parallel">Step 6 — Code review (parallel)<a class="headerlink" href="#step-6-code-review-parallel" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Scope:</strong> Recently stable + high-traffic Python modules</li>
+<li><strong>Tools:</strong> <code>django-reviewer:django-reviewer</code> agent × N, Opus model</li>
+<li><strong>Targets (one agent each):</strong></li>
+<li><code>api/views/views_trips.py</code></li>
+<li><code>api/views/views_members.py</code></li>
+<li><code>api/views/views_upgraderequests.py</code></li>
+<li><code>api/views/views_logbook.py</code></li>
+<li><code>api/views/views_auth.py</code></li>
+<li><code>api/services/</code> (aggregate across trip<em>registration, notification, upgrade</em>eligibility, auto<em>upgrade, gallery</em>webhook)</li>
+<li><code>api/permissions.py</code></li>
+<li><code>api/background.py</code> (passes to step 8 also)</li>
+<li><strong>Output:</strong> <code>raw/06-code-review.md</code> — aggregated findings by file, each with file:line and severity</li>
+<li><strong>Acceptance:</strong> Every target file reviewed. Findings non-overlapping with step 10 (security) — overlaps merged in the final report.</li>
+</ul>
+<h2 id="step-7-performance-probes">Step 7 — Performance probes<a class="headerlink" href="#step-7-performance-probes" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Scope:</strong> Index hit-rate signals, N+1 hotspots, orphan data</li>
+<li><strong>Tools:</strong> <code>mcp__django-ai-boost__query_model</code> (aggregates only), <code>mcp__django-ai-boost__database_schema</code> for index visibility, <code>Grep</code> for <code>select_related</code>/<code>prefetch_related</code> patterns</li>
+<li><strong>Output:</strong> <code>raw/07-performance-probes.md</code> — per-hotspot finding: evidence + recommendation</li>
+<li><strong>Acceptance:</strong> At least: member lookup paths, trip registration joins, logbook skill references, notification log retention assessed. No raw PII rows captured.</li>
+</ul>
+<h2 id="step-8-async-task-audit">Step 8 — Async task audit<a class="headerlink" href="#step-8-async-task-audit" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Scope:</strong> <code>api/background.py</code> — Huey task design, retries, idempotency</li>
+<li><strong>Tools:</strong> Opus <code>general-purpose</code> agent with <code>django-celery-expert</code> skill patterns as reference (Huey semantics close enough)</li>
+<li><strong>Output:</strong> <code>raw/08-async-tasks.md</code> — per-task: idempotency, retry strategy, transaction boundary, error path, observability</li>
+<li><strong>Acceptance:</strong> All ~15 tasks listed in <code>CLAUDE.md §10</code> reviewed. Periodic tasks reviewed for drift.</li>
+</ul>
+<h2 id="step-9-architecture-sweep">Step 9 — Architecture sweep<a class="headerlink" href="#step-9-architecture-sweep" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Scope:</strong> Blast-radius hotspots, coupling, god-nodes</li>
+<li><strong>Tools:</strong> Opus <code>general-purpose</code> agent reading <code>graphify-out/GRAPH_REPORT.md</code>, then verifying top-fan-in nodes against source</li>
+<li><strong>Output:</strong> <code>raw/09-architecture.md</code> — top 10 highest-risk nodes with verified edges, refactor suggestions if any, false-positive Graphify edges noted</li>
+<li><strong>Acceptance:</strong> Findings tagged <code>medium</code> where Graphify-inferred unless verified in source.</li>
+</ul>
+<h2 id="step-10-security-pass">Step 10 — Security pass<a class="headerlink" href="#step-10-security-pass" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Scope:</strong> Pending-branch changes + well-known Django pitfalls</li>
+<li><strong>Tools:</strong> built-in <code>security-review</code> skill, cross-ref to <code>CLAUDE.md §7</code> (JWT), §8 (permissions), §15 (gotchas)</li>
+<li><strong>Output:</strong> <code>raw/10-security.md</code></li>
+<li><strong>Acceptance:</strong> Every finding has remediation and file:line. Known-false-positives filtered.</li>
+</ul>
+<h2 id="step-11-dependency-audit">Step 11 — Dependency audit<a class="headerlink" href="#step-11-dependency-audit" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Scope:</strong> CVEs in <code>requirements.txt</code> and <code>requirements-dev.txt</code></li>
+<li><strong>Tools:</strong> <code>pip-audit</code> (installed into <code>.venv</code> if missing)</li>
+<li><strong>Output:</strong> <code>raw/11-dependencies.md</code> — vulnerable packages, CVE IDs, fix versions</li>
+<li><strong>Acceptance:</strong> Both requirement files scanned. Zero-finding result explicitly stated.</li>
+</ul>
+<h2 id="step-12-documentation-drift">Step 12 — Documentation drift<a class="headerlink" href="#step-12-documentation-drift" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Scope:</strong> <code>CLAUDE.md</code> (and mirrored <code>SKILL.md</code>) vs reality</li>
+<li><strong>Tools:</strong> cross-ref outputs of steps 2, 3, 4, 5, 8, 10</li>
+<li><strong>Output:</strong> <code>raw/12-doc-drift.md</code> — sections of <code>CLAUDE.md</code> requiring update, with suggested edits</li>
+<li><strong>Acceptance:</strong> Every drift finding cites both the doc line and the source-of-truth file:line.</li>
+</ul>
+<hr />
+<h2 id="consolidation">Consolidation<a class="headerlink" href="#consolidation" title="Permanent link">&para;</a></h2>
+<p>After all 12 steps, the consolidated <code>audit-report.md</code> is assembled by:</p>
+<ol>
+<li>Merging findings from all <code>raw/*.md</code></li>
+<li>Deduplicating overlaps (e.g., a finding that appears in both step 6 and step 10 merges under whichever is more specific)</li>
+<li>Sorting by severity, then confidence, then step</li>
+<li>Assigning an owner hint (<code>models</code> / <code>views</code> / <code>services</code> / <code>infra</code> / <code>docs</code>) to each finding</li>
+<li>Producing a <strong>Top 10 highest-impact fixes</strong> list at the top</li>
+</ol>
+<h2 id="parallelism-schedule">Parallelism schedule<a class="headerlink" href="#parallelism-schedule" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Sequential (in-session):</strong> Steps 1, 2, 3, 4, 5, 7, 10, 11, 12</li>
+<li><strong>Parallel batch A (~7 Opus agents):</strong> Step 6 code reviewers, fired simultaneously</li>
+<li><strong>Parallel batch B (~2 Opus agents):</strong> Step 8 (async task deep-dive) + Step 9 (architecture sweep), fired simultaneously</li>
+</ul>
+<p>Total estimated subagent count: ~9. Plus ~30–50 MCP tool calls in-session.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

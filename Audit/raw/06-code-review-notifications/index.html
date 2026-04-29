@@ -1,0 +1,1676 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Next gen API for Abu Dhabi 4x4">
+      
+      
+        <meta name="author" content="Redbeard">
+      
+      
+        <link rel="canonical" href="https://api.ad4x4.com/readme/Audit/raw/06-code-review-notifications/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Code Review — Notifications Stack - AD4x4 API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#code-review-notifications-stack" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="AD4x4 API" class="md-header__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AD4x4 API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Code Review — Notifications Stack
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AD4x4 API" class="md-nav__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AD4x4 API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../practical-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Practical Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../auth-profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Auth and Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../vehicles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vehicles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../trip-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lead-trip-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lead Trip History
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../trips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trips
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../trip-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../trip-reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meeting-points/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meeting Points
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../logbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Logbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../logbook-migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logbook Migration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../upgrade-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../club-news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Club News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faqs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feedback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sponsorships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sponsorships
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notifications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gallery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gallery Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../here-maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HERE Maps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../global-settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Global Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background-tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background Tasks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../editable-strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../account-deletion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Account Deletion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../swagger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swagger UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../maintenance-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintenance Mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rate-limiting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rate Limiting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Findings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Findings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#f-01-critical-immutability-send_club_wide_news-flips-status-to-sent-inside-the-channel-fan-out-loop-so-partial-failures-leave-the-record-immutable-but-undelivered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-01 [critical] [immutability] send_club_wide_news flips status to SENT inside the channel fan-out loop, so partial failures leave the record immutable-but-undelivered
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-02-critical-on-commit-notifications-fire-during-add_users_from_waitlist-inside-an-implicit-transaction-rollback-still-pings-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-02 [critical] [on-commit] Notifications fire during add_users_from_waitlist inside an implicit transaction — rollback still pings users
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-03-high-idempotency-per-channel-huey-tasks-retry-independently-but-have-no-delivery-receipt-retries-duplicate-sends" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-03 [high] [idempotency] Per-channel Huey tasks retry independently but have no delivery receipt — retries duplicate sends
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-04-high-on-commit-clubnewsnotificationapiviewpost-enqueues-send_club_newsvalidated_data-with-raw-dict-not-persisted-clubnews" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-04 [high] [on-commit] ClubNewsNotificationAPIView.post enqueues send_club_news(validated_data) with raw dict, not persisted ClubNews
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-05-high-error-handling-swallowed-exceptions-in-notificationmanager-hide-channel-failures-from-hueys-retry-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-05 [high] [error-handling] Swallowed exceptions in NotificationManager hide channel failures from Huey's retry logic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-06-high-pii-dry-run-logs-dump-full-html-bodies-addresses-and-telegram-payloads-at-info-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-06 [high] [pii] Dry-run logs dump full HTML bodies, addresses, and Telegram payloads at INFO level
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-07-high-pii-phone-number-and-email-always-logged-by-telegramnotificationchannel_format_feedback_message-when-sent-for-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-07 [high] [pii] Phone number and email always logged by TelegramNotificationChannel._format_feedback_message when sent for real
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-08-high-template-injection-feedback-email-template-renders-user-supplied-message-without-escaping-and-uses-raw-html-body" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-08 [high] [template-injection] Feedback email template renders user-supplied message without escaping, and uses raw HTML body
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-09-high-batching-fcm-devices-fetched-without-only-select_related-and-iterated-instead-of-batched-where-possible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-09 [high] [batching] FCM devices fetched without .only() / .select_related() and iterated instead of batched where possible
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-10-medium-error-handling-_send_email-sleeps-inside-the-send-loop-with-no-bulk-send-no-chunking-no-async" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-10 [medium] [error-handling] _send_email sleeps inside the send loop with no bulk send, no chunking, no async
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-11-medium-perms-clubnewsnotificationapiview-does-not-check-permissionmatrix-falls-back-to-django-is_superuser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-11 [medium] [perms] ClubNewsNotificationAPIView does not check PermissionMatrix — falls back to Django is_superuser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-12-medium-perms-marknotificationlogasreadview-uses-a-createapiview-for-an-update-action" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-12 [medium] [perms] MarkNotificationLogAsReadView uses a CreateAPIView for an update action
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-13-medium-style-notificationlogviewsetget_queryset-hard-codes-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-13 [medium] [style] NotificationLogViewSet.get_queryset hard-codes [:20]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-14-medium-immutability-clubnewsviewset-is-read-only-but-list-filters-only-statussent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-14 [medium] [immutability] ClubNewsViewSet is read-only but list filters only status='SENT'
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-15-medium-style-notificationsettingsapiviewpatch-delegates-to-put-partial-semantics-correct-but-misleading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-15 [medium] [style] NotificationSettingsApiView.patch delegates to put — partial semantics correct but misleading
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-16-low-style-configurablesettingsobjectsfirst-called-without-none-guard-in-multiple-places" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-16 [low] [style] ConfigurableSettings.objects.first() called without None guard in multiple places
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-17-low-style-unused-variable-and-redundant-level_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-17 [low] [style] Unused variable and redundant level_name
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-18-low-style-send_upgrade_request_created-wrapped-per-channel-reveals-applicant-rather-than-using-cached-username-lookup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-18 [low] [style] send_upgrade_request_created wrapped per-channel reveals applicant rather than using cached username lookup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-19-nit-style-docstrings-and-logging-typos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-19 [nit] [style] Docstrings and logging typos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-findings-checked-not-an-issue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-findings (checked, not an issue)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="code-review-notifications-stack">Code Review — Notifications Stack<a class="headerlink" href="#code-review-notifications-stack" title="Permanent link">&para;</a></h1>
+<p>Audit date: 2026-04-22. Mode: READ-ONLY.</p>
+<p>Scope: <code>api/views/views_clubnews.py</code>, <code>api/views/views_notificationsettings.py</code>, <code>api/views/views_pushnotification.py</code>, <code>api/services/notification_service.py</code>, <code>api/services/email_notifications.py</code>, <code>api/services/push_notifications.py</code>, <code>api/services/telegram_notifications.py</code>, <code>api/services/store_notifications.py</code>.</p>
+<p>Referenced collaborators (read for context, not in audit scope): <code>api/background.py</code>, <code>api/signals.py</code>, <code>api/models/models.py</code> (ClubNews), <code>api/services/trip_registration_service.py</code>, <code>api/views/views_trip.py</code>, <code>templates/emails/*</code>.</p>
+<hr />
+<h2 id="findings">Findings<a class="headerlink" href="#findings" title="Permanent link">&para;</a></h2>
+<h3 id="f-01-critical-immutability-send_club_wide_news-flips-status-to-sent-inside-the-channel-fan-out-loop-so-partial-failures-leave-the-record-immutable-but-undelivered">F-01 [critical] [immutability] <code>send_club_wide_news</code> flips status to SENT <strong>inside</strong> the channel fan-out loop, so partial failures leave the record immutable-but-undelivered<a class="headerlink" href="#f-01-critical-immutability-send_club_wide_news-flips-status-to-sent-inside-the-channel-fan-out-loop-so-partial-failures-leave-the-record-immutable-but-undelivered" title="Permanent link">&para;</a></h3>
+<p>File: <code>api/services/notification_service.py</code> lines 125–134.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">send_club_wide_news</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">ClubNews</span><span class="p">):</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">channel</span><span class="o">.</span><span class="n">send_club_wide_news</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">ClubNewsStatus</span><span class="o">.</span><span class="n">SENT</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Two concrete problems flow from this block.</p>
+<ol>
+<li><strong>Double-send on Huey retry.</strong> <code>send_club_news</code> is declared <code>@task(retries=2, retry_delay=300)</code> in <code>api/background.py:80</code>. Channel implementations (<code>send_club_wide_news</code> in each channel) are <strong>also</strong> <code>@task()</code>-decorated — they enqueue nested Huey tasks. If any channel raises synchronously (e.g., the queryset blows up before enqueuing), the manager swallows it, flips status to SENT, saves. But on transient errors <em>before</em> the final <code>data.save()</code>, the outer <code>send_club_news</code> task will retry — and because <code>ClubNewsStatus.SENT</code> is set only on the final pass, the retry fans out to every channel again, enqueuing a second batch of per-channel tasks. Members receive duplicate emails/pushes.</li>
+<li><strong>Immutability trap on partial failure.</strong> The <code>try/except</code> inside the loop silently eats every exception from every channel, yet the manager still sets <code>status=SENT</code> unconditionally. If push succeeds but email fails, or vice-versa, the record is now immutable (<code>ClubNews.save()</code> raises <code>ValidationError</code> once <code>status==SENT</code>, §15) and cannot be resent or corrected. Admin has no way to retry just the failed channel short of DB surgery.</li>
+</ol>
+<p>Recommendation: move the <code>data.status = SENT; data.save()</code> into the successful branch of an all-channels-succeeded check, or drive status off an audit trail of per-channel delivery. At minimum, log a warning and skip the SENT flip if any channel raised.</p>
+<hr />
+<h3 id="f-02-critical-on-commit-notifications-fire-during-add_users_from_waitlist-inside-an-implicit-transaction-rollback-still-pings-users">F-02 [critical] [on-commit] Notifications fire during <code>add_users_from_waitlist</code> inside an implicit transaction — rollback still pings users<a class="headerlink" href="#f-02-critical-on-commit-notifications-fire-during-add_users_from_waitlist-inside-an-implicit-transaction-rollback-still-pings-users" title="Permanent link">&para;</a></h3>
+<p>File: <code>api/services/trip_registration_service.py</code> lines 29–41.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">while</span> <span class="n">trip</span><span class="o">.</span><span class="n">registered</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">trip</span><span class="o">.</span><span class="n">capacity</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">waitlist_registrations</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">waitlist_registrations</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">member</span>
+    <span class="n">trip</span><span class="o">.</span><span class="n">registered</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">through_defaults</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;trip&#39;</span><span class="p">:</span> <span class="n">trip</span><span class="p">})</span>
+    <span class="n">trip</span><span class="o">.</span><span class="n">waitlist</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="n">send_registration_from_waitlist_notification</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">trip</span><span class="p">)</span>
+</code></pre></div>
+
+<p><code>send_registration_from_waitlist_notification</code> is a Huey <code>@task</code> — in production it pushes a message to Redis immediately. If the request is wrapped in a <code>transaction.atomic()</code> block further up (DRF's <code>ATOMIC_REQUESTS</code> may or may not be on, but individual service flows like <code>trip_registration_service.remove_from_registered</code> can be called mid-transaction by upstream handlers) and that transaction rolls back, the waitlist moves are undone but the notification has already been enqueued — members get "you're registered" emails for trips they're no longer registered for.</p>
+<p>Same pattern in <code>remove_from_registered</code> (line 49) and <code>remove_from_waitlist</code>. Same pattern in <code>views_trip.py:107,516,517,541</code> where <code>send_trip_notification</code> and <code>send_trip_approval_notification</code> are fired right after <code>trip.save()</code> without <code>on_commit</code>.</p>
+<p>Recommendation: wrap every <code>send_*</code> enqueue in <code>transaction.on_commit(lambda: send_x(...))</code>. This is a one-line fix per call site and is the standard Django idiom for Celery/Huey-adjacent code.</p>
+<p>Signal <code>club_news_post_save</code> at <code>api/signals.py:89</code> has the same issue — <code>post_save</code> fires before the outer transaction commits, so on rollback the enqueued task runs against a row that no longer exists or still has the pre-save status.</p>
+<hr />
+<h3 id="f-03-high-idempotency-per-channel-huey-tasks-retry-independently-but-have-no-delivery-receipt-retries-duplicate-sends">F-03 [high] [idempotency] Per-channel Huey tasks retry independently but have no delivery receipt — retries duplicate sends<a class="headerlink" href="#f-03-high-idempotency-per-channel-huey-tasks-retry-independently-but-have-no-delivery-receipt-retries-duplicate-sends" title="Permanent link">&para;</a></h3>
+<p>Every channel method (<code>EmailNotificationChannel.send_new_trip_notification</code>, <code>PushNotificationChannel.send_new_trip_notification</code>, etc.) is itself <code>@task()</code>. None of them is idempotent: there is no "already sent" marker, no dedup key, no <code>NotificationLog.objects.get_or_create</code>. Combined with the outer <code>send_trip_notification</code> task (retries=2), a transient SMTP timeout that Huey treats as a failed task will re-enqueue the email task, which will re-run the full DB query and email every matching user again.</p>
+<p>The <code>StoreNotificationChannel.send_new_trip_notification</code> task creates <code>NotificationLog</code> rows with no uniqueness constraint (<code>store_notifications.py:30</code>). A retry produces duplicate rows.</p>
+<p>Recommendation: Either (a) introduce a compound unique constraint on <code>NotificationLog (member, type, related_object_id, related_object_type)</code> with <code>get_or_create</code> semantics, or (b) gate each channel task on a per-task idempotency key (e.g., <code>trip_id + channel_name</code>) stored in a <code>NotificationDispatch</code> audit table.</p>
+<hr />
+<h3 id="f-04-high-on-commit-clubnewsnotificationapiviewpost-enqueues-send_club_newsvalidated_data-with-raw-dict-not-persisted-clubnews">F-04 [high] [on-commit] <code>ClubNewsNotificationAPIView.post</code> enqueues <code>send_club_news(validated_data)</code> with raw dict, not persisted ClubNews<a class="headerlink" href="#f-04-high-on-commit-clubnewsnotificationapiviewpost-enqueues-send_club_newsvalidated_data-with-raw-dict-not-persisted-clubnews" title="Permanent link">&para;</a></h3>
+<p>File: <code>api/views/views_pushnotification.py</code> lines 26–30.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">serializer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_serializer</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">serializer</span><span class="o">.</span><span class="n">is_valid</span><span class="p">(</span><span class="n">raise_exception</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">send_club_news</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">validated_data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</code></pre></div>
+
+<p><code>send_club_news(data)</code> in <code>background.py:81</code> expects a <code>ClubNews</code> model instance (it calls <code>notification_manager.send_club_wide_news(data)</code>, which ends with <code>data.status = ClubNewsStatus.SENT; data.save()</code>). Here it is handed <code>serializer.validated_data</code>, which is a plain <code>dict</code>. The <code>.save()</code> call on a dict will raise <code>AttributeError</code> inside Huey — which will then retry the task twice (<code>retries=2</code>). Two retries of something that can never succeed, three failures logged per admin push.</p>
+<p>Additionally, <code>CustomPushNotificationSerializer</code> is a plain <code>serializers.Serializer</code>, not a <code>ModelSerializer</code> — <code>validated_data</code> will not contain the correct ClubNews fields (<code>title</code>, <code>content</code>, <code>levels</code>, <code>status</code>) in a shape the downstream consumer expects. The fan-out in email/push channels reads <code>data.levels.count()</code>, <code>data.title</code>, <code>data.content</code> — those only work on a model instance.</p>
+<p>This endpoint looks broken as shipped, or it is dead code. Either way, it warrants verification.</p>
+<hr />
+<h3 id="f-05-high-error-handling-swallowed-exceptions-in-notificationmanager-hide-channel-failures-from-hueys-retry-logic">F-05 [high] [error-handling] Swallowed exceptions in <code>NotificationManager</code> hide channel failures from Huey's retry logic<a class="headerlink" href="#f-05-high-error-handling-swallowed-exceptions-in-notificationmanager-hide-channel-failures-from-hueys-retry-logic" title="Permanent link">&para;</a></h3>
+<p>File: <code>api/services/notification_service.py</code> lines 71–192.</p>
+<p>Every <code>send_*</code> method on <code>NotificationManager</code> wraps its per-channel dispatch in <code>try/except Exception</code> + <code>logger.error</code> + <code>logger.exception</code>, and then <strong>continues</strong>. Outcomes:</p>
+<ul>
+<li>A real failure never propagates, so Huey's <code>@task(retries=2, retry_delay=300)</code> wrappers in <code>background.py</code> never see it and never retry.</li>
+<li><code>logger.exception(e)</code> called twice per failure (once as <code>error</code>, once as <code>exception</code>) produces two tracebacks in Sentry/logs per event, inflating noise.</li>
+<li>Operators cannot distinguish "one channel down, rest delivered" from "all channels down" via alerting.</li>
+</ul>
+<p>Recommendation: drop the <code>try/except</code> or re-raise after logging the first one. Let Huey retries handle transient failures. Use <code>logger.exception(...)</code> once — it already prints the message plus traceback; the extra <code>logger.error(...)</code> line before it is redundant.</p>
+<p>The per-method logging also has the typo <code>notificiation</code> (lines 77, 86 at minimum) — minor, but search-unfriendly.</p>
+<hr />
+<h3 id="f-06-high-pii-dry-run-logs-dump-full-html-bodies-addresses-and-telegram-payloads-at-info-level">F-06 [high] [pii] Dry-run logs dump full HTML bodies, addresses, and Telegram payloads at INFO level<a class="headerlink" href="#f-06-high-pii-dry-run-logs-dump-full-html-bodies-addresses-and-telegram-payloads-at-info-level" title="Permanent link">&para;</a></h3>
+<p>File: <code>api/services/email_notifications.py</code> lines 37, 169, 206, 239; <code>api/services/telegram_notifications.py</code> line 171.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Dry run: Email sent to </span><span class="si">{</span><span class="n">msg</span><span class="o">.</span><span class="n">to</span><span class="si">}</span><span class="s1"> with subject </span><span class="si">{</span><span class="n">msg</span><span class="o">.</span><span class="n">subject</span><span class="si">}</span><span class="s1"> and content </span><span class="si">{</span><span class="n">html_content</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>In dry-run mode, the full rendered HTML (including recipient name, phone, email, feedback body, trip details) is written to logs at INFO. Similarly <code>telegram_notifications.py:171</code> logs the formatted feedback message — which contains email, phone, and the first 200 chars of the user's feedback. These logs stream to Sentry breadcrumbs and any aggregation backend.</p>
+<p>Given dry-run is the default in dev (<code>NotificationSettings</code> default <code>notification_dry_run=True</code>, <code>models_util.py:69</code>) and the same logging path is hit every test run, this is GDPR-relevant PII in every dev/CI log stream.</p>
+<p>Recommendation: log subject + recipient count in dry-run mode, not the full body. If full-body dry-run is required for template debugging, gate it behind <code>DEBUG=True</code> or a separate flag and redact email addresses/phone numbers.</p>
+<hr />
+<h3 id="f-07-high-pii-phone-number-and-email-always-logged-by-telegramnotificationchannel_format_feedback_message-when-sent-for-real">F-07 [high] [pii] Phone number and email always logged by <code>TelegramNotificationChannel._format_feedback_message</code> when sent for real<a class="headerlink" href="#f-07-high-pii-phone-number-and-email-always-logged-by-telegramnotificationchannel_format_feedback_message-when-sent-for-real" title="Permanent link">&para;</a></h3>
+<p>File: <code>api/services/telegram_notifications.py</code> lines 148–156, 171.</p>
+<p>The formatted feedback message includes <code>user.email</code> and <code>user.phone</code>, and line 171 logs the entire formatted message before sending. Even outside dry-run, every feedback produces an INFO log containing email + phone + first 200 chars of message. This is production PII in logs.</p>
+<p>Recommendation: log only <code>feedback.id</code> and <code>feedback.user.username</code> at INFO; keep the full formatted message local to the <code>bot.send_message</code> call.</p>
+<hr />
+<h3 id="f-08-high-template-injection-feedback-email-template-renders-user-supplied-message-without-escaping-and-uses-raw-html-body">F-08 [high] [template-injection] Feedback email template renders user-supplied message <strong>without</strong> escaping, and uses raw HTML body<a class="headerlink" href="#f-08-high-template-injection-feedback-email-template-renders-user-supplied-message-without-escaping-and-uses-raw-html-body" title="Permanent link">&para;</a></h3>
+<p>File: <code>templates/emails/feedback_received.html</code> + <code>api/services/email_notifications.py:149–172</code>.</p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ context.message }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>Django templates autoescape by default, so <code>&lt;</code> becomes <code>&amp;lt;</code> in HTML context — that's safe. <strong>However</strong>: the <code>EmailMultiAlternatives</code> object in <code>send_feedback_notification</code> is constructed with <code>html_content</code> as the <em>plaintext body</em> (positional arg 2 of <code>EmailMultiAlternatives</code>, which is <code>body</code>). Then <code>msg.attach_alternative(html_content, "text/html")</code> attaches the same HTML as the HTML alternative. Result: the plaintext part of the email is literal HTML markup (not user-readable), and the HTML part relies entirely on the template engine's autoescape.</p>
+<p><code>feedback_received.html</code> does not use <code>|safe</code>, so Django's autoescape saves the day here. But this same pattern is used by <code>_send_email</code> (line 20) for every template. If anyone ever adds <code>{{ context.message|safe }}</code> or a custom admin-controlled template with HTML, feedback messages, trip titles, and trip lead display names become an HTML-injection vector that lands in an admin or member's inbox.</p>
+<p>Recommendation: (a) render a real plain-text body via a <code>.txt</code> template and pass it as the positional <code>body</code> arg, with the HTML going into <code>attach_alternative</code>. (b) document in <code>CLAUDE.md §14</code> that notification templates must never use <code>|safe</code> on user-controlled fields.</p>
+<p>Related: <code>trip.title</code> is rendered into push notification <code>body</code> and Telegram markdown. Push body is plain text and safe. Telegram uses <code>escape_markdown(..., version=2)</code> consistently except <code>_format_trip_message</code> line 49 — which does escape — so Telegram is OK. Email/HTML remains the risk surface.</p>
+<hr />
+<h3 id="f-09-high-batching-fcm-devices-fetched-without-only-select_related-and-iterated-instead-of-batched-where-possible">F-09 [high] [batching] FCM devices fetched without <code>.only()</code> / <code>.select_related()</code> and iterated instead of batched where possible<a class="headerlink" href="#f-09-high-batching-fcm-devices-fetched-without-only-select_related-and-iterated-instead-of-batched-where-possible" title="Permanent link">&para;</a></h3>
+<p>File: <code>api/services/push_notifications.py</code>.</p>
+<ul>
+<li><code>_send_msg_to_devices</code> calls <code>devices.send_message(...)</code> on a QuerySet — that is <code>fcm_django</code>'s batched bulk API. Good. But before sending it calls <code>devices.count()</code> (a separate SQL COUNT), then <code>send_message</code> re-evaluates the queryset — at minimum one redundant round trip. For larger sends this is two full queryset scans.</li>
+<li><code>send_new_trip_notification</code> (line 85) uses <code>len(users)</code> on a <code>values_list</code> queryset, which forces evaluation into a Python list; then <code>subscribed_user_devices = FCMDevice.objects.filter(user__in=users, active=True)</code> re-queries. Given <code>users</code> is already evaluated, passing it as a list is fine, but the pattern differs from <code>.exists()</code> / <code>.count()</code> elsewhere.</li>
+<li><code>send_club_wide_news</code> line 182: <code>if data.levels.count() == 0 and data.levels.count() == 0:</code> — duplicated condition; the second clause is a copy-paste bug. <code>data.levels.count()</code> is also called three times in a row — one cached call would suffice. Same duplication in <code>store_notifications.py:134</code> and <code>email_notifications.py:115</code>.</li>
+<li><code>send_club_wide_news</code> queries <code>NotificationSettings</code> without checking <code>last_user_activity</code> filtering that <code>store_notifications.py</code> does apply (60-day activity threshold) — inconsistent audience between channels. Email and push go to <em>everyone who opted in</em>; store goes to <em>active users only</em>. Dormant users get emails/push but no in-app notification entry.</li>
+</ul>
+<p>Recommendation: consolidate audience resolution into a helper so all three channels share the same query. Collapse the duplicated <code>.count()</code> check. Decide whether inactive users should receive any channel.</p>
+<hr />
+<h3 id="f-10-medium-error-handling-_send_email-sleeps-inside-the-send-loop-with-no-bulk-send-no-chunking-no-async">F-10 [medium] [error-handling] <code>_send_email</code> sleeps inside the send loop with no bulk send, no chunking, no async<a class="headerlink" href="#f-10-medium-error-handling-_send_email-sleeps-inside-the-send-loop-with-no-bulk-send-no-chunking-no-async" title="Permanent link">&para;</a></h3>
+<p>File: <code>api/services/email_notifications.py</code> lines 19–40.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">users</span><span class="p">:</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">to</span> <span class="o">=</span> <span class="p">[</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">]</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">attach_alternative</span><span class="p">(</span><span class="n">html_content</span><span class="p">,</span> <span class="s2">&quot;text/html&quot;</span><span class="p">)</span>
+    <span class="o">...</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">conf_settings</span><span class="o">.</span><span class="n">email_sleep_period_ms</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Two issues.</p>
+<ol>
+<li>Reusing the same <code>EmailMultiAlternatives</code> object across iterations: <code>msg.attach_alternative(html_content, "text/html")</code> <strong>appends</strong> a new alternative each iteration. By the Nth user, the message has N identical HTML alternatives attached. SMTP servers may reject or most clients render only the first, but the outgoing payload grows linearly — wasted bandwidth.</li>
+<li><code>time.sleep(...)</code> blocks the Huey worker thread. For a 1000-user club-wide news send at 100ms sleep, that's 100 seconds of blocked worker. Huey workers are a finite pool; other tasks back up. Use <code>@task()</code> per email with the sleep replaced by Huey's <code>delay=</code> scheduling, or batch via an SMTP-level rate limiter.</li>
+</ol>
+<p>Recommendation: instantiate <code>EmailMultiAlternatives</code> per-user inside the loop, or use <code>send_mass_mail</code> / a real transactional email service.</p>
+<hr />
+<h3 id="f-11-medium-perms-clubnewsnotificationapiview-does-not-check-permissionmatrix-falls-back-to-django-is_superuser">F-11 [medium] [perms] <code>ClubNewsNotificationAPIView</code> does not check <code>PermissionMatrix</code> — falls back to Django <code>is_superuser</code><a class="headerlink" href="#f-11-medium-perms-clubnewsnotificationapiview-does-not-check-permissionmatrix-falls-back-to-django-is_superuser" title="Permanent link">&para;</a></h3>
+<p>File: <code>api/views/views_pushnotification.py</code> line 20.</p>
+<p><code>permission_classes = (IsAdminUserOrReadOnly,)</code> which in <code>permissions.py:394</code> checks <code>request.user.is_superuser</code>. Per CLAUDE.md §8: "Do not use Django model-level permissions (<code>is_staff</code>, <code>is_superuser</code>) for business logic; those are admin-panel shortcuts only. […] every protected view must add a PermissionMatrix check." Sending a club-wide push is a protected action. Add a <code>PermissionMatrix.has_permission(request.user, ActionChoice.&lt;SEND_CLUB_NEWS_OR_SIMILAR&gt;)</code> check.</p>
+<hr />
+<h3 id="f-12-medium-perms-marknotificationlogasreadview-uses-a-createapiview-for-an-update-action">F-12 [medium] [perms] <code>MarkNotificationLogAsReadView</code> uses a <code>CreateAPIView</code> for an update action<a class="headerlink" href="#f-12-medium-perms-marknotificationlogasreadview-uses-a-createapiview-for-an-update-action" title="Permanent link">&para;</a></h3>
+<p>File: <code>api/views/views_pushnotification.py</code> lines 33–58.</p>
+<p>A mark-as-read operation is not a create — it mutates existing rows. Using <code>CreateAPIView</code> with an unbound <code>queryset = NotificationLog.objects.all()</code> exposes all notification logs via DRF's generic introspection (e.g., OPTIONS), which a non-admin can call. The actual <code>post</code> method correctly filters by <code>member=request.user</code>, so the data path is safe, but the view shape is misleading.</p>
+<p>Minor: <code>notifications.count() != len(notification_ids)</code> treats duplicates in the input as errors (count of distinct matches vs count of input IDs). <code>[1, 1, 2]</code> with two existing rows returns 400 because <code>count=2</code> vs <code>len=3</code>. Deduplicate the input first or use <code>set(notification_ids)</code>.</p>
+<p>Recommendation: use <code>APIView</code> with PATCH semantics, or at minimum an explicit <code>@action(detail=False, methods=['post'])</code> on <code>NotificationLogViewSet</code>.</p>
+<hr />
+<h3 id="f-13-medium-style-notificationlogviewsetget_queryset-hard-codes-20">F-13 [medium] [style] <code>NotificationLogViewSet.get_queryset</code> hard-codes <code>[:20]</code><a class="headerlink" href="#f-13-medium-style-notificationlogviewsetget_queryset-hard-codes-20" title="Permanent link">&para;</a></h3>
+<p>File: <code>api/views/views_pushnotification.py</code> lines 65–67.</p>
+<p>Returning the latest 20 notifications bypasses DRF pagination (<code>StandardResultsSetPagination</code>) because slicing a queryset prevents it from being paginated by DRF. Clients cannot retrieve older notifications. Given <code>NotificationLog</code> is purged at 60 days, this is a soft-limit of 20 latest in a 60-day window. Prefer real pagination; if a "last 20" view is really wanted, expose it as a distinct action and keep the default listing paginated.</p>
+<hr />
+<h3 id="f-14-medium-immutability-clubnewsviewset-is-read-only-but-list-filters-only-statussent">F-14 [medium] [immutability] <code>ClubNewsViewSet</code> is read-only but list filters only <code>status='SENT'</code><a class="headerlink" href="#f-14-medium-immutability-clubnewsviewset-is-read-only-but-list-filters-only-statussent" title="Permanent link">&para;</a></h3>
+<p>File: <code>api/views/views_clubnews.py</code> lines 8–15.</p>
+<p><code>queryset = ClubNews.objects.filter(status='SENT')</code> uses a hard-coded string rather than <code>ClubNewsStatus.SENT</code>. <code>ClubNewsStatus</code> is an enum (used elsewhere). Use the enum constant to avoid drift if the value is renamed.</p>
+<p>Also: the ViewSet is <code>ReadOnlyModelViewSet</code> and <code>permissions.AllowAny</code>, so anonymous users can read all SENT club news. Per §6 documented endpoints this appears intentional, but given some news is level-gated (<code>levels</code> M2M), an anonymous client sees news intended only for specific levels — the level filter is only applied at <em>send</em> time, not at <em>read</em> time. If that's the intent, document it; if not, add a queryset filter tied to <code>request.user.level</code>.</p>
+<hr />
+<h3 id="f-15-medium-style-notificationsettingsapiviewpatch-delegates-to-put-partial-semantics-correct-but-misleading">F-15 [medium] [style] <code>NotificationSettingsApiView.patch</code> delegates to <code>put</code> — partial semantics correct but misleading<a class="headerlink" href="#f-15-medium-style-notificationsettingsapiviewpatch-delegates-to-put-partial-semantics-correct-but-misleading" title="Permanent link">&para;</a></h3>
+<p>File: <code>api/views/views_notificationsettings.py</code> lines 24–34.</p>
+<p>Both <code>put</code> and <code>patch</code> use <code>partial=True</code>, which is correct for PATCH but <strong>wrong for PUT</strong> — PUT should require the full representation. Tests and clients can therefore omit required fields and still get 200 from a PUT. Either enforce <code>partial=False</code> on PUT or collapse into a single PATCH-only view (DRF has <code>UpdateAPIView</code> with GET+PATCH support).</p>
+<p><code>get_or_create(member_id=self.request.user.id)</code> runs on every GET — creating a row on read is a side effect that makes <code>GET /profile/notificationsettings</code> non-idempotent. Prefer <code>get_or_create</code> in a signal on Member creation (or lazy-create on first PATCH only).</p>
+<hr />
+<h3 id="f-16-low-style-configurablesettingsobjectsfirst-called-without-none-guard-in-multiple-places">F-16 [low] [style] <code>ConfigurableSettings.objects.first()</code> called without <code>None</code> guard in multiple places<a class="headerlink" href="#f-16-low-style-configurablesettingsobjectsfirst-called-without-none-guard-in-multiple-places" title="Permanent link">&para;</a></h3>
+<p>Files: <code>api/services/push_notifications.py:18,41,58</code>; <code>api/services/email_notifications.py:220</code>.</p>
+<p>Per CLAUDE.md §15: "ConfigurableSettings.objects.first() can return None. […] Always guard: check for None before accessing fields, or use the global_settings.py service which handles this." Email code already uses <code>get_global_settings()</code> in <code>_send_email</code> but the two account-deletion paths use the raw <code>.first()</code> (line 220 in email). Push code always uses raw <code>.first()</code>. In test/dev if the settings row is missing, every push enqueue raises <code>AttributeError</code> inside the Huey worker, which then silently retries.</p>
+<hr />
+<h3 id="f-17-low-style-unused-variable-and-redundant-level_name">F-17 [low] [style] Unused variable and redundant <code>level_name</code><a class="headerlink" href="#f-17-low-style-unused-variable-and-redundant-level_name" title="Permanent link">&para;</a></h3>
+<p>File: <code>api/services/push_notifications.py</code> lines 87, 20.</p>
+<p>Line 87: <code>level_name = trip.level.name</code> is assigned but never used. Line 20: <code>NotificationType</code> imported but also used via <code>store_notifications.py:10</code> — fine, but the unused local at line 87 is dead code. Same in <code>store_notifications.py:19</code> (<code>level_name = trip.level.name</code> never read).</p>
+<hr />
+<h3 id="f-18-low-style-send_upgrade_request_created-wrapped-per-channel-reveals-applicant-rather-than-using-cached-username-lookup">F-18 [low] [style] <code>send_upgrade_request_created</code> wrapped per-channel reveals applicant rather than using cached username lookup<a class="headerlink" href="#f-18-low-style-send_upgrade_request_created-wrapped-per-channel-reveals-applicant-rather-than-using-cached-username-lookup" title="Permanent link">&para;</a></h3>
+<p>File: <code>api/services/email_notifications.py</code> lines 94–98.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">username</span> <span class="o">=</span> <span class="n">upgrade_request</span><span class="o">.</span><span class="n">applicant_str</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">upgrade_request</span><span class="o">.</span><span class="n">applicant</span><span class="o">.</span><span class="n">username</span>
+<span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+    <span class="k">pass</span>
+</code></pre></div>
+
+<p>Replace with <code>username = upgrade_request.applicant.username if upgrade_request.applicant else upgrade_request.applicant_str</code> — clearer and avoids using exception flow for regular logic.</p>
+<hr />
+<h3 id="f-19-nit-style-docstrings-and-logging-typos">F-19 [nit] [style] Docstrings and logging typos<a class="headerlink" href="#f-19-nit-style-docstrings-and-logging-typos" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>notificiation</code> misspelled in <code>notification_service.py</code> lines 77, 86, 95, 104, 113.</li>
+<li><code>send_club_wide_news</code> duplicated condition <code>data.levels.count() == 0 and data.levels.count() == 0</code> in three files.</li>
+<li><code>email_notifications.py:153</code> f-string with no interpolation: <code>f'templates/emails/feedback_received.html'</code>.</li>
+</ul>
+<hr />
+<h2 id="non-findings-checked-not-an-issue">Non-findings (checked, not an issue)<a class="headerlink" href="#non-findings-checked-not-an-issue" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Telegram escaping uses <code>escape_markdown(..., version=2)</code> consistently; no Markdown injection via user content.</li>
+<li><code>ClubNews.save()</code> does enforce immutability once <code>status=SENT</code> (<code>models.py:155–161</code>), so direct DB writes are safe. The risk in F-01 is the <em>application flow</em> producing a SENT record when the send was partial, not the model check itself.</li>
+<li>Push notifications already use <code>fcm_django</code>'s batched <code>send_message</code> on a QuerySet rather than per-device iteration — batching works correctly.</li>
+</ul>
+<hr />
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Severity</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>critical</td>
+<td>2</td>
+</tr>
+<tr>
+<td>high</td>
+<td>7</td>
+</tr>
+<tr>
+<td>medium</td>
+<td>6</td>
+</tr>
+<tr>
+<td>low</td>
+<td>3</td>
+</tr>
+<tr>
+<td>nit</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Highest-leverage fixes: add <code>transaction.on_commit</code> wrappers at every <code>send_*</code> call site (F-02), and restructure <code>send_club_wide_news</code> so SENT is only set on all-success (F-01). Those two together eliminate the double-send and immutability-on-failure paths. F-04 warrants verification to determine if <code>ClubNewsNotificationAPIView</code> is reachable in production or dead.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

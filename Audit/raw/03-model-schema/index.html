@@ -1,0 +1,1594 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Next gen API for Abu Dhabi 4x4">
+      
+      
+        <meta name="author" content="Redbeard">
+      
+      
+        <link rel="canonical" href="https://api.ad4x4.com/readme/Audit/raw/03-model-schema/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Step 3 — Model & Schema Drift - AD4x4 API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#step-3-model-schema-drift" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="AD4x4 API" class="md-header__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AD4x4 API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Step 3 — Model &amp; Schema Drift
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AD4x4 API" class="md-nav__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AD4x4 API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../practical-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Practical Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../auth-profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Auth and Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../vehicles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vehicles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../trip-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lead-trip-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lead Trip History
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../trips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trips
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../trip-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../trip-reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../meeting-points/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meeting Points
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../logbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Logbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../logbook-migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logbook Migration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../upgrade-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../club-news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Club News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faqs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feedback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sponsorships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sponsorships
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notifications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gallery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gallery Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../here-maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HERE Maps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../global-settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Global Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../background-tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background Tasks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../editable-strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../account-deletion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Account Deletion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../swagger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swagger UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../maintenance-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintenance Mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rate-limiting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rate Limiting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#caveat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caveat
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model inventory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Findings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Findings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#medium-confidence-high-11-models-missing-from-claudemd-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [medium / confidence high] 11+ models missing from CLAUDE.md §5
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-confidence-high-tripregistrationcancellationreason-is-a-cancellation-audit-table-with-no-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [high / confidence high] TripRegistrationCancellationReason is a cancellation audit table with no documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medium-confidence-high-membertoken_version-still-present-cleanup-pr-still-pending" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [medium / confidence high] Member.token_version still present — cleanup PR still pending
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medium-confidence-medium-membergender-max_length3-for-single-char-codes-mfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [medium / confidence medium] Member.gender max_length=3 for single-char codes (M/F/O)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medium-confidence-high-vehiclebrand-max_length8-might-clip-new-brands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [medium / confidence high] Vehicle.brand max_length=8 — might clip new brands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#low-confidence-high-vehiclename-exists-but-not-in-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [low / confidence high] Vehicle.name exists but not in §5
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#low-confidence-high-upgraderequestapplicant_reason-uses-max_length1500-on-a-textfield" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [low / confidence high] UpgradeRequest.applicant_reason uses max_length=1500 on a TextField
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medium-confidence-high-logbookskillreference-has-no-unique-constraint-on-member-trip-logbook_skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [medium / confidence high] LogbookSkillReference has no unique constraint on (member, trip, logbook_skill)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#low-confidence-medium-explicit-db_indextrue-is-used-on-hot-paths-but-coverage-may-be-uneven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [low / confidence medium] Explicit db_index=True is used on hot paths but coverage may be uneven
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#low-confidence-high-configurablesettingsemail_sleep_period_ms-naming-suggests-milliseconds-but-claudemd-5-says-email-sleep-period" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [low / confidence high] ConfigurableSettings.email_sleep_period_ms naming suggests milliseconds but CLAUDE.md §5 says "email sleep period"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#low-confidence-high-configurablesettingsnotification_dry_run-is-the-actual-field-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [low / confidence high] ConfigurableSettings.notification_dry_run is the actual field name
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#low-confidence-high-configurablesettingsvehicle_limit_per_member-exists-good" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [low / confidence high] ConfigurableSettings.vehicle_limit_per_member exists (good)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-level-positives-verified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model-level positives verified
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="step-3-model-schema-drift">Step 3 — Model &amp; Schema Drift<a class="headerlink" href="#step-3-model-schema-drift" title="Permanent link">&para;</a></h1>
+<p>Cross-reference of <code>mcp__django-ai-boost__list_models</code> output vs <code>CLAUDE.md §5</code> vs <code>api/models/*.py</code> source.</p>
+<h2 id="caveat">Caveat<a class="headerlink" href="#caveat" title="Permanent link">&para;</a></h2>
+<p><code>mcp__django-ai-boost__database_schema</code> failed (dev DB <code>dev</code> doesn't exist). This step relies on Django ORM model introspection only — custom indexes/constraints added via raw SQL in migrations would not be detected. Recommended follow-up: create a throwaway DB, run migrations, re-run <code>database_schema</code> to catch any migration-level schema that bypasses ORM declaration.</p>
+<h2 id="model-inventory">Model inventory<a class="headerlink" href="#model-inventory" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Total models in <code>api</code> + <code>website</code>:</strong> 33</li>
+<li><strong>Models documented in CLAUDE.md §5:</strong> 19</li>
+</ul>
+<h2 id="findings">Findings<a class="headerlink" href="#findings" title="Permanent link">&para;</a></h2>
+<h3 id="medium-confidence-high-11-models-missing-from-claudemd-5">[medium / confidence high] 11+ models missing from <code>CLAUDE.md §5</code><a class="headerlink" href="#medium-confidence-high-11-models-missing-from-claudemd-5" title="Permanent link">&para;</a></h3>
+<p>These models exist in source (and most are exposed via endpoints documented in §6) but are absent from §5's model catalog:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Used in</th>
+<th>§5 status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NotificationSettings</code></td>
+<td>auth profile endpoint, notifications</td>
+<td>Missing</td>
+</tr>
+<tr>
+<td><code>TripRegistrationCancellationReason</code></td>
+<td>cancel/remove flows (§10)</td>
+<td>Missing</td>
+</tr>
+<tr>
+<td><code>TripComment</code></td>
+<td><code>/api/tripcomments/</code> endpoint (§6)</td>
+<td>Missing</td>
+</tr>
+<tr>
+<td><code>UpgradeRequestComment</code></td>
+<td><code>/api/upgraderequestcomments/</code> (§6)</td>
+<td>Missing</td>
+</tr>
+<tr>
+<td><code>LogbookMigrationSkillEntry</code></td>
+<td><code>LogbookMigrationRequest</code> → skill_entries</td>
+<td>Missing</td>
+</tr>
+<tr>
+<td><code>Feedback</code></td>
+<td><code>/api/feedback/</code> (§6)</td>
+<td>Missing</td>
+</tr>
+<tr>
+<td><code>TripReport</code></td>
+<td><code>/api/tripreports/</code> (§6)</td>
+<td>Missing</td>
+</tr>
+<tr>
+<td><code>TripReportImage</code></td>
+<td>child of <code>TripReport</code></td>
+<td>Missing</td>
+</tr>
+<tr>
+<td><code>MeetingPoint</code></td>
+<td>FK from <code>Trip</code></td>
+<td>Mentioned, not catalogued</td>
+</tr>
+<tr>
+<td><code>UIString</code></td>
+<td><code>/api/strings/</code> (§6)</td>
+<td>Missing</td>
+</tr>
+<tr>
+<td><code>FaqEntry</code></td>
+<td><code>/api/faqs/</code> (§6)</td>
+<td>Missing</td>
+</tr>
+<tr>
+<td><code>Sponsorship</code></td>
+<td><code>/api/sponsors/</code> (§6)</td>
+<td>Missing</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Recommendation:</strong> Extend §5 with short stanzas for each. Template:</p>
+<div class="codehilite"><pre><span></span><code>### TripComment
+`trip` (FK→Trip), `member` (FK→Member), `comment` (TextField, nullable), `created`.
+</code></pre></div>
+
+<h3 id="high-confidence-high-tripregistrationcancellationreason-is-a-cancellation-audit-table-with-no-documentation">[high / confidence high] <code>TripRegistrationCancellationReason</code> is a cancellation audit table with no documentation<a class="headerlink" href="#high-confidence-high-tripregistrationcancellationreason-is-a-cancellation-audit-table-with-no-documentation" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Fields:</strong> <code>trip</code>, <code>member</code>, <code>removed_by</code> (nullable FK, for admin removals), <code>removal_date</code>, <code>reason</code> (TextField)</li>
+<li><strong>Why it matters:</strong> This model persists every cancellation/removal. It's the audit log for who removed whom and why. Critical for disputes, but currently has no mention in §5, no admin note in <code>CLAUDE.md §11</code>, and the trip-flow agent found async tasks whose signature expects this model (see <code>raw/06-code-review-trip-flow.md</code> and <code>raw/08-async-tasks.md</code> — the call sites pass <code>(user, trip)</code> where the task expects a <code>TripRegistrationCancellationReason</code> instance).</li>
+<li><strong>Recommendation:</strong> Add to §5. Also verify retention policy — does this get purged, ever?</li>
+</ul>
+<h3 id="medium-confidence-high-membertoken_version-still-present-cleanup-pr-still-pending">[medium / confidence high] <code>Member.token_version</code> still present — cleanup PR still pending<a class="headerlink" href="#medium-confidence-high-membertoken_version-still-present-cleanup-pr-still-pending" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Field:</strong> <code>Member.token_version</code> (PositiveIntegerField)</li>
+<li><strong>Evidence:</strong> <code>list_models</code> confirms the column is still on the model. Per <code>CLAUDE.md §7</code> and §15, this is "legacy, unused" — session invalidation now flows through simplejwt's <code>token_blacklist</code>.</li>
+<li><strong>Auth review agent (a90998f56c9ac802c) confirmed</strong> nothing in <code>views_auth.py</code>, <code>permissions.py</code>, or <code>util.py</code> reads or writes it.</li>
+<li><strong>Recommendation:</strong> Create the follow-up PR mentioned in §15 — drop the column in a migration. Until it's gone, each <code>Member</code> row carries an unused 4-byte int.</li>
+</ul>
+<h3 id="medium-confidence-medium-membergender-max_length3-for-single-char-codes-mfo">[medium / confidence medium] <code>Member.gender</code> <code>max_length=3</code> for single-char codes (M/F/O)<a class="headerlink" href="#medium-confidence-medium-membergender-max_length3-for-single-char-codes-mfo" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Field:</strong> <code>gender = CharField(max_length=3)</code></li>
+<li><strong>Rationale unclear:</strong> single-char codes need only <code>max_length=1</code>. <code>3</code> might be legacy or intentional extensibility (e.g. for future codes). No <code>CLAUDE.md §5</code> comment explains.</li>
+<li><strong>Recommendation:</strong> Either (a) shorten to <code>max_length=1</code> in a tiny migration, or (b) document the 3-char reservation in <code>§5</code> (e.g. for future non-binary codes).</li>
+</ul>
+<h3 id="medium-confidence-high-vehiclebrand-max_length8-might-clip-new-brands">[medium / confidence high] <code>Vehicle.brand</code> <code>max_length=8</code> — might clip new brands<a class="headerlink" href="#medium-confidence-high-vehiclebrand-max_length8-might-clip-new-brands" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Field:</strong> <code>brand = CharField(max_length=8)</code></li>
+<li><strong>Evidence:</strong> Doc §5 says "74 CarBrand choices". Brand codes are stored as short tokens, so 8 is likely enough, but the enum is in <code>api/choices.py</code>. Any future brand with a longer code fails silently at write time.</li>
+<li><strong>Recommendation:</strong> Grep <code>api/choices.py</code> for the longest <code>CarBrand</code> token; if 8 is hit, bump to 16 proactively.</li>
+</ul>
+<h3 id="low-confidence-high-vehiclename-exists-but-not-in-5">[low / confidence high] <code>Vehicle.name</code> exists but not in §5<a class="headerlink" href="#low-confidence-high-vehiclename-exists-but-not-in-5" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>CLAUDE.md §5</code> lists <code>brand</code>, <code>model</code>, <code>year</code>, <code>color</code>, <code>image</code>, <code>is_primary</code> for Vehicle. Actual model also has <code>name</code> (CharField, nullable).</li>
+<li><strong>Recommendation:</strong> Add <code>name</code> to §5.</li>
+</ul>
+<h3 id="low-confidence-high-upgraderequestapplicant_reason-uses-max_length1500-on-a-textfield">[low / confidence high] <code>UpgradeRequest.applicant_reason</code> uses <code>max_length=1500</code> on a TextField<a class="headerlink" href="#low-confidence-high-upgraderequestapplicant_reason-uses-max_length1500-on-a-textfield" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Evidence:</strong> <code>TextField</code> ignores <code>max_length</code> at the DB level. It only constrains form rendering.</li>
+<li><strong>Impact:</strong> A malicious or buggy client can submit 1 MB of <code>applicant_reason</code> and the DB will accept it; DRF validates only up to <code>max_length</code> <strong>if</strong> the serializer is a <code>CharField(style='textarea', max_length=1500)</code>. Verify the serializer enforces it.</li>
+<li><strong>Recommendation:</strong> Add an explicit check in the serializer (<code>validate_applicant_reason</code>), or convert to <code>CharField(max_length=1500)</code> since the length is bounded.</li>
+</ul>
+<h3 id="medium-confidence-high-logbookskillreference-has-no-unique-constraint-on-member-trip-logbook_skill">[medium / confidence high] <code>LogbookSkillReference</code> has no unique constraint on <code>(member, trip, logbook_skill)</code><a class="headerlink" href="#medium-confidence-high-logbookskillreference-has-no-unique-constraint-on-member-trip-logbook_skill" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Evidence:</strong> <code>list_models</code> shows the three FKs but no <code>UniqueConstraint</code>. Cross-reference with logbook review agent (<code>raw/06-code-review-logbook.md</code> finding F3/F4): the service layer mitigates by deleting-and-reinserting, but that wipes data if two marshals write entries for the same trip.</li>
+<li><strong>Recommendation:</strong> Add in a migration:
+  <code>python
+  class Meta:
+      constraints = [
+          models.UniqueConstraint(
+              fields=['member', 'trip', 'logbook_skill'],
+              name='uniq_logbook_skill_ref_per_trip',
+          ),
+      ]</code>
+  Then replace the delete-reinsert in <code>_manage_logbook_skill_references</code> with <code>update_or_create</code>.</li>
+</ul>
+<h3 id="low-confidence-medium-explicit-db_indextrue-is-used-on-hot-paths-but-coverage-may-be-uneven">[low / confidence medium] Explicit <code>db_index=True</code> is used on hot paths but coverage may be uneven<a class="headerlink" href="#low-confidence-medium-explicit-db_indextrue-is-used-on-hot-paths-but-coverage-may-be-uneven" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Files with explicit <code>db_index=True</code>:</strong> <code>models_trip.py</code> (start<em>time, end</em>time, approval<em>status, TripRegistration member/trip/checked</em>in), <code>models_member.py</code> (Meta indexes), <code>models_upgraderequest.py</code> (Meta indexes), <code>models_vehicle.py</code>, <code>models_sponsors.py</code>, <code>models_geocoding_cache.py</code>.</li>
+<li><strong>Not explicitly indexed but likely filtered:</strong></li>
+<li><code>NotificationLog.timestamp</code> (purged after 60 days — purge scan benefits from index)</li>
+<li><code>NotificationLog.is_read</code> (mark-as-read queries)</li>
+<li><code>TripRegistration.registration_date</code></li>
+<li><code>UpgradeRequest.verdict_date</code> (sorting)</li>
+<li><code>LogbookEntry.created_at</code> (listing)</li>
+<li><code>ClubNews.submit_date</code> (ordering)</li>
+<li><strong>Recommendation:</strong> Spot-check with a real query profile. For each of the above, if it's used in <code>filter</code> / <code>order_by</code> in more than a couple of places, add <code>db_index=True</code> or a <code>Meta.indexes = [models.Index(fields=['...'])]</code>. Not urgent until traffic grows.</li>
+</ul>
+<h3 id="low-confidence-high-configurablesettingsemail_sleep_period_ms-naming-suggests-milliseconds-but-claudemd-5-says-email-sleep-period">[low / confidence high] <code>ConfigurableSettings.email_sleep_period_ms</code> naming suggests milliseconds but CLAUDE.md §5 says "email sleep period"<a class="headerlink" href="#low-confidence-high-configurablesettingsemail_sleep_period_ms-naming-suggests-milliseconds-but-claudemd-5-says-email-sleep-period" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Field:</strong> <code>email_sleep_period_ms = PositiveSmallIntegerField(...)</code></li>
+<li><strong>Observation:</strong> <code>PositiveSmallIntegerField</code> max = 32,767. If the suffix really means ms, max sleep is ~33 seconds — fine for batch pacing. Not a bug but <code>§5</code> should note the unit.</li>
+<li>Notifications-review agent (<code>raw/06-code-review-notifications.md</code>) also noted <code>time.sleep</code> usage blocking Huey workers — worth cross-reference.</li>
+<li><strong>Recommendation:</strong> Clarify the doc: "between-email sleep in ms" and verify <code>email_notifications.py</code> converts to seconds for <code>time.sleep</code>.</li>
+</ul>
+<h3 id="low-confidence-high-configurablesettingsnotification_dry_run-is-the-actual-field-name">[low / confidence high] <code>ConfigurableSettings.notification_dry_run</code> is the actual field name<a class="headerlink" href="#low-confidence-high-configurablesettingsnotification_dry_run-is-the-actual-field-name" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>CLAUDE.md §5</code> says "notification dry-run toggle" but doesn't give the exact field name.</li>
+<li>Notifications-review agent found the toggle exists but may not be respected by all channels.</li>
+<li><strong>Recommendation:</strong> §5 already uses a prose description; confirm all 4 channels honor <code>notification_dry_run</code> (see <code>raw/06-code-review-notifications.md</code>).</li>
+</ul>
+<h3 id="low-confidence-high-configurablesettingsvehicle_limit_per_member-exists-good">[low / confidence high] <code>ConfigurableSettings.vehicle_limit_per_member</code> exists (good)<a class="headerlink" href="#low-confidence-high-configurablesettingsvehicle_limit_per_member-exists-good" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Confirms <code>CLAUDE.md §5</code> claim. The member-flow agent found a TOCTOU in enforcement (<code>raw/06-code-review-member-flow.md</code>).</li>
+</ul>
+<h2 id="model-level-positives-verified">Model-level positives verified<a class="headerlink" href="#model-level-positives-verified" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>GeocodingCache</code> has <code>Meta.indexes</code> on (lat, lon) — confirmed.</li>
+<li><code>Vehicle.Meta.indexes</code> exists — confirmed (likely on <code>member</code> + <code>is_primary</code> for primary-lookup speed).</li>
+<li><code>Sponsorship.Meta.indexes</code> exists — confirmed.</li>
+<li><code>LogbookSkillCategory</code> matches §5.</li>
+<li><code>PayPalConfiguration</code> field types match (DecimalField for amounts, short CharField for ISO currency codes).</li>
+</ul>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Critical model-level gap: <code>LogbookSkillReference</code> needs a unique constraint (tied to data-integrity finding in Step 6 logbook review).</li>
+<li>Documentation-level gap: 11+ undocumented models in §5, most notably <code>TripRegistrationCancellationReason</code>.</li>
+<li>Hygiene: drop legacy <code>Member.token_version</code> column.</li>
+<li>Small schema clarifications on enum field widths.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
