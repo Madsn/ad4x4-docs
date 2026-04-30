@@ -3006,7 +3006,7 @@
 2. Check Club News for announced downtime windows.
 3. See <a href="../maintenance-mode/">Maintenance Mode</a> for the full mechanism and recommended client behaviour.</p>
 <blockquote>
-<p><strong>Note:</strong> There is no Django-level maintenance mode — 503 responses always originate from the nginx layer, either from the deliberate maintenance toggle or from an upstream failure. Clients should match on <code>503 + Retry-After</code> to detect a deliberate maintenance state, and treat it as a transient operational state rather than an application error (do not send to Sentry).</p>
+<p><strong>Note:</strong> There is no Django-level maintenance mode — 503 responses always originate from the nginx layer, either from the deliberate maintenance toggle or from an upstream failure. Clients should match on <code>503 + Retry-After</code> to detect a deliberate maintenance state, and treat it as a transient operational state rather than an application error (do not send to Sentry). Django admin paths are exempt so operators can still access <code>/admin/</code> during maintenance.</p>
 </blockquote>
 <h3 id="pagination-issues">Pagination Issues<a class="headerlink" href="#pagination-issues" title="Permanent link">&para;</a></h3>
 <h4 id="count-0-with-no-results">"count": 0 with no results<a class="headerlink" href="#count-0-with-no-results" title="Permanent link">&para;</a></h4>

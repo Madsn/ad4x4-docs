@@ -434,6 +434,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#explorers" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1500,6 +1511,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#explorers" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1751,6 +1773,18 @@
 </thead>
 <tbody>
 <tr>
+<td>N/A</td>
+<td>Club Event</td>
+<td>5</td>
+<td>Level only; no default group</td>
+</tr>
+<tr>
+<td>ANIT</td>
+<td>ANIT</td>
+<td>10</td>
+<td>Auto-upgrade source level</td>
+</tr>
+<tr>
 <td>Newbies</td>
 <td>Newbie</td>
 <td>10</td>
@@ -1835,19 +1869,34 @@
 <h3 id="newbies">Newbies<a class="headerlink" href="#newbies" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Can search for members in the member directory.</li>
+<li>Can search trips.</li>
+</ul>
+<h3 id="advanced">Advanced<a class="headerlink" href="#advanced" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Can be a deputy lead for Intermediate, Advanced, Expert, and Explorer trips.</li>
 </ul>
 <h3 id="explorers">Explorers<a class="headerlink" href="#explorers" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Can create trips that require approval for the "Newbie" level.</li>
-<li>Can create trips that do <em>not</em> require approval for "Intermediate" level and above.</li>
+<li>Can create trips that do <em>not</em> require approval for Intermediate, Advanced, Expert, and Explorer levels.</li>
 <li>Can create meeting points.</li>
 <li>Can view contact information of other members.</li>
-<li>Can create logbook entries and sign off on skills for trips they lead or support</li>
+<li>Can view member trip history.</li>
+<li>Can create logbook entries and sign off on skills for trips they lead or support.</li>
 </ul>
 <h3 id="marshals">Marshals<a class="headerlink" href="#marshals" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Can create trips without requiring approval.</li>
+<li>Can create trips that require approval.</li>
+<li>Can approve, edit, and delete trips.</li>
+<li>Can edit trip media and trip registrations.</li>
+<li>Can delete trip comments.</li>
+<li>Can edit and delete meeting points.</li>
+<li>Can view trips where they are lead or deputy lead.</li>
+<li>Can view member trip history.</li>
 <li>Can view, vote on, and comment on upgrade requests.</li>
+<li>Can create logbook entries for Newbie, Intermediate, Advanced, Expert, and Explorer levels.</li>
+<li>Can approve logbook migration requests.</li>
 </ul>
 <h3 id="board-members">Board Members<a class="headerlink" href="#board-members" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1865,6 +1914,7 @@
 <li>Can create, edit, approve, and delete trips.</li>
 <li>Can edit trip registrations and delete trip comments.</li>
 <li>Can override the global waitlist setting for trips.</li>
+<li>Can view member trip history.</li>
 <li>Have superuser permissions for creating logbook entries.</li>
 </ul>
 <h3 id="media-managers">Media Managers<a class="headerlink" href="#media-managers" title="Permanent link">&para;</a></h3>
@@ -2031,6 +2081,10 @@
 <tr>
 <td><code>edit_global_settings</code></td>
 <td>Edit Global Settings</td>
+</tr>
+<tr>
+<td><code>send_club_news</code></td>
+<td>Send Club News</td>
 </tr>
 <tr>
 <td><code>search_trips</code></td>

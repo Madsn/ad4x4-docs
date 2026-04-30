@@ -1366,18 +1366,28 @@
 
 
 <h1 id="maintenance-mode">Maintenance Mode<a class="headerlink" href="#maintenance-mode" title="Permanent link">&para;</a></h1>
-<p>AD4x4 supports a site-wide maintenance toggle that responds to every HTTP request with <code>503 Service Unavailable</code> and a short HTML page. The feature is implemented at the <strong>nginx layer</strong>, not in Django — so it keeps working even if the Django app or Huey workers are being restarted, migrated, or are otherwise unavailable.</p>
+<p>AD4x4 supports a maintenance toggle that responds to public app/API requests with <code>503 Service Unavailable</code> and a short HTML page. The feature is implemented at the <strong>nginx layer</strong>, not in Django — so it keeps working even if the Django app or Huey workers are being restarted, migrated, or are otherwise unavailable. Django admin remains available during maintenance mode for operator access.</p>
 <h2 id="how-it-works">How it works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h2>
 <p>The nginx container inside the Docker Compose stack checks for a marker file on every incoming request:</p>
 <ul>
-<li>If <code>/etc/nginx/maintenance/maintenance_on</code> exists → nginx returns <code>503 Service Unavailable</code> with a <code>Retry-After: 3600</code> header and a small HTML body, regardless of the URL</li>
+<li>If <code>/etc/nginx/maintenance/maintenance_on</code> exists → nginx returns <code>503 Service Unavailable</code> with a <code>Retry-After: 3600</code> header and a small HTML body for public app/API paths</li>
+<li><code>/admin</code>, <code>/admin/...</code>, and <code>/static/admin/...</code> bypass maintenance mode so operators can use Django admin while the public site is unavailable</li>
 <li>If the file is absent → traffic flows through to Django and the static locations as normal</li>
 </ul>
 <p>The marker directory (<code>nginx/maintenance/</code>) is mounted as a shared volume between the host and the nginx container in <code>infra/docker-compose.yml</code>, so creating or removing the marker from the host is immediately visible to nginx. The nginx <code>if (-f ...)</code> check is re-evaluated per request, so a config reload isn't strictly required for the state change to take effect — but both scripts run <code>nginx -s reload</code> anyway as a belt-and-braces measure so any in-flight keep-alive connections see a clean state.</p>
 <p>The nginx block that implements the check lives in <code>infra/nginx/secure/default.conf.template</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">set</span><span class="w"> </span><span class="nv">$maintenance_mode</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<div class="codehilite"><pre><span></span><code><span class="k">map</span><span class="w"> </span><span class="nv">$uri</span><span class="w"> </span><span class="nv">$maintenance_bypass</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">default</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">~^/admin(?:/|$)</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">~^/static/admin/</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">set</span><span class="w"> </span><span class="nv">$maintenance_mode</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="k">if</span><span class="w"> </span><span class="s">(-f</span><span class="w"> </span><span class="s">/etc/nginx/maintenance/maintenance_on)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kn">set</span><span class="w"> </span><span class="nv">$maintenance_mode</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">if</span><span class="w"> </span><span class="s">(</span><span class="nv">$maintenance_bypass</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="s">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">set</span><span class="w"> </span><span class="nv">$maintenance_mode</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="k">if</span><span class="w"> </span><span class="s">(</span><span class="nv">$maintenance_mode</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="s">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kn">return</span><span class="w"> </span><span class="mi">503</span><span class="p">;</span>
@@ -1390,7 +1400,7 @@
 <span class="err">}</span>
 </code></pre></div>
 
-<p>Because the <code>if</code> blocks are at the <code>server {}</code> level and run before <code>location</code> routing, everything under the host — API endpoints, the Django admin, <code>/static/</code>, <code>/uploads/</code>, Swagger UI — is blocked in one sweep. There is no way to keep any path responding through nginx while maintenance mode is enabled.</p>
+<p>Because the <code>if</code> blocks are at the <code>server {}</code> level and run before <code>location</code> routing, public API endpoints, uploads, Swagger UI, and frontend assets are blocked in one sweep. The explicit <code>maintenance_bypass</code> map keeps Django admin and its static files available.</p>
 <h2 id="enabling-maintenance-mode">Enabling maintenance mode<a class="headerlink" href="#enabling-maintenance-mode" title="Permanent link">&para;</a></h2>
 <p>From the production host, with shell access as <code>admin</code>:</p>
 <div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/home/admin/ad4x4/infra
@@ -1439,7 +1449,7 @@ docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </spa
 <h2 id="gotchas">Gotchas<a class="headerlink" href="#gotchas" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>The marker file is on the production host, not in the Django database.</strong> There is no API endpoint to enable or disable maintenance mode. It's a deliberate ops-level action that requires shell access to the Hetzner host.</li>
-<li><strong>Static files under <code>/static/</code> are also blocked</strong> during maintenance because the <code>if</code> check runs at the <code>server {}</code> level before <code>location</code> routing kicks in. This is intentional — we don't want the app UI to render half-loaded while the backend is unreachable.</li>
+<li><strong>Static files under <code>/static/</code> are blocked except <code>/static/admin/</code>.</strong> Admin static files stay available so Django admin remains usable. Frontend assets stay blocked because we do not want the public app UI to render half-loaded while the backend is unavailable.</li>
 <li><strong>There is no Django-level maintenance toggle.</strong> <code>ConfigurableSettings</code> does not have a <code>maintenance_mode_enabled</code> field, and there is no custom Django middleware for this purpose. Do not try to add one — the nginx-based flow is the authoritative mechanism, and a duplicate toggle would split-brain the state.</li>
 <li><strong><code>nginx -s reload</code> is a belt-and-braces step.</strong> The <code>if (-f ...)</code> check is re-evaluated on every request even without reloading, but the reload guarantees all worker processes agree on the new state for in-flight keep-alive connections.</li>
 <li><strong>The Huey worker container is unaffected by maintenance mode</strong> — scheduled tasks and background notifications continue to run. If you need to stop Huey as well, that's a separate <code>docker compose stop huey</code> action.</li>
