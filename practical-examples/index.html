@@ -2053,6 +2053,7 @@
 </code></pre></div>
 
 <p>After user confirmation, retry the same request with <code>confirmOverlap: true</code>.</p>
+<p>When viewing the trip detail page, the same overlap rules also surface on each <code>registered[]</code> row through <code>hasOverlap</code> and <code>overlappingTrips</code>, so leaders can spot double-booked members without drilling into each profile.</p>
 <h3 id="step-2-check-your-trip-history">Step 2: Check Your Trip History<a class="headerlink" href="#step-2-check-your-trip-history" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>http://localhost:8000/api/members/123/triphistory<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer YOUR_JWT_TOKEN&quot;</span>
