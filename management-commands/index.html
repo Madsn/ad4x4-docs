@@ -1520,7 +1520,8 @@ environment that needs the canonical permissions layout.</p>
 <h3 id="sync_member_level_groups"><code>sync_member_level_groups</code><a class="headerlink" href="#sync_member_level_groups" title="Permanent link">&para;</a></h3>
 <p>Repairs drift between <code>Member.level</code> and Django auth group membership. For each
 member, it ensures the full cumulative level-group chain for the current level
-is present while preserving any older level-group memberships.</p>
+is present and removes stale higher-level groups while preserving unrelated
+non-level groups.</p>
 <p>Run a dry run first:</p>
 <div class="codehilite"><pre><span></span><code>python<span class="w"> </span>manage.py<span class="w"> </span>sync_member_level_groups<span class="w"> </span>--dry-run
 </code></pre></div>
