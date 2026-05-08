@@ -966,6 +966,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#auto-upgrade-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto Upgrade Settings
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -989,6 +1000,33 @@
     
   
     Background Tasks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../management-commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Management Commands
   
 
     
@@ -1238,6 +1276,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#auto-upgrade-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto Upgrade Settings
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1288,6 +1337,14 @@
 <li>Invalid client versions require upgrade when a valid minimum is configured.</li>
 <li>Invalid configured minimum versions disable the gate and log an error.</li>
 </ul>
+<h2 id="auto-upgrade-settings">Auto Upgrade Settings<a class="headerlink" href="#auto-upgrade-settings" title="Permanent link">&para;</a></h2>
+<p>The global settings singleton also controls the first-logbook-entry auto-upgrade flow:</p>
+<ul>
+<li><code>enable_auto_upgrade_on_logbook_entry</code> enables or disables the automatic upgrade path.</li>
+<li><code>auto_upgrade_source_level</code> is the level a member must currently hold for the auto-upgrade to trigger.</li>
+<li><code>auto_upgrade_target_level</code> is the level the member is moved to after their first qualifying logbook entry.</li>
+</ul>
+<p>When enabled, the backend automatically upgrades the member after the first logbook entry is created and adds them to the target level's <code>auto_group</code> if one is configured.</p>
 
 
 
