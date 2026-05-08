@@ -498,6 +498,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#marshals-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Marshals Directory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#active-trip-leads" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1442,6 +1453,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#marshals-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Marshals Directory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#active-trip-leads" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1939,6 +1961,37 @@ Returns a count of approved completed trips grouped by level, counting each trip
 
 <blockquote>
 <p><strong>Note:</strong> This endpoint returns up to 30 results without pagination. Returns a plain array, not a paginated object.</p>
+</blockquote>
+<h2 id="marshals-directory">Marshals Directory<a class="headerlink" href="#marshals-directory" title="Permanent link">&para;</a></h2>
+<p>Return the public Marshals and Board directory for any authenticated member.</p>
+<p><strong>GET</strong> <code>/api/members/marshals</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p><strong>Query Parameters:</strong>
+- <code>includeMarshals</code> - Include marshal-level members in the directory (default: true)
+- <code>includeBoard</code> - Include board-level members in the directory (default: true)</p>
+<p><strong>Success Response:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;marshal_john&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;firstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;lastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Doe&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Marshal&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;numericLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">600</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;tripCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;avatar&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://ap.ad4x4.com/uploads/avatars/2026/05/marshal_john.png&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;paidMember&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;lastVisited&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-30T14:22:00Z&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+
+<blockquote>
+<p><strong>Note:</strong> This endpoint returns a plain array, not a paginated object. It excludes contact fields and inactive members.</p>
+<p><strong>Note:</strong> If both <code>includeMarshals</code> and <code>includeBoard</code> are <code>false</code>, the API returns <code>400 Bad Request</code> with <code>at_least_one_level_must_be_included</code>.</p>
 </blockquote>
 <h2 id="active-trip-leads">Active Trip Leads<a class="headerlink" href="#active-trip-leads" title="Permanent link">&para;</a></h2>
 <p>Retrieve unique leads of active trips.</p>
