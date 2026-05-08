@@ -1615,7 +1615,7 @@
 <p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
 </blockquote>
 <ul>
-<li>Creates a new logbook entry for a trip.</li>
+<li>Creates a logbook entry for a trip, reusing the existing <code>(member, trip)</code> row if one already exists.</li>
 <li>Requires <code>CREATE_LOGBOOK_ENTRIES</code> or <code>CREATE_LOGBOOK_ENTRIES_SUPERUSER</code> permission.</li>
 </ul>
 </li>
@@ -1703,12 +1703,12 @@
 <ul>
 <li><strong>GET</strong> <code>/api/logbookentries/</code> - List all logbook entries, ordered by ID.</li>
 <li><strong>GET</strong> <code>/api/logbookentries/{id}/</code> - Retrieve a single entry.</li>
-<li><strong>POST</strong> <code>/api/logbookentries/</code> - Create a new logbook entry (alternative to <code>POST /api/trips/{id}/logbook-entries</code>). Requires <code>CREATE_LOGBOOK_ENTRIES</code> permission. Body includes <code>trip</code>, <code>member</code>, <code>comment</code>, and <code>skills_verified</code> (array of skill IDs).</li>
-<li><strong>PUT/PATCH</strong> <code>/api/logbookentries/{id}/</code> - Update an entry. Same permission checks as create.</li>
+<li><strong>POST</strong> <code>/api/logbookentries/</code> - Create a logbook entry (alternative to <code>POST /api/trips/{id}/logbook-entries</code>). Requires <code>CREATE_LOGBOOK_ENTRIES</code> permission. Body includes <code>trip</code>, <code>member</code>, <code>comment</code>, and <code>skills_verified</code> (array of skill IDs). If the same <code>(member, trip)</code> already exists, the API reuses that parent row and updates the comment instead of creating a duplicate.</li>
+<li><strong>PUT/PATCH</strong> <code>/api/logbookentries/{id}/</code> - Update an entry. Same permission checks as create. If the update would collide with another <code>(member, trip)</code> row, the API rejects it instead of bubbling a database error.</li>
 <li><strong>DELETE</strong> <code>/api/logbookentries/{id}/</code> - Delete an entry.</li>
 </ul>
 <blockquote>
-<p><strong>Note:</strong> Both the trip-specific endpoint (<code>POST /api/trips/{id}/logbook-entries</code>) and the ViewSet endpoint (<code>POST /api/logbookentries/</code>) can be used to create entries. They apply the same permission checks.</p>
+<p><strong>Note:</strong> Both the trip-specific endpoint (<code>POST /api/trips/{id}/logbook-entries</code>) and the ViewSet endpoint (<code>POST /api/logbookentries/</code>) can be used to create entries. They apply the same permission checks and share the same <code>(member, trip)</code> deduping behavior.</p>
 </blockquote>
 <h3 id="logbook-skill-references-viewset">Logbook Skill References ViewSet<a class="headerlink" href="#logbook-skill-references-viewset" title="Permanent link">&para;</a></h3>
 <ul>

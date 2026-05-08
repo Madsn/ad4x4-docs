@@ -1562,6 +1562,7 @@
 <li>Creates a new migration request.</li>
 <li>Requires authentication.</li>
 <li>Supports multipart/form-data for PDF upload.</li>
+<li>Rejects duplicate <code>skill_entries[].trip</code> values with <code>skill_entries.code = "migration_skill_entries_duplicate_trip"</code> so the client can merge skills under one trip before resubmitting.</li>
 </ul>
 <h3 id="list-migration-requests">List Migration Requests<a class="headerlink" href="#list-migration-requests" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1581,6 +1582,7 @@
 <li>Approves a pending migration request.</li>
 <li>Requires <code>APPROVE_LOGBOOK_MIGRATION</code> permission.</li>
 <li>Creates logbook entries and skill references on approval.</li>
+<li>Reuses an existing <code>LogbookEntry</code> for the same <code>(member, trip)</code> pair so duplicate migration rows cannot create duplicate logbook cards.</li>
 <li>Sets member's <code>paid_member</code> to true if not already paid.</li>
 </ul>
 <h3 id="return-migration-request">Return Migration Request<a class="headerlink" href="#return-migration-request" title="Permanent link">&para;</a></h3>
