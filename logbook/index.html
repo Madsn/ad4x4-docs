@@ -742,6 +742,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#logbook-analytics-aggregate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logbook Analytics Aggregate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#logbook-skill-references-viewset" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1472,6 +1483,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#logbook-analytics-aggregate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logbook Analytics Aggregate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#logbook-skill-references-viewset" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1710,6 +1732,82 @@
 <blockquote>
 <p><strong>Note:</strong> Both the trip-specific endpoint (<code>POST /api/trips/{id}/logbook-entries</code>) and the ViewSet endpoint (<code>POST /api/logbookentries/</code>) can be used to create entries. They apply the same permission checks and share the same <code>(member, trip)</code> deduping behavior.</p>
 </blockquote>
+<h3 id="logbook-analytics-aggregate">Logbook Analytics Aggregate<a class="headerlink" href="#logbook-analytics-aggregate" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>GET</strong> <code>/api/logbookentries/aggregate</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<ul>
+<li>Returns server-side rollups for admin logbook analytics.</li>
+<li>Filters are applied before aggregation:<ul>
+<li><code>since</code> and <code>until</code> constrain the effective trip date window.</li>
+<li><code>level</code> filters by trip level ID.</li>
+<li><code>marshal</code> filters by signer ID.</li>
+</ul>
+</li>
+<li><code>top_skills_limit</code> caps the <code>topSkills</code> and <code>topEquipment</code> arrays.</li>
+<li><code>growth_months</code> controls the number of trailing months in <code>monthlyGrowth</code>.</li>
+<li><code>include_marshal_breakdown=true</code> adds a <code>marshalBreakdown</code> array for marshal activity reporting.</li>
+<li><code>topSkills</code> excludes skills in the <code>Equipment</code> category; <code>topEquipment</code> includes only that category.</li>
+<li>The endpoint is authenticated and matches the existing logbook read permission surface.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Response shape:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;totalEntries&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;totalSkillVerifications&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4567</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;uniqueSkillsVerified&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">89</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;uniqueMemberCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">87</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;uniqueMarshalCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;avgSkillsPerEntry&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">3.7</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;windows&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;last7Days&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;entries&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;uniqueMembers&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;uniqueMarshals&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;last30Days&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;entries&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">91</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;uniqueMembers&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;uniqueMarshals&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;mostActiveMarshal&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hani A.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hani&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Marshal&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;numericLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">600</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;entryCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">234</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;topSkills&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">  </span><span class="nt">&quot;topEquipment&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">  </span><span class="nt">&quot;monthlyGrowth&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">  </span><span class="nt">&quot;generatedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-05-07T14:23:11+04:00&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong><code>marshalBreakdown[]</code> row shape</strong></p>
+<p>When <code>include_marshal_breakdown=true</code> is set, each row has this shape:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hani A.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hani&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Marshal&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;numericLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">600</span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;totalEntries&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">234</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;uniqueMembers&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">87</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;totalSkills&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">456</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;avgSkillsPerEntry&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.95</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;lastActivity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-05-07T14:23:11+04:00&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;recentEntries30d&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Rows are ordered by <code>totalEntries</code> descending, then marshal id ascending for tie-breaks. If the <code>marshal</code> filter is supplied, the breakdown is scoped to that marshal and returns a single row for the matching signer.</p>
+<p><strong><code>monthlyGrowth[]</code> row shape</strong></p>
+<p>Each row is:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;month&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-05&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;entryCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;skillVerifications&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">41</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><code>generatedAt</code> is serialized as an ISO 8601 datetime with a timezone offset.</p>
 <h3 id="logbook-skill-references-viewset">Logbook Skill References ViewSet<a class="headerlink" href="#logbook-skill-references-viewset" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>GET</strong> <code>/api/logbookskillreferences/</code> - List all skill reference records.</li>
