@@ -1600,8 +1600,11 @@
 <h3 id="edit-and-resubmit">Edit and Resubmit<a class="headerlink" href="#edit-and-resubmit" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>PUT</strong> <code>/api/logbook-migrations/{id}/</code></li>
-<li>Allows editing a returned request and resubmitting.</li>
-<li>Only allowed when status is <code>RETURNED</code>.</li>
+<li><strong>PATCH</strong> <code>/api/logbook-migrations/{id}/</code></li>
+<li>Allows editing a pending or returned request and resubmitting.</li>
+<li>Only allowed when status is <code>PENDING</code> or <code>RETURNED</code>.</li>
+<li>Keeps the request owned by the authenticated member; other users receive <code>403</code>.</li>
+<li>Reuses the duplicate <code>target_level</code> guard from create, so editing to a level that already has another <code>PENDING</code> or <code>RETURNED</code> request for the same member fails with <code>non_field_errors</code>.</li>
 </ul>
 <h2 id="permissions">Permissions<a class="headerlink" href="#permissions" title="Permanent link">&para;</a></h2>
 <table>
@@ -1631,6 +1634,7 @@
 <li><code>PENDING</code> → <code>APPROVED</code> (admin approves)</li>
 <li><code>PENDING</code> → <code>RETURNED</code> (admin sends back)</li>
 <li><code>PENDING</code> → <code>REJECTED</code> (admin rejects)</li>
+<li><code>PENDING</code> → <code>PENDING</code> (member edits in place)</li>
 <li><code>RETURNED</code> → <code>PENDING</code> (member edits and resubmits)</li>
 </ul>
 
