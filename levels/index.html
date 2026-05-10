@@ -1417,6 +1417,11 @@
 <li><strong>Authentication:</strong> Optional (public endpoint).</li>
 </ul>
 </li>
+<li><strong>GET</strong> <code>/api/levels/?include_member_counts=true</code><ul>
+<li>Retrieves the same list with <code>memberCount</code> on each item.</li>
+<li><strong>Authentication:</strong> Required.</li>
+</ul>
+</li>
 </ul>
 <p><strong>Query Parameters:</strong></p>
 <table>
@@ -1453,59 +1458,50 @@
 <td>boolean</td>
 <td>Filter by active status (<code>true</code> or <code>false</code>)</td>
 </tr>
+<tr>
+<td><code>include_member_counts</code></td>
+<td>boolean</td>
+<td>When <code>true</code>, include <code>memberCount</code> for active members only</td>
+</tr>
 </tbody>
 </table>
 <p><strong>Example Request:</strong></p>
 <div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://localhost:8000/api/levels/&quot;</span>
 </code></pre></div>
 
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;token&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://localhost:8000/api/levels/?include_member_counts=true&quot;</span>
+</code></pre></div>
+
 <p><strong>Example Response:</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Newbie&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;numericLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Newbie&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;active&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;minTripsForUpgrade&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Intermediate&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;numericLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Intermediate&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;active&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;minTripsForUpgrade&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Advanced&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;numericLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Advanced&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;active&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;minTripsForUpgrade&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Explorer&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;numericLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Explorer&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;active&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;minTripsForUpgrade&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Marshal&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;numericLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">600</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Marshal&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;active&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;minTripsForUpgrade&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">]</span>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;next&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;previous&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;results&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Newbie&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;numericLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Newbie&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;active&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;minTripsForUpgrade&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Intermediate&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;numericLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Intermediate&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;active&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;minTripsForUpgrade&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
 </code></pre></div>
 
 <blockquote>
-<p><strong>Note:</strong> The response is a plain array (not paginated) because the ViewSet uses <code>ListModelMixin</code> without a pagination class. Results are ordered by <code>numeric_level</code> ascending.</p>
+<p><strong>Note:</strong> The response is paginated through DRF's default page-number pagination. Results are ordered by <code>numeric_level</code> ascending.
+<strong>Note:</strong> When <code>include_member_counts=true</code>, each item in <code>results</code> also includes <code>memberCount</code>.</p>
 </blockquote>
 <h3 id="retrieve-a-level">Retrieve a Level<a class="headerlink" href="#retrieve-a-level" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1566,10 +1562,16 @@
 <td>integer</td>
 <td>Minimum number of completed trips required at this level before a member can apply for an upgrade (read-only)</td>
 </tr>
+<tr>
+<td><code>memberCount</code></td>
+<td>integer</td>
+<td>Number of active members at this level. Present only when <code>include_member_counts=true</code>.</td>
+</tr>
 </tbody>
 </table>
 <blockquote>
-<p><strong>Note:</strong> The <code>auto_group</code> field (Django Group assigned on upgrade) is excluded from the API response. It is configured via Django Admin only.</p>
+<p><strong>Note:</strong> The <code>auto_group</code> field (Django Group assigned on upgrade) is excluded from the API response. It is configured via Django Admin only.
+<strong>Note:</strong> <code>memberCount</code> excludes soft-deleted members and can be requested with <code>include_member_counts=true</code>.</p>
 </blockquote>
 <h2 id="default-levels">Default Levels<a class="headerlink" href="#default-levels" title="Permanent link">&para;</a></h2>
 <table>
