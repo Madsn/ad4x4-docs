@@ -2168,15 +2168,15 @@
 <h3 id="member-trip-counts">Member Trip Counts<a class="headerlink" href="#member-trip-counts" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>GET</strong> <code>/api/members/{id}/tripcounts</code><ul>
-<li>Retrieves a summary of a member's completed trips, grouped by trip level.</li>
+<li>Retrieves a summary of a member's trips, grouped by trip level.</li>
 <li>Includes trips where the member was:<ul>
 <li>Registered and checked in (as participant)</li>
 <li>Lead of the trip</li>
 <li>Deputy lead of the trip</li>
 </ul>
 </li>
-<li>Only includes trips with an <code>APPROVED</code> status.</li>
-<li>Trips are counted once even if member has multiple roles (lead + registered).</li>
+<li><code>count</code> keeps the legacy trip-total semantics, including lead and deputy-lead trips.</li>
+<li><code>registeredCount</code> and <code>attendanceRate</code> only include completed trips that have already ended, and a level can still appear with <code>count</code> at <code>0</code> when the member registered but did not check in.</li>
 </ul>
 </li>
 </ul>

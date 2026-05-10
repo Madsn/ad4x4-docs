@@ -1933,7 +1933,24 @@ A successful update will return a <code>200 OK</code> status code and the update
 </blockquote>
 <p><strong>Authentication:</strong> Required (Bearer token)</p>
 <p><strong>Success Response:</strong>
-Returns a count of approved completed trips grouped by level, counting each trip once.</p>
+Returns a per-level summary of a member's trips. <code>count</code> preserves the legacy trip-total semantics, including lead and deputy-lead trips. <code>registeredCount</code> and <code>attendanceRate</code> are based only on completed trip registrations, and levels with registrations but no completed check-ins can still appear with <code>count: 0</code>.</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;member&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;johndoe&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;tripStats&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;levelName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Beginner&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;levelNumeric&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;registeredCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;attendanceRate&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
 <h2 id="lead-search">Lead Search<a class="headerlink" href="#lead-search" title="Permanent link">&para;</a></h2>
 <p>Search for members who have permission to lead trips.</p>
 <p><strong>GET</strong> <code>/api/members/leadsearch</code></p>
