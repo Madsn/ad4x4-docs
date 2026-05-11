@@ -503,6 +503,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#archive-vehicle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Archive Vehicle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unarchive-vehicle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unarchive Vehicle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#delete-vehicle" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1470,6 +1492,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#archive-vehicle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Archive Vehicle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unarchive-vehicle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unarchive Vehicle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#delete-vehicle" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1654,7 +1698,8 @@
 <p><strong>Authentication:</strong> Required (Bearer token)</p>
 <p><strong>Query Parameters:</strong>
 - <code>page</code> - Page number (default: 1)
-- <code>page_size</code> - Number of results per page (default: 20, max: 500)</p>
+- <code>page_size</code> - Number of results per page (default: 20, max: 500)
+- <code>include_archived</code> - Set to <code>true</code> to include archived vehicles in the list</p>
 <p><strong>Success Response:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
@@ -1669,7 +1714,10 @@
 <span class="w">      </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Land Cruiser&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2020</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;White&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;isPrimary&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">      </span><span class="nt">&quot;isPrimary&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;archived&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;archivedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;tripCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
@@ -1679,7 +1727,10 @@
 <span class="w">      </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Patrol&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2019</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Black&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;isPrimary&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">      </span><span class="nt">&quot;isPrimary&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;archived&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;archivedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;tripCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
@@ -1727,6 +1778,9 @@
 <span class="w">    </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;White&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;isPrimary&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;archived&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;archivedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;tripCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;createdAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-05T00:00:00.000Z&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;updatedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-05T00:00:00.000Z&quot;</span>
 <span class="w">  </span><span class="p">}</span>
@@ -1744,6 +1798,7 @@
 <p>Get details of a specific vehicle.</p>
 <p><strong>GET</strong> <code>/api/vehicles/{id}/</code></p>
 <p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p><strong>Note:</strong> Archived vehicles are returned normally by the detail endpoint.</p>
 <p><strong>Success Response:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
@@ -1758,6 +1813,9 @@
 <span class="w">    </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;White&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/media/vehicles/2026/03/vehicle_abc123.jpg&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;isPrimary&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;archived&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;archivedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;tripCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;createdAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-05T00:00:00.000Z&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;updatedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-05T00:00:00.000Z&quot;</span>
 <span class="w">  </span><span class="p">}</span>
@@ -1776,11 +1834,26 @@
 </code></pre></div>
 
 <p><strong>Note:</strong> Users can only update their own vehicles.</p>
+<h2 id="archive-vehicle">Archive Vehicle<a class="headerlink" href="#archive-vehicle" title="Permanent link">&para;</a></h2>
+<p>Archive a vehicle to hide it from the default active list while preserving trip history.</p>
+<p><strong>POST</strong> <code>/api/vehicles/{id}/archive/</code></p>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p><strong>Notes:</strong>
+- Idempotent. Archiving an already archived vehicle returns <code>200</code> without changing <code>archivedAt</code>.
+- If the archived vehicle was primary, the most recently created non-archived vehicle is promoted to primary.
+- Admin users can archive any vehicle; regular members can only archive their own.</p>
+<h2 id="unarchive-vehicle">Unarchive Vehicle<a class="headerlink" href="#unarchive-vehicle" title="Permanent link">&para;</a></h2>
+<p>Restore an archived vehicle.</p>
+<p><strong>POST</strong> <code>/api/vehicles/{id}/unarchive/</code></p>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p><strong>Notes:</strong>
+- Idempotent. Unarchiving an already active vehicle returns <code>200</code>.
+- Unarchive does not make the vehicle primary automatically.</p>
 <h2 id="delete-vehicle">Delete Vehicle<a class="headerlink" href="#delete-vehicle" title="Permanent link">&para;</a></h2>
 <p>Delete a vehicle.</p>
 <p><strong>DELETE</strong> <code>/api/vehicles/{id}/</code></p>
 <p><strong>Authentication:</strong> Required (Bearer token)</p>
-<p><strong>Note:</strong> If the deleted vehicle was the primary vehicle, the most recently created remaining vehicle will be automatically set as primary.</p>
+<p><strong>Note:</strong> If the deleted vehicle was the primary vehicle, the most recently created remaining active vehicle will be automatically set as primary.</p>
 <p><strong>Success Response:</strong> <code>204 No Content</code></p>
 <p><strong>Error Response (vehicle still in use):</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
@@ -1814,6 +1887,7 @@
 <span class="p">}</span>
 </code></pre></div>
 
+<p><strong>Note:</strong> If the vehicle is archived, <code>set_primary</code> will restore it to active first and then mark it primary.</p>
 <h2 id="car-brand-choices">Car Brand Choices<a class="headerlink" href="#car-brand-choices" title="Permanent link">&para;</a></h2>
 <p>Get available car brand choices.</p>
 <p><strong>GET</strong> <code>/api/choices/carbrand</code></p>
@@ -1865,6 +1939,7 @@
 <p>The vehicle limit per member can be configured in global settings:</p>
 <ul>
 <li><code>vehicle_limit_per_member</code> - Maximum number of vehicles a member can register (default: 3)</li>
+<li>Archived vehicles do not count toward the limit.</li>
 </ul>
 <hr />
 <h2 id="trip-registration-with-vehicle">Trip Registration with Vehicle<a class="headerlink" href="#trip-registration-with-vehicle" title="Permanent link">&para;</a></h2>
