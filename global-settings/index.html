@@ -977,6 +977,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#chat-link-preview-kill-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chat Link Preview Kill Switch
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1287,6 +1298,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#chat-link-preview-kill-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chat Link Preview Kill Switch
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1345,6 +1367,11 @@
 <li><code>auto_upgrade_target_level</code> is the level the member is moved to after their first qualifying logbook entry.</li>
 </ul>
 <p>When enabled, the backend automatically upgrades the member after the first logbook entry is created and adds them to the target level's <code>auto_group</code> if one is configured.</p>
+<h2 id="chat-link-preview-kill-switch">Chat Link Preview Kill Switch<a class="headerlink" href="#chat-link-preview-kill-switch" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>link_previews_enabled</code> (boolean, default <code>false</code>)</li>
+</ul>
+<p>When disabled, <code>GET /api/link-preview</code> returns <code>status: "disabled"</code> and skips the fetch path entirely. Enable it in Django admin under the Global settings singleton when you are ready to serve preview cards.</p>
 
 
 

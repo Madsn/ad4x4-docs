@@ -1368,8 +1368,23 @@
 <ul>
 <li><strong>Stop sending requests</strong>: Do not send any more requests until the rate limit window has reset.</li>
 <li><strong>Inform the user</strong>: Display a message to the user indicating that they have exceeded the rate limit and should try again later.</li>
-<li><strong>Implement backoff</strong>: Consider implementing an exponential backoff strategy to gradually reduce the rate of your requests.</li>
+<li><strong>Implement backoff</strong>: Consider implementing an exponential backoff strategy to gradually reduce the rate of your requests.
+Endpoint-specific override:</li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /api/link-preview</code></td>
+<td>60 requests/hour per authenticated user</td>
+</tr>
+</tbody>
+</table>
 
 
 
