@@ -1420,6 +1420,7 @@
 <li><strong>GET</strong> <code>/api/levels/?include_member_counts=true</code><ul>
 <li>Retrieves the same list with <code>memberCount</code> on each item.</li>
 <li><strong>Authentication:</strong> Required.</li>
+<li><strong>Caching:</strong> Private server-side cache for up to 120 seconds. The cache is invalidated when member or level changes affect counts.</li>
 </ul>
 </li>
 </ul>
@@ -1571,7 +1572,7 @@
 </table>
 <blockquote>
 <p><strong>Note:</strong> The <code>auto_group</code> field (Django Group assigned on upgrade) is excluded from the API response. It is configured via Django Admin only.
-<strong>Note:</strong> <code>memberCount</code> excludes soft-deleted members and can be requested with <code>include_member_counts=true</code>.</p>
+<strong>Note:</strong> <code>memberCount</code> excludes soft-deleted members and can be requested with <code>include_member_counts=true</code>. Count responses use a private 120-second server-side cache that is invalidated when members are created, deleted, moved between levels, activated/deactivated, or when levels change.</p>
 </blockquote>
 <h2 id="default-levels">Default Levels<a class="headerlink" href="#default-levels" title="Permanent link">&para;</a></h2>
 <table>
