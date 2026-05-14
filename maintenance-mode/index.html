@@ -1549,7 +1549,7 @@ MAINTENANCE_BYPASS_SECRET_FILE=/home/admin/ad4x4/infra/nginx/maintenance/bypass_
 /maintenance_secret_clear confirm
 </code></pre></div>
 
-<p>Only users listed in <code>TELEGRAM_ADMIN_USER_IDS</code> can run these maintenance-bypass commands. Unauthorized attempts reply exactly <code>Unauthorized.</code> and are logged. The commands write files atomically, run <code>NGINX_TEST_COMMAND</code>, reload with <code>NGINX_RELOAD_COMMAND</code> only if validation succeeds, and roll back file changes when validation fails. Secret replies and logs do not include the full secret.</p>
+<p>Users listed in <code>TELEGRAM_ADMIN_USER_IDS</code> or <code>TELEGRAM_PRIVILEGED_USER_IDS</code> can run these maintenance-bypass commands. Use <code>TELEGRAM_ADMIN_USER_IDS</code> to grant bypass management without granting deploy/restart privileges. Unauthorized attempts reply exactly <code>Unauthorized.</code> and are logged. The commands write files atomically, run <code>NGINX_TEST_COMMAND</code>, reload with <code>NGINX_RELOAD_COMMAND</code> only if validation succeeds, and roll back file changes when validation fails. Secret replies and logs do not include the full secret.</p>
 <h2 id="enabling-maintenance-mode">Enabling maintenance mode<a class="headerlink" href="#enabling-maintenance-mode" title="Permanent link">&para;</a></h2>
 <p>From the production host, with shell access as <code>admin</code>:</p>
 <div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/home/admin/ad4x4/infra
