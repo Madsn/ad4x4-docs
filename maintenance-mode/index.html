@@ -1145,6 +1145,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#api-bypass-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API bypass files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#telegram-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Telegram management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#enabling-maintenance-mode" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1310,6 +1332,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#api-bypass-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API bypass files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#telegram-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Telegram management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#enabling-maintenance-mode" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1399,14 +1443,39 @@
 <ul>
 <li>If <code>/etc/nginx/maintenance/maintenance_on</code> exists → nginx returns <code>503 Service Unavailable</code> with a <code>Retry-After: 3600</code> header and a small HTML body for public app/API paths</li>
 <li><code>/admin</code>, <code>/admin/...</code>, and <code>/static/admin/...</code> bypass maintenance mode so operators can use Django admin while the public site is unavailable</li>
+<li>API clients can bypass maintenance when the real client IP matches the external whitelist include file or the request sends the configured secret header</li>
 <li>If the file is absent → traffic flows through to Django and the static locations as normal</li>
 </ul>
-<p>The marker directory (<code>nginx/maintenance/</code>) is mounted as a shared volume between the host and the nginx container in <code>infra/docker-compose.yml</code>, so creating or removing the marker from the host is immediately visible to nginx. The nginx <code>if (-f ...)</code> check is re-evaluated per request, so a config reload isn't strictly required for the state change to take effect — but both scripts run <code>nginx -s reload</code> anyway as a belt-and-braces measure so any in-flight keep-alive connections see a clean state.</p>
+<p>The marker and bypass include directory (<code>nginx/maintenance/</code>) is mounted as a shared volume between the host and the nginx container in <code>infra/docker-compose.yml</code>, so creating or removing the marker from the host is immediately visible to nginx. The nginx <code>if (-f ...)</code> check is re-evaluated per request, so a config reload isn't strictly required for the state change to take effect — but the maintenance toggle scripts run <code>nginx -s reload</code> anyway as a belt-and-braces measure so any in-flight keep-alive connections see a clean state. Bypass whitelist/secret changes are validated with <code>NGINX_TEST_COMMAND</code> and reloaded only after validation succeeds.</p>
 <p>The nginx block that implements the check lives in <code>infra/nginx/secure/default.conf.template</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">map</span><span class="w"> </span><span class="nv">$uri</span><span class="w"> </span><span class="nv">$maintenance_bypass</span><span class="w"> </span><span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="k">map</span><span class="w"> </span><span class="nv">$uri</span><span class="w"> </span><span class="nv">$maintenance_uri_bypass</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kn">default</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="w">    </span><span class="kn">~^/admin(?:/|$)</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="w">    </span><span class="kn">~^/static/admin/</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">geo</span><span class="w"> </span><span class="nv">$maintenance_ip_bypass</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">default</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">include</span><span class="w"> </span><span class="nv">${MAINTENANCE_BYPASS_IP_FILE}</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">map</span><span class="w"> </span><span class="nv">${MAINTENANCE_BYPASS_HEADER_VARIABLE}</span><span class="w"> </span><span class="nv">$maintenance_header_bypass</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">default</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">include</span><span class="w"> </span><span class="nv">${MAINTENANCE_BYPASS_SECRET_FILE}</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">map</span><span class="w"> </span><span class="s">&quot;</span><span class="nv">$maintenance_ip_bypass:$maintenance_header_bypass&quot;</span><span class="w"> </span><span class="nv">$maintenance_client_bypass</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">default</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">&quot;1:0&quot;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">&quot;0:1&quot;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">&quot;1:1&quot;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">map</span><span class="w"> </span><span class="s">&quot;</span><span class="nv">$maintenance_uri_bypass:$maintenance_client_bypass&quot;</span><span class="w"> </span><span class="nv">$maintenance_bypass</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">default</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">&quot;1:0&quot;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">&quot;0:1&quot;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">&quot;1:1&quot;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="k">set</span><span class="w"> </span><span class="nv">$maintenance_mode</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
@@ -1427,7 +1496,60 @@
 <span class="err">}</span>
 </code></pre></div>
 
-<p>Because the <code>if</code> blocks are at the <code>server {}</code> level and run before <code>location</code> routing, public API endpoints, uploads, Swagger UI, and frontend assets are blocked in one sweep. The explicit <code>maintenance_bypass</code> map keeps Django admin and its static files available.</p>
+<p>Because the <code>if</code> blocks are at the <code>server {}</code> level and run before <code>location</code> routing, public API endpoints, uploads, Swagger UI, and frontend assets are blocked in one sweep. The explicit <code>maintenance_uri_bypass</code> map keeps Django admin and its static files available. The client bypass is separate and allows either <code>maintenance_ip_bypass=1</code> or <code>maintenance_header_bypass=1</code>.</p>
+<p>The nginx proxy locations set <code>X-Maintenance-Bypass-Granted</code> from nginx's own <code>$maintenance_bypass</code> value before proxying to Django. Nginx overwrites any client-supplied value; Django must treat it only as optional audit/logging context, never as authentication.</p>
+<h2 id="api-bypass-files">API bypass files<a class="headerlink" href="#api-bypass-files" title="Permanent link">&para;</a></h2>
+<p>The whitelist and secret are operational files, not Git-tracked source. The tracked examples live at:</p>
+<div class="codehilite"><pre><span></span><code>infra/nginx/maintenance/bypass_ips.conf.example
+infra/nginx/maintenance/bypass_secret.conf.example
+</code></pre></div>
+
+<p>The production files are ignored by Git:</p>
+<div class="codehilite"><pre><span></span><code>infra/nginx/maintenance/bypass_ips.conf
+infra/nginx/maintenance/bypass_secret.conf
+</code></pre></div>
+
+<p>The nginx container sees them through the <code>/etc/nginx/maintenance</code> bind mount. The host monitor bot writes the host paths, so <code>infra/.env</code> and <code>/opt/ad4x4-monitor-bot/.env</code> intentionally use different path values for the same setting:</p>
+<div class="codehilite"><pre><span></span><code># nginx container env
+MAINTENANCE_BYPASS_IP_FILE=/etc/nginx/maintenance/bypass_ips.conf
+MAINTENANCE_BYPASS_SECRET_FILE=/etc/nginx/maintenance/bypass_secret.conf
+MAINTENANCE_BYPASS_HEADER_VARIABLE=&#39;$http_x_maintenance_bypass&#39;
+
+# monitor bot host env
+MAINTENANCE_BYPASS_IP_FILE=/home/admin/ad4x4/infra/nginx/maintenance/bypass_ips.conf
+MAINTENANCE_BYPASS_SECRET_FILE=/home/admin/ad4x4/infra/nginx/maintenance/bypass_secret.conf
+</code></pre></div>
+
+<p>Whitelist file format:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># comments and blanks are allowed</span>
+<span class="k">203.0.113.10/32</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="k">198.51.100.0/24</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="k">2001:db8::1/128</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</code></pre></div>
+
+<p>Single IPv4 addresses are normalized to <code>/32</code>, and single IPv6 addresses to <code>/128</code>. Duplicate normalized CIDRs are not added.</p>
+<p>Secret file format when enabled:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">~^example\-maintenance\-bypass\-secret\-32\-plus$</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</code></pre></div>
+
+<p>The enabled entry is a case-sensitive anchored nginx <code>map</code> regex. This avoids nginx literal map key case folding, so only the exact secret value matches.</p>
+<p>Secret file format when disabled:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Maintenance bypass header secret disabled.</span>
+<span class="c1"># No header value is accepted.</span>
+</code></pre></div>
+
+<p>The disabled state must be comments or blanks only. Do not write <code>"" 1;</code>; a blank header must never match.</p>
+<h2 id="telegram-management">Telegram management<a class="headerlink" href="#telegram-management" title="Permanent link">&para;</a></h2>
+<p>The host monitor bot manages the bypass files with these commands:</p>
+<div class="codehilite"><pre><span></span><code>/maintenance_ip_add &lt;ip-or-cidr&gt;
+/maintenance_ip_list
+/maintenance_ip_remove &lt;ip-or-cidr&gt;
+/maintenance_ip_purge confirm
+/maintenance_secret_set &lt;secret&gt;
+/maintenance_secret_clear confirm
+</code></pre></div>
+
+<p>Only users listed in <code>TELEGRAM_ADMIN_USER_IDS</code> can run these maintenance-bypass commands. Unauthorized attempts reply exactly <code>Unauthorized.</code> and are logged. The commands write files atomically, run <code>NGINX_TEST_COMMAND</code>, reload with <code>NGINX_RELOAD_COMMAND</code> only if validation succeeds, and roll back file changes when validation fails. Secret replies and logs do not include the full secret.</p>
 <h2 id="enabling-maintenance-mode">Enabling maintenance mode<a class="headerlink" href="#enabling-maintenance-mode" title="Permanent link">&para;</a></h2>
 <p>From the production host, with shell access as <code>admin</code>:</p>
 <div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/home/admin/ad4x4/infra
@@ -1475,7 +1597,7 @@ docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </spa
 </ol>
 <h2 id="gotchas">Gotchas<a class="headerlink" href="#gotchas" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>The marker file is on the production host, not in the Django database.</strong> There is no API endpoint to enable or disable maintenance mode. It's a deliberate ops-level action that requires shell access to the Hetzner host.</li>
+<li><strong>The marker and bypass files are on the production host, not in the Django database.</strong> There is no API endpoint to enable/disable maintenance or manage bypass access. These are ops-level actions performed with shell access or the restricted host monitor bot commands.</li>
 <li><strong>Static files under <code>/static/</code> are blocked except <code>/static/admin/</code>.</strong> Admin static files stay available so Django admin remains usable. Frontend assets stay blocked because we do not want the public app UI to render half-loaded while the backend is unavailable.</li>
 <li><strong>There is no Django-level maintenance toggle.</strong> <code>ConfigurableSettings</code> does not have a <code>maintenance_mode_enabled</code> field, and there is no custom Django middleware for this purpose. Do not try to add one — the nginx-based flow is the authoritative mechanism, and a duplicate toggle would split-brain the state.</li>
 <li><strong><code>nginx -s reload</code> is a belt-and-braces step.</strong> The <code>if (-f ...)</code> check is re-evaluated on every request even without reloading, but the reload guarantees all worker processes agree on the new state for in-flight keep-alive connections.</li>
