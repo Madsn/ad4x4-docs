@@ -509,6 +509,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#marshal-leaderboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Marshal Leaderboard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#active-trip-leads" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1464,6 +1475,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#marshal-leaderboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Marshal Leaderboard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#active-trip-leads" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1932,6 +1954,9 @@ A successful update will return a <code>200 OK</code> status code and the update
 <p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
 </blockquote>
 <p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p><strong>Query Parameters:</strong>
+- <code>since</code> - Optional ISO date (<code>YYYY-MM-DD</code>). Includes trips with <code>start_time</code> on or after this date.
+- <code>until</code> - Optional ISO date (<code>YYYY-MM-DD</code>). Includes trips with <code>start_time</code> before this date.</p>
 <p><strong>Success Response:</strong>
 Returns a per-level summary of a member's trips. <code>count</code> preserves the legacy trip-total semantics, including lead and deputy-lead trips. <code>registeredCount</code> and <code>attendanceRate</code> are based only on completed trip registrations, and levels with registrations but no completed check-ins can still appear with <code>count: 0</code>.</p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
@@ -2009,6 +2034,55 @@ Returns a per-level summary of a member's trips. <code>count</code> preserves th
 <blockquote>
 <p><strong>Note:</strong> This endpoint returns a plain array, not a paginated object. It excludes contact fields and inactive members.</p>
 <p><strong>Note:</strong> If both <code>includeMarshals</code> and <code>includeBoard</code> are <code>false</code>, the API returns <code>400 Bad Request</code> with <code>at_least_one_level_must_be_included</code>.</p>
+</blockquote>
+<h2 id="marshal-leaderboard">Marshal Leaderboard<a class="headerlink" href="#marshal-leaderboard" title="Permanent link">&para;</a></h2>
+<p>Return the top marshals or board members by trips led for a given period.</p>
+<p><strong>GET</strong> <code>/api/members/marshals/leaderboard</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<p><strong>Authentication:</strong> Required (Bearer token)</p>
+<p><strong>Query Parameters:</strong>
+- <code>since</code> - Optional ISO date (<code>YYYY-MM-DD</code>). Includes trips with <code>start_time</code> on or after this date.
+- <code>until</code> - Optional ISO date (<code>YYYY-MM-DD</code>). Includes trips with <code>start_time</code> before this date.
+- <code>numericLevel</code> - Member level to include. Defaults to <code>600</code> (Marshals). Pass <code>800</code> for Board members.
+- <code>limit</code> - Maximum number of rows to return. Defaults to <code>10</code>.</p>
+<p><strong>Success Response:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;marshal_john&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;firstName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;lastName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Doe&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;avatar&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://ap.ad4x4.com/uploads/avatars/2026/05/marshal_john.png&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;tripsLed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;tripsLedByLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;levelName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Newbie&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;levelNumeric&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;levelActive&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;tripsLed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;levelName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Retired Sand&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;levelNumeric&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;levelActive&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;tripsLed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;levelName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Advanced&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;levelNumeric&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;levelActive&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;tripsLed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+
+<blockquote>
+<p><strong>Note:</strong> The response is a plain array, not paginated. <code>tripsLedByLevel</code> is derived from the actual led-trip
+history in the selected window and includes inactive trip levels when historical trips used them.</p>
 </blockquote>
 <h2 id="active-trip-leads">Active Trip Leads<a class="headerlink" href="#active-trip-leads" title="Permanent link">&para;</a></h2>
 <p>Retrieve unique leads of active trips.</p>

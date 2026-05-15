@@ -2175,6 +2175,7 @@
 <li>Deputy lead of the trip</li>
 </ul>
 </li>
+<li><strong>Query Parameters:</strong> <code>since</code> and <code>until</code> are optional ISO dates (<code>YYYY-MM-DD</code>) that filter by <code>start_time</code> using a half-open window: <code>since</code> is inclusive and <code>until</code> is exclusive.</li>
 <li><code>count</code> keeps the legacy trip-total semantics, including lead and deputy-lead trips.</li>
 <li><code>registeredCount</code> and <code>attendanceRate</code> only include completed trips that have already ended, and a level can still appear with <code>count</code> at <code>0</code> when the member registered but did not check in.</li>
 </ul>
