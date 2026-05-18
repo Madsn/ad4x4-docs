@@ -1,0 +1,1552 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Next gen API for Abu Dhabi 4x4">
+      
+      
+        <meta name="author" content="Redbeard">
+      
+      
+        <link rel="canonical" href="https://api.ad4x4.com/readme/ai-context/deployment/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Deployment, Environment & Disaster Recovery - AD4x4 API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#deployment-environment-disaster-recovery" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="AD4x4 API" class="md-header__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AD4x4 API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Deployment, Environment &amp; Disaster Recovery
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AD4x4 API" class="md-nav__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AD4x4 API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practical-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Practical Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../auth-profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Auth and Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vehicles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vehicles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trip-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lead-trip-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lead Trip History
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trips
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trip-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trip-reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meeting-points/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meeting Points
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../logbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Logbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../logbook-migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logbook Migration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../club-news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Club News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faqs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feedback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sponsorships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sponsorships
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notifications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gallery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gallery Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../here-maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HERE Maps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../global-settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Global Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../background-tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background Tasks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../management-commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Management Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editable-strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../account-deletion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Account Deletion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../swagger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swagger UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintenance-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintenance Mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rate-limiting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rate Limiting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#docker-stack-production-via-infradocker-composeyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker stack (production, via infra/docker-compose.yml)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-variables-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment variables (production)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cors-csrf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CORS / CSRF
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#media-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Media files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-tracking-bugsink" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error tracking — Bugsink
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disaster-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disaster Recovery
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Disaster Recovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backup-targets-and-retention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backup targets and retention
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#critical-dr-gotchas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Critical DR gotchas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#host-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Host monitoring
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maintenance-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maintenance mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="deployment-environment-disaster-recovery">Deployment, Environment &amp; Disaster Recovery<a class="headerlink" href="#deployment-environment-disaster-recovery" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>AI-context reference. Hetzner deployment, Docker stack, env-var inventory, host monitoring, and the DR runbook summary.</p>
+</blockquote>
+<p><strong>Authoritative operational docs:</strong>
+- <a href="../../infra/README.txt"><code>infra/README.txt</code></a> — step-by-step deployment / redeploy runbook (docker build, SSL, DB migrations, FCM path)
+- <a href="../../infra/.env.example"><code>infra/.env.example</code></a> — <strong>canonical</strong> environment-variable template; ground truth. The list in this file mirrors it but may lag — always verify against <code>.env.example</code> and update both in the same PR when adding a variable.
+- <a href="../../infra/disaster-recovery/Disaster-README.md"><code>infra/disaster-recovery/Disaster-README.md</code></a> — full DR setup + restore procedures.</p>
+<hr />
+<h2 id="docker-stack-production-via-infradocker-composeyml">Docker stack (production, via <code>infra/docker-compose.yml</code>)<a class="headerlink" href="#docker-stack-production-via-infradocker-composeyml" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>nginx          ← SSL termination, static files, reverse proxy
+postgres       ← Primary database
+redis          ← Cache + Huey broker
+bugsink-db     ← Dedicated Bugsink Postgres database
+bugsink        ← Self-hosted Sentry-compatible error tracker
+app            ← Gunicorn (Django), built from Dockerapp
+huey           ← Huey consumer, built from Dockerhuey
+</code></pre></div>
+
+<p>Hosted on <strong>Hetzner</strong>. Images are Docker multi-stage Python 3.13 builds.</p>
+<hr />
+<h2 id="environment-variables-production">Environment variables (production)<a class="headerlink" href="#environment-variables-production" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Always cross-check against <a href="../../infra/.env.example"><code>infra/.env.example</code></a> — that file is canonical. CI fails the build if a name in <code>.env.example</code> is missing here.</p>
+</blockquote>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Django / DB / cache</span>
+DJANGO_SECRET_KEY<span class="w">                </span><span class="c1"># Presence triggers production mode</span>
+PG_POSTGRES_DATABASE
+PG_POSTGRES_USER
+PG_POSTGRES_PASSWORD
+PG_POSTGRES_HOST
+PG_POSTGRES_PORT
+REDIS_HOST
+REDIS_PORT
+REDIS_PASSWORD
+
+<span class="c1"># JWT</span>
+ACCESS_TOKEN_MINUTES<span class="w">             </span><span class="c1"># Optional; access-token lifetime, default 1440 (24h)</span>
+REFRESH_TOKEN_DAYS<span class="w">               </span><span class="c1"># Optional; refresh-token lifetime, default 30</span>
+
+<span class="c1"># Firebase / Push</span>
+FCM_SERVICE_KEY_PATH<span class="w">             </span><span class="c1"># Path to Firebase service account JSON inside container</span>
+
+<span class="c1"># Error tracking (Bugsink, Sentry-compatible)</span>
+SENTRY_DSN<span class="w">                       </span><span class="c1"># Optional; Bugsink project DSN</span>
+SENTRY_ENVIRONMENT<span class="w">               </span><span class="c1"># Optional; default production in prod, development in dev</span>
+SENTRY_TRACES_SAMPLE_RATE<span class="w">        </span><span class="c1"># Optional; default 0 for Bugsink</span>
+SENTRY_SEND_DEFAULT_PII<span class="w">          </span><span class="c1"># Optional; default false</span>
+SENTRY_RELEASE<span class="w">                   </span><span class="c1"># Optional; falls back to GIT_COMMIT</span>
+DJANGO_ENABLE_ADMIN_ERROR_EMAIL<span class="w">  </span><span class="c1"># Optional; enabled only when SENTRY_DSN is blank, unless set true</span>
+
+<span class="c1"># Bugsink runtime</span>
+BUGSINK_SECRET_KEY
+BUGSINK_CREATE_SUPERUSER
+BUGSINK_PORT
+BUGSINK_HOST_PORT
+BUGSINK_BASE_URL
+BUGSINK_BEHIND_HTTPS_PROXY
+BUGSINK_USE_X_FORWARDED_HOST
+BUGSINK_POSTGRES_DB
+BUGSINK_POSTGRES_USER
+BUGSINK_POSTGRES_PASSWORD
+BUGSINK_EMAIL_HOST<span class="w">               </span><span class="c1"># Optional SMTP for Bugsink alerts / password reset</span>
+BUGSINK_EMAIL_HOST_USER
+BUGSINK_EMAIL_HOST_PASSWORD
+BUGSINK_EMAIL_PORT
+BUGSINK_EMAIL_USE_TLS
+BUGSINK_EMAIL_USE_SSL
+BUGSINK_DEFAULT_FROM_EMAIL
+BUGSINK_EMAIL_LOGGING
+
+<span class="c1"># Transactional email</span>
+EMAIL_HOST_USER<span class="w">                  </span><span class="c1"># Gmail SMTP</span>
+EMAIL_HOST_PASSWORD
+
+<span class="c1"># PayPal</span>
+PAYPAL_CLIENT_ID
+PAYPAL_SECRET_KEY
+
+<span class="c1"># Gallery</span>
+GALLERY_API_BASE_URL<span class="w">             </span><span class="c1"># https://media.ad4x4.com</span>
+GALLERY_API_TOKEN
+
+<span class="c1"># Telegram bot</span>
+TELEGRAM_BOT_TOKEN
+TELEGRAM_CHAT_ID<span class="w">                 </span><span class="c1"># Default: -1002589316403</span>
+TELEGRAM_HUEY_THREAD_ID<span class="w">          </span><span class="c1"># Optional; forum topic for feedback / general Django-Huey notifications</span>
+TELEGRAM_NEW_TRIP_THREAD_ID<span class="w">      </span><span class="c1"># Optional; dedicated topic for new trip announcements</span>
+TELEGRAM_ALERT_CHAT_ID<span class="w">           </span><span class="c1"># Optional; host-monitor alert chat/group, defaults to TELEGRAM_CHAT_ID</span>
+TELEGRAM_COMMAND_CHAT_ID<span class="w">         </span><span class="c1"># Optional; host-monitor command chat/group, defaults to TELEGRAM_CHAT_ID</span>
+TELEGRAM_ALERT_THREAD_ID<span class="w">         </span><span class="c1"># Optional; forum topic for host-monitor alerts</span>
+TELEGRAM_STATUS_THREAD_ID<span class="w">        </span><span class="c1"># Optional; forum topic for the host-monitor&#39;s daily heartbeat</span>
+TELEGRAM_COMMAND_THREAD_ID<span class="w">       </span><span class="c1"># Optional CSV; restrict host-monitor commands to selected forum topics</span>
+TELEGRAM_PRIVILEGED_USER_IDS<span class="w">     </span><span class="c1"># Optional CSV; user IDs allowed to run bot-triggered deploy/migration commands</span>
+TELEGRAM_ADMIN_USER_IDS<span class="w">          </span><span class="c1"># Optional CSV; user IDs allowed to manage maintenance bypass files</span>
+
+<span class="c1"># Maintenance bypass</span>
+MAINTENANCE_BYPASS_IP_FILE<span class="w">                    </span><span class="c1"># Nginx include path in infra/.env; host file path in monitor-bot env</span>
+MAINTENANCE_BYPASS_SECRET_FILE<span class="w">                </span><span class="c1"># Nginx include path in infra/.env; host file path in monitor-bot env</span>
+MAINTENANCE_BYPASS_HEADER_NAME<span class="w">                </span><span class="c1"># Optional; default X-Maintenance-Bypass</span>
+MAINTENANCE_BYPASS_HEADER_VARIABLE<span class="w">            </span><span class="c1"># Nginx header variable, e.g. $http_x_maintenance_bypass</span>
+MAINTENANCE_BYPASS_MIN_SECRET_LENGTH<span class="w">          </span><span class="c1"># Optional; default 32</span>
+MAINTENANCE_BYPASS_REQUIRE_CONFIRM_FOR_PURGE<span class="w">  </span><span class="c1"># Optional; default true</span>
+MAINTENANCE_BYPASS_REQUIRE_CONFIRM_FOR_SECRET_CLEAR<span class="w">  </span><span class="c1"># Optional; default true</span>
+NGINX_TEST_COMMAND<span class="w">                            </span><span class="c1"># Command monitor bot runs before bypass file reloads</span>
+NGINX_RELOAD_COMMAND<span class="w">                          </span><span class="c1"># Command monitor bot runs after successful validation</span>
+
+<span class="c1"># Backups</span>
+BACKUP_NOTIFY_EMAIL<span class="w">              </span><span class="c1"># Destination for backup failure / warning alerts</span>
+RESTIC_REPOSITORY<span class="w">                </span><span class="c1"># e.g. b2:hetzner-ad4x4:/restic-backups</span>
+RESTIC_PASSWORD<span class="w">                  </span><span class="c1"># Restic encryption password (NEVER commit real value)</span>
+B2_ACCOUNT_ID<span class="w">                    </span><span class="c1"># Backblaze B2 application key ID</span>
+B2_ACCOUNT_KEY<span class="w">                   </span><span class="c1"># Backblaze B2 application key secret</span>
+
+<span class="c1"># Disk-space alerts</span>
+DISK_ALERT_EMAIL<span class="w">                 </span><span class="c1"># Optional; defaults to BACKUP_NOTIFY_EMAIL</span>
+DISK_ALERT_THRESHOLD_PERCENT<span class="w">     </span><span class="c1"># Optional; default 85</span>
+DISK_ALERT_MIN_FREE_MB<span class="w">           </span><span class="c1"># Optional; default 2048</span>
+DISK_ALERT_PATHS<span class="w">                 </span><span class="c1"># Optional; default &quot;/ /home/admin /home/admin/backups&quot;</span>
+DISK_ALERT_COOLDOWN_SECONDS<span class="w">      </span><span class="c1"># Optional; default 21600</span>
+</code></pre></div>
+
+<hr />
+<h2 id="cors-csrf">CORS / CSRF<a class="headerlink" href="#cors-csrf" title="Permanent link">&para;</a></h2>
+<p>Origins allowed (regex): <code>*.codemagic.app</code>, <code>*.ad4x4.com</code>, Novita AI sandbox.
+CSRF trusted: <code>ap.ad4x4.com</code>, <code>ad4x4.com</code>.</p>
+<hr />
+<h2 id="media-files">Media files<a class="headerlink" href="#media-files" title="Permanent link">&para;</a></h2>
+<p>Served from <code>/uploads/</code> path via a custom <code>serve_media</code> view in production (not Whitenoise — that's for static only). Media root: <code>/app/uploads</code> inside the container.</p>
+<hr />
+<h2 id="error-tracking-bugsink">Error tracking — Bugsink<a class="headerlink" href="#error-tracking-bugsink" title="Permanent link">&para;</a></h2>
+<p>Bugsink is the production exception target. Django + Huey use <code>sentry-sdk</code> with <code>DjangoIntegration</code>, <code>HueyIntegration</code>, and <code>RedisIntegration</code> when <code>SENTRY_DSN</code> is set. The DSN points at the Bugsink project; the env var keeps the Sentry-compatible name on purpose.</p>
+<p><code>django.request</code> logs always go to console. <code>AdminEmailHandler</code> 500 emails are enabled when <code>SENTRY_DSN</code> is blank; once Bugsink is configured, they're disabled unless <code>DJANGO_ENABLE_ADMIN_ERROR_EMAIL=true</code> overrides. Operational emails (backup-failure, disk-space) stay on their own channel.</p>
+<p>Sentry SDK is configured <strong>not</strong> to send request bodies or local frame variables. A <code>before_send</code> hook scrubs common secret-bearing keys, URL query parameters, and <code>key=value</code> breadcrumb strings before they leave the app.</p>
+<p>The default compose deployment keeps Bugsink internal to the Docker network and binds the UI to <code>127.0.0.1:${BUGSINK_HOST_PORT:-18000}</code> on the host for SSH-tunneled admin access. <code>BUGSINK_BASE_URL</code> should stay set to that admin-accessible URL. Backend ingestion uses a <code>SENTRY_DSN</code> whose host resolves inside Docker (usually <code>bugsink:8000</code>). With the default localhost URL, Bugsink-generated email links are only useful from the VPS or via SSH tunnel; configure a real HTTPS URL before using Bugsink email features.</p>
+<hr />
+<h2 id="disaster-recovery">Disaster Recovery<a class="headerlink" href="#disaster-recovery" title="Permanent link">&para;</a></h2>
+<p>Lives under <a href="../../infra/disaster-recovery/"><code>infra/disaster-recovery/</code></a>. Three files:</p>
+<ul>
+<li><strong><code>backup.sh</code></strong> — orchestrates backups of the PostgreSQL database, user uploads, source code, and infra config. Runs under <code>flock</code> so overlapping cron invocations are safe. Builds into <code>/home/admin/backups/staging/</code> and atomically promotes to <code>/home/admin/backups/latest/</code> only after a successful run, so a failed backup never leaves the server with zero local copies. Writes <code>/home/admin/backups/backup-status.json</code> after every run (for monitoring) and rotates its log via <code>/etc/logrotate.d/ad4x4-backup</code>. Bugsink issue data is treated as disposable operational telemetry and is not backed up; <code>infra/bugsink-db-data/</code> and <code>infra/db-data/</code> (live PostgreSQL data directory) are excluded from infra archives — the database is already captured via <code>pg_dump</code>. The Restic B2 repository is auto-initialised on first run if not found; a warning is added and the Restic step is skipped for that run if initialisation fails.</li>
+<li><strong><code>restore.sh</code></strong> — restores a backup to a fresh (or existing) Ubuntu host. Sources: <code>gdrive</code>, <code>koofr</code>, <code>restic</code>, or <code>local</code>. Restore order is <strong>source → infra → uploads → database</strong> — preserving this order is mandatory, otherwise the source-code extraction (<code>rm -rf $APP_DIR</code>) will wipe out already-restored infra and uploads. Handles both <code>db.sql.gz</code> (current) and <code>db.sql</code> (legacy) dumps. Discovers the postgres container name dynamically.</li>
+<li><strong><code>Disaster-README.md</code></strong> — setup instructions, fresh-VM quick restore, manual restore procedures.</li>
+</ul>
+<h3 id="backup-targets-and-retention">Backup targets and retention<a class="headerlink" href="#backup-targets-and-retention" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Target</th>
+<th>Tool</th>
+<th>Snapshots kept</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Google Drive (<code>gdrive:ad4x4-backups</code>)</td>
+<td>rclone</td>
+<td>2 most-recent snapshots + incremental uploads sync</td>
+</tr>
+<tr>
+<td>Koofr (<code>koofr:ad4x4-backups</code>)</td>
+<td>rclone</td>
+<td>2 most-recent snapshots + incremental uploads sync</td>
+</tr>
+<tr>
+<td>Backblaze B2 (<code>b2:hetzner-ad4x4:/restic-backups</code>)</td>
+<td>restic</td>
+<td>24 hourly / 3 daily / 2 weekly / 1 monthly (encrypted)</td>
+</tr>
+<tr>
+<td>Local</td>
+<td>plain filesystem</td>
+<td>1 (<code>latest/</code> only — no timestamped local folders)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Schedule:</strong> every 6 hours via cron (<code>infra/disaster-recovery/crontab-example.txt</code>).</p>
+<h3 id="critical-dr-gotchas">Critical DR gotchas<a class="headerlink" href="#critical-dr-gotchas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Restic encrypts on B2, but Google Drive and Koofr receive <strong>plaintext</strong> <code>db.sql.gz</code> and tarballs. Anyone with access to those accounts can read everything.</li>
+<li>The source-code archive is created with <code>tar -C /home/admin ad4x4</code>, so its entries begin with <code>ad4x4/</code>. On restore it <strong>must</strong> be extracted to <code>$(dirname "$APP_DIR")</code> (= <code>/home/admin</code>), not <code>$APP_DIR</code> itself — otherwise files land at <code>/home/admin/ad4x4/ad4x4/...</code>.</li>
+<li><code>restore.sh local</code> always uses <code>$BACKUP_ROOT/latest</code> regardless of any timestamp argument, because the backup script no longer retains timestamped local copies.</li>
+<li>Changing <code>pg_dump</code> output format requires updating <code>restore.sh</code> at the same time — both sides must agree on <code>db.sql.gz</code> vs <code>db.sql</code> vs <code>-Fc</code> custom format.</li>
+<li><strong>Migration 0085 (<code>migrate_car_fields_to_vehicles</code>) is effectively one-way.</strong> Its <code>reverse_migration</code> references <code>Member.car_brand</code>/<code>car_model</code>/<code>car_year</code>/<code>car_color</code>/<code>car_image</code> — columns that the subsequent migration 0086 removes. Rolling back past 0085 after 0086+ has applied will fail with <code>AttributeError</code>. If a rollback past this point is ever needed, restore the database from backup rather than running <code>migrate --backwards</code>.</li>
+</ul>
+<hr />
+<h2 id="host-monitoring">Host monitoring<a class="headerlink" href="#host-monitoring" title="Permanent link">&para;</a></h2>
+<p><a href="../../infra/monitoring/check-disk-space.sh"><code>infra/monitoring/check-disk-space.sh</code></a> is a host-level cron script for Hetzner VPS disk-space alerts. It parses only the needed keys from <code>/home/admin/ad4x4/infra/.env</code>, checks <code>DISK_ALERT_PATHS</code>, and sends email via the host <code>mail</code> command to <code>DISK_ALERT_EMAIL</code> or <code>BACKUP_NOTIFY_EMAIL</code>. Defaults alert at 85% usage or less than 2GB free, and suppress repeated emails for 6 hours while the condition remains active. The recommended cron entry is in <code>infra/disaster-recovery/crontab-example.txt</code>, which also creates <code>/home/admin/monitoring</code> before running.</p>
+<hr />
+<h2 id="maintenance-mode">Maintenance mode<a class="headerlink" href="#maintenance-mode" title="Permanent link">&para;</a></h2>
+<p>Nginx-level 503 gate with admin-URI bypass; an optional API bypass allows either a bot-managed external IP whitelist match or the configured secret header. Wired up via <code>MAINTENANCE_BYPASS_*</code> env vars; the monitor bot can manage the bypass files at runtime when given the right privileges.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

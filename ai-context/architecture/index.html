@@ -1,0 +1,1665 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Next gen API for Abu Dhabi 4x4">
+      
+      
+        <meta name="author" content="Redbeard">
+      
+      
+        <link rel="canonical" href="https://api.ad4x4.com/readme/ai-context/architecture/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Architecture, Request Flow, Auth & Permissions - AD4x4 API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#architecture-request-flow-auth-permissions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="AD4x4 API" class="md-header__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AD4x4 API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Architecture, Request Flow, Auth &amp; Permissions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AD4x4 API" class="md-nav__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AD4x4 API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practical-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Practical Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../auth-profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Auth and Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vehicles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vehicles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trip-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lead-trip-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lead Trip History
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trips
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trip-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trip-reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meeting-points/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meeting Points
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../logbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Logbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../logbook-migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logbook Migration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../club-news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Club News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faqs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feedback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sponsorships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sponsorships
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notifications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gallery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gallery Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../here-maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HERE Maps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../global-settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Global Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../background-tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background Tasks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../management-commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Management Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editable-strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../account-deletion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Account Deletion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../swagger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swagger UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintenance-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintenance Mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rate-limiting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rate Limiting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#settings-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#request-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request pipeline
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Request pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#camelcase-conversion-critical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CamelCase conversion (critical)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-envelope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Response envelope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pagination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pagination
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#throttling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Throttling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication &amp; JWT
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication &amp; JWT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#token-lifetimes-env-overridable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Token lifetimes (env-overridable)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rotation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token-payload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Token payload
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#login-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Login fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-permission" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default permission
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#membertoken_version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Member.token_version
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invalidation-semantics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invalidation semantics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#permission-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permission system
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Permission system">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#every-protected-view-must-add-a-permissionmatrix-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Every protected view must add a PermissionMatrix check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actionchoice-values-key-ones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ActionChoice values (key ones)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-permission-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom permission classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authority-ranking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authority ranking
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="architecture-request-flow-auth-permissions">Architecture, Request Flow, Auth &amp; Permissions<a class="headerlink" href="#architecture-request-flow-auth-permissions" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>AI-context reference. Read <a href="../../AGENTS.md"><code>AGENTS.md</code></a> first for project overview and the load-bearing gotchas. This file covers request pipeline, JWT auth, and the <code>PermissionMatrix</code> authorisation model.</p>
+</blockquote>
+<hr />
+<h2 id="settings-modes">Settings modes<a class="headerlink" href="#settings-modes" title="Permanent link">&para;</a></h2>
+<p>Settings live in <code>ad4x4/settings.py</code>. The mode is selected by whether <code>DJANGO_SECRET_KEY</code> is present in the environment:</p>
+<ul>
+<li><strong>Production</strong> — <code>DJANGO_SECRET_KEY</code> env var present → PostgreSQL, Redis, SSL enforced, email SMTP, Bugsink.</li>
+<li><strong>Development</strong> — env var absent → SQLite or local Postgres (via <code>DEV_DB_*</code> vars), in-memory cache, console email, Huey immediate mode (tasks run synchronously).</li>
+</ul>
+<hr />
+<h2 id="request-pipeline">Request pipeline<a class="headerlink" href="#request-pipeline" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>Client (Flutter app / web)
+  → HTTPS → nginx (reverse proxy, SSL termination)
+  → Gunicorn (WSGI, prod) / manage.py runserver (dev)
+  → Django middleware stack (in order):
+      SecurityMiddleware → SessionMiddleware → CorsMiddleware → CommonMiddleware
+      → CsrfViewMiddleware → AuthenticationMiddleware → MessageMiddleware
+      → XFrameOptionsMiddleware → WhitenoiseMiddleware
+      → CamelCaseMiddleWare        ← converts snake_case ↔ camelCase
+      → CharsetMiddleware           ← adds charset=utf-8 to responses
+      → MediaCorsMiddleware         ← CORS wildcard for /uploads/ and /media/
+      → LastVisitedMiddleware       ← updates Member.last_visited (throttled 1/hr)
+  → DRF authentication:
+      JWTAuthentication (custom HS256, see Auth section below)
+      → SessionAuthentication (fallback)
+  → DRF permission classes (per-view)
+  → ViewSet / APIView
+  → Service layer (api/services/)
+  → Models / ORM
+  → PostgreSQL
+</code></pre></div>
+
+<h3 id="camelcase-conversion-critical">CamelCase conversion (critical)<a class="headerlink" href="#camelcase-conversion-critical" title="Permanent link">&para;</a></h3>
+<p>All JSON in and out is <strong>camelCase</strong> — handled automatically by <code>djangorestframework_camel_case</code>. Write <code>snake_case</code> internally; clients always see camelCase. Only exceptions: <code>password1</code> and <code>password2</code> (excluded via <code>JSON_UNDERSCOREIZE</code>).</p>
+<h3 id="response-envelope">Response envelope<a class="headerlink" href="#response-envelope" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Success</span>
+<span class="p">{</span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">}}</span>
+
+<span class="c1">// Error</span>
+<span class="p">{</span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;error description or validation dict&quot;</span><span class="p">}</span>
+
+<span class="c1">// Warning requiring explicit client confirmation before mutation</span>
+<span class="p">{</span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;trip_overlap_warning&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;warnings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">]}</span>
+
+<span class="c1">// Paginated list</span>
+<span class="p">{</span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;next&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;url&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;previous&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;url&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;results&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">]}</span>
+</code></pre></div>
+
+<h3 id="pagination">Pagination<a class="headerlink" href="#pagination" title="Permanent link">&para;</a></h3>
+<p>Default 10 per page. Client can pass <code>page_size</code> up to 500.</p>
+<h3 id="throttling">Throttling<a class="headerlink" href="#throttling" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Anonymous: 100 req/min</li>
+<li>Authenticated: 200 req/min</li>
+</ul>
+<hr />
+<h2 id="authentication-jwt">Authentication &amp; JWT<a class="headerlink" href="#authentication-jwt" title="Permanent link">&para;</a></h2>
+<p><strong>Library:</strong> <code>djangorestframework-simplejwt</code> with the <code>token_blacklist</code> app enabled.
+<strong>Header:</strong> <code>Authorization: Bearer &lt;access_token&gt;</code>. Algorithm: HS256 signed with <code>SECRET_KEY</code>.</p>
+<h3 id="token-lifetimes-env-overridable">Token lifetimes (env-overridable)<a class="headerlink" href="#token-lifetimes-env-overridable" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Access token: 24 hours (<code>ACCESS_TOKEN_MINUTES</code>, default 1440)</li>
+<li>Refresh token: 30 days (<code>REFRESH_TOKEN_DAYS</code>, default 30)</li>
+</ul>
+<h3 id="rotation">Rotation<a class="headerlink" href="#rotation" title="Permanent link">&para;</a></h3>
+<p><code>ROTATE_REFRESH_TOKENS=True</code> + <code>BLACKLIST_AFTER_ROTATION=True</code>. Every successful <code>/api/token/refresh/</code> call returns a <em>new</em> refresh token and blacklists the old one. Reusing the same refresh token twice returns 401. <strong>Clients must overwrite their stored refresh token with the response value.</strong></p>
+<h3 id="token-payload">Token payload<a class="headerlink" href="#token-payload" title="Permanent link">&para;</a></h3>
+<p><code>token_type</code>, <code>exp</code>, <code>iat</code>, <code>jti</code>, <code>user_id</code>. No <code>token_version</code> check (legacy).</p>
+<h3 id="custom-classes">Custom classes<a class="headerlink" href="#custom-classes" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>api.util.JWTAuthentication</code> — thin <code>simplejwt</code> subclass. Overrides <code>get_user()</code> only to preserve the legacy side effect of touching <code>NotificationSettings</code> on every authenticated request.</li>
+<li><code>api.views.views_auth.LoginView</code> — custom login mounted at <code>/api/auth/login/</code> <em>before</em> <code>rest_registration</code>'s URL include. Accepts <code>login</code> / <code>username</code> / <code>email</code> (case-insensitive on all) + <code>password</code>, returns <code>{access, refresh}</code> via <code>RefreshToken.for_user(user)</code> wrapped in the unified envelope.</li>
+<li><code>api.views.views_auth.UnifiedTokenObtainPairView</code> / <code>UnifiedTokenRefreshView</code> — wrappers around simplejwt's stock views that return the unified envelope. Mounted at <code>/api/token/</code> and <code>/api/token/refresh/</code>.</li>
+<li><code>api.views.views_auth.LogoutView</code>, <code>LogoutAllView</code>, <code>SessionsView</code> — session management (see below).</li>
+<li><code>api.views.views_auth.CustomChangePasswordView</code> — see the gotcha in <code>AGENTS.md</code>: blacklists <em>every</em> refresh token for the user after <code>set_password</code>.</li>
+</ul>
+<h3 id="login-fields">Login fields<a class="headerlink" href="#login-fields" title="Permanent link">&para;</a></h3>
+<p><code>login</code>, <code>username</code>, or <code>email</code> (any of them, case-insensitive) plus <code>password</code>. The same case-insensitive lookup is reused by <code>find_user_case_insensitive_by_send_reset_password_link_data</code> for reset-password.</p>
+<h3 id="default-permission">Default permission<a class="headerlink" href="#default-permission" title="Permanent link">&para;</a></h3>
+<p><code>IsAuthenticatedOrReadOnly</code> (safe methods public by default unless a view overrides).</p>
+<h3 id="membertoken_version"><code>Member.token_version</code><a class="headerlink" href="#membertoken_version" title="Permanent link">&para;</a></h3>
+<p><strong>Legacy, unused.</strong> Column still on the model but nothing reads or writes it. Slated for removal. Do not reintroduce checks.</p>
+<h3 id="invalidation-semantics">Invalidation semantics<a class="headerlink" href="#invalidation-semantics" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Scope</th>
+<th>Mechanism</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST /api/auth/logout/</code></td>
+<td>Only the session whose refresh token is in the request body</td>
+<td><code>.blacklist()</code> on that one JTI</td>
+</tr>
+<tr>
+<td><code>DELETE /api/auth/sessions/</code> (with <code>keep_refresh</code>)</td>
+<td>All sessions except the one whose refresh token is supplied</td>
+<td><code>.blacklist()</code> on every other JTI</td>
+</tr>
+<tr>
+<td><code>POST /api/auth/logout-all/</code></td>
+<td>Every session including the current one</td>
+<td><code>.blacklist()</code> on every JTI for the user</td>
+</tr>
+<tr>
+<td><code>POST /api/auth/change-password/</code></td>
+<td>Every session including the current one</td>
+<td><code>_blacklist_all_user_tokens(user)</code> after <code>set_password</code></td>
+</tr>
+<tr>
+<td>Refresh token rotated on use</td>
+<td>Previous refresh JTI invalidated, new one issued</td>
+<td><code>BLACKLIST_AFTER_ROTATION=True</code> handles it</td>
+</tr>
+<tr>
+<td>Refresh token expires naturally</td>
+<td>That one session</td>
+<td>simplejwt rejects on <code>exp</code> check, no DB work</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="permission-system">Permission system<a class="headerlink" href="#permission-system" title="Permanent link">&para;</a></h2>
+<p><code>PermissionMatrix</code> is the authoritative authorisation model. Django Groups + <code>PermissionMatrix</code> records together drive every protected action.</p>
+<h3 id="how-it-works">How it works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Each <code>PermissionMatrix</code> row maps a <code>(group, action)</code> pair.</li>
+<li>If <code>levels</code> M2M is empty, the permission applies to <strong>all</strong> member levels (this is the opposite of what you might expect — see <code>AGENTS.md</code> gotchas).</li>
+<li>If <code>levels</code> is specified, the permission applies only when the target member is at one of those levels.</li>
+<li><code>PermissionMatrix.has_permission(user, action, member=None, trip=None, require_trip_lead=False)</code> is the single authoritative check.</li>
+</ol>
+<h3 id="every-protected-view-must-add-a-permissionmatrix-check">Every protected view must add a PermissionMatrix check<a class="headerlink" href="#every-protected-view-must-add-a-permissionmatrix-check" title="Permanent link">&para;</a></h3>
+<p>When writing a new view that exposes a protected action you must <strong>explicitly</strong> add <code>PermissionMatrix.has_permission()</code> — do not assume one exists. Do not use Django model-level perms (<code>is_staff</code>, <code>is_superuser</code>) for business logic; those are admin-panel shortcuts only. The rule is not just "don't bypass it" — it's "always add it to every view that needs it."</p>
+<h3 id="actionchoice-values-key-ones">ActionChoice values (key ones)<a class="headerlink" href="#actionchoice-values-key-ones" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>CREATE_TRIP, CREATE_TRIP_WITH_APPROVAL, APPROVE_TRIP
+EDIT_TRIPS, EDIT_TRIP_MEDIA, EDIT_TRIP_REGISTRATIONS, DELETE_TRIPS
+CREATE_TRIP_REPORT, DELETE_TRIP_COMMENTS
+BYPASS_LEVEL_REQ, OVERRIDE_WAITLIST_SETTING
+VIEW_TRIPS_AS_LEAD, CAN_BE_DEPUTY_LEAD
+CREATE_MEETING_POINTS, EDIT_MEETING_POINTS, DELETE_MEETING_POINTS
+CREATE_UPGRADE_REQ_FOR_SELF, CREATE_UPGRADE_REQ_FOR_OTHERS
+APPROVE_UPGRADE_REQ, VOTE_UPGRADE_REQ
+VIEW_UPGRADE_REQ, EDIT_UPGRADE_REQ, DELETE_UPGRADE_REQ
+CREATE_COMMENT_UPGRADE_REQ, DELETE_COMMENT_UPGRADE_REQ
+CREATE_LOGBOOK_ENTRIES, SIGN_LOGBOOK_SKILLS, CREATE_LOGBOOK_ENTRIES_SUPERUSER
+VIEW_CONTACT_INFO, VIEW_MEMBER_TRIP_HISTORY, SEARCH_MEMBERS, SEARCH_TRIPS
+EDIT_MEMBERSHIP_PAYMENTS, EDIT_GLOBAL_SETTINGS, EDIT_UI_STRINGS, SEND_CLUB_NEWS
+ACCESS_MARSHAL_PANEL, APPROVE_LOGBOOK_MIGRATION
+</code></pre></div>
+
+<p>The full list lives in <code>api/choices.py</code> (<code>ActionChoice</code>).</p>
+<h3 id="custom-permission-classes">Custom permission classes<a class="headerlink" href="#custom-permission-classes" title="Permanent link">&para;</a></h3>
+<p><code>api/permissions.py</code> contains 30+ DRF permission classes that wrap <code>PermissionMatrix.has_permission()</code> for specific actions and viewsets. Reuse the existing class for your action before inventing a new one.</p>
+<hr />
+<h2 id="authority-ranking">Authority ranking<a class="headerlink" href="#authority-ranking" title="Permanent link">&para;</a></h2>
+<p>When docs disagree, trust in this order:</p>
+<ol>
+<li>Source code — ground truth for behaviour</li>
+<li><code>infra/.env.example</code> — ground truth for environment variables</li>
+<li><code>schema.yml</code> — ground truth for API surface (auto-generated)</li>
+<li><code>AGENTS.md</code> — load-bearing rules and gotchas</li>
+<li><code>docs/ai-context/*.md</code> — domain reference (this file)</li>
+<li><code>docs/*.md</code> — MkDocs human docs</li>
+<li><code>README.md</code> — public front door</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
