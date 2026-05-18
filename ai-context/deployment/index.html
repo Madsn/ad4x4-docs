@@ -1328,7 +1328,12 @@ huey           ← Huey consumer, built from Dockerhuey
 <blockquote>
 <p>Always cross-check against <a href="../../infra/.env.example"><code>infra/.env.example</code></a> — that file is canonical. CI fails the build if a name in <code>.env.example</code> is missing here.</p>
 </blockquote>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Django / DB / cache</span>
+<div class="codehilite"><pre><span></span><code><span class="c1"># System</span>
+TZ<span class="w">                               </span><span class="c1"># Container timezone, e.g. Asia/Dubai</span>
+SSL_EMAIL<span class="w">                        </span><span class="c1"># Email for Let&#39;s Encrypt SSL certificate registration</span>
+
+<span class="c1"># Django / DB / cache</span>
+APP_DOMAIN<span class="w">                       </span><span class="c1"># Public domain, e.g. ap.ad4x4.com (used in email links, OIDC issuer)</span>
 DJANGO_SECRET_KEY<span class="w">                </span><span class="c1"># Presence triggers production mode</span>
 PG_POSTGRES_DATABASE
 PG_POSTGRES_USER
@@ -1380,7 +1385,13 @@ EMAIL_HOST_PASSWORD
 
 <span class="c1"># PayPal</span>
 PAYPAL_CLIENT_ID
+PAYPAL_CLIENT_SECRET<span class="w">             </span><span class="c1"># PayPal REST API secret</span>
 PAYPAL_SECRET_KEY
+PAYPAL_MODE<span class="w">                      </span><span class="c1"># sandbox | live</span>
+
+<span class="c1"># GitHub webhooks</span>
+GITHUB_WEBHOOK_SECRET<span class="w">            </span><span class="c1"># HMAC secret for validating incoming GitHub webhook payloads</span>
+GITHUB_ALLOWED_REPOS<span class="w">             </span><span class="c1"># CSV of repo full names (owner/repo) permitted to trigger webhooks</span>
 
 <span class="c1"># Gallery</span>
 GALLERY_API_BASE_URL<span class="w">             </span><span class="c1"># https://media.ad4x4.com</span>
@@ -1398,6 +1409,7 @@ TELEGRAM_STATUS_THREAD_ID<span class="w">        </span><span class="c1"># Optio
 TELEGRAM_COMMAND_THREAD_ID<span class="w">       </span><span class="c1"># Optional CSV; restrict host-monitor commands to selected forum topics</span>
 TELEGRAM_PRIVILEGED_USER_IDS<span class="w">     </span><span class="c1"># Optional CSV; user IDs allowed to run bot-triggered deploy/migration commands</span>
 TELEGRAM_ADMIN_USER_IDS<span class="w">          </span><span class="c1"># Optional CSV; user IDs allowed to manage maintenance bypass files</span>
+TELEGRAM_GITHUB_THREAD_ID<span class="w">        </span><span class="c1"># Optional; forum topic for GitHub webhook notifications</span>
 
 <span class="c1"># Maintenance bypass</span>
 MAINTENANCE_BYPASS_IP_FILE<span class="w">                    </span><span class="c1"># Nginx include path in infra/.env; host file path in monitor-bot env</span>
