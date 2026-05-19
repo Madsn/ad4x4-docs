@@ -2139,7 +2139,7 @@
 </blockquote>
 <ul>
 <li>Exports the trip's registered members as a CSV file.</li>
-<li><strong>Authentication:</strong> Required.</li>
+<li><strong>Authentication:</strong> Required. <strong>Authorization:</strong> trip lead, deputy lead, or a group with <code>EDIT_TRIP_REGISTRATIONS</code> permission for the trip's level (superusers always allowed).</li>
 <li><strong>Response:</strong> CSV file with <code>Content-Disposition: attachment; filename="trip_{id}_registrants.csv"</code></li>
 <li><strong>CSV Columns:</strong> <code>username</code>, <code>name</code>, <code>level</code>, one column per active level for trip counts (e.g., <code>trips_newbie</code>, <code>trips_intermediate</code>), <code>car_brand_model_color</code>, <code>phone</code>, <code>city</code></li>
 </ul>
