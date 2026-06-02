@@ -1,0 +1,2592 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Next gen API for Abu Dhabi 4x4">
+      
+      
+        <meta name="author" content="Redbeard">
+      
+      
+        <link rel="canonical" href="https://api.ad4x4.com/readme/design/subscription-migration/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>AD4x4 — Subscription Model Migration: Joint Design Doc & Work Breakdown - AD4x4 API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ad4x4-subscription-model-migration-joint-design-doc-work-breakdown" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="AD4x4 API" class="md-header__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AD4x4 API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AD4x4 — Subscription Model Migration: Joint Design Doc &amp; Work Breakdown
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AD4x4 API" class="md-nav__button md-logo" aria-label="AD4x4 API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AD4x4 API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practical-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Practical Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../auth-profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Auth and Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../members/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Members
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vehicles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vehicles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trip-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lead-trip-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lead Trip History
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trips
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trip-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trip-reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trip Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../meeting-points/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meeting Points
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../levels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../logbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Logbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../logbook-migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logbook Migration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../club-news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Club News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faqs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feedback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sponsorships/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sponsorships
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notifications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gallery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gallery Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../here-maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HERE Maps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../global-settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Global Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../background-tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Background Tasks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../management-commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Management Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editable-strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../choices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choices / Enums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../account-deletion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Account Deletion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../swagger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swagger UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintenance-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintenance Mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rate-limiting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rate Limiting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-tldr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. TL;DR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-goals-non-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Goals &amp; Non-Goals
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Goals &amp; Non-Goals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Goals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-goals-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Goals (v1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-current-state-grounding-facts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Current State (grounding facts)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-the-shared-contract-binding-on-both-repos-read-this-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. The Shared Contract (binding on both repos) — read this first
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. The Shared Contract (binding on both repos) — read this first">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-subscription_status-computed-authoritative-server-side" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 subscription_status (computed, authoritative, server-side)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-profile-member-serializer-additions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Profile / member serializer additions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-the-gating-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 The gating error
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-data-model-changes-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Data Model Changes (backend)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Data Model Changes (backend)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-member-modify-apimodelsmodels_memberpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Member (modify) — api/models/models_member.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-membershipsubscription-new-apimodelsmodels_subscriptionpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 MembershipSubscription (new) — api/models/models_subscription.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-subscriptionpaymentevent-new-append-only-the-audit-trail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 SubscriptionPaymentEvent (new, append-only) — the audit trail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-removed-deprecated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Removed / deprecated
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-global-settings-additions-configurablesettings-apimodelsmodels_utilpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Global Settings Additions — ConfigurableSettings (api/models/models_util.py)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-api-contract-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. API Contract Changes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. API Contract Changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-new-member-facing-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 New member-facing endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-new-admin-treasurer-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 New admin / treasurer endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-modified-manual-mark-paid-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Modified: manual "mark paid" endpoint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-modified-serializers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Modified serializers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-new-error-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 New error code
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#66-backend-enforced-gating-where-how" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.6 Backend-Enforced Gating (where &amp; how)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.6 Backend-Enforced Gating (where &amp; how)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#63-error-shape-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Error shape implementation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-migration-cutover-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Migration / Cutover Plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Migration / Cutover Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-grant-script-idempotent-management-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Grant script (idempotent management command)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-order-of-operations-critical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Order of operations (critical)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-client-side-gating-ux-surface-inventory-flutter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Client-Side Gating + UX Surface Inventory (Flutter)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Client-Side Gating + UX Surface Inventory (Flutter)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-site-wide-lapsed-banner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Site-wide lapsed banner
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-pages-that-render-a-locked-state-not-a-redirect-for-lapsed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Pages that render a locked state (not a redirect) for lapsed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-action-paths-that-must-show-the-locked-state-instead-of-a-raw-403" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 Action paths that must show the locked state instead of a raw 403
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-error-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 Error routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#85-membership-status-page-new-view-only-no-purchase-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5 Membership status page (new) — view-only, no purchase UI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#86-copy-direction-english-hardcoded-no-l10n-yet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.6 Copy direction (English, hardcoded — no l10n yet)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-notification-reminder-job-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Notification / Reminder Job Design
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Notification / Reminder Job Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-where-it-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 Where it runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-what-triggers-each-nudge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 What triggers each nudge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-idempotency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 Idempotency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-email-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4 Email templates
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-paypal-integration-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. PayPal Integration Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. PayPal Integration Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-one-time-setup-manual-recorded-in-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 One-time setup (manual, recorded in settings)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-subscribe-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 Subscribe flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103-webhook-events-handled-post-apipaypalsubscription-webhook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 Webhook events handled (POST /api/paypal/subscription-webhook)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#104-webhook-security-q6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.4 Webhook security (Q6)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#105-reconciliation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.5 Reconciliation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-audit-export-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Audit / Export Design
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-rollout-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Rollout &amp; Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-store-compliance-web-only-payment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Store Compliance (web-only payment)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Store Compliance (web-only payment)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remaining-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remaining risks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-sequencing-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Sequencing &amp; Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-open-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Open Questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Open Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q1-migration-scope-decided" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q1. Migration scope — ✅ DECIDED
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q2-approved-while-lapsed-upgrade-requests-decided" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q2. Approved-while-lapsed upgrade requests — ✅ DECIDED
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q3-cancellation-semantics-decided" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q3. Cancellation semantics — ✅ DECIDED
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q4-exempt-group-transitions-mid-period-decided" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4. Exempt-group transitions mid-period — ✅ DECIDED
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q5-permission-for-editing-exempt-group-list-decided" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q5. Permission for editing exempt-group list — ✅ DECIDED
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q6-paypal-webhook-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6. PayPal webhook security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q7-refund-dispute-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q7. Refund / dispute flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q8-flutter-parity-shared-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8. Flutter parity / shared contract
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-work-breakdown-per-repo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Work Breakdown (per repo)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. Work Breakdown (per repo)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backend-madsnad4x4-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend (Madsn/ad4x4-backend)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flutter-hani-amjad4x4-flutter-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flutter (Hani-AMJ/Ad4x4-Flutter-App)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ad4x4-subscription-model-migration-joint-design-doc-work-breakdown">AD4x4 — Subscription Model Migration: Joint Design Doc &amp; Work Breakdown<a class="headerlink" href="#ad4x4-subscription-model-migration-joint-design-doc-work-breakdown" title="Permanent link">&para;</a></h1>
+<p><strong>Status:</strong> Design — not yet approved for implementation
+<strong>Audience:</strong> Backend team (<code>Madsn/ad4x4-backend</code>) and Flutter team (<code>Hani-AMJ/Ad4x4-Flutter-App</code>)
+<strong>Date:</strong> 2026-05-28
+<strong>Goal of this doc:</strong> Make the next two implementation sessions (one per repo) executable without further design work. Endpoint-level detail is given where it pins down the contract; everything else stays architectural.</p>
+<blockquote>
+<p>This is the canonical copy. An identical copy lives in the Flutter repo at <code>docs/design/subscription-migration.md</code>. Keep them in sync, or collapse to one if the teams adopt a shared docs location.</p>
+</blockquote>
+<hr />
+<h2 id="0-tldr">0. TL;DR<a class="headerlink" href="#0-tldr" title="Permanent link">&para;</a></h2>
+<p>We are replacing the single lifetime <code>paid_member</code> boolean with a <strong>rolling 12-month subscription</strong> keyed off a per-member expiry date. Members renew via <strong>PayPal</strong>. Access to a small set of features is <strong>gated when a member lapses</strong>. Existing members are all granted a free 1-year subscription at launch so nobody is locked out on day one.</p>
+<p>Three things make this more than a CRUD change:</p>
+<ol>
+<li><strong>PayPal exists but as one-time orders, not subscriptions.</strong> We must build on PayPal's Subscriptions API (Products → Billing Plans → Subscriptions) and a new webhook path. The current one-time-order flow in the <code>website</code> app does not update <code>paid_member</code> and is not reusable as-is.</li>
+<li><strong>Payment is web-only — no in-app purchase, by decision (avoid the 30% Apple/Google fee).</strong> The app never sells anything: it is a neutral gate + status display. All renewal CTAs, links, and pricing live in <strong>email</strong> and on the website (which Apple/Google don't govern). This constrains in-app gating copy — see <a href="#13-store-compliance-web-only-payment">§13</a> for the binding rules.</li>
+<li><strong>The gating contract must be designed once and consumed by both clients.</strong> A single computed <code>subscription_status</code> field + a single structured 403 error code is the contract both teams build against.</li>
+</ol>
+<hr />
+<h2 id="1-goals-non-goals">1. Goals &amp; Non-Goals<a class="headerlink" href="#1-goals-non-goals" title="Permanent link">&para;</a></h2>
+<h3 id="goals">Goals<a class="headerlink" href="#goals" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Move membership from lifetime boolean to <strong>annual, rolling-from-payment-date</strong> subscription.</li>
+<li><strong>No grace period</strong> — gating applies the instant <code>expires_at</code> passes.</li>
+<li>Backend-enforced gating on <strong>logbook skill sign-off</strong> (gate the signee) and <strong>upgrade-request submission</strong> (gate the applicant), with a structured, client-routable error.</li>
+<li>Client-side gating (cosmetic/UX, not security) on analytics, member directory, and logbook UI — shown as a <strong>locked state</strong>, never a redirect or raw 403.</li>
+<li><strong>PayPal-driven</strong> subscribe / view / cancel / payment-history, managed from the client.</li>
+<li><strong>Renewal nudges</strong>: in-app banner + email at T-30, T-7, T-1; expiry notice at T-0; lapsed banner thereafter.</li>
+<li><strong>Exemption by Django group membership</strong>, configured via a global setting.</li>
+<li><strong>Audit trail</strong> of all payment/subscription events + <strong>treasurer CSV export</strong> + <strong>member-facing own-history</strong> endpoint.</li>
+<li><strong>Migration</strong>: grant every existing member a 1-year subscription at launch.</li>
+<li>Operate via <strong>Django admin</strong> for overrides/comps/manual-paid — no new admin UI in the client for v1.</li>
+</ul>
+<h3 id="non-goals-v1">Non-Goals (v1)<a class="headerlink" href="#non-goals-v1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>No multi-year prepay.</li>
+<li>No tiered pricing — single annual price.</li>
+<li><strong>No refunds in v1</strong> (policy assumption — see <a href="#q7-refund--dispute-flow">Q7</a>).</li>
+<li>No new admin UI in the Flutter client.</li>
+<li><strong>No in-app purchase / IAP.</strong> Payment is web-only by decision (avoid the 30% store fee). The app shows status and gates features but never initiates, links to, or describes a purchase (see <a href="#13-store-compliance-web-only-payment">§13</a>).</li>
+<li>No localization of subscription copy (app is English-only today; see Flutter §8).</li>
+<li>Flutter <em>implementation</em> is out of scope for the backend session and vice-versa — but the <strong>shared contract</strong> below is binding on both.</li>
+</ul>
+<hr />
+<h2 id="2-current-state-grounding-facts">2. Current State (grounding facts)<a class="headerlink" href="#2-current-state-grounding-facts" title="Permanent link">&para;</a></h2>
+<p>Backend (<code>Madsn/ad4x4-backend</code>):
+- <code>Member</code> extends <code>AbstractUser</code>; <code>paid_member = BooleanField(default=False)</code> with a DB index — <code>api/models/models_member.py:75</code>. Related: <code>level</code> (FK), <code>trip_count</code>, inherited <code>groups</code>, <code>is_active</code>, <code>date_joined</code>.
+- No <code>MembershipPaymentRequest</code> model. Payment is flipped by <code>MembershipPaymentSerializer({payment_received: bool})</code> → <code>ManuallyRegisterMemberPaymentView</code> at <code>POST /api/members/&lt;id&gt;/payments</code>, guarded by <code>HasEditMembershipPaymentsPermission</code> — <code>api/views/views_member.py:170</code>, <code>api/serializers/serializers_member.py:99</code>.
+- <strong>Permission matrix</strong>: <code>PermissionMatrix(action, group, levels)</code> with <code>has_permission()</code> — <code>api/models/models.py:35</code>. Actions are an enum in <code>api/choices.py</code> (<code>EDIT_MEMBERSHIP_PAYMENTS</code>, <code>EDIT_GLOBAL_SETTINGS</code>, etc.). Checks go through <code>permission_matrix_exists_or_user_is_superuser(user, action, level)</code> — <code>api/permissions.py</code>.
+- <strong>Global settings</strong>: <code>ConfigurableSettings</code> singleton — <code>api/models/models_util.py:50</code>; cached 5 min via <code>api/services/global_settings.py</code>; read by anyone, edited via <code>PATCH /api/globalsettings/</code> guarded by <code>CanEditGlobalSettings</code> (<code>EDIT_GLOBAL_SETTINGS</code>) — <code>api/views/views_configurablesettings.py</code>. Serializer excludes sensitive fields.
+- <strong>Groups</strong>: built-in Django <code>Group</code>. No hardcoded "Board Member" group. <code>Level.auto_group</code> auto-assigns on upgrade.
+- <strong>PayPal (one-time only)</strong>: <code>PayPalConfiguration</code> singleton (sandbox flag, <code>payment_amount=27.23 USD</code>, <code>display_amount=100.00 AED</code>, description "AD4x4 Logbook Activation") and <code>WebsitePayment</code> (member, amount, currency, <code>paypal_order_id</code>, <code>paypal_transaction_id</code>, payer_email, status PENDING/COMPLETED/FAILED/REFUNDED) — <code>website/models.py</code>. Endpoints <code>/payment/create-order/</code>, <code>/payment/approve/</code>, <code>/payment/capture-order/</code>, <code>/payment/webhook/</code> — <code>website/views.py</code>. <strong>The webhook does not update <code>paid_member</code></strong> — that stays a manual admin action.
+- <strong>Logbook sign-off</strong>: <code>LogbookEntry(trip, member, signed_by)</code> and <code>LogbookSkillReference(logbook_entry, logbook_skill, member, trip, signed_by, entered_by)</code> — <code>api/models/models_logbook.py:24,54</code>. <code>member</code> = the trainee/<strong>signee</strong>; <code>signed_by</code> = the marshal/<strong>signer</strong>. Create logic in <code>LogbookEntryViewSet.create()</code> — <code>api/views/views_logbook.py:176</code> — resolves <code>member</code> and <code>skills_payload</code> then checks <code>check_logbook_entry_permissions</code>. POST <code>/api/logbookentries</code> and <code>/api/trips/&lt;id&gt;/logbook-entries</code>.
+- <strong>Upgrade requests</strong>: <code>UpgradeRequest(applicant, target_level, status[N/I/A/D], voters…, final_approver, verdict_*)</code> — <code>api/models/models_upgraderequest.py:15</code>. Create checks <code>CREATE_UPGRADE_REQ_FOR_SELF</code> — <code>api/views/views_upgraderequest.py:39</code>. <code>UpgradeRequestApproveView</code>/<code>DeclineView</code> → <code>handle_upgrade_request_verdict()</code> updates <code>member.level</code> on APPROVED (<code>:147</code>).
+- <strong>Trips</strong>: <code>TripRegistration</code> + <code>RegisterForTrip</code> etc. — <code>api/models/models_trip.py:101</code>, <code>ad4x4/urls.py:157</code>. <strong>Stays ungated.</strong>
+- <strong>Async/jobs</strong>: <strong>Huey</strong> (RedisHuey), <em>not</em> Celery — <code>ad4x4/settings.py:275</code>. Periodic crontab tasks live in <code>api/background.py</code> (e.g. <code>periodic_upgrade_request_reminder</code> at 20:00). <code>NotificationManager</code> fans out over Telegram/Push/Email/Store channels (<code>api/services/init_notifications.py</code>); <code>EmailNotificationChannel</code> uses Django SMTP; <code>NotificationLog</code> model records sends (dedup/audit); <code>notification_dry_run</code> setting exists.
+- Stack: Django 6.0.4, DRF 3.16, simplejwt, drf-spectacular, fcm-django, firebase-admin. <strong>No URL versioning</strong> (<code>/api/…</code>). <strong>No <code>django-simple-history</code>.</strong></p>
+<p>Flutter (<code>Hani-AMJ/Ad4x4-Flutter-App</code>):
+- Riverpod (StateNotifier) + Dio + Retrofit. Base URL <code>https://ap.ad4x4.com</code> — <code>lib/core/network/api_client.dart</code>. Endpoints centralized in <code>lib/core/network/main_api_endpoints.dart</code>.
+- <code>UserModel.paidMember</code> parses both <code>paid_member</code> and <code>paidMember</code> — <code>lib/data/models/user_model.dart:130</code>. <code>paidMember</code> also on <code>BasicMember</code>, <code>ConciseMember</code>, <code>MarshalDirectoryMember</code>.
+- <code>paidMember</code> gating today: full-screen <code>_VerifiedMembershipGate</code> overlay on the logbook home (<code>lib/features/logbook/presentation/screens/logbook_home_screen.dart:26</code>), router redirect for <code>/logbook/*</code> (<code>lib/core/router/app_router.dart:248</code>), admin members list <code>PaidFilter</code> (<code>paidMember=true/false</code> query), and "Paid"/"Free" badges.
+- Central error path: <code>ApiClient</code> interceptor + <code>ApiException</code> (<code>isForbidden</code>, <code>statusCode</code>, <code>data</code>); <code>_extractErrorDetail</code> reads <code>detail</code>/<code>message</code>. Established <strong>humanizer</strong> pattern (<code>sign_off_error_humanizer.dart</code> already keys off a 403 <code>code</code> like <code>missing_sign_logbook_skills_permission</code>). Global overlay precedent: <code>MaintenanceOverlay</code> (503) and <code>ForcedUpdateOverlay</code>, both wired via interceptor callbacks in <code>app.dart</code>. Inline banner precedents: <code>ProfileCompletenessBanner</code>, <code>TripOverlapBanner</code>.
+- <strong>No client-side payment integration.</strong> Logbook gate explicitly avoids external payment links for App Store compliance.
+- <strong>No localization</strong> (<code>intl</code> for dates only) — copy will be hardcoded English for v1.</p>
+<hr />
+<h2 id="3-the-shared-contract-binding-on-both-repos-read-this-first">3. The Shared Contract (binding on both repos) — read this first<a class="headerlink" href="#3-the-shared-contract-binding-on-both-repos-read-this-first" title="Permanent link">&para;</a></h2>
+<p>Everything below derives from these three primitives. Implement them once; both clients consume them.</p>
+<h3 id="31-subscription_status-computed-authoritative-server-side">3.1 <code>subscription_status</code> (computed, authoritative, server-side)<a class="headerlink" href="#31-subscription_status-computed-authoritative-server-side" title="Permanent link">&para;</a></h3>
+<p>A member's status is computed (never stored as a status string — only the inputs are stored):</p>
+<div class="codehilite"><pre><span></span><code>def compute_status(member, now):
+    if member.groups ∩ settings.subscription_exempt_groups:  return &quot;exempt&quot;
+    if member.subscription_expires_at and member.subscription_expires_at &gt; now:  return &quot;active&quot;
+    return &quot;lapsed&quot;
+</code></pre></div>
+
+<ul>
+<li><strong><code>exempt</code> always wins</strong> over expiry. An exempt member is never gated regardless of <code>expires_at</code>.</li>
+<li><code>lapsed</code> is the only state that triggers gating.</li>
+<li>The client never recomputes exemption — it trusts the server's <code>subscription_status</code>. It <em>may</em> locally derive "expiring soon" from <code>expires_at</code> for banners.</li>
+</ul>
+<h3 id="32-profile-member-serializer-additions">3.2 Profile / member serializer additions<a class="headerlink" href="#32-profile-member-serializer-additions" title="Permanent link">&para;</a></h3>
+<p>Add to the profile + member serializers (<code>api/serializers/serializers_member.py</code>):</p>
+<div class="codehilite"><pre><span></span><code>{
+  &quot;subscription_status&quot;: &quot;active&quot;,          // &quot;active&quot; | &quot;lapsed&quot; | &quot;exempt&quot;
+  &quot;subscription_expires_at&quot;: &quot;2027-05-28T00:00:00Z&quot;,  // null for exempt or never-subscribed
+  &quot;subscription_days_remaining&quot;: 365,       // convenience int; null when not applicable
+  &quot;paid_member&quot;: true                       // DEPRECATED shim, kept for old clients (see §4)
+}
+</code></pre></div>
+
+<p>Flutter must add <code>subscriptionStatus</code>, <code>subscriptionExpiresAt</code>, <code>subscriptionDaysRemaining</code> to <code>UserModel</code> (and to <code>BasicMember</code>/<code>ConciseMember</code>/<code>MarshalDirectoryMember</code> where the badge/filter is shown), accepting both snake and camel case as it does today.</p>
+<h3 id="33-the-gating-error">3.3 The gating error<a class="headerlink" href="#33-the-gating-error" title="Permanent link">&para;</a></h3>
+<p>Backend-gated endpoints return <strong>HTTP 403</strong> with:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;An active subscription is required.&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;subscription_required&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;expiresAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-05-01T00:00:00Z&quot;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+
+<ul>
+<li><code>code</code> is the routable discriminator — both clients branch on <code>code == "subscription_required"</code>, <em>not</em> on the 403 status alone (other 403s exist, e.g. <code>missing_sign_logbook_skills_permission</code>).</li>
+<li><code>expiresAt</code> lets the client show "expired on …" in the paywall.</li>
+<li>Implemented as a custom <code>PermissionDenied</code> subclass so DRF serializes the extra fields (see <a href="#63-error-shape-implementation">§6.3</a>).</li>
+</ul>
+<hr />
+<h2 id="4-data-model-changes-backend">4. Data Model Changes (backend)<a class="headerlink" href="#4-data-model-changes-backend" title="Permanent link">&para;</a></h2>
+<h3 id="41-member-modify-apimodelsmodels_memberpy">4.1 <code>Member</code> (modify) — <code>api/models/models_member.py</code><a class="headerlink" href="#41-member-modify-apimodelsmodels_memberpy" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Add</strong> <code>subscription_expires_at = models.DateTimeField(null=True, blank=True, db_index=True)</code> — the single denormalized field gating reads (fast, indexed). Source of truth for "active vs lapsed".</li>
+<li><strong>Keep</strong> <code>paid_member</code> as a <strong>deprecated compatibility shim</strong> through the transition: keep it written in sync (<code>paid_member = status in {active, exempt}</code>) so un-upgraded app builds keep working. Plan to drop it one or two releases after the client is fully migrated. Do <strong>not</strong> read it in any new code.</li>
+<li>Note: <code>level</code>, <code>trip_count</code>, <code>groups</code> unchanged. Exemption is derived from <code>groups</code>, not a stored flag.</li>
+</ul>
+<h3 id="42-membershipsubscription-new-apimodelsmodels_subscriptionpy">4.2 <code>MembershipSubscription</code> (new) — <code>api/models/models_subscription.py</code><a class="headerlink" href="#42-membershipsubscription-new-apimodelsmodels_subscriptionpy" title="Permanent link">&para;</a></h3>
+<p>One row per member tracking the live PayPal subscription:
+- <code>member</code> (OneToOne → Member)
+- <code>paypal_subscription_id</code> (Char, unique, null until subscribed)
+- <code>paypal_plan_id</code> (Char — which billing plan)
+- <code>status</code> (choices: <code>active</code>, <code>cancelled</code>, <code>suspended</code>, <code>expired</code>) — mirrors PayPal subscription state
+- <code>current_period_start</code>, <code>current_period_end</code> (DateTime)
+- <code>cancel_at_period_end</code> (bool) — set true when member cancels but retains access (see <a href="#q3-cancellation-semantics">Q3</a>)
+- <code>created_at</code>, <code>updated_at</code></p>
+<blockquote>
+<p><code>Member.subscription_expires_at</code> is denormalized from <code>current_period_end</code> (or from a manual/migration grant). The subscription row may be absent for comp'd/migrated members who never went through PayPal — that's fine; gating only needs <code>subscription_expires_at</code>.</p>
+</blockquote>
+<h3 id="43-subscriptionpaymentevent-new-append-only-the-audit-trail">4.3 <code>SubscriptionPaymentEvent</code> (new, append-only) — the audit trail<a class="headerlink" href="#43-subscriptionpaymentevent-new-append-only-the-audit-trail" title="Permanent link">&para;</a></h3>
+<p>This is <strong>the</strong> record for audit, member history, and treasurer export. Immutable, append-only.
+- <code>member</code> (FK → Member)
+- <code>subscription</code> (FK → MembershipSubscription, nullable for manual/migration)
+- <code>event_type</code> (choices: <code>payment_completed</code>, <code>subscription_activated</code>, <code>subscription_cancelled</code>, <code>subscription_suspended</code>, <code>subscription_expired</code>, <code>manual_grant</code>, <code>migration_grant</code>, <code>comp</code>, <code>refund</code>)
+- <code>source</code> (choices: <code>paypal_webhook</code>, <code>manual_admin</code>, <code>migration</code>)
+- <code>paypal_event_id</code> (Char, <strong>unique</strong>, nullable) — idempotency key for webhooks
+- <code>amount</code> (Decimal, nullable), <code>currency</code> (Char, default from settings)
+- <code>payer_email</code> (Email, nullable)
+- <code>period_end_after_event</code> (DateTime, nullable) — what <code>expires_at</code> became as a result; makes history human-readable and reconstructable
+- <code>created_by</code> (FK → Member, nullable) — admin who took a manual action
+- <code>raw_payload</code> (JSONField, nullable) — full webhook body for forensics
+- <code>occurred_at</code> (DateTime), <code>created_at</code> (auto)</p>
+<blockquote>
+<p>We deliberately do <strong>not</strong> reuse <code>website.WebsitePayment</code> (one-time-order shaped, lives in a different app, tied to the legacy flow). New events get their own model in <code>api</code>. If desired, a one-off backfill can import historical <code>WebsitePayment</code> rows as <code>comp</code>/<code>manual_grant</code> events, but that's optional.</p>
+</blockquote>
+<h3 id="44-removed-deprecated">4.4 Removed / deprecated<a class="headerlink" href="#44-removed-deprecated" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>paid_member</code>: deprecated shim, removed in a later release.</li>
+<li>Legacy <code>website</code> one-time PayPal order flow: left in place but <strong>not extended</strong>; superseded by subscriptions. Decide separately whether to retire it.</li>
+</ul>
+<hr />
+<h2 id="5-global-settings-additions-configurablesettings-apimodelsmodels_utilpy">5. Global Settings Additions — <code>ConfigurableSettings</code> (<code>api/models/models_util.py</code>)<a class="headerlink" href="#5-global-settings-additions-configurablesettings-apimodelsmodels_utilpy" title="Permanent link">&para;</a></h2>
+<p>Add these fields. They are <strong>edited via Django admin only</strong> (no client UI — see <a href="#q5-permission-for-editing-exempt-group-list-—--decided">Q5</a>). Keep them <strong>out of the editable API serializer</strong>; optionally expose <code>annual_subscription_price</code>/<code>_currency</code> <strong>read-only</strong> if the web front end needs to show the price.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>subscription_exempt_groups</code></td>
+<td>M2M → <code>Group</code> (blank)</td>
+<td>Serialized as <code>list[int]</code> of group IDs. M2M (not raw int list) for referential integrity, matching the existing FK-to-Group pattern (<code>default_user_group</code>, <code>Level.auto_group</code>). A member is exempt if in <strong>any</strong> of these.</td>
+</tr>
+<tr>
+<td><code>annual_subscription_price</code></td>
+<td>Decimal</td>
+<td>Single price, no tiers.</td>
+</tr>
+<tr>
+<td><code>annual_subscription_currency</code></td>
+<td>Char(3)</td>
+<td>e.g. <code>AED</code>.</td>
+</tr>
+<tr>
+<td><code>paypal_plan_id</code></td>
+<td>Char</td>
+<td>The active PayPal Billing Plan id.</td>
+</tr>
+<tr>
+<td><code>paypal_product_id</code></td>
+<td>Char</td>
+<td>The PayPal Catalog Product id.</td>
+</tr>
+<tr>
+<td><code>subscription_gating_enabled</code></td>
+<td>Bool (default False)</td>
+<td><strong>Kill-switch.</strong> When false, no endpoint enforces gating — used for safe cutover/rollback (see <a href="#12-rollout--rollback">§12</a>).</td>
+</tr>
+<tr>
+<td><code>subscription_reminders_enabled</code></td>
+<td>Bool (default True)</td>
+<td>Pause nudges without code change.</td>
+</tr>
+</tbody>
+</table>
+<p>PayPal <strong>API credentials</strong> (client id/secret, webhook id) stay in env/secret settings and are excluded from the serializer, exactly like the existing excluded fields (<code>email_*</code>, <code>default_user_*</code>, <code>notification_dry_run</code>).</p>
+<p><strong>Permission to edit (<a href="#q5-permission-for-editing-exempt-group-list-—--decided">Q5</a>) — DECIDED:</strong> Managed in <strong>Django admin only</strong> (gated by <code>is_staff</code>/superuser). <strong>No new permission</strong>, and these fields are not editable through the API. <code>CanEditGlobalSettings</code>/<code>EDIT_GLOBAL_SETTINGS</code> are untouched.</p>
+<hr />
+<h2 id="6-api-contract-changes">6. API Contract Changes<a class="headerlink" href="#6-api-contract-changes" title="Permanent link">&para;</a></h2>
+<h3 id="61-new-member-facing-endpoints">6.1 New member-facing endpoints<a class="headerlink" href="#61-new-member-facing-endpoints" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method &amp; path</th>
+<th>Purpose</th>
+<th>Auth</th>
+<th>Response (shape)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /api/subscription</code></td>
+<td>Current user's subscription summary</td>
+<td>self</td>
+<td><code>{status, expiresAt, daysRemaining, price, currency, paypalSubscriptionId, cancelAtPeriodEnd}</code></td>
+</tr>
+<tr>
+<td><code>POST /api/subscription/subscribe</code></td>
+<td>Create a PayPal subscription, get approval link</td>
+<td>self</td>
+<td><code>{approvalUrl, paypalSubscriptionId}</code></td>
+</tr>
+<tr>
+<td><code>POST /api/subscription/cancel</code></td>
+<td>Cancel the PayPal subscription</td>
+<td>self</td>
+<td><code>{status, cancelAtPeriodEnd, expiresAt}</code></td>
+</tr>
+<tr>
+<td><code>GET /api/subscription/payments</code></td>
+<td><strong>Member's own</strong> payment history (paginated)</td>
+<td>self</td>
+<td>list of <code>{occurredAt, eventType, amount, currency, periodEndAfterEvent}</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>subscribe</code> example:</p>
+<div class="codehilite"><pre><span></span><code>// POST /api/subscription/subscribe   (no body; plan/price come from settings)
+// 201
+{ &quot;approvalUrl&quot;: &quot;https://www.paypal.com/checkoutweb/...&quot;, &quot;paypalSubscriptionId&quot;: &quot;I-XXXX&quot; }
+</code></pre></div>
+
+<p>The client opens <code>approvalUrl</code> (browser/WebView), the user approves, PayPal fires <code>BILLING.SUBSCRIPTION.ACTIVATED</code> → backend sets <code>expires_at</code>. The client then re-fetches <code>/api/subscription</code> (or profile) to see <code>active</code>.</p>
+<h3 id="62-new-admin-treasurer-endpoints">6.2 New admin / treasurer endpoints<a class="headerlink" href="#62-new-admin-treasurer-endpoints" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method &amp; path</th>
+<th>Purpose</th>
+<th>Permission</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /api/admin/subscription-payments/export?from=YYYY-MM-DD&amp;to=YYYY-MM-DD&amp;format=csv</code></td>
+<td>Treasurer export of payment events in a range</td>
+<td>new <code>EXPORT_SUBSCRIPTION_PAYMENTS</code> action, or reuse <code>EDIT_MEMBERSHIP_PAYMENTS</code> — <strong>flag for confirmation</strong></td>
+</tr>
+<tr>
+<td><code>POST /api/paypal/subscription-webhook</code></td>
+<td>PayPal subscription webhook intake</td>
+<td>AllowAny + signature verification (<a href="#94-webhook-security-q6">§9.4</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>The export is also available as a <strong>Django admin action</strong> on <code>SubscriptionPaymentEvent</code> (no client UI needed). CSV columns: <code>member_id, member_name, occurred_at, event_type, source, amount, currency, payer_email, paypal_event_id, period_end_after_event</code>. Add a <code>tax/VAT</code> column placeholder — <strong>treasurer VAT practice is unknown; flag for input</strong> (current <code>PayPalConfiguration</code> carries no VAT/tax fields, so today there is no VAT handling to mirror).</p>
+<h3 id="63-modified-manual-mark-paid-endpoint">6.3 Modified: manual "mark paid" endpoint<a class="headerlink" href="#63-modified-manual-mark-paid-endpoint" title="Permanent link">&para;</a></h3>
+<p>The existing <code>POST /api/members/&lt;id&gt;/payments</code> flips a boolean. Re-purpose its semantics (keep the route):</p>
+<div class="codehilite"><pre><span></span><code>// New write payload (admin, HasEditMembershipPaymentsPermission)
+{ &quot;grant_months&quot;: 12 }            // extend expires_at by N months from max(now, current expires_at)
+// or
+{ &quot;expires_at&quot;: &quot;2027-05-28T00:00:00Z&quot; }   // set explicitly (comp / correction)
+</code></pre></div>
+
+<p>Both create a <code>SubscriptionPaymentEvent</code> (<code>source=manual_admin</code>, <code>event_type=manual_grant</code>/<code>comp</code>, <code>created_by=request.user</code>). Keep accepting the legacy <code>{payment_received: true}</code> for one release: <code>true</code> → <code>grant_months: 12</code>, <code>false</code> → set <code>expires_at = now</code> (immediate lapse). This preserves any tooling still posting the old shape.</p>
+<h3 id="64-modified-serializers">6.4 Modified serializers<a class="headerlink" href="#64-modified-serializers" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>ProfileSerializer</code> + member list/detail serializers: add the three subscription fields from <a href="#32-profile--member-serializer-additions">§3.2</a>.</li>
+<li>Admin members list filter: alongside the legacy <code>paidMember=true/false</code>, add <code>?subscription_status=active|lapsed|exempt</code> so the Flutter admin filter (<code>PaidFilter</code>) can migrate to status.</li>
+</ul>
+<h3 id="65-new-error-code">6.5 New error code<a class="headerlink" href="#65-new-error-code" title="Permanent link">&para;</a></h3>
+<p><code>subscription_required</code> — the only new code. See <a href="#33-the-gating-error">§3.3</a>. Register it in the OpenAPI schema (drf-spectacular) so both clients have a typed reference.</p>
+<hr />
+<h2 id="66-backend-enforced-gating-where-how">6.6 Backend-Enforced Gating (where &amp; how)<a class="headerlink" href="#66-backend-enforced-gating-where-how" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Surface</th>
+<th>Gate on</th>
+<th>Where</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Logbook skill sign-off</strong></td>
+<td>the <strong>signee</strong> (<code>member</code> in the payload), <em>not</em> the signer/<code>request.user</code></td>
+<td><code>LogbookEntryViewSet.create()</code> (<code>views_logbook.py:176</code>) and <code>TripLogbookEntryCreateView</code> — after resolving <code>member</code>, before <code>perform_create</code></td>
+<td>If signee <code>lapsed</code> → 403 <code>subscription_required</code> with signee's <code>expiresAt</code>. Signer status irrelevant. Only blocks when <code>skill_references</code> are present (pure comment entries need no skills — confirm with product whether comment-only entries should also be allowed; default: only block when skills are being signed).</td>
+</tr>
+<tr>
+<td><strong>Upgrade application</strong></td>
+<td>the <strong>applicant</strong> (<code>request.user</code> for self-requests)</td>
+<td><code>UpgradeRequestViewSet.create()</code> (<code>views_upgraderequest.py:39</code>)</td>
+<td>If applicant <code>lapsed</code> → 403 <code>subscription_required</code>.</td>
+</tr>
+<tr>
+<td><strong>In-flight upgrade requests</strong></td>
+<td>gate at <strong>creation only</strong></td>
+<td>approve/decline views are <strong>not</strong> gated</td>
+<td><strong>Do not auto-decline</strong> when an applicant lapses mid-flight. The board may approve or decline as normal, and <strong>an approval applies (level changes) even if the applicant is currently lapsed</strong> (<a href="#q2-approved-while-lapsed-upgrade-requests">Q2</a> — DECIDED). Rationale: gating happens once, at request creation; after that the board's decision is sovereign.</td>
+</tr>
+<tr>
+<td><strong>Everything else</strong> (trips, profile, chat, directory APIs, etc.)</td>
+<td>—</td>
+<td>—</td>
+<td><strong>Ungated.</strong> Lapsed members still register for trips at their level; trip history keeps recording.</td>
+</tr>
+</tbody>
+</table>
+<p>Because the logbook gate keys off a <em>payload field</em> (the signee) rather than <code>request.user</code>, it cannot be a vanilla DRF <code>permission_class</code> (those inspect <code>request.user</code>). Implement a small helper <code>assert_subscription_active(member)</code> used inline. The upgrade gate keys off <code>request.user</code>, so it <em>can</em> be a permission class <strong>or</strong> the same inline helper — use the helper for consistency.</p>
+<h3 id="63-error-shape-implementation">6.3 Error shape implementation<a class="headerlink" href="#63-error-shape-implementation" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># api/exceptions.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rest_framework.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">PermissionDenied</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SubscriptionRequired</span><span class="p">(</span><span class="n">PermissionDenied</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expires_at</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">detail</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;An active subscription is required.&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;code&quot;</span><span class="p">:</span> <span class="s2">&quot;subscription_required&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;expiresAt&quot;</span><span class="p">:</span> <span class="n">expires_at</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span> <span class="k">if</span> <span class="n">expires_at</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">})</span>
+</code></pre></div>
+
+<p>DRF renders the dict as the 403 body verbatim.</p>
+<hr />
+<h2 id="7-migration-cutover-plan">7. Migration / Cutover Plan<a class="headerlink" href="#7-migration-cutover-plan" title="Permanent link">&para;</a></h2>
+<h3 id="71-grant-script-idempotent-management-command">7.1 Grant script (idempotent management command)<a class="headerlink" href="#71-grant-script-idempotent-management-command" title="Permanent link">&para;</a></h3>
+<p><code>python manage.py grant_launch_subscriptions --launch-date=YYYY-MM-DD [--dry-run] [--scope=active|paid]</code>
+- For each member in scope: set <code>subscription_expires_at = launch_date + 365 days</code>; write a <code>SubscriptionPaymentEvent(source=migration, event_type=migration_grant, period_end_after_event=…)</code>.
+- <strong>Idempotent</strong>: skip any member that already has a <code>migration_grant</code> event. Safe to re-run.
+- Also sync the <code>paid_member</code> shim.</p>
+<p><strong>Scope decision (<a href="#q1-migration-scope">Q1</a> — DECIDED):</strong> Grant the free year to <strong>currently paid members only</strong> (<code>paid_member=True</code>). Run as <code>--scope=paid</code>. Members who were never paid start <code>lapsed</code> at launch and must subscribe via the web to gain access. (This is why the cutover step below uses <code>--scope=paid</code>.)</p>
+<h3 id="72-order-of-operations-critical">7.2 Order of operations (critical)<a class="headerlink" href="#72-order-of-operations-critical" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Deploy backend with <code>subscription_gating_enabled = False</code> (data fields live, enforcement dormant).</li>
+<li>Run <code>grant_launch_subscriptions --scope=paid</code> → every currently-paid member has <code>expires_at = launch + 365d</code>.</li>
+<li>Verify (spot-check statuses, run with <code>--dry-run</code> first).</li>
+<li>Release the Flutter build that understands <code>subscription_status</code>.</li>
+<li>Flip <code>subscription_gating_enabled = True</code>.</li>
+</ol>
+<p>Gating is <strong>never</strong> enabled before the grant completes, so no <em>paid</em> member is ever wrongly locked out during cutover. Members who were never paid will be <code>lapsed</code> once gating is on — that's intended; they subscribe via the web.</p>
+<hr />
+<h2 id="8-client-side-gating-ux-surface-inventory-flutter">8. Client-Side Gating + UX Surface Inventory (Flutter)<a class="headerlink" href="#8-client-side-gating-ux-surface-inventory-flutter" title="Permanent link">&para;</a></h2>
+<p>Client gating is <strong>cosmetic/UX only</strong> — the backend is the security boundary. The client reads <code>subscription_status</code> from the profile and reacts.</p>
+<blockquote>
+<p><strong>Store-compliance rule (binding — see <a href="#13-store-compliance-web-only-payment">§13</a>):</strong> because payment is web-only/no-IAP, the app must <strong>not</strong> contain any purchase CTA, link, price, or "pay/renew on the website" instruction. In-app copy is <strong>informational only</strong>. All renewal CTAs/links/pricing live in <strong>email</strong> (and on the website). So everywhere below that previously said "Renew CTA", read <strong>"informational notice, no button/link."</strong></p>
+</blockquote>
+<h3 id="81-site-wide-lapsed-banner">8.1 Site-wide lapsed banner<a class="headerlink" href="#81-site-wide-lapsed-banner" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Persistent <strong>informational</strong> banner for <code>lapsed</code> members, hosted in <code>AppShell</code> (<code>lib/shared/widgets/navigation/app_shell.dart</code>) — reuse the inline-banner precedent (<code>ProfileCompletenessBanner</code>). <strong>No Renew button, no link, no price.</strong> It states membership is inactive and that the email explains next steps.</li>
+<li>For <code>active</code> members within 30 days of expiry, derive an "expires on <date>" banner locally from <code>subscriptionExpiresAt</code> (T-30/7/1 visual nudges) — informational only. <code>exempt</code> → no banner ever.</li>
+</ul>
+<h3 id="82-pages-that-render-a-locked-state-not-a-redirect-for-lapsed">8.2 Pages that render a <strong>locked state</strong> (not a redirect) for <code>lapsed</code><a class="headerlink" href="#82-pages-that-render-a-locked-state-not-a-redirect-for-lapsed" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Page</th>
+<th>File</th>
+<th>Today</th>
+<th>Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Logbook home + sub-routes</td>
+<td><code>logbook_home_screen.dart:26</code>, router <code>app_router.dart:248</code></td>
+<td><code>_VerifiedMembershipGate</code> on <code>!paidMember</code>; router <strong>redirects</strong> <code>/logbook/*</code></td>
+<td>Re-key gate to <code>subscriptionStatus == lapsed</code>; rename to <code>_SubscriptionRequiredGate</code>; <strong>informational locked state, no purchase CTA/link</strong> (the existing gate already avoids payment links — keep that). <strong>Replace the router redirect with an in-place locked state</strong> (decision says no redirects) — show the page chrome with a locked overlay + explanation.</td>
+</tr>
+<tr>
+<td>Member-facing analytics/stats</td>
+<td>logbook analytics / skills-matrix screens</td>
+<td>reached only via logbook (already paid-gated)</td>
+<td>Locked state for <code>lapsed</code>.</td>
+</tr>
+<tr>
+<td>Member directory</td>
+<td><code>members_landing_screen.dart</code></td>
+<td>not gated</td>
+<td>Locked state for <code>lapsed</code> (client-only; directory API stays open).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="83-action-paths-that-must-show-the-locked-state-instead-of-a-raw-403">8.3 Action paths that must show the locked state instead of a raw 403<a class="headerlink" href="#83-action-paths-that-must-show-the-locked-state-instead-of-a-raw-403" title="Permanent link">&para;</a></h3>
+<p>Any UI that can trigger a <strong>backend-gated</strong> action must pre-check <code>subscriptionStatus</code> and/or handle the <code>subscription_required</code> 403 gracefully:
+- <strong>Skill sign-off</strong> (marshal signing a trainee): the marshal may be active while the <strong>signee</strong> is lapsed → the backend 403 is about the <em>trainee</em>. The sign-off UI must surface a factual message ("This member's membership is inactive, so new skills can't be signed off") — not a generic failure, and <strong>no purchase steering</strong>. (Reuse the <code>sign_off_error_humanizer.dart</code> pattern; add a <code>subscription_required</code> branch.)
+- <strong>Create upgrade request</strong> (<code>create_upgrade_request_screen.dart</code>): if the applicant is <code>lapsed</code>, show the informational locked state before submit; also handle the 403 defensively.</p>
+<h3 id="84-error-routing">8.4 Error routing<a class="headerlink" href="#84-error-routing" title="Permanent link">&para;</a></h3>
+<p>Add a <code>subscription_error_humanizer.dart</code> (mirrors <code>sign_off_error_humanizer.dart</code>) that detects <code>statusCode == 403 &amp;&amp; data['code'] == 'subscription_required'</code> and routes to the locked UI with the <code>expiresAt</code>. Optionally wire a global interceptor callback (like the <code>MaintenanceOverlay</code> precedent) so an unexpected <code>subscription_required</code> anywhere degrades to the locked state rather than a toast.</p>
+<h3 id="85-membership-status-page-new-view-only-no-purchase-ui">8.5 Membership status page (new) — <strong>view-only, no purchase UI</strong><a class="headerlink" href="#85-membership-status-page-new-view-only-no-purchase-ui" title="Permanent link">&para;</a></h3>
+<p>New screen under profile that <strong>displays</strong> membership state only: current status, <code>expiresAt</code>, and <strong>read-only payment history</strong> (from <code>GET /api/subscription/payments</code> — viewing one's own account history is permitted). It contains <strong>no subscribe/cancel/renew buttons, no PayPal flow, no links to a payment page, and no price</strong> — that would be in-app purchase steering (<a href="#13-store-compliance-web-only-payment">§13</a>). New and lapsed members subscribe/renew on the <strong>website</strong>, prompted by <strong>email</strong> (which carries the link, price, and CTA). The backend <code>subscribe</code>/<code>cancel</code> endpoints (<a href="#61-new-member-facing-endpoints">§6.1</a>) are still built — they're driven by the <strong>web</strong> front end, not the app.</p>
+<h3 id="86-copy-direction-english-hardcoded-no-l10n-yet">8.6 Copy direction (English, hardcoded — no l10n yet)<a class="headerlink" href="#86-copy-direction-english-hardcoded-no-l10n-yet" title="Permanent link">&para;</a></h3>
+<p><strong>In-app (informational only — no CTA, no link, no price):</strong>
+- Lapsed banner: <em>"Your AD4x4 membership is inactive. Check your email for details on staying active."</em>
+- Expiring (T-30/7/1): <em>"Your AD4x4 membership expires on <date>."</em>
+- Logbook/analytics/directory locked: <em>"This is a members-only feature, available while your membership is active."</em>
+- Sign-off blocked (signee lapsed): <em>"<name>'s membership is inactive, so new skills can't be signed off right now."</em></p>
+<p><strong>Email (NOT governed by Apple/Google — full CTA, link, and price allowed):</strong>
+- <em>"Your AD4x4 membership expires in N days. Renew now for <price> at <renewal link>."</em> + prominent <strong>Renew</strong> button.</p>
+<hr />
+<h2 id="9-notification-reminder-job-design">9. Notification / Reminder Job Design<a class="headerlink" href="#9-notification-reminder-job-design" title="Permanent link">&para;</a></h2>
+<h3 id="91-where-it-runs">9.1 Where it runs<a class="headerlink" href="#91-where-it-runs" title="Permanent link">&para;</a></h3>
+<p>A new Huey periodic task <code>periodic_subscription_reminders()</code> in <code>api/background.py</code>, scheduled daily (propose 09:00 local), gated by <code>subscription_reminders_enabled</code> and respecting <code>notification_dry_run</code>. Fans out via the existing <code>NotificationManager</code> (email is required; push optional reuse of the FCM channel).</p>
+<h3 id="92-what-triggers-each-nudge">9.2 What triggers each nudge<a class="headerlink" href="#92-what-triggers-each-nudge" title="Permanent link">&para;</a></h3>
+<p>For every <strong>non-exempt</strong> member with a non-null <code>subscription_expires_at</code>:</p>
+<div class="codehilite"><pre><span></span><code>days = (expires_at.date() - today).days
+days == 30 → T-30 reminder (email + in-app)
+days == 7  → T-7 reminder
+days == 1  → T-1 reminder
+days == 0  → expiry notice (T-0)
+days &lt; 0   → no email; client shows lapsed banner from status
+</code></pre></div>
+
+<p>In-app banners are <strong>derived client-side</strong> from <code>subscriptionExpiresAt</code> (no server push needed for the banner itself); the four <strong>emails</strong> are what the job sends.</p>
+<h3 id="93-idempotency">9.3 Idempotency<a class="headerlink" href="#93-idempotency" title="Permanent link">&para;</a></h3>
+<p>Use the existing <code>NotificationLog</code> keyed by <code>(member, reminder_type, period_end_date)</code>. Before sending, check for an existing log row for this <code>(member, T-bucket, current period_end)</code>; skip if present. This makes the job safe to run more than once a day and across deploys, and prevents a second email if the member renews and re-enters a bucket (new <code>period_end</code> ⇒ new key, which is correct — a renewed member legitimately gets future reminders for the new period).</p>
+<h3 id="94-email-templates">9.4 Email templates<a class="headerlink" href="#94-email-templates" title="Permanent link">&para;</a></h3>
+<p>Four new templates under <code>templates/emails/</code> (matching the existing email convention): <code>subscription_reminder_30.html</code>, <code>_7</code>, <code>_1</code>, <code>subscription_expired.html</code>. <strong>These emails carry the renewal CTA, the web renewal link, and the price</strong> — email is the primary renewal channel precisely because it sits outside the app stores' purchase-steering rules (<a href="#13-store-compliance-web-only-payment">§13</a>). Link to the <strong>website</strong> renewal page, not an app deep-link.</p>
+<hr />
+<h2 id="10-paypal-integration-architecture">10. PayPal Integration Architecture<a class="headerlink" href="#10-paypal-integration-architecture" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Current code does <strong>one-time orders</strong>. Subscriptions are a different PayPal API surface. Treat this as new, not an extension of <code>website/views.py</code>.</p>
+</blockquote>
+<h3 id="101-one-time-setup-manual-recorded-in-settings">10.1 One-time setup (manual, recorded in settings)<a class="headerlink" href="#101-one-time-setup-manual-recorded-in-settings" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Create a <strong>Catalog Product</strong> (the "AD4x4 Annual Membership"). Store <code>paypal_product_id</code>.</li>
+<li>Create a <strong>Billing Plan</strong> (annual, fixed price = <code>annual_subscription_price</code>/<code>annual_subscription_currency</code>). Store <code>paypal_plan_id</code>.</li>
+<li>If price changes later, create a <em>new</em> plan and swap <code>paypal_plan_id</code>; existing subscribers stay on their plan until they re-subscribe.</li>
+</ol>
+<h3 id="102-subscribe-flow">10.2 Subscribe flow<a class="headerlink" href="#102-subscribe-flow" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Client <code>POST /api/subscription/subscribe</code>.</li>
+<li>Backend calls PayPal <strong>Create Subscription</strong> with <code>paypal_plan_id</code> + a <code>custom_id = member.id</code> (so the webhook can map back) + return/cancel URLs.</li>
+<li>Backend persists a <code>MembershipSubscription</code> row (status pending) and returns the <code>approvalUrl</code>.</li>
+<li>User approves in PayPal.</li>
+<li>PayPal fires <code>BILLING.SUBSCRIPTION.ACTIVATED</code> → webhook sets subscription <code>active</code>, sets <code>current_period_*</code>, sets <code>Member.subscription_expires_at</code>, writes a <code>subscription_activated</code> event.</li>
+</ol>
+<h3 id="103-webhook-events-handled-post-apipaypalsubscription-webhook">10.3 Webhook events handled (<code>POST /api/paypal/subscription-webhook</code>)<a class="headerlink" href="#103-webhook-events-handled-post-apipaypalsubscription-webhook" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>PayPal event</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BILLING.SUBSCRIPTION.ACTIVATED</code></td>
+<td>mark active; set <code>expires_at = current_period_end</code>; event <code>subscription_activated</code>.</td>
+</tr>
+<tr>
+<td><code>PAYMENT.SALE.COMPLETED</code> (recurring renewal)</td>
+<td><strong>extend</strong> <code>expires_at</code> to new <code>current_period_end</code> (rolling 12 months from this payment); event <code>payment_completed</code> with amount/payer_email.</td>
+</tr>
+<tr>
+<td><code>BILLING.SUBSCRIPTION.CANCELLED</code></td>
+<td>mark <code>cancelled</code>, set <code>cancel_at_period_end=True</code>; <strong>retain</strong> <code>expires_at</code> (<a href="#q3-cancellation-semantics">Q3</a>); event <code>subscription_cancelled</code>.</td>
+</tr>
+<tr>
+<td><code>BILLING.SUBSCRIPTION.SUSPENDED</code></td>
+<td>mark <code>suspended</code>; event recorded; access continues until <code>expires_at</code>.</td>
+</tr>
+<tr>
+<td><code>BILLING.SUBSCRIPTION.EXPIRED</code></td>
+<td>mark <code>expired</code>; event recorded (gating then follows from <code>expires_at</code>).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="104-webhook-security-q6">10.4 Webhook security (<a href="#q6-paypal-webhook-security">Q6</a>)<a class="headerlink" href="#104-webhook-security-q6" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Signature verification</strong>: verify every webhook via PayPal's <code>verify-webhook-signature</code> API using the stored <code>webhook_id</code> + transmission headers. Reject unverified.</li>
+<li><strong>Idempotency</strong>: <code>SubscriptionPaymentEvent.paypal_event_id</code> is unique; an <code>INSERT</code> conflict ⇒ already processed ⇒ ack 200 and no-op.</li>
+<li><strong>Fast ack + async work</strong>: return 200 immediately after persisting the raw event, then process in a Huey task (PayPal retries non-200, so cheap-ack avoids duplicate processing storms while idempotency covers genuine retries).</li>
+<li><strong><code>custom_id</code> mapping</strong>: trust <code>custom_id = member.id</code> from the subscription, not payer email, to attribute events.</li>
+</ul>
+<h3 id="105-reconciliation">10.5 Reconciliation<a class="headerlink" href="#105-reconciliation" title="Permanent link">&para;</a></h3>
+<p>Nightly Huey task queries PayPal for the status of all <code>active</code>/<code>suspended</code> subscriptions and corrects any drift from missed webhooks (sets <code>expires_at</code>/<code>status</code> to match PayPal). This is the safety net for webhook delivery gaps.</p>
+<hr />
+<h2 id="11-audit-export-design">11. Audit / Export Design<a class="headerlink" href="#11-audit-export-design" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Audit trail</strong> = <code>SubscriptionPaymentEvent</code> (append-only, <a href="#43-subscriptionpaymentevent-new-append-only--the-audit-trail">§4.3</a>). Every state change — webhook, manual admin action, migration grant, comp — writes one row with <code>source</code>, <code>created_by</code>, and <code>raw_payload</code>. Register it read-only in Django admin with filters by <code>event_type</code>/<code>source</code>/date.</li>
+<li><strong>Member-facing history</strong> = <code>GET /api/subscription/payments</code> — the member sees <strong>only their own</strong> events (subset of columns; no <code>raw_payload</code>, no other members).</li>
+<li><strong>Treasurer export</strong> = <a href="#62-new-admin--treasurer-endpoints">§6.2</a> endpoint + Django admin action → CSV for a date range. Design columns to support VAT/receipts even though current practice is unknown — <strong>VAT handling is a treasurer-input gap; flag it.</strong></li>
+</ul>
+<hr />
+<h2 id="12-rollout-rollback">12. Rollout &amp; Rollback<a class="headerlink" href="#12-rollout-rollback" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Kill-switch</strong>: <code>subscription_gating_enabled</code> (settings, default False). Enforcement everywhere checks it first. <strong>Rollback = flip it False</strong> — instant, no deploy; all <code>expires_at</code> data is retained and the <code>paid_member</code> shim keeps old clients working.</li>
+<li><strong>Reminders kill-switch</strong>: <code>subscription_reminders_enabled</code>.</li>
+<li><strong>Cutover order</strong>: <a href="#72-order-of-operations-critical">§7.2</a>.</li>
+<li><strong>Data rollback</strong>: the migration grant is recorded as events; if we must reverse, a counter-command can null <code>expires_at</code>, but with gating off there's rarely a need. The grant command is idempotent and re-runnable.</li>
+<li><strong>PayPal</strong>: run in <strong>sandbox</strong> first (<code>PayPalConfiguration.sandbox_mode</code> precedent) end-to-end before switching live credentials.</li>
+</ul>
+<hr />
+<h2 id="13-store-compliance-web-only-payment">13. Store Compliance (web-only payment)<a class="headerlink" href="#13-store-compliance-web-only-payment" title="Permanent link">&para;</a></h2>
+<p><strong>DECIDED.</strong> Payment is <strong>web-only — no in-app purchase on either platform</strong> — to avoid the 30% Apple/Google fee. The Flutter app is a <strong>neutral status + gating client</strong>; it never sells, prices, or links to a purchase. This is the Spotify/Netflix "reader-style" posture and is the lowest store-rejection risk <em>provided the in-app copy follows the rules below</em>.</p>
+<p><strong>Binding rules for anything shipped in the app (iOS and Android):</strong>
+- ❌ No buy / subscribe / renew / upgrade-to-pay <strong>buttons or CTAs</strong>.
+- ❌ No <strong>links</strong> to PayPal or the renewal page (no deep links, no <code>url_launcher</code> to the payment page).
+- ❌ No <strong>prices</strong>, discounts, or "X AED / year" anywhere in the app.
+- ❌ No instructions that steer to an external purchase ("pay on ad4x4.com", "renew on our website").
+- ✅ <strong>Allowed:</strong> state that a feature requires active membership; show the member's <strong>own status and expiry date</strong> (account info); show <strong>read-only payment history</strong>.
+- ✅ <strong>All purchase steering — CTA, link, price — lives in EMAIL and on the website</strong>, which Apple/Google do not govern. Email is the renewal channel (<a href="#94-email-templates">§9.4</a>).</p>
+<p><strong>Consequences already folded into this doc:</strong> §8.1 banner is informational (no button); §8.5 is a view-only status page (no subscribe/cancel UI in-app); §8.6 splits copy into compliant in-app text vs. full-CTA email; the existing logbook gate's "no payment links" comment becomes the rule, not an exception.</p>
+<blockquote>
+<p>Caveat to monitor: even <em>mentioning</em> that membership is purchased elsewhere can draw scrutiny under guideline 3.1.3 anti-steering. Keep in-app copy to "members-only feature" framing and let email do the selling. Re-check current App Store / Play policy at submission time, as anti-steering rules have been shifting.</p>
+</blockquote>
+<h3 id="remaining-risks">Remaining risks<a class="headerlink" href="#remaining-risks" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>PayPal subscriptions are new surface area</strong>, not a tweak to the existing one-time flow. Budget for plan setup, webhook verification, and reconciliation. The subscribe/cancel flow is driven from the <strong>web</strong> front end (not the app).</li>
+<li><strong>Webhook delivery gaps</strong> → mitigated by reconciliation (<a href="#105-reconciliation">§10.5</a>) and idempotency.</li>
+<li><strong>Exempt-list mis-config</strong> could silently un-gate or over-gate large groups. Editing is permissioned and changes are visible; consider logging exempt-list edits.</li>
+<li><strong>The web renewal front end is now load-bearing</strong> — it's the <em>only</em> purchase path. Confirm it exists / is in scope (the backend <code>subscribe</code>/<code>cancel</code> endpoints assume a web caller). If there's no web UI yet, that's a new work item outside both repos.</li>
+</ol>
+<hr />
+<h2 id="14-sequencing-dependencies">14. Sequencing &amp; Dependencies<a class="headerlink" href="#14-sequencing-dependencies" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>Backend Phase 1 — CONTRACT (unblocks Flutter)
+  • Member.subscription_expires_at + status computation helper
+  • Profile/member serializer fields (§3.2), ?subscription_status filter
+  • subscription_required error + gating on logbook sign-off &amp; upgrade POST (behind kill-switch)
+  • Settings: exempt groups, price, gating flag
+        │
+        ├──────────────► Flutter (parallel once Phase 1 contract is merged/stubbed)
+        │                  • UserModel + member models: status/expiresAt fields
+        │                  • Re-key logbook gate; directory/analytics locked states
+        │                  • Site-wide lapsed + expiring banners
+        │                  • subscription_error_humanizer; sign-off &amp; upgrade locked states
+        │                  • View-only membership status page (no in-app purchase — §13)
+        ▼
+WEB front end (separate work item — the ONLY purchase path; §13 risk 4)
+  • subscribe / cancel / renew UI driving the backend endpoints
+        ▼
+Backend Phase 2 — PAYPAL
+  • Product/Plan setup; subscribe/cancel/summary endpoints (web-driven)
+  • Subscription webhook + verification + idempotency; MembershipSubscription model
+  • SubscriptionPaymentEvent + member payments endpoint
+        ▼
+Backend Phase 3 — OPS
+  • grant_launch_subscriptions command (§7)
+  • periodic_subscription_reminders + 4 email templates (§9)
+  • Reconciliation task; treasurer export + admin views (§11)
+        ▼
+CUTOVER (§7.2): deploy (gating off) → grant → verify → release client → enable gating
+</code></pre></div>
+
+<p><strong>Hard dependencies:</strong> Flutter §8 depends only on Phase 1's contract (status field + error code) — it can start as soon as those serializer fields and the error code are merged, even before PayPal exists, since the app contains <strong>no purchase UI</strong> (<a href="#13-store-compliance-web-only-payment">§13</a>). The actual purchase/renew flow lives in the <strong>web front end</strong>, which is a separate work item and the only payment path. Phase 3 grant must run before gating is enabled.</p>
+<hr />
+<h2 id="15-open-questions">15. Open Questions<a class="headerlink" href="#15-open-questions" title="Permanent link">&para;</a></h2>
+<h3 id="q1-migration-scope-decided">Q1. Migration scope — ✅ DECIDED<a class="headerlink" href="#q1-migration-scope-decided" title="Permanent link">&para;</a></h3>
+<p><em>Do <code>paid_member=False</code> members also get the free year, or only <code>paid_member=True</code>?</em>
+<strong>DECISION: Currently paid members only</strong> (<code>paid_member=True</code>). Run <code>grant_launch_subscriptions --scope=paid</code>. Never-paid members start <code>lapsed</code> and subscribe via the web. (See <a href="#7-migration--cutover-plan">§7</a>.)</p>
+<h3 id="q2-approved-while-lapsed-upgrade-requests-decided">Q2. Approved-while-lapsed upgrade requests — ✅ DECIDED<a class="headerlink" href="#q2-approved-while-lapsed-upgrade-requests-decided" title="Permanent link">&para;</a></h3>
+<p><em>If the board approves an upgrade after the applicant lapsed, does it take effect?</em>
+<strong>DECISION: It applies (level changes) even if the applicant is currently lapsed.</strong> Gating is enforced <strong>only at upgrade-request creation</strong>; once a request exists, the board's verdict is sovereign and <code>handle_upgrade_request_verdict()</code> applies the level normally. No special-casing in the approve path. (See <a href="#66-backend-enforced-gating-where--how">§6.6</a>.)</p>
+<h3 id="q3-cancellation-semantics-decided">Q3. Cancellation semantics — ✅ DECIDED<a class="headerlink" href="#q3-cancellation-semantics-decided" title="Permanent link">&para;</a></h3>
+<p><em>Cancel mid-period → access through <code>expires_at</code> or immediate cutoff?</em>
+<strong>DECISION: Retain access through <code>expires_at</code></strong> (<code>cancel_at_period_end=True</code>, no proration, no refund). The PayPal <code>BILLING.SUBSCRIPTION.CANCELLED</code> handler marks the subscription cancelled but leaves <code>subscription_expires_at</code> untouched. (See <a href="#103-webhook-events-handled-post-apipaypalsubscription-webhook">§10.3</a>.)</p>
+<h3 id="q4-exempt-group-transitions-mid-period-decided">Q4. Exempt-group transitions mid-period — ✅ DECIDED<a class="headerlink" href="#q4-exempt-group-transitions-mid-period-decided" title="Permanent link">&para;</a></h3>
+<p><em>Added to an exempt group while lapsed → instantly exempt? Removed from all exempt groups → what <code>expires_at</code>?</em>
+<strong>DECISION (as proposed):</strong> Exemption is <strong>computed live</strong> from current group membership — adding a member to an exempt group makes them <code>exempt</code> <strong>immediately</strong> (no data write, no recompute job). Removing them from all exempt groups falls back to their <strong>stored <code>subscription_expires_at</code></strong>, i.e. whenever their last payment was received. If that date is null or already past, they are immediately <code>lapsed</code>. No invented default expiry, no grace window (a comp would be a manual <code>grant_months</code> action).</p>
+<h3 id="q5-permission-for-editing-exempt-group-list-decided">Q5. Permission for editing exempt-group list — ✅ DECIDED<a class="headerlink" href="#q5-permission-for-editing-exempt-group-list-decided" title="Permanent link">&para;</a></h3>
+<p><em>New permission or existing one?</em>
+<strong>DECISION: No new permission.</strong> There is <strong>no client UI</strong> for subscription settings — the exempt-group list, annual price, plan IDs, and gating flag are managed in <strong>Django admin</strong> (already gated by Django's <code>is_staff</code>/superuser). Consequence: keep these new fields <strong>out of the editable API serializer</strong> (the <code>subscribe</code>/status endpoints don't need write access to them), or expose price/currency <strong>read-only</strong> if the web front end needs to display it. No <code>EDIT_SUBSCRIPTION_SETTINGS</code> action; <code>CanEditGlobalSettings</code> is untouched.</p>
+<h3 id="q6-paypal-webhook-security">Q6. PayPal webhook security<a class="headerlink" href="#q6-paypal-webhook-security" title="Permanent link">&para;</a></h3>
+<p>Signature verification, idempotency, retries — designed in <a href="#104-webhook-security-q6">§10.4</a>. No open decision; called out as a backend concern.</p>
+<h3 id="q7-refund-dispute-flow">Q7. Refund / dispute flow<a class="headerlink" href="#q7-refund-dispute-flow" title="Permanent link">&para;</a></h3>
+<p><strong>Out of scope v1.</strong> Policy assumption: <strong>no refunds</strong>; disputes/chargebacks handled manually in PayPal, and an admin can manually adjust <code>expires_at</code> (recorded as a <code>refund</code>/<code>comp</code> event) if needed. <strong>Confirm the no-refund policy.</strong></p>
+<h3 id="q8-flutter-parity-shared-contract">Q8. Flutter parity / shared contract<a class="headerlink" href="#q8-flutter-parity-shared-contract" title="Permanent link">&para;</a></h3>
+<p>The binding contract for Flutter is <a href="#3-the-shared-contract-binding-on-both-repos-read-this-first">§3</a>: the <code>subscription_status</code> field (<code>active</code>/<code>lapsed</code>/<code>exempt</code>), the <code>subscription_required</code> 403 code with <code>expiresAt</code>, and the exempt-group concept (client never recomputes — it trusts the server status). Flutter implementation is tracked in <a href="#8-client-side-gating--ux-surface-inventory-flutter">§8</a> and <a href="#14-sequencing--dependencies">§14</a>; it is out of scope for the backend session but unblocked by Phase 1.</p>
+<hr />
+<h2 id="16-work-breakdown-per-repo">16. Work Breakdown (per repo)<a class="headerlink" href="#16-work-breakdown-per-repo" title="Permanent link">&para;</a></h2>
+<h3 id="backend-madsnad4x4-backend">Backend (<code>Madsn/ad4x4-backend</code>)<a class="headerlink" href="#backend-madsnad4x4-backend" title="Permanent link">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>P1</strong> Add <code>Member.subscription_expires_at</code> (+migration); status helper <code>compute_status</code> + <code>assert_subscription_active</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>P1</strong> Settings: <code>subscription_exempt_groups</code> (M2M), <code>annual_subscription_price</code>/<code>_currency</code>, <code>paypal_plan_id</code>/<code>_product_id</code>, <code>subscription_gating_enabled</code>, <code>subscription_reminders_enabled</code>; serializer wiring + permission.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>P1</strong> Serializer fields (<code>subscription_status</code>, <code>subscription_expires_at</code>, <code>subscription_days_remaining</code>) + keep <code>paid_member</code> shim; <code>?subscription_status</code> filter.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>P1</strong> <code>SubscriptionRequired</code> exception; gate logbook sign-off (signee) and upgrade POST (applicant), behind kill-switch.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>P2</strong> <code>MembershipSubscription</code> + <code>SubscriptionPaymentEvent</code> models + admin.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>P2</strong> PayPal Product/Plan setup doc + <code>subscribe</code>/<code>cancel</code>/<code>GET subscription</code>/<code>GET subscription/payments</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>P2</strong> Subscription webhook + signature verify + idempotency; map via <code>custom_id</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>P2</strong> Re-purpose <code>POST /api/members/&lt;id&gt;/payments</code> (grant<em>months/expires</em>at) with legacy shim.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>P3</strong> <code>grant_launch_subscriptions</code> command (idempotent, scope flag, dry-run).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>P3</strong> <code>periodic_subscription_reminders</code> + 4 email templates + <code>NotificationLog</code> idempotency.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>P3</strong> Reconciliation task; treasurer CSV export endpoint + admin action.</li>
+</ul>
+<h3 id="flutter-hani-amjad4x4-flutter-app">Flutter (<code>Hani-AMJ/Ad4x4-Flutter-App</code>)<a class="headerlink" href="#flutter-hani-amjad4x4-flutter-app" title="Permanent link">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Add <code>subscriptionStatus</code>/<code>subscriptionExpiresAt</code>/<code>subscriptionDaysRemaining</code> to <code>UserModel</code> + <code>BasicMember</code>/<code>ConciseMember</code>/<code>MarshalDirectoryMember</code> (snake+camel parsing).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>subscription_error_humanizer.dart</code> (403 + <code>code==subscription_required</code>); add branch to <code>sign_off_error_humanizer.dart</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Re-key logbook gate to <code>lapsed</code>; replace <code>/logbook/*</code> router redirect with in-place locked state; rename <code>_VerifiedMembershipGate</code> → <code>_SubscriptionRequiredGate</code> (informational, <strong>no purchase CTA/link</strong> per <a href="#13-store-compliance-web-only-payment">§13</a>).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Locked states for analytics/stats and member directory.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Site-wide lapsed banner (AppShell) + client-derived expiring (T-30/7/1) banner.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Sign-off and create-upgrade flows: pre-check + graceful <code>subscription_required</code> handling (signee-focused copy for sign-off).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>View-only</strong> membership status page (status + expiry + read-only payment history). <strong>No subscribe/cancel/renew buttons, no links, no price</strong> — payment is web-only (<a href="#13-store-compliance-web-only-payment">§13</a>).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Migrate admin members <code>PaidFilter</code> to <code>?subscription_status</code>.</li>
+</ul>
+<hr />
+<p><em>End of design doc.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
