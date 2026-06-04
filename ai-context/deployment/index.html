@@ -1388,6 +1388,10 @@ PAYPAL_CLIENT_ID
 PAYPAL_CLIENT_SECRET<span class="w">             </span><span class="c1"># PayPal REST API secret</span>
 PAYPAL_SECRET_KEY
 PAYPAL_MODE<span class="w">                      </span><span class="c1"># sandbox | live</span>
+PAYPAL_WEBHOOK_ID<span class="w">                </span><span class="c1"># verifies subscription webhook signatures (POST /api/paypal/subscription-webhook)</span>
+PAYPAL_SUBSCRIPTION_RETURN_URL<span class="w">   </span><span class="c1"># web page PayPal returns to after subscription approval</span>
+PAYPAL_SUBSCRIPTION_CANCEL_URL<span class="w">   </span><span class="c1"># web page PayPal returns to after subscription cancel</span>
+SUBSCRIPTION_RENEWAL_URL<span class="w">         </span><span class="c1"># web renewal page linked from reminder emails</span>
 
 <span class="c1"># GitHub webhooks</span>
 GITHUB_WEBHOOK_SECRET<span class="w">            </span><span class="c1"># HMAC secret for validating incoming GitHub webhook payloads</span>

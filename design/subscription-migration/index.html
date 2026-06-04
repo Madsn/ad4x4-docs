@@ -1171,6 +1171,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v1-scope-update-2026-06-04-one-time-annual-pass-not-recurring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ v1 scope update (2026-06-04) — one-time annual pass, not recurring
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0-tldr" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1887,10 +1898,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#backend-madsnad4x4-backend" class="md-nav__link">
+  <a href="#backend-madsnad4x4-backend-implemented" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Backend (Madsn/ad4x4-backend)
+        Backend (Madsn/ad4x4-backend) — ✅ implemented
       
     </span>
   </a>
@@ -1938,6 +1949,15 @@
 <blockquote>
 <p>This is the canonical copy. An identical copy lives in the Flutter repo at <code>docs/design/subscription-migration.md</code>. Keep them in sync, or collapse to one if the teams adopt a shared docs location.</p>
 </blockquote>
+<hr />
+<h2 id="v1-scope-update-2026-06-04-one-time-annual-pass-not-recurring">⚠️ v1 scope update (2026-06-04) — one-time annual pass, not recurring<a class="headerlink" href="#v1-scope-update-2026-06-04-one-time-annual-pass-not-recurring" title="Permanent link">&para;</a></h2>
+<p>Per the 2026-05-30 cross-stack session, <strong>v1 ships a one-year, non-auto-renewing "annual pass": pay once → +12 months → manual re-purchase.</strong> PayPal <strong>auto-renew (the Subscriptions API: Products → Billing Plans → Subscriptions, <code>cancel</code>, suspension/dunning, drift reconciliation) is deferred to Phase 2.</strong></p>
+<p>What this means for the sections below, which were written around the Subscriptions API:
+- The backend implements the pass by <strong>reusing the existing one-time PayPal <em>order</em> flow</strong> in <code>website/</code> (<code>create_order</code>/<code>capture_order</code>, <code>PAYMENT.CAPTURE.COMPLETED</code>). On capture it grants <strong>+12 months</strong> (<code>grant_annual_pass</code>, idempotent on the order id) and writes a <code>SubscriptionPaymentEvent</code>.
+- <strong>Not built in v1:</strong> <code>MembershipSubscription</code>, the Subscriptions-API client, <code>POST /api/subscription/cancel</code>, the <code>/api/paypal/subscription-webhook</code>, and the nightly reconciliation task. <code>GET /api/subscription</code> therefore omits <code>paypalSubscriptionId</code>/<code>cancelAtPeriodEnd</code>.
+- <strong>Added beyond the original doc</strong> (both clients asked for these): a computed <strong><code>reason</code></strong> field (<code>exempt</code>/<code>paid</code>/<code>grandfathered</code>/<code>comped</code>/<code>lapsed</code>) and a backend-owned <strong><code>gatedActions[]</code></strong> list (admin-configurable via <code>ConfigurableSettings.gated_actions</code>), both surfaced on <code>GET /api/subscription</code>.
+- Everything else (computed status + exempt-by-group, the <code>subscription_required</code> gate on sign-off/upgrade, kill-switch, grandfather grant command, T-30/7/1/0 reminders, treasurer CSV) is unchanged and as described below.</p>
+<p>The recurring implementation is preserved on branch <code>archive/subscription-recurring-impl</code> should Phase 2 pull it forward.</p>
 <hr />
 <h2 id="0-tldr">0. TL;DR<a class="headerlink" href="#0-tldr" title="Permanent link">&para;</a></h2>
 <p>We are replacing the single lifetime <code>paid_member</code> boolean with a <strong>rolling 12-month subscription</strong> keyed off a per-member expiry date. Members renew via <strong>PayPal</strong>. Access to a small set of features is <strong>gated when a member lapses</strong>. Existing members are all granted a free 1-year subscription at launch so nobody is locked out on day one.</p>
@@ -2506,20 +2526,23 @@ CUTOVER (§7.2): deploy (gating off) → grant → verify → release client →
 <p>The binding contract for Flutter is <a href="#3-the-shared-contract-binding-on-both-repos-read-this-first">§3</a>: the <code>subscription_status</code> field (<code>active</code>/<code>lapsed</code>/<code>exempt</code>), the <code>subscription_required</code> 403 code with <code>expiresAt</code>, and the exempt-group concept (client never recomputes — it trusts the server status). Flutter implementation is tracked in <a href="#8-client-side-gating--ux-surface-inventory-flutter">§8</a> and <a href="#14-sequencing--dependencies">§14</a>; it is out of scope for the backend session but unblocked by Phase 1.</p>
 <hr />
 <h2 id="16-work-breakdown-per-repo">16. Work Breakdown (per repo)<a class="headerlink" href="#16-work-breakdown-per-repo" title="Permanent link">&para;</a></h2>
-<h3 id="backend-madsnad4x4-backend">Backend (<code>Madsn/ad4x4-backend</code>)<a class="headerlink" href="#backend-madsnad4x4-backend" title="Permanent link">&para;</a></h3>
+<h3 id="backend-madsnad4x4-backend-implemented">Backend (<code>Madsn/ad4x4-backend</code>) — ✅ implemented<a class="headerlink" href="#backend-madsnad4x4-backend-implemented" title="Permanent link">&para;</a></h3>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>P1</strong> Add <code>Member.subscription_expires_at</code> (+migration); status helper <code>compute_status</code> + <code>assert_subscription_active</code>.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>P1</strong> Settings: <code>subscription_exempt_groups</code> (M2M), <code>annual_subscription_price</code>/<code>_currency</code>, <code>paypal_plan_id</code>/<code>_product_id</code>, <code>subscription_gating_enabled</code>, <code>subscription_reminders_enabled</code>; serializer wiring + permission.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>P1</strong> Serializer fields (<code>subscription_status</code>, <code>subscription_expires_at</code>, <code>subscription_days_remaining</code>) + keep <code>paid_member</code> shim; <code>?subscription_status</code> filter.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>P1</strong> <code>SubscriptionRequired</code> exception; gate logbook sign-off (signee) and upgrade POST (applicant), behind kill-switch.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>P2</strong> <code>MembershipSubscription</code> + <code>SubscriptionPaymentEvent</code> models + admin.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>P2</strong> PayPal Product/Plan setup doc + <code>subscribe</code>/<code>cancel</code>/<code>GET subscription</code>/<code>GET subscription/payments</code>.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>P2</strong> Subscription webhook + signature verify + idempotency; map via <code>custom_id</code>.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>P2</strong> Re-purpose <code>POST /api/members/&lt;id&gt;/payments</code> (grant<em>months/expires</em>at) with legacy shim.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>P3</strong> <code>grant_launch_subscriptions</code> command (idempotent, scope flag, dry-run).</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>P3</strong> <code>periodic_subscription_reminders</code> + 4 email templates + <code>NotificationLog</code> idempotency.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>P3</strong> Reconciliation task; treasurer CSV export endpoint + admin action.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>P1</strong> Add <code>Member.subscription_expires_at</code> (+migration); status helper <code>compute_status</code> + <code>assert_subscription_active</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>P1</strong> Settings: <code>subscription_exempt_groups</code> (M2M), <code>annual_subscription_price</code>/<code>_currency</code>, <code>paypal_plan_id</code>/<code>_product_id</code>, <code>subscription_gating_enabled</code>, <code>subscription_reminders_enabled</code> (Django admin only, excluded from API serializer).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>P1</strong> Serializer fields (<code>subscription_status</code>, <code>subscription_expires_at</code>, <code>subscription_days_remaining</code>) + keep <code>paid_member</code> shim; <code>?subscription_status</code> filter.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>P1</strong> <code>SubscriptionRequired</code> exception; gate logbook sign-off (signee) and upgrade POST (applicant), behind kill-switch.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>P2</strong> <code>SubscriptionPaymentEvent</code> model + read-only admin (audit) + CSV export action. <em>(No <code>MembershipSubscription</code> in v1 — pass model.)</em></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>P2</strong> <code>GET /api/subscription</code> (status + <code>reason</code> + <code>gatedActions[]</code>) / <code>POST /api/subscription/subscribe</code> (one-time order → <code>approvalUrl</code>) / <code>GET /api/subscription/payments</code>. <em>(No <code>/cancel</code> in v1.)</em></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>P2</strong> Annual-pass grant on one-time-order capture (<code>grant_annual_pass</code>, +12 months, idempotent on order id) wired into the <code>website</code> capture/webhook paths. <em>(No Subscriptions-API webhook / reconciliation in v1.)</em></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>P2</strong> Re-purpose <code>POST /api/members/&lt;id&gt;/payments</code> (grant<em>months/expires</em>at) with legacy shim.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>P3</strong> <code>grant_launch_subscriptions</code> command (idempotent, scope flag, dry-run).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>P3</strong> <code>periodic_subscription_reminders</code> + 4 email templates + delivery idempotency.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>P3</strong> Treasurer CSV export endpoint + admin action.</li>
 </ul>
+<blockquote>
+<p>Implementation notes: v1 is the <strong>one-time annual pass</strong> (see scope note at top); recurring/auto-renew is Phase 2 (preserved on <code>archive/subscription-recurring-impl</code>). The treasurer export uses a <strong>new <code>EXPORT_SUBSCRIPTION_PAYMENTS</code></strong> permission action. The CSV includes a blank <strong><code>tax</code></strong> column placeholder pending treasurer VAT guidance. Reminder idempotency reuses the email channel's <code>deliver_notification_once</code> cache keyed by (template, member, period_end) rather than <code>NotificationLog</code>. Comment-only logbook entries (no skills) are <strong>not</strong> gated. Product-experience follow-ups (configurable grace window, richer/personalised renewal comms, VAT-ready receipts, complimentary-year welcome email) are tracked as separate GitHub issues.</p>
+</blockquote>
 <h3 id="flutter-hani-amjad4x4-flutter-app">Flutter (<code>Hani-AMJ/Ad4x4-Flutter-App</code>)<a class="headerlink" href="#flutter-hani-amjad4x4-flutter-app" title="Permanent link">&para;</a></h3>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Add <code>subscriptionStatus</code>/<code>subscriptionExpiresAt</code>/<code>subscriptionDaysRemaining</code> to <code>UserModel</code> + <code>BasicMember</code>/<code>ConciseMember</code>/<code>MarshalDirectoryMember</code> (snake+camel parsing).</li>
