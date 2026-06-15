@@ -2204,13 +2204,18 @@
 <td>new <code>EXPORT_SUBSCRIPTION_PAYMENTS</code> action, or reuse <code>EDIT_MEMBERSHIP_PAYMENTS</code> — <strong>flag for confirmation</strong></td>
 </tr>
 <tr>
+<td><code>GET /api/subscription/payments/{event_id}/receipt</code></td>
+<td>Printable HTML receipt / tax invoice for one payment (#158)</td>
+<td>owner, or <code>EXPORT_SUBSCRIPTION_PAYMENTS</code></td>
+</tr>
+<tr>
 <td><code>POST /api/paypal/subscription-webhook</code></td>
 <td>PayPal subscription webhook intake</td>
 <td>AllowAny + signature verification (<a href="#94-webhook-security-q6">§9.4</a>)</td>
 </tr>
 </tbody>
 </table>
-<p>The export is also available as a <strong>Django admin action</strong> on <code>SubscriptionPaymentEvent</code> (no client UI needed). CSV columns: <code>member_id, member_name, occurred_at, event_type, source, amount, currency, payer_email, paypal_event_id, period_end_after_event</code>. Add a <code>tax/VAT</code> column placeholder — <strong>treasurer VAT practice is unknown; flag for input</strong> (current <code>PayPalConfiguration</code> carries no VAT/tax fields, so today there is no VAT handling to mirror).</p>
+<p>The export is also available as a <strong>Django admin action</strong> on <code>SubscriptionPaymentEvent</code> (no client UI needed). CSV columns: <code>member_id, member_name, occurred_at, event_type, source, amount, currency, payer_email, paypal_event_id, period_end_after_event, tax</code>. The <code>tax</code> column is <strong>populated</strong> (#158) with the VAT backed out of each priced event per the configured <code>vat_rate</code>/<code>vat_inclusive</code>; blank for non-priced events (comps/grants). VAT details (<code>club_legal_name</code>, <code>club_address</code>, <code>vat_registration_number</code>, <code>vat_rate</code>, <code>vat_inclusive</code>) live on <code>ConfigurableSettings</code>. Until the treasurer confirms VAT practice the rate defaults to <code>0</code>, so the column reads <code>0.00</code> and receipts show a 0.00 VAT line — see <a href="https://github.com/Madsn/ad4x4-backend/issues/158">#158</a>.</p>
 <h3 id="63-modified-manual-mark-paid-endpoint">6.3 Modified: manual "mark paid" endpoint<a class="headerlink" href="#63-modified-manual-mark-paid-endpoint" title="Permanent link">&para;</a></h3>
 <p>The existing <code>POST /api/members/&lt;id&gt;/payments</code> flips a boolean. Re-purpose its semantics (keep the route):</p>
 <div class="codehilite"><pre><span></span><code>// New write payload (admin, HasEditMembershipPaymentsPermission)
@@ -2437,7 +2442,7 @@ days &lt; 0   → no email; client shows lapsed banner from status
 <ul>
 <li><strong>Audit trail</strong> = <code>SubscriptionPaymentEvent</code> (append-only, <a href="#43-subscriptionpaymentevent-new-append-only--the-audit-trail">§4.3</a>). Every state change — webhook, manual admin action, migration grant, comp — writes one row with <code>source</code>, <code>created_by</code>, and <code>raw_payload</code>. Register it read-only in Django admin with filters by <code>event_type</code>/<code>source</code>/date.</li>
 <li><strong>Member-facing history</strong> = <code>GET /api/subscription/payments</code> — the member sees <strong>only their own</strong> events (subset of columns; no <code>raw_payload</code>, no other members).</li>
-<li><strong>Treasurer export</strong> = <a href="#62-new-admin--treasurer-endpoints">§6.2</a> endpoint + Django admin action → CSV for a date range. Design columns to support VAT/receipts even though current practice is unknown — <strong>VAT handling is a treasurer-input gap; flag it.</strong></li>
+<li><strong>Treasurer export</strong> = <a href="#62-new-admin--treasurer-endpoints">§6.2</a> endpoint + Django admin action → CSV for a date range. The <code>tax</code> column and the per-payment receipt endpoint are <strong>implemented and VAT-aware</strong> (#158), driven by the <code>vat_*</code> / <code>club_*</code> settings on <code>ConfigurableSettings</code>; they default to a 0% no-op until the treasurer confirms the rate, inclusive/exclusive handling, and TRN.</li>
 </ul>
 <hr />
 <h2 id="12-rollout-rollback">12. Rollout &amp; Rollback<a class="headerlink" href="#12-rollout-rollback" title="Permanent link">&para;</a></h2>
