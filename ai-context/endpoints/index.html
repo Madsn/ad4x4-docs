@@ -1243,10 +1243,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#membership-v1-annual-pass" class="md-nav__link">
+  <a href="#membership-one-time-lifetime-payment" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Membership (v1 annual pass)
+        Membership (one-time lifetime payment)
       
     </span>
   </a>
@@ -1407,8 +1407,8 @@
 <code>/leadsearch</code>, <code>/search</code>, <code>/activetripleads</code>, <code>/request-deletion</code>, <code>/deletion-request</code>, <code>/cancel-deletion</code>
 <code>/&lt;pk&gt;/upgradeeligibility</code>, <code>/&lt;pk&gt;/payments</code>, <code>/&lt;pk&gt;/tripcounts</code>, <code>/&lt;pk&gt;/triphistory</code>
 <code>/&lt;pk&gt;/triprequests</code>, <code>/&lt;pk&gt;/upgraderequests</code>, <code>/&lt;pk&gt;/logbookentries</code>, <code>/&lt;pk&gt;/logbookskills</code>, <code>/&lt;pk&gt;/feedback</code></p>
-<p><code>POST /&lt;pk&gt;/payments</code> (admin, <code>EDIT_MEMBERSHIP_PAYMENTS</code>) adjusts subscription expiry: <code>{grant_months: N}</code> (extend), <code>{expires_at: &lt;dt&gt;}</code> (set explicit comp/correction), or legacy <code>{payment_received: bool}</code>. Each writes a <code>SubscriptionPaymentEvent</code>. Members list accepts <code>?subscription_status=active|lapsed|exempt</code>.</p>
-<p>List/detail member serializers expose the computed subscription contract: <code>subscriptionStatus</code> (<code>active</code>/<code>lapsed</code>/<code>exempt</code>), <code>subscriptionExpiresAt</code> (null for exempt), <code>subscriptionDaysRemaining</code>.</p>
+<p><code>POST /&lt;pk&gt;/payments</code> (admin, <code>EDIT_MEMBERSHIP_PAYMENTS</code>) sets lifetime membership status: <code>{payment_received: true}</code> grants it (records a <code>MANUAL_GRANT</code> event) and <code>{payment_received: false}</code> revokes it (records a <code>REFUND</code> event). Each writes a <code>SubscriptionPaymentEvent</code>. Members list accepts <code>?subscription_status=active|lapsed|exempt</code>.</p>
+<p>Member serializers expose the computed <code>subscriptionStatus</code> (<code>active</code>=paid / <code>lapsed</code>=unpaid / <code>exempt</code>). The profile/detail serializer (<code>ProfileSerializer</code>) additionally exposes <code>subscriptionReason</code> (<code>paid</code>/<code>comped</code>/<code>exempt</code>/<code>lapsed</code>); it is not included on the list serializer.</p>
 <hr />
 <h2 id="trips-apitrips">Trips (<code>/api/trips/</code>)<a class="headerlink" href="#trips-apitrips" title="Permanent link">&para;</a></h2>
 <p>List/retrieve are served by <code>TripViewSet</code>; create/update/delete use the dedicated <code>TripCreateView</code> and <code>TripEditView</code> routes <strong>without trailing slashes</strong> (<code>POST /api/trips</code>, <code>PUT/PATCH/DELETE /api/trips/&lt;pk&gt;</code>). Additional actions:</p>
@@ -1431,10 +1431,10 @@
 <p><code>/&lt;pk&gt;/comments</code>, <code>/&lt;pk&gt;/approve</code>, <code>/&lt;pk&gt;/decline</code>, <code>/&lt;pk&gt;/vote</code>, <code>/&lt;pk&gt;/voted</code>
 <code>/latestapproved</code>, <code>/voted</code></p>
 <hr />
-<h2 id="membership-v1-annual-pass">Membership (v1 annual pass)<a class="headerlink" href="#membership-v1-annual-pass" title="Permanent link">&para;</a></h2>
+<h2 id="membership-one-time-lifetime-payment">Membership (one-time lifetime payment)<a class="headerlink" href="#membership-one-time-lifetime-payment" title="Permanent link">&para;</a></h2>
 <ul>
-<li><code>GET /api/subscription</code> — current user's verdict <code>{status, reason, expiresAt, daysRemaining, price, currency, gatedActions[]}</code>. <code>status</code> ∈ active/lapsed/exempt; <code>reason</code> ∈ exempt/paid/grandfathered/comped/lapsed; <code>gatedActions</code> is the backend-owned list of gated action keys (enforced + cosmetic).</li>
-<li><code>POST /api/subscription/subscribe</code> — create a one-time PayPal <strong>order</strong> (the annual pass) and return <code>{approvalUrl, orderId}</code>. The PayPal order's <code>return_url</code>/<code>cancel_url</code> point at the <code>website</code> routes below; capture + the +12-month grant happen there (<code>grant_annual_pass</code>).</li>
+<li><code>GET /api/subscription</code> — current user's verdict <code>{status, reason, gatingMode, price, currency, gatedActions[]}</code>. <code>status</code> ∈ active(paid)/lapsed(unpaid)/exempt; <code>reason</code> ∈ exempt/paid/comped/lapsed; <code>gatingMode</code> ∈ off/soft/hard (lets clients show a soft warning banner without a 403); <code>gatedActions</code> is the backend-owned list of gated action keys (enforced + cosmetic).</li>
+<li><code>POST /api/subscription/subscribe</code> — create a one-time PayPal <strong>order</strong> and return <code>{approvalUrl, orderId}</code>. The PayPal order's <code>return_url</code>/<code>cancel_url</code> point at the <code>website</code> routes below; capture + the lifetime grant happen there (<code>grant_membership</code>, sets <code>paid_member=True</code>).</li>
 <li><code>GET /api/subscription/payments</code> — member's own payment history (paginated).</li>
 <li><code>GET /api/admin/subscription-payments/export?from=&amp;to=&amp;format=csv</code> — treasurer CSV export (<code>EXPORT_SUBSCRIPTION_PAYMENTS</code>); also a Django admin action.</li>
 </ul>
@@ -1442,8 +1442,8 @@
 - <code>GET /subscription/return</code> — PayPal sends the approving browser here. Resolves the member from the pending <code>WebsitePayment</code> by <code>paypal_order_id</code> (<strong>no session/login</strong> — SPA/mobile clients use JWT, so the redirected browser carries no Django cookie; the order token is the capability), captures the order, grants the pass (the row flip + grant share one <code>transaction.atomic()</code> under <code>select_for_update</code>), then 302-redirects to the Next portal. An already-<code>COMPLETED</code> order short-circuits without re-capturing, and a duplicate/raced capture self-heals to <code>status=success</code>. <strong>Capture is on-return, not automatic</strong>: PayPal does not capture an <code>intent=CAPTURE</code> order on its own, so a user who approves but never returns leaves the order uncaptured (no grant — correctly "not completed"). The <code>PAYMENT.CAPTURE.COMPLETED</code> webhook is <strong>not</strong> a backstop for that case; it backstops the <em>other</em> one — a capture that succeeded but whose grant write failed and rolled the row back to <code>PENDING</code> (the webhook then re-grants; both paths dedupe on <code>paypal_order_id</code>).
 - <code>GET /subscription/cancel</code> — 302-redirects to the portal.
 - Portal target is <code>SUBSCRIPTION_PORTAL_RETURN_URL</code> (env-overridable; default is the production host <code>https://ad4x4.com/portal/membership/return</code>, staging sets <code>https://new.ad4x4.com/...</code>), with an outcome <code>?status=success|error|cancel</code> appended.</p>
-<p>The legacy <code>website</code> one-time-order flow (<code>/payment/...</code>, lands on a Django template) still exists and shares the same <code>grant_annual_pass</code> + <code>PAYMENT.CAPTURE.COMPLETED</code> webhook. There is <strong>no recurring subscription, <code>POST /api/subscription/cancel</code> API, or PayPal Subscriptions webhook in v1</strong> (deferred to Phase 2) — the <code>/subscription/cancel</code> route above is only the PayPal approval-cancel return, not a subscription-cancel API.</p>
-<p><strong>Gating:</strong> logbook skill sign-off (gates the <strong>signee</strong>) and upgrade-request creation (gates the <strong>applicant</strong>) return <code>403 {detail, code: "subscription_required", expiresAt}</code> when the gated member is <code>lapsed</code> <strong>and</strong> <code>subscription_gating_enabled</code> is on. Clients branch on <code>code</code>, not the bare 403.</p>
+<p>The legacy <code>website</code> one-time-order flow (<code>/payment/...</code>, lands on a Django template) still exists and shares the same <code>grant_membership</code> + <code>PAYMENT.CAPTURE.COMPLETED</code> webhook. There is <strong>no recurring subscription or PayPal Subscriptions webhook</strong> (the rolling-subscription model was reverted — issue #169) — the <code>/subscription/cancel</code> route above is only the PayPal approval-cancel return, not a subscription-cancel API.</p>
+<p><strong>Gating:</strong> logbook skill sign-off (gates the <strong>signee</strong>) and upgrade-request creation (gates the <strong>applicant</strong>) return <code>403 {detail, code: "subscription_required"}</code> when the gated member is <code>lapsed</code> (unpaid) <strong>and</strong> <code>gating_mode</code> is <code>hard</code>. <code>soft</code> reports unpaid without blocking; <code>off</code> disables gating entirely. Clients branch on <code>code</code>, not the bare 403.</p>
 <hr />
 <h2 id="other-resources-standard-crud-viewsets">Other resources (standard CRUD ViewSets)<a class="headerlink" href="#other-resources-standard-crud-viewsets" title="Permanent link">&para;</a></h2>
 <ul>

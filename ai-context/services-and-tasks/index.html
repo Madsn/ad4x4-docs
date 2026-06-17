@@ -1305,15 +1305,11 @@
 </tr>
 <tr>
 <td><code>subscription.py</code></td>
-<td>Computed status/<code>reason</code> (<code>compute_status</code>, <code>compute_reason</code>, <code>gated_actions</code>, <code>assert_subscription_active</code>, <code>set_subscription_expiry</code>, <code>paid_member</code> shim sync)</td>
+<td>Computed status/<code>reason</code> off <code>paid_member</code> + exempt groups (<code>compute_status</code>, <code>compute_reason</code>, <code>gated_actions</code>, <code>gating_mode</code>, <code>assert_subscription_active</code>)</td>
 </tr>
 <tr>
 <td><code>subscription_events.py</code></td>
-<td>Append-only <code>SubscriptionPaymentEvent</code> recording, manual grants, and <code>grant_annual_pass</code> (+12 months on one-time-order capture, idempotent on order id)</td>
-</tr>
-<tr>
-<td><code>subscription_reminders.py</code></td>
-<td>Renewal-reminder email fan-out (T-30/7/1/0)</td>
+<td>Append-only <code>SubscriptionPaymentEvent</code> recording, manual grants/revokes (<code>set_membership_paid</code>), and <code>grant_membership</code> (sets <code>paid_member=True</code> on one-time-order capture, idempotent on order id)</td>
 </tr>
 </tbody>
 </table>
@@ -1448,11 +1444,6 @@
 <td>Daily 04:45</td>
 <td><code>cleanup_expired_outstanding_tokens</code></td>
 <td>Delete <code>OutstandingToken</code> rows whose refresh has expired (cascades blacklist rows)</td>
-</tr>
-<tr>
-<td>Daily 09:00</td>
-<td><code>periodic_subscription_reminders</code></td>
-<td>Send renewal reminder emails at T-30/7/1/0 (gated by <code>subscription_reminders_enabled</code>)</td>
 </tr>
 <tr>
 <td>Daily 20:00</td>

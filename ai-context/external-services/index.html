@@ -1234,7 +1234,7 @@
 <tr>
 <td><strong>PayPal</strong></td>
 <td>Membership payments</td>
-<td><code>PAYPAL_CLIENT_ID</code> + <code>PAYPAL_SECRET_KEY</code> env vars; <code>PayPalConfiguration</code> model (singleton). <strong>PayPal does not support AED</strong> — charges USD, displays AED. The <strong>v1 annual membership pass</strong> reuses the one-time PayPal <strong>order</strong> flow in <code>website/</code> (<code>create_order</code>/<code>capture_order</code>, <code>PAYMENT.CAPTURE.COMPLETED</code> webhook verified with <code>PAYPAL_WEBHOOK_ID</code>); on capture it grants +12 months via <code>grant_annual_pass</code> (idempotent on the order id). No PayPal Subscriptions API / auto-renew in v1 — deferred to Phase 2.</td>
+<td><code>PAYPAL_CLIENT_ID</code> + <code>PAYPAL_SECRET_KEY</code> env vars; <code>PayPalConfiguration</code> model (singleton). <strong>PayPal does not support AED</strong> — charges USD, displays AED. The <strong>one-time lifetime membership</strong> uses the one-time PayPal <strong>order</strong> flow in <code>website/</code> (<code>create_order</code>/<code>capture_order</code>, <code>PAYMENT.CAPTURE.COMPLETED</code> webhook verified with <code>PAYPAL_WEBHOOK_ID</code>); on capture it grants lifetime membership (<code>paid_member=True</code>) via <code>grant_membership</code> (idempotent on the order id). No PayPal Subscriptions API / auto-renew — the rolling-subscription model was reverted (issue #169).</td>
 </tr>
 <tr>
 <td><strong>Bugsink</strong> (Sentry-compatible)</td>

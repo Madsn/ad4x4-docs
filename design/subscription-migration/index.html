@@ -1942,6 +1942,15 @@
 
 
 <h1 id="ad4x4-subscription-model-migration-joint-design-doc-work-breakdown">AD4x4 — Subscription Model Migration: Joint Design Doc &amp; Work Breakdown<a class="headerlink" href="#ad4x4-subscription-model-migration-joint-design-doc-work-breakdown" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>ON HOLD — reverted to one-time lifetime payment (2026-06-16, issue #169).</strong> The rolling
+12-month subscription model described below was implemented and then rolled back to a one-time
+lifetime payment (<code>Member.paid_member</code> is the source of truth; no expiry/lapse/renewals).
+This doc is retained as the canonical reference for <strong>reviving subscriptions in the future</strong>.
+Reusable plumbing that survived the rollback (PayPal one-time orders, <code>SubscriptionPaymentEvent</code>
+audit trail, exempt groups, treasurer export, receipts, and the 3-state <code>gating_mode</code>) is still in
+the codebase; the expiry/reminder/grace layer was removed.</p>
+</blockquote>
 <p><strong>Status:</strong> Design — not yet approved for implementation
 <strong>Audience:</strong> Backend team (<code>Madsn/ad4x4-backend</code>) and Flutter team (<code>Hani-AMJ/Ad4x4-Flutter-App</code>)
 <strong>Date:</strong> 2026-05-28
