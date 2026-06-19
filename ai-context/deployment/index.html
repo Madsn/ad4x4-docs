@@ -1384,12 +1384,10 @@ BUGSINK_EMAIL_LOGGING
 EMAIL_HOST_USER<span class="w">                  </span><span class="c1"># Gmail SMTP</span>
 EMAIL_HOST_PASSWORD
 
-<span class="c1"># PayPal</span>
+<span class="c1"># PayPal  (sandbox/live is the PayPalConfiguration.sandbox_mode flag in Django admin, not an env var)</span>
 PAYPAL_CLIENT_ID
-PAYPAL_CLIENT_SECRET<span class="w">             </span><span class="c1"># PayPal REST API secret</span>
-PAYPAL_SECRET_KEY
-PAYPAL_MODE<span class="w">                      </span><span class="c1"># sandbox | live</span>
-PAYPAL_WEBHOOK_ID<span class="w">                </span><span class="c1"># verifies subscription webhook signatures (POST /api/paypal/subscription-webhook)</span>
+PAYPAL_SECRET_KEY<span class="w">                </span><span class="c1"># PayPal REST API secret</span>
+PAYPAL_WEBHOOK_ID<span class="w">                </span><span class="c1"># verifies PayPal webhook signatures (PAYMENT.CAPTURE.COMPLETED backstop)</span>
 PAYPAL_SUBSCRIPTION_RETURN_URL<span class="w">   </span><span class="c1"># web page PayPal returns to after subscription approval</span>
 PAYPAL_SUBSCRIPTION_CANCEL_URL<span class="w">   </span><span class="c1"># web page PayPal returns to after subscription cancel</span>
 SUBSCRIPTION_PORTAL_RETURN_URL<span class="w">   </span><span class="c1"># portal URL subscription/return and subscription/cancel redirect to (deep-link target; app-link claimable once the portal host serves the .well-known association files)</span>
