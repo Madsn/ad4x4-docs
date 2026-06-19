@@ -1446,6 +1446,11 @@
 <td>Delete <code>OutstandingToken</code> rows whose refresh has expired (cascades blacklist rows)</td>
 </tr>
 <tr>
+<td>Daily 04:50</td>
+<td><code>cleanup_handoff_tokens</code></td>
+<td>Delete consumed <code>AppWebHandoffToken</code> rows immediately; delete expired-but-never-consumed rows after a 7-day audit window</td>
+</tr>
+<tr>
 <td>Daily 20:00</td>
 <td><code>periodic_upgrade_request_reminder</code></td>
 <td>Send upgrade request reminders</td>
