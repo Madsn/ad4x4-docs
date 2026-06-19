@@ -1511,6 +1511,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#appwebhandofftoken" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AppWebHandoffToken
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1646,6 +1657,9 @@
 <blockquote>
 <p>Membership is a <strong>one-time lifetime payment</strong> (pay once → <code>paid_member=True</code> permanently). The rolling 12-month subscription model was reverted (issue #169); a future recurring model would reintroduce the deferred <code>MembershipSubscription</code> / PayPal Subscriptions API — see <code>docs/design/subscription-migration.md</code>.</p>
 </blockquote>
+<hr />
+<h2 id="appwebhandofftoken"><code>AppWebHandoffToken</code><a class="headerlink" href="#appwebhandofftoken" title="Permanent link">&para;</a></h2>
+<p>Single-use, short-TTL token that bridges an authenticated app session into a web session so the app → web pay/manage jump skips the system-browser login wall. Fields: <code>token_hash</code> (SHA-256 hex of the cleartext token — unique, indexed; cleartext is returned once on mint and never persisted), <code>member</code> (FK → Member), <code>created_at</code>, <code>expires_at</code>, <code>used_at</code> (set on exchange — single-use is enforced atomically via <code>select_for_update()</code>), <code>source_ip</code> (audit only). TTL is env-driven via <code>HANDOFF_TOKEN_TTL_SECONDS</code> (default 300s). Purged by the <code>cleanup_handoff_tokens</code> periodic task (consumed rows immediately; expired-but-unused after 7 days).</p>
 
 
 

@@ -1380,6 +1380,16 @@
 <td>Change password. <strong>Blacklists every outstanding refresh token for the user</strong> — see gotchas.</td>
 </tr>
 <tr>
+<td>POST</td>
+<td><code>/api/auth/handoff/mint/</code></td>
+<td>App-only. Mints a single-use, short-TTL handoff token for the authenticated member. Returns <code>{token, expiresAt}</code>; only the SHA-256 hash is persisted. Token is appended as <code>?handoff=&lt;token&gt;</code> to the public pay/manage URL. TTL via <code>HANDOFF_TOKEN_TTL_SECONDS</code> (default 300).</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/auth/handoff/exchange/</code></td>
+<td>Public. Body: <code>{"token": "&lt;cleartext&gt;"}</code>. Atomically consumes the token and returns <code>{access, refresh}</code> (same shape as <code>/api/auth/login/</code>). Errors: <code>400 handoff_invalid</code>, <code>410 handoff_expired</code>, <code>410 handoff_consumed</code>, <code>401 handoff_invalid</code> if the member has been deactivated.</td>
+</tr>
+<tr>
 <td>GET/PUT/PATCH</td>
 <td><code>/api/auth/profile/</code></td>
 <td>Member profile (<code>rest_registration</code>)</td>
