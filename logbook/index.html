@@ -1810,9 +1810,9 @@
 <p><code>generatedAt</code> is serialized as an ISO 8601 datetime with a timezone offset.</p>
 <h3 id="logbook-skill-references-viewset">Logbook Skill References ViewSet<a class="headerlink" href="#logbook-skill-references-viewset" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>GET</strong> <code>/api/logbookskillreferences/</code> - List all skill reference records.</li>
-<li><strong>GET</strong> <code>/api/logbookskillreferences/{id}/</code> - Retrieve a single skill reference.</li>
-<li>Full CRUD is available (POST, PUT, PATCH, DELETE) for authenticated users with appropriate permissions.</li>
+<li><strong>GET</strong> <code>/api/logbookskillreferences/</code> - List skill reference records. Scoped to the requesting member's own records unless the caller holds <code>VIEW_MEMBER_TRIP_HISTORY</code> permission or is a superuser. Supports <code>?member=&lt;id&gt;</code> to filter within the accessible set.</li>
+<li><strong>GET</strong> <code>/api/logbookskillreferences/{id}/</code> - Retrieve a single skill reference (same ownership scoping applies; returns 404 if the record is not in the caller's accessible set).</li>
+<li>Read-only. Write operations go through <code>/api/logbookentries/</code> or <code>/api/trips/{id}/logbook/</code>.</li>
 </ul>
 <p><strong>Skill Reference Fields:</strong> <code>id</code>, <code>logbook_skill</code>, <code>member</code>, <code>trip</code>, <code>signed_by</code>, <code>entered_by</code>, <code>entered_at</code></p>
 <h2 id="logbook-entry-permissions">Logbook Entry Permissions<a class="headerlink" href="#logbook-entry-permissions" title="Permanent link">&para;</a></h2>
