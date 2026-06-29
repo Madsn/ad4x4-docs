@@ -1321,10 +1321,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#membertoken_version" class="md-nav__link">
+  <a href="#session-invalidation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Member.token_version
+        Session invalidation
       
     </span>
   </a>
@@ -1505,7 +1505,7 @@
 <h3 id="rotation">Rotation<a class="headerlink" href="#rotation" title="Permanent link">&para;</a></h3>
 <p><code>ROTATE_REFRESH_TOKENS=True</code> + <code>BLACKLIST_AFTER_ROTATION=True</code>. Every successful <code>/api/token/refresh/</code> call returns a <em>new</em> refresh token and blacklists the old one. Reusing the same refresh token twice returns 401. <strong>Clients must overwrite their stored refresh token with the response value.</strong></p>
 <h3 id="token-payload">Token payload<a class="headerlink" href="#token-payload" title="Permanent link">&para;</a></h3>
-<p><code>token_type</code>, <code>exp</code>, <code>iat</code>, <code>jti</code>, <code>user_id</code>. No <code>token_version</code> check (legacy).</p>
+<p><code>token_type</code>, <code>exp</code>, <code>iat</code>, <code>jti</code>, <code>user_id</code>. Invalidation is via simplejwt's token blacklist, not a token-version counter.</p>
 <h3 id="custom-classes">Custom classes<a class="headerlink" href="#custom-classes" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>api.util.JWTAuthentication</code> — thin <code>simplejwt</code> subclass. Overrides <code>get_user()</code> only to preserve the legacy side effect of touching <code>NotificationSettings</code> on every authenticated request.</li>
@@ -1518,8 +1518,8 @@
 <p><code>login</code>, <code>username</code>, or <code>email</code> (any of them, case-insensitive) plus <code>password</code>. The same case-insensitive lookup is reused by <code>find_user_case_insensitive_by_send_reset_password_link_data</code> for reset-password.</p>
 <h3 id="default-permission">Default permission<a class="headerlink" href="#default-permission" title="Permanent link">&para;</a></h3>
 <p><code>IsAuthenticatedOrReadOnly</code> (safe methods public by default unless a view overrides).</p>
-<h3 id="membertoken_version"><code>Member.token_version</code><a class="headerlink" href="#membertoken_version" title="Permanent link">&para;</a></h3>
-<p><strong>Legacy, unused.</strong> Column still on the model but nothing reads or writes it. Slated for removal. Do not reintroduce checks.</p>
+<h3 id="session-invalidation">Session invalidation<a class="headerlink" href="#session-invalidation" title="Permanent link">&para;</a></h3>
+<p>There is no <code>token_version</code> counter — the legacy column was removed (migration 0130). Session invalidation flows through <code>rest_framework_simplejwt.token_blacklist</code> (password change blacklists every outstanding refresh token; see the gotcha in <code>AGENTS.md</code>). Do not reintroduce a token-version mechanism.</p>
 <h3 id="invalidation-semantics">Invalidation semantics<a class="headerlink" href="#invalidation-semantics" title="Permanent link">&para;</a></h3>
 <table>
 <thead>

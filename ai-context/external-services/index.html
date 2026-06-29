@@ -1229,7 +1229,7 @@
 <tr>
 <td><strong>Gallery API</strong></td>
 <td>Trip photo albums</td>
-<td><code>GALLERY_API_BASE_URL</code> + <code>GALLERY_API_TOKEN</code> env vars; <code>ConfigurableSettings.gallery_*</code> fields. Tasks retry up to 6× with 1-hour delays — see <a href="../services-and-tasks/"><code>services-and-tasks.md</code></a>.</td>
+<td><code>GALLERY_API_BASE_URL</code> + <code>GALLERY_API_TOKEN</code> env vars; <code>ConfigurableSettings.gallery_*</code> fields. Tasks retry up to 6× with 1-hour delays — see <a href="../services-and-tasks/"><code>services-and-tasks.md</code></a>. All four webhook payloads include <code>event_ts</code> (ISO 8601 datetime captured at signal time, not send time) so the Gallery can drop stale retried events. 4xx responses are permanent failures for all four webhooks (no retry); 5xx retries via Huey.</td>
 </tr>
 <tr>
 <td><strong>PayPal</strong></td>

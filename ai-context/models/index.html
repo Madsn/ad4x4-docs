@@ -1577,7 +1577,6 @@
 - <code>nationality</code> (ISO 3166 code)
 - <code>avatar</code> (<code>ImageField</code>, max 2.5MB)
 - <code>paid_member</code> (bool, indexed) — authoritative lifetime-membership flag. One-time payment sets it <code>True</code> permanently; it drives the computed subscription status and all gating. No expiry or renewals — the rolling-subscription model was reverted (issue #169).
-- <code>token_version</code> (legacy column, no longer used for JWT invalidation — see gotchas)
 - <code>last_visited</code> (<code>DateTimeField</code>, updated by <code>LastVisitedMiddleware</code> throttled 1/hr)</p>
 <p><strong>Manager:</strong> <code>MyUserManager</code> — case-insensitive <code>get_by_natural_key</code>.
 <strong>Key method:</strong> <code>anonymize_data()</code> — GDPR deletion (deactivates, wipes PII, deletes vehicles).

@@ -936,6 +936,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#email-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email Templates
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#notificationtype-enum-values" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1427,6 +1438,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#email-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email Templates
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#notificationtype-enum-values" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1542,6 +1564,23 @@
 <ul>
 <li><strong>Feedback Notification</strong>: Sent to administrators when a member submits feedback via email/Telegram. This is <strong>not</strong> stored as a <code>NotificationType</code> log entry and does not appear in the notification history endpoint.</li>
 </ul>
+<h2 id="email-templates">Email Templates<a class="headerlink" href="#email-templates" title="Permanent link">&para;</a></h2>
+<p>All member-facing emails live in <code>templates/emails/</code> and share a single branded
+layout, <code>base_email.html</code>. Each template extends the base and overrides blocks
+rather than shipping its own HTML document:</p>
+<ul>
+<li><code>{% block greeting %}</code> — defaults to <code>Hello Offroader!</code>; admin emails override
+  it with <code>Hi Admin</code>, and personal account emails greet by username.</li>
+<li><code>{% block content %}</code> — the body of the message.</li>
+<li><code>{% block closing %}</code> — a friendly sign-off; defaults to <code>See you on the dunes,</code>.</li>
+</ul>
+<p>The base provides the header brand and a footer carrying the club tagline
+(<em>Safety by choice, not by chance</em>), so individual templates never repeat them.
+Repeated trip detail tables are rendered via the <code>_trip_details.html</code> partial.</p>
+<p>Email <strong>subjects</strong> are kept consistent by prefixing them with <code>[AD4x4]</code> and
+using sentence-style wording (see <code>api/services/email_notifications.py</code>).</p>
+<p>When adding a new email, extend <code>base_email.html</code> and prefix the subject the
+same way so the look and inbox presentation stay uniform.</p>
 <h2 id="notificationtype-enum-values"><code>NotificationType</code> Enum Values<a class="headerlink" href="#notificationtype-enum-values" title="Permanent link">&para;</a></h2>
 <p>The <code>type</code> field in the notification object will contain one of the following enum values:</p>
 <table>

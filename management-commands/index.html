@@ -1044,6 +1044,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#fix_group_memberships" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fix_group_memberships
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#fix_null_member_levels" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1383,6 +1394,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#fix_group_memberships" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fix_group_memberships
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#fix_null_member_levels" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1494,6 +1516,11 @@ backend. It does not list Django's built-in commands.</p>
 <td><code>--apply</code>, <code>--include-members-with-groups</code></td>
 </tr>
 <tr>
+<td><code>fix_group_memberships</code></td>
+<td>Post-migration cleanup: correct ANIT members who belong to the Newbies group to Newbie level, then sync all members' level groups.</td>
+<td><code>--apply</code></td>
+</tr>
+<tr>
 <td><code>fix_null_member_levels</code></td>
 <td>Assign the ANIT level to members whose <code>level</code> is currently <code>NULL</code>.</td>
 <td>None</td>
@@ -1544,6 +1571,29 @@ By default, it targets only Advanced members with no groups.</p>
 
 <p>To also repair Advanced members who already have some groups:</p>
 <div class="codehilite"><pre><span></span><code>python<span class="w"> </span>manage.py<span class="w"> </span>fix_advanced_member_groups<span class="w"> </span>--apply<span class="w"> </span>--include-members-with-groups
+</code></pre></div>
+
+<h3 id="fix_group_memberships"><code>fix_group_memberships</code><a class="headerlink" href="#fix_group_memberships" title="Permanent link">&para;</a></h3>
+<p>Post-migration cleanup command that runs in two phases:</p>
+<ol>
+<li>
+<p><strong>ANIT level correction</strong> — finds members at the ANIT level who are already
+   in the Newbies group and changes their level to Newbie, reflecting their
+   actual progression.</p>
+</li>
+<li>
+<p><strong>Group sync</strong> — ensures every member's Django auth groups match the
+   cumulative level-group chain for their current level. This includes inactive
+   levels (e.g. the legacy Expert level is included for Explorer and Marshal
+   members). Stale higher-level groups are removed.</p>
+</li>
+</ol>
+<p>Run a dry run first:</p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>manage.py<span class="w"> </span>fix_group_memberships
+</code></pre></div>
+
+<p>Apply the changes:</p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>manage.py<span class="w"> </span>fix_group_memberships<span class="w"> </span>--apply
 </code></pre></div>
 
 <h3 id="fix_null_member_levels"><code>fix_null_member_levels</code><a class="headerlink" href="#fix_null_member_levels" title="Permanent link">&para;</a></h3>
