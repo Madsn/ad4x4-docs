@@ -1305,11 +1305,31 @@
 </tr>
 <tr>
 <td><code>subscription.py</code></td>
-<td>Computed status/<code>reason</code> off <code>paid_member</code> + exempt groups (<code>compute_status</code>, <code>compute_reason</code>, <code>gated_actions</code>, <code>gating_mode</code>, <code>assert_subscription_active</code>)</td>
+<td>Computed status/<code>reason</code> off <code>paid_member</code> + exempt groups (<code>compute_status</code>, <code>compute_reason</code>, <code>gated_actions</code>, <code>gating_mode</code>, <code>assert_subscription_active</code>) and the club-wide dashboard aggregate <code>compute_subscription_stats</code></td>
 </tr>
 <tr>
 <td><code>subscription_events.py</code></td>
 <td>Append-only <code>SubscriptionPaymentEvent</code> recording, manual grants/revokes (<code>set_membership_paid</code>, with an optional audit <code>note</code>), and <code>grant_membership</code> (sets <code>paid_member=True</code> on one-time-order capture, idempotent on order id)</td>
+</tr>
+<tr>
+<td><code>receipts.py</code></td>
+<td>VAT-aware HTML receipt / tax-invoice generation for priced payment events (<code>build_receipt_context</code>, <code>event_vat_amount</code>)</td>
+</tr>
+<tr>
+<td><code>kit_inventory_service.py</code></td>
+<td>Marshal stock-event ledger; single-GROUP BY (N+1-safe) on-hand/issued aggregation for the inventory views</td>
+</tr>
+<tr>
+<td><code>kit_voucher_service.py</code></td>
+<td>Kit voucher minting, single-use token dispatch + redemption, and financial notifications</td>
+</tr>
+<tr>
+<td><code>notification_delivery.py</code></td>
+<td><code>deliver_notification_once</code> — idempotent (dedup-guarded) notification delivery, used by the financial Telegram notifications</td>
+</tr>
+<tr>
+<td><code>github_notifications.py</code></td>
+<td>GitHub webhook → Telegram bridge for private-repo PR notifications</td>
 </tr>
 </tbody>
 </table>

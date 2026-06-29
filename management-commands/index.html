@@ -1066,6 +1066,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#seed_e2e_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        seed_e2e_data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seed_faqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        seed_faqs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#setup_default_permissions" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1383,6 +1405,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#seed_e2e_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        seed_e2e_data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seed_faqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        seed_faqs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#setup_default_permissions" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1460,6 +1504,16 @@ backend. It does not list Django's built-in commands.</p>
 <td>None</td>
 </tr>
 <tr>
+<td><code>seed_e2e_data</code></td>
+<td>Seed (and idempotently reseed) a fixed set of E2E test data — users at every level, past/upcoming/pending trips, logbook entries with no-shows, vehicles, and upgrade requests. Deletes its own prior seed data and dependents, then recreates it.</td>
+<td><code>--email</code> (required), <code>--password</code></td>
+</tr>
+<tr>
+<td><code>seed_faqs</code></td>
+<td>Seed all 59 FAQ entries (orders 1–59). Skips entries whose <code>order</code> already exists.</td>
+<td>None</td>
+</tr>
+<tr>
 <td><code>setup_default_permissions</code></td>
 <td>Seed the default level groups, levels, and permission matrix rows.</td>
 <td>None</td>
@@ -1504,6 +1558,33 @@ trips.</p>
 </code></pre></div>
 
 <p>Use this after repairing historical trip-registration data or if counts drift.</p>
+<h3 id="seed_e2e_data"><code>seed_e2e_data</code><a class="headerlink" href="#seed_e2e_data" title="Permanent link">&para;</a></h3>
+<p>Seeds a fixed, predictable dataset for end-to-end testing: three members at each
+level (ANIT through Board), 20 past + 4 upcoming approved trips plus 2 upcoming
+trips pending approval, logbook entries (each past trip including one no-show),
+a mix of single/multiple/archived vehicles, trip comments, a trip report, and
+the three upgrade-request states (approved, denied, pending with a vote and
+comment).</p>
+<p>Members are created with plus-addressed emails derived from <code>--email</code>
+(<code>xyz@abc.com</code> → <code>xyz+&lt;username&gt;@abc.com</code>) and the password <code>TestAcc123!</code> unless
+overridden with <code>--password</code>.</p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>manage.py<span class="w"> </span>seed_e2e_data<span class="w"> </span>--email<span class="w"> </span>qa@example.com
+python<span class="w"> </span>manage.py<span class="w"> </span>seed_e2e_data<span class="w"> </span>--email<span class="w"> </span>qa@example.com<span class="w"> </span>--password<span class="w"> </span><span class="s1">&#39;OtherPw123!&#39;</span>
+</code></pre></div>
+
+<p>Re-running deletes the command's own seeded records — and their dependent data,
+including registrations or logbook entries that other members added to seeded
+trips — and recreates everything to the original starting state. Independent data
+(such as a non-seeded member who registered on a seeded trip) is left untouched
+apart from the dependent rows that must be removed. Requires the canonical levels
+and groups, so run <code>setup_default_permissions</code> first.</p>
+<h3 id="seed_faqs"><code>seed_faqs</code><a class="headerlink" href="#seed_faqs" title="Permanent link">&para;</a></h3>
+<p>Seeds all 59 FAQ entries (orders 1–59). Safe to run on an empty database or one
+that already has some entries — rows whose <code>order</code> number already exists are
+skipped.</p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>manage.py<span class="w"> </span>seed_faqs
+</code></pre></div>
+
 <h3 id="setup_default_permissions"><code>setup_default_permissions</code><a class="headerlink" href="#setup_default_permissions" title="Permanent link">&para;</a></h3>
 <p>Seeds the standard club structure:</p>
 <ul>

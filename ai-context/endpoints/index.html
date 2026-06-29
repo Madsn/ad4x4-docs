@@ -1265,6 +1265,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#kit-items-vouchers-marshal-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kit items, vouchers &amp; marshal inventory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#utility" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1418,6 +1429,7 @@
 <code>/&lt;pk&gt;/upgradeeligibility</code>, <code>/&lt;pk&gt;/payments</code>, <code>/&lt;pk&gt;/subscription</code>, <code>/&lt;pk&gt;/tripcounts</code>, <code>/&lt;pk&gt;/triphistory</code>
 <code>/&lt;pk&gt;/triprequests</code>, <code>/&lt;pk&gt;/upgraderequests</code>, <code>/&lt;pk&gt;/logbookentries</code>, <code>/&lt;pk&gt;/logbookskills</code>, <code>/&lt;pk&gt;/feedback</code></p>
 <p><code>POST /&lt;pk&gt;/payments</code> (admin, <code>EDIT_MEMBERSHIP_PAYMENTS</code>) sets lifetime membership status: <code>{payment_received: true}</code> grants it (records a <code>MANUAL_GRANT</code> event) and <code>{payment_received: false}</code> revokes it (records a <code>REFUND</code> event). An optional <code>{note}</code> is stored on the event to explain the action in the audit trail. Each writes a <code>SubscriptionPaymentEvent</code>. Members list accepts <code>?subscription_status=active|lapsed|exempt</code>.</p>
+<p><code>POST /&lt;pk&gt;/payments/&lt;payment_id&gt;/refund</code> (admin, <code>EDIT_MEMBERSHIP_PAYMENTS</code>) reverses a captured PayPal payment via PayPal's refund API. <code>payment_id</code> is a <code>WebsitePayment.id</code> (no endpoint currently exposes this id — see issue #229). Requires the payment to be <code>COMPLETED</code> with a capture id; under a row lock it marks the <code>WebsitePayment</code> <code>REFUNDED</code>, records a <code>REFUND</code>/<code>paypal</code> <code>SubscriptionPaymentEvent</code> (refund id = idempotency key), and revokes <code>paid_member</code> unless another <code>COMPLETED</code> payment remains. <code>{note}</code> required. PayPal errors → 400; duplicate refund id → 409. Not reversible via the API.</p>
 <p><code>GET /&lt;pk&gt;/subscription</code> (admin, <code>VIEW_MEMBERSHIP</code> or <code>EXPORT_SUBSCRIPTION_PAYMENTS</code>) returns one member's subscription panel: <code>{memberId, status, reason, paidMember, events[]}</code>, where each event exposes the audit columns (<code>source</code>, <code>createdBy</code>, <code>note</code>, <code>receiptUrl</code>) hidden from the member-facing history. Read-only.</p>
 <p>Member serializers expose the computed <code>subscriptionStatus</code> (<code>active</code>=paid / <code>lapsed</code>=unpaid / <code>exempt</code>). The profile/detail serializer (<code>ProfileSerializer</code>) additionally exposes <code>subscriptionReason</code> (<code>paid</code>/<code>comped</code>/<code>exempt</code>/<code>lapsed</code>); it is not included on the list serializer.</p>
 <hr />
@@ -1444,9 +1456,12 @@
 <hr />
 <h2 id="membership-one-time-lifetime-payment">Membership (one-time lifetime payment)<a class="headerlink" href="#membership-one-time-lifetime-payment" title="Permanent link">&para;</a></h2>
 <ul>
-<li><code>GET /api/subscription</code> — current user's verdict <code>{status, reason, gatingMode, price, currency, gatedActions[]}</code>. <code>status</code> ∈ active(paid)/lapsed(unpaid)/exempt; <code>reason</code> ∈ exempt/paid/comped/lapsed; <code>gatingMode</code> ∈ off/soft/hard (lets clients show a soft warning banner without a 403); <code>gatedActions</code> is the backend-owned list of gated action keys (enforced + cosmetic).</li>
+<li><code>GET /api/subscription</code> — current user's verdict <code>{status, reason, gatingMode, price, currency, gatedActions[]}</code>. <code>status</code> ∈ active(paid)/lapsed(unpaid)/exempt; <code>reason</code> ∈ exempt/paid/comped/lapsed; <code>gatingMode</code> ∈ off/soft/hard (lets clients show a soft warning banner without a 403); <code>gatedActions</code> is the backend-owned list of gated action keys (enforced + cosmetic). <code>price</code>/<code>currency</code> reflect what the member is actually charged: they come from <code>PayPalConfiguration.display_amount</code>/<code>display_currency</code> when PayPal is configured <strong>and</strong> <code>is_active</code>, and fall back to <code>ConfigurableSettings.annual_subscription_price</code>/<code>annual_subscription_currency</code> only when PayPal is absent or inactive (fresh/dev or paused intake) — keeping advertised == charged (issue #217).</li>
 <li><code>POST /api/subscription/subscribe</code> — create a one-time PayPal <strong>order</strong> and return <code>{approvalUrl, orderId}</code>. The PayPal order's <code>return_url</code>/<code>cancel_url</code> point at the <code>website</code> routes below; capture + the lifetime grant happen there (<code>grant_membership</code>, sets <code>paid_member=True</code>).</li>
+<li><code>GET /api/subscription/stats</code> — club-wide membership aggregate for the admin dashboard (<code>VIEW_MEMBERSHIP</code>; treasurers hold it via <code>EXPORT_SUBSCRIPTION_PAYMENTS</code>). Returns <code>{active, lapsed, exempt, total, revenueThisMonth, revenueYtd, currency, asOf}</code> — counts over active member rows (exempt wins over paid), revenue = gross <code>payment_completed</code> amounts in the period (decimal strings). Read-only, cached privately ~120 s.</li>
 <li><code>GET /api/subscription/payments</code> — member's own payment history (paginated).</li>
+<li><code>GET /api/subscription/payments/&lt;event_id&gt;/receipt</code> — printable HTML receipt / tax invoice for a single priced payment event. Owner, or treasurer (<code>EXPORT_SUBSCRIPTION_PAYMENTS</code>) for anyone's; only events with an <code>amount</code> have a receipt.</li>
+<li><code>GET /api/admin/subscription-payments/</code> — paginated, filterable JSON ledger of <code>SubscriptionPaymentEvent</code>s for the treasurer (<code>EXPORT_SUBSCRIPTION_PAYMENTS</code>). Filters: <code>?from=&amp;to=&amp;eventType=&amp;source=&amp;memberId=</code> (ISO dates / int validated → 400). Rows carry the export columns. Distinct from the CSV <code>…/export</code> below.</li>
 <li><code>GET /api/admin/subscription-payments/export?from=&amp;to=&amp;format=csv</code> — treasurer CSV export (<code>EXPORT_SUBSCRIPTION_PAYMENTS</code>); also a Django admin action.</li>
 </ul>
 <p>Two non-API <code>website</code> routes complete the <code>subscribe</code> flow (no trailing slash — they must match the <code>PAYPAL_SUBSCRIPTION_RETURN_URL</code> / <code>PAYPAL_SUBSCRIPTION_CANCEL_URL</code> defaults exactly):
@@ -1467,13 +1482,27 @@
 <li><code>/api/globalsettings/</code></li>
 <li><code>/api/tripcomments/</code></li>
 <li><code>/api/notifications/</code> (+ <code>/mark-as-read/</code>)</li>
-<li><code>/api/clubnews/</code></li>
+<li><code>/api/clubnews/</code> — public, read-only (SENT only)</li>
+<li><code>/api/admin/clubnews/</code> — full CRUD ViewSet (all statuses), gated <code>MANAGE_CLUB_NEWS</code> (issue #215)</li>
 <li><code>/api/sponsors/</code></li>
 <li><code>/api/faqs/</code></li>
 <li><code>/api/feedback/</code></li>
 <li><code>/api/tripreports/</code></li>
 <li><code>/api/strings/</code></li>
 <li><code>/api/vehicles/</code> (+ <code>/&lt;pk&gt;/set_primary/</code>)</li>
+</ul>
+<hr />
+<h2 id="kit-items-vouchers-marshal-inventory">Kit items, vouchers &amp; marshal inventory<a class="headerlink" href="#kit-items-vouchers-marshal-inventory" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>/api/kit-items/</code> (+ <code>/&lt;pk&gt;/</code>) — CRUD ViewSet for <code>KitItem</code>.</li>
+<li><code>/api/kit-entitlements/</code> (+ <code>/&lt;pk&gt;/</code>) — CRUD ViewSet for <code>KitEntitlement</code> (per-item level entitlement rule).</li>
+<li><code>GET /api/membership-price/</code> — public; the currently advertised membership price (<code>displayAmount</code>/<code>displayCurrency</code> + the PayPal charge <code>paymentAmount</code>).</li>
+<li>Kit voucher flow (single-use token, for handing kit to a member): <code>GET /api/kit-voucher/</code> (the member's own voucher), <code>POST /api/kit-voucher/token/</code> (mint a redemption token), <code>POST /api/kit-voucher/lookup/</code> (marshal resolves a token), <code>POST /api/kit-voucher/redeem/</code> (collect items).</li>
+<li>Marshal stock inventory:</li>
+<li><code>GET /api/kit-inventory/</code> — all marshals' summaries (<code>MANAGE_KIT_INVENTORY</code>).</li>
+<li><code>GET /api/kit-inventory/me/</code> — the calling marshal's own summary + event ledger (<code>ACCESS_MARSHAL_PANEL</code>).</li>
+<li><code>GET /api/kit-inventory/&lt;marshal_id&gt;/</code> — one marshal's summary + ledger (<code>MANAGE_KIT_INVENTORY</code>).</li>
+<li><code>POST /api/kit-inventory/&lt;marshal_id&gt;/events/</code> — record a <code>MarshalStockEvent</code> (<code>MANAGE_KIT_INVENTORY</code>); ISSUE events are system-only. Ledger rows expose <code>createdByUsername</code> (issue #214).</li>
 </ul>
 <hr />
 <h2 id="utility">Utility<a class="headerlink" href="#utility" title="Permanent link">&para;</a></h2>

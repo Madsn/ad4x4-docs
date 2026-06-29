@@ -1512,6 +1512,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#kititem-kitentitlement-apimodelsmodels_kitpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KitItem / KitEntitlement (api/models/models_kit.py)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kit-voucher-inventory-apimodelsmodels_kit_voucherpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kit voucher / inventory (api/models/models_kit_voucher.py)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#appwebhandofftoken" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1607,7 +1629,7 @@
 <p>Per-skill entry attached to a migration request. Records requested migrated skill evidence before approval.</p>
 <hr />
 <h2 id="clubnews"><code>ClubNews</code><a class="headerlink" href="#clubnews" title="Permanent link">&para;</a></h2>
-<p>Broadcast to members at specific levels. <code>title</code>, <code>content</code>, <code>levels</code> (M2M, empty=all), <code>status</code> (DRAFT→APPROVED→SENT/ERROR), <code>image</code>. <strong>SENT records are immutable</strong> — <code>save()</code> raises <code>ValidationError</code> on modification attempts (see gotchas).</p>
+<p>Broadcast to members at specific levels. <code>title</code>, <code>content</code>, <code>levels</code> (M2M, empty=all), <code>status</code> (DRAFT→APPROVED→SENT/ERROR/DELETED), <code>image</code>. <strong>Editable at any status</strong> — <code>save()</code> sets <code>submit_date</code> only on the first transition into <code>APPROVED</code> (re-saving a published entry never rewrites it, and notifies exactly once on that first transition — see gotchas). Admin CRUD at <code>/api/admin/clubnews/</code> (<code>MANAGE_CLUB_NEWS</code>); the public <code>/api/clubnews/</code> stays read-only/SENT-only.</p>
 <hr />
 <h2 id="notificationlog"><code>NotificationLog</code><a class="headerlink" href="#notificationlog" title="Permanent link">&para;</a></h2>
 <p>Notification audit trail. <code>member</code>, <code>title</code>, <code>body</code>, <code>timestamp</code>, <code>type</code> (<code>NotificationType</code>), <code>related_object_id</code>, <code>related_object_type</code>, <code>is_read</code>. Purged after 60 days by a periodic task.</p>
@@ -1657,6 +1679,18 @@
 <blockquote>
 <p>Membership is a <strong>one-time lifetime payment</strong> (pay once → <code>paid_member=True</code> permanently). The rolling 12-month subscription model was reverted (issue #169).</p>
 </blockquote>
+<hr />
+<h2 id="kititem-kitentitlement-apimodelsmodels_kitpy"><code>KitItem</code> / <code>KitEntitlement</code> (<code>api/models/models_kit.py</code>)<a class="headerlink" href="#kititem-kitentitlement-apimodelsmodels_kitpy" title="Permanent link">&para;</a></h2>
+<p><code>KitItem</code> — a physical kit item: <code>name</code> (unique), <code>is_active</code>, <code>cost</code> (decimal), timestamps. <code>KitEntitlement</code> — <code>OneToOne</code> → <code>KitItem</code> with a <code>quantity</code> (default 1), defining how many of that item a member is entitled to. Managed via <code>/api/kit-items/</code> and <code>/api/kit-entitlements/</code>.</p>
+<hr />
+<h2 id="kit-voucher-inventory-apimodelsmodels_kit_voucherpy">Kit voucher / inventory (<code>api/models/models_kit_voucher.py</code>)<a class="headerlink" href="#kit-voucher-inventory-apimodelsmodels_kit_voucherpy" title="Permanent link">&para;</a></h2>
+<p>The kit-distribution + marshal-stock audit stack.</p>
+<ul>
+<li><strong><code>KitVoucher</code></strong> — <code>OneToOne</code> → Member; a member's voucher bundle. Spawns <code>KitVoucherLine</code> rows per entitled item.</li>
+<li><strong><code>KitVoucherLine</code></strong> — one item line: <code>voucher</code> (FK), <code>item</code> (FK → KitItem), <code>quantity</code>, <code>quantity_collected</code>, <code>status</code> (<code>KitVoucherLineStatus</code>), <code>collected_by_marshal</code>, <code>collected_at</code>.</li>
+<li><strong><code>KitVoucherToken</code></strong> — single-use redemption token sent to the member: <code>voucher</code> (FK), <code>token_hash</code> (unique), <code>short_code</code> (unique), <code>expires_at</code>, <code>used_at</code>.</li>
+<li><strong><code>MarshalStockEvent</code></strong> — append-only audit row for marshal stock movements: <code>marshal</code> (FK), <code>item</code> (FK), <code>type</code> (<code>MarshalStockEventType</code>: <code>STOCK_GIVEN</code> / <code>ADJUST</code> / <code>ISSUE</code>), <code>qty</code>, <code>note</code>, <code>recipient</code> (FK → Member, nullable — the member an ISSUE went to, added in #214), <code>created_by</code> (FK, nullable), <code>created_at</code>. On-hand is derived (<code>stock_given + adjust − issued</code>), never stored.</li>
+</ul>
 <hr />
 <h2 id="appwebhandofftoken"><code>AppWebHandoffToken</code><a class="headerlink" href="#appwebhandofftoken" title="Permanent link">&para;</a></h2>
 <p>Single-use, short-TTL token that bridges an authenticated app session into a web session so the app → web pay/manage jump skips the system-browser login wall. Fields: <code>token_hash</code> (SHA-256 hex of the cleartext token — unique, indexed; cleartext is returned once on mint and never persisted), <code>member</code> (FK → Member), <code>created_at</code>, <code>expires_at</code>, <code>used_at</code> (set on exchange — single-use is enforced atomically via <code>select_for_update()</code>), <code>source_ip</code> (audit only). TTL is env-driven via <code>HANDOFF_TOKEN_TTL_SECONDS</code> (default 300s). Purged by the <code>cleanup_handoff_tokens</code> periodic task (consumed rows immediately; expired-but-unused after 7 days).</p>
