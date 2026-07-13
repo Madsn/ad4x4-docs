@@ -1910,6 +1910,7 @@
 <li>Can view contact information of other members.</li>
 <li>Can view member trip history.</li>
 <li>Can create logbook entries and sign off on skills for trips they lead or support.</li>
+<li>Can export logbook data (entries, member skills, marshal activity) as CSV.</li>
 </ul>
 <h3 id="marshals">Marshals<a class="headerlink" href="#marshals" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1924,12 +1925,14 @@
 <li>Can view, vote on, and comment on upgrade requests.</li>
 <li>Can create logbook entries for Newbie, Intermediate, Advanced, Expert, and Explorer levels.</li>
 <li>Can approve logbook migration requests.</li>
+<li>Can export logbook data (entries, member skills, marshal activity) as CSV.</li>
 </ul>
 <h3 id="board-members">Board Members<a class="headerlink" href="#board-members" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Can view, vote on, and comment on upgrade requests.</li>
 <li>Can approve upgrade requests.</li>
 <li>Can override the global waitlist setting for trips.</li>
+<li>Can export logbook data (entries, member skills, marshal activity) as CSV.</li>
 </ul>
 <h3 id="upgrade-request-managers">Upgrade Request Managers<a class="headerlink" href="#upgrade-request-managers" title="Permanent link">&para;</a></h3>
 <ul>
@@ -2067,7 +2070,7 @@
 </tr>
 <tr>
 <td><code>create_logbook_entries</code></td>
-<td>Create Logbook Entries</td>
+<td>Create Logbook Entries (peer sign-off — requires the signer to also be a checked-in registrant on the trip)</td>
 </tr>
 <tr>
 <td><code>sign_logbook_skills</code></td>
@@ -2075,11 +2078,15 @@
 </tr>
 <tr>
 <td><code>create_logbook_entries_superuser</code></td>
-<td>Create Logbook Entries (superuser bypass)</td>
+<td>Create Logbook Entries (superuser bypass — no trip-attendance requirement)</td>
 </tr>
 <tr>
 <td><code>approve_logbook_migration</code></td>
 <td>Approve Logbook Migration Requests</td>
+</tr>
+<tr>
+<td><code>export_logbook_data</code></td>
+<td>Export Logbook Data (CSV) — entries, member skills, marshal activity</td>
 </tr>
 <tr>
 <td><code>access_marshal_panel</code></td>

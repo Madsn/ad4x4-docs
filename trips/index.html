@@ -1920,8 +1920,9 @@
 <ul>
 <li>Declines a trip that is pending approval. Requires the <code>APPROVE_TRIP</code> permission.</li>
 <li>Sets the trip's <code>approval_status</code> to <code>REJECTED</code>.</li>
+<li>Persists the optional <code>reason</code> onto <code>Trip.decline_reason</code> (readable on trip retrieve) and includes it in the trip approval notification when non-blank.</li>
 <li>Triggers a trip approval notification.</li>
-<li><strong>Request Body:</strong> None required.</li>
+<li><strong>Request Body:</strong> <code>{"reason": "&lt;optional string&gt;"}</code> (optional — a bodyless or blank-reason request still succeeds)</li>
 <li><strong>Success Response:</strong> <code>{"success": true, "message": "trip_rejected"}</code></li>
 </ul>
 </li>
@@ -2185,7 +2186,7 @@
 <ul>
 <li><strong>GET</strong> <code>/api/members/{id}/triphistory</code><ul>
 <li>Retrieves a paginated history of a member's trips.</li>
-<li><strong>Query Parameters:</strong> <code>checked_in</code> (boolean, filter for checked-in trips only), <code>start_time</code> (datetime filter).</li>
+<li><strong>Query Parameters:</strong> <code>checked_in</code> (boolean; <code>true</code>/<code>false</code> filters to checked-in/not-checked-in registrations, omitted returns all registrations), <code>start_time</code> (datetime filter).</li>
 <li><strong>Permissions:</strong> Own history always viewable. Viewing another member's history requires <code>VIEW_MEMBER_TRIP_HISTORY</code> permission or superuser.</li>
 <li>
 <blockquote>

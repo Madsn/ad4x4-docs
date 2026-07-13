@@ -1324,8 +1324,16 @@
 <td>Kit voucher minting, single-use token dispatch + redemption, and financial notifications</td>
 </tr>
 <tr>
+<td><code>attachment_validation.py</code></td>
+<td>Upgrade-request attachment hardening: <code>detect_content_type</code> (magic bytes), <code>strip_image_exif</code> (Pillow re-encode, drops EXIF/GPS), <code>validate_upgrade_attachment</code> (size + count + total-size checks against <code>ConfigurableSettings</code>)</td>
+</tr>
+<tr>
 <td><code>notification_delivery.py</code></td>
 <td><code>deliver_notification_once</code> — idempotent (dedup-guarded) notification delivery, used by the financial Telegram notifications</td>
+</tr>
+<tr>
+<td><code>markdown_util.py</code></td>
+<td><code>markdown_to_html</code> / <code>markdown_to_plain_text</code> — renders Markdown-authored text (e.g. <code>ClubNews.content</code>) to safe HTML for email or to plain text for push/in-app notifications</td>
 </tr>
 <tr>
 <td><code>github_notifications.py</code></td>
@@ -1473,7 +1481,7 @@
 <tr>
 <td>Daily 20:00</td>
 <td><code>periodic_upgrade_request_reminder</code></td>
-<td>Send upgrade request reminders</td>
+<td>Send upgrade request reminders (gated by <code>ConfigurableSettings.enable_upgrade_request_reminders</code>, default on)</td>
 </tr>
 </tbody>
 </table>

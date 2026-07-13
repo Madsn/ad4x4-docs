@@ -1229,6 +1229,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Logbook">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#who-can-sign-a-logbook-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Who can sign a logbook entry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csv-exports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CSV exports
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1427,11 +1455,11 @@
 <p>Standard CRUD ViewSet plus:
 <code>/leadsearch</code>, <code>/search</code>, <code>/activetripleads</code>, <code>/request-deletion</code>, <code>/deletion-request</code>, <code>/cancel-deletion</code>
 <code>/&lt;pk&gt;/upgradeeligibility</code>, <code>/&lt;pk&gt;/payments</code>, <code>/&lt;pk&gt;/subscription</code>, <code>/&lt;pk&gt;/tripcounts</code>, <code>/&lt;pk&gt;/triphistory</code>
-<code>/&lt;pk&gt;/triprequests</code>, <code>/&lt;pk&gt;/upgraderequests</code>, <code>/&lt;pk&gt;/logbookentries</code>, <code>/&lt;pk&gt;/logbookskills</code>, <code>/&lt;pk&gt;/feedback</code></p>
+<code>/&lt;pk&gt;/triprequests</code>, <code>/&lt;pk&gt;/upgraderequests</code>, <code>/&lt;pk&gt;/logbookentries</code>, <code>/&lt;pk&gt;/logbookskills</code>, <code>/&lt;pk&gt;/logbookskills/export</code>, <code>/&lt;pk&gt;/feedback</code></p>
 <p><code>POST /&lt;pk&gt;/payments</code> (admin, <code>EDIT_MEMBERSHIP_PAYMENTS</code>) sets lifetime membership status: <code>{payment_received: true}</code> grants it (records a <code>MANUAL_GRANT</code> event) and <code>{payment_received: false}</code> revokes it (records a <code>REFUND</code> event). An optional <code>{note}</code> is stored on the event to explain the action in the audit trail. Each writes a <code>SubscriptionPaymentEvent</code>. Members list accepts <code>?subscription_status=active|lapsed|exempt</code>.</p>
 <p><code>POST /&lt;pk&gt;/payments/&lt;payment_id&gt;/refund</code> (admin, <code>EDIT_MEMBERSHIP_PAYMENTS</code>) reverses a captured PayPal payment via PayPal's refund API. <code>payment_id</code> is a <code>WebsitePayment.id</code> (no endpoint currently exposes this id — see issue #229). Requires the payment to be <code>COMPLETED</code> with a capture id; under a row lock it marks the <code>WebsitePayment</code> <code>REFUNDED</code>, records a <code>REFUND</code>/<code>paypal</code> <code>SubscriptionPaymentEvent</code> (refund id = idempotency key), and revokes <code>paid_member</code> unless another <code>COMPLETED</code> payment remains. <code>{note}</code> required. PayPal errors → 400; duplicate refund id → 409. Not reversible via the API.</p>
 <p><code>GET /&lt;pk&gt;/subscription</code> (admin, <code>VIEW_MEMBERSHIP</code> or <code>EXPORT_SUBSCRIPTION_PAYMENTS</code>) returns one member's subscription panel: <code>{memberId, status, reason, paidMember, events[]}</code>, where each event exposes the audit columns (<code>source</code>, <code>createdBy</code>, <code>note</code>, <code>receiptUrl</code>) hidden from the member-facing history. Read-only.</p>
-<p>Member serializers expose the computed <code>subscriptionStatus</code> (<code>active</code>=paid / <code>lapsed</code>=unpaid / <code>exempt</code>). The profile/detail serializer (<code>ProfileSerializer</code>) additionally exposes <code>subscriptionReason</code> (<code>paid</code>/<code>comped</code>/<code>exempt</code>/<code>lapsed</code>); it is not included on the list serializer.</p>
+<p>Member serializers expose the computed <code>subscriptionStatus</code> (<code>active</code>=paid / <code>lapsed</code>=unpaid / <code>exempt</code>). The profile/detail serializer (<code>ProfileSerializer</code>) additionally exposes <code>subscriptionReason</code> (<code>paid</code>/<code>comped</code>/<code>exempt</code>/<code>lapsed</code>) and the read-only <code>isSuperuser</code> flag; neither is included on the list serializer.</p>
 <hr />
 <h2 id="trips-apitrips">Trips (<code>/api/trips/</code>)<a class="headerlink" href="#trips-apitrips" title="Permanent link">&para;</a></h2>
 <p>List/retrieve are served by <code>TripViewSet</code>; create/update/delete use the dedicated <code>TripCreateView</code> and <code>TripEditView</code> routes <strong>without trailing slashes</strong> (<code>POST /api/trips</code>, <code>PUT/PATCH/DELETE /api/trips/&lt;pk&gt;</code>). Additional actions:</p>
@@ -1447,28 +1475,50 @@
 <p>Trip create/register/waitlist have a two-step overlap guard. If the chosen lead or registering member has an approved or pending overlapping trip where they are registered or primary lead, the first request returns <code>409</code> with <code>message: "trip_overlap_warning"</code> and structured <code>warnings</code>; no mutation happens. Clients retry the same request with <code>confirmOverlap: true</code> to proceed. Waitlist-only and deputy-lead roles do not count as conflicts; exact boundary-touching times do not overlap.</p>
 <hr />
 <h2 id="logbook">Logbook<a class="headerlink" href="#logbook" title="Permanent link">&para;</a></h2>
-<p><code>/api/logbookentries/</code>, <code>/api/logbookskills/</code>, <code>/api/logbookskillreferences/</code>, <code>/api/logbook-migrations/</code></p>
+<p><code>/api/logbookentries/</code>, <code>/api/logbookskills/</code>, <code>/api/logbookskillreferences/</code>, <code>/api/logbook-migrations/</code>, <code>/api/logbookentries/export</code>, <code>/api/marshal-activity/export</code></p>
 <p>Full CRUD on logbook entities.</p>
+<h3 id="who-can-sign-a-logbook-entry">Who can sign a logbook entry<a class="headerlink" href="#who-can-sign-a-logbook-entry" title="Permanent link">&para;</a></h3>
+<p>Creating/updating/deleting a logbook entry (<code>/api/logbookentries/</code>, and <code>POST /api/trips/&lt;pk&gt;/logbook-entries</code>) requires one of:
+- Being the trip's lead or a deputy lead (<code>Trip.is_lead_for_user</code>) — always allowed.
+- Holding <code>create_logbook_entries_superuser</code> for the trip's level — bypasses every other check, including trip attendance.
+- Holding plain <code>create_logbook_entries</code> (scoped or unscoped) for the trip's level, <strong>and</strong> the signer themselves being a checked-in <code>TripRegistration</code> on that same trip. This models peer sign-off: an ordinary marshal can only verify skills for a trip they personally attended.</p>
+<p>A 403 from this check returns one of two distinct <code>message</code> values so clients don't conflate the two causes:
+- <code>missing_create_logbook_entries_permission</code> — the signer holds no matching grant at all.
+- <code>not_checked_in_for_trip</code> — the signer holds <code>create_logbook_entries</code> but wasn't checked in on this trip themselves. Granting <code>create_logbook_entries_superuser</code> (or making them trip lead/deputy) removes this requirement.</p>
+<p><code>GET /api/logbookentries/</code> (list) is separately gated on the <code>CREATE_LOGBOOK_ENTRIES</code> permission action — 403 without it. <code>retrieve</code>/<code>create</code>/<code>update</code>/<code>destroy</code> are unaffected by this and follow the rules above. The list also supports filtering by <code>member</code>, <code>trip</code>, <code>signed_by</code>, and <code>created_at</code> (date range), plus <code>ordering</code> on <code>created_at</code>/<code>id</code>.</p>
+<p>See <code>check_logbook_entry_permissions</code> in <code>api/services/permission_service.py</code>.</p>
+<h3 id="csv-exports">CSV exports<a class="headerlink" href="#csv-exports" title="Permanent link">&para;</a></h3>
+<p>Three streaming CSV endpoints, gated by a dedicated <code>EXPORT_LOGBOOK_DATA</code> permission (separate from <code>CREATE_LOGBOOK_ENTRIES</code>, so export access can be granted/revoked independently of signing rights):
+- <code>GET /api/logbookentries/export</code> — respects the same filterset/ordering as <code>GET /api/logbookentries/</code>.
+- <code>GET /api/members/&lt;pk&gt;/logbookskills/export</code> — one member's skill sign-offs. No self-access exception (unlike the JSON read endpoint) — <code>EXPORT_LOGBOOK_DATA</code> is required even for your own data.
+- <code>GET /api/marshal-activity/export</code> — the per-marshal aggregate rollup (same computation as <code>marshalBreakdown</code> on the aggregate endpoint), one row per marshal.</p>
+<p>Column allow-list across all three: record ids, member/signer username + full name + level, trip id/title/date, skill names, sign-off/aggregate counts, comment, created/last-activity timestamps. Excluded: email, phone, DOB, ICE, address.</p>
+<p><code>GET/POST /api/logbook-migration-attachments/</code> — list (own migration requests, or all if <code>APPROVE_LOGBOOK_MIGRATION</code>) or upload a file. Multipart form: <code>migration_request</code> (int PK) + <code>file</code>. Accepted types: <code>application/pdf</code>, <code>image/jpeg</code>, <code>image/png</code>, <code>image/webp</code> — validated by magic bytes, not MIME header. Images are EXIF-stripped before storage. Limits from <code>ConfigurableSettings</code> (per-file, total, count). Create/delete require either owning the migration request while it is <code>DRAFT</code>/<code>PENDING</code>/<code>RETURNED</code>, or holding <code>APPROVE_LOGBOOK_MIGRATION</code> (or superuser).
+<code>DELETE /api/logbook-migration-attachments/&lt;id&gt;/</code> — same ownership/status rule as create.
+Attachments are returned as a nested <code>attachments[]</code> array on <code>LogbookMigrationRequest</code> detail/list responses; the old single <code>uploaded_pdf</code> field has been removed.</p>
 <hr />
 <h2 id="upgrade-requests-apiupgraderequests">Upgrade Requests (<code>/api/upgraderequests/</code>)<a class="headerlink" href="#upgrade-requests-apiupgraderequests" title="Permanent link">&para;</a></h2>
 <p><code>/&lt;pk&gt;/comments</code>, <code>/&lt;pk&gt;/approve</code>, <code>/&lt;pk&gt;/decline</code>, <code>/&lt;pk&gt;/vote</code>, <code>/&lt;pk&gt;/voted</code>
 <code>/latestapproved</code>, <code>/voted</code></p>
+<p><code>GET/POST /api/upgrade-request-attachments/</code> — list (requires <code>VIEW_UPGRADE_REQ</code>) or upload a file (requires <code>CREATE_UPGRADE_REQ_FOR_SELF</code> or <code>CREATE_UPGRADE_REQ_FOR_OTHERS</code>). Multipart form: <code>upgrade_request</code> (int PK) + <code>file</code>. Accepted types: <code>application/pdf</code>, <code>image/jpeg</code>, <code>image/png</code>, <code>image/webp</code> — validated by magic bytes, not MIME header. Images are EXIF-stripped before storage. Limits from <code>ConfigurableSettings</code> (per-file, total, count).
+<code>DELETE /api/upgrade-request-attachments/&lt;id&gt;/</code> — requires <code>DELETE_UPGRADE_REQ</code> for the attachment's request's <code>target_level</code>.
+Attachments are returned as a nested <code>attachments[]</code> array on upgrade request detail/list responses.</p>
 <hr />
 <h2 id="membership-one-time-lifetime-payment">Membership (one-time lifetime payment)<a class="headerlink" href="#membership-one-time-lifetime-payment" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>GET /api/subscription</code> — current user's verdict <code>{status, reason, gatingMode, price, currency, gatedActions[]}</code>. <code>status</code> ∈ active(paid)/lapsed(unpaid)/exempt; <code>reason</code> ∈ exempt/paid/comped/lapsed; <code>gatingMode</code> ∈ off/soft/hard (lets clients show a soft warning banner without a 403); <code>gatedActions</code> is the backend-owned list of gated action keys (enforced + cosmetic). <code>price</code>/<code>currency</code> reflect what the member is actually charged: they come from <code>PayPalConfiguration.display_amount</code>/<code>display_currency</code> when PayPal is configured <strong>and</strong> <code>is_active</code>, and fall back to <code>ConfigurableSettings.annual_subscription_price</code>/<code>annual_subscription_currency</code> only when PayPal is absent or inactive (fresh/dev or paused intake) — keeping advertised == charged (issue #217).</li>
-<li><code>POST /api/subscription/subscribe</code> — create a one-time PayPal <strong>order</strong> and return <code>{approvalUrl, orderId}</code>. The PayPal order's <code>return_url</code>/<code>cancel_url</code> point at the <code>website</code> routes below; capture + the lifetime grant happen there (<code>grant_membership</code>, sets <code>paid_member=True</code>).</li>
+<li><code>POST /api/subscription/subscribe</code> — create a one-time PayPal <strong>order</strong> and return <code>{approvalUrl, orderId}</code>. The PayPal order's <code>return_url</code>/<code>cancel_url</code> point at the routes below; capture + the lifetime grant happen there (<code>grant_membership</code>, sets <code>paid_member=True</code>).</li>
 <li><code>GET /api/subscription/stats</code> — club-wide membership aggregate for the admin dashboard (<code>VIEW_MEMBERSHIP</code>; treasurers hold it via <code>EXPORT_SUBSCRIPTION_PAYMENTS</code>). Returns <code>{active, lapsed, exempt, total, revenueThisMonth, revenueYtd, currency, asOf}</code> — counts over active member rows (exempt wins over paid), revenue = gross <code>payment_completed</code> amounts in the period (decimal strings). Read-only, cached privately ~120 s.</li>
 <li><code>GET /api/subscription/payments</code> — member's own payment history (paginated).</li>
 <li><code>GET /api/subscription/payments/&lt;event_id&gt;/receipt</code> — printable HTML receipt / tax invoice for a single priced payment event. Owner, or treasurer (<code>EXPORT_SUBSCRIPTION_PAYMENTS</code>) for anyone's; only events with an <code>amount</code> have a receipt.</li>
 <li><code>GET /api/admin/subscription-payments/</code> — paginated, filterable JSON ledger of <code>SubscriptionPaymentEvent</code>s for the treasurer (<code>EXPORT_SUBSCRIPTION_PAYMENTS</code>). Filters: <code>?from=&amp;to=&amp;eventType=&amp;source=&amp;memberId=</code> (ISO dates / int validated → 400). Rows carry the export columns. Distinct from the CSV <code>…/export</code> below.</li>
 <li><code>GET /api/admin/subscription-payments/export?from=&amp;to=&amp;format=csv</code> — treasurer CSV export (<code>EXPORT_SUBSCRIPTION_PAYMENTS</code>); also a Django admin action.</li>
 </ul>
-<p>Two non-API <code>website</code> routes complete the <code>subscribe</code> flow (no trailing slash — they must match the <code>PAYPAL_SUBSCRIPTION_RETURN_URL</code> / <code>PAYPAL_SUBSCRIPTION_CANCEL_URL</code> defaults exactly):
+<p>Two non-API routes (<code>api.views.views_payment</code>, wired directly in <code>ad4x4/urls.py</code>) complete the <code>subscribe</code> flow (no trailing slash — they must match the <code>PAYPAL_SUBSCRIPTION_RETURN_URL</code> / <code>PAYPAL_SUBSCRIPTION_CANCEL_URL</code> defaults exactly):
 - <code>GET /subscription/return</code> — PayPal sends the approving browser here. Resolves the member from the pending <code>WebsitePayment</code> by <code>paypal_order_id</code> (<strong>no session/login</strong> — SPA/mobile clients use JWT, so the redirected browser carries no Django cookie; the order token is the capability), captures the order, grants the pass (the row flip + grant share one <code>transaction.atomic()</code> under <code>select_for_update</code>), then 302-redirects to the Next portal. An already-<code>COMPLETED</code> order short-circuits without re-capturing, and a duplicate/raced capture self-heals to <code>status=success</code>. <strong>Capture is on-return, not automatic</strong>: PayPal does not capture an <code>intent=CAPTURE</code> order on its own, so a user who approves but never returns leaves the order uncaptured (no grant — correctly "not completed"). The <code>PAYMENT.CAPTURE.COMPLETED</code> webhook is <strong>not</strong> a backstop for that case; it backstops the <em>other</em> one — a capture that succeeded but whose grant write failed and rolled the row back to <code>PENDING</code> (the webhook then re-grants; both paths dedupe on <code>paypal_order_id</code>).
 - <code>GET /subscription/cancel</code> — 302-redirects to the portal.
-- Portal target is <code>SUBSCRIPTION_PORTAL_RETURN_URL</code> (env-overridable; default is the production host <code>https://ad4x4.com/portal/membership/return</code>, staging sets <code>https://new.ad4x4.com/...</code>), with an outcome <code>?status=success|error|cancel</code> appended.</p>
-<p>The legacy <code>website</code> one-time-order flow (<code>/payment/...</code>, lands on a Django template) still exists and shares the same <code>grant_membership</code> + <code>PAYMENT.CAPTURE.COMPLETED</code> webhook. There is <strong>no recurring subscription or PayPal Subscriptions webhook</strong> (the rolling-subscription model was reverted — issue #169) — the <code>/subscription/cancel</code> route above is only the PayPal approval-cancel return, not a subscription-cancel API.</p>
+- Portal target is <code>SUBSCRIPTION_PORTAL_RETURN_URL</code> (env-overridable; default <code>https://new.ad4x4.com/portal/membership/return</code> until the front-end apex cutover), with an outcome <code>?status=success|error|cancel</code> appended.</p>
+<p>The one-time-order flow (<code>/payment/create-order/</code>, <code>/payment/approve/</code>, <code>/payment/capture-order/</code>, <code>/payment/webhook/</code> — <code>api.views.views_payment</code>, no HTML pages; the Django <code>website</code> app that used to serve those pages was removed in issue #347) still exists and shares the same <code>grant_membership</code> + <code>PAYMENT.CAPTURE.COMPLETED</code> webhook. There is <strong>no recurring subscription or PayPal Subscriptions webhook</strong> (the rolling-subscription model was reverted — issue #169) — the <code>/subscription/cancel</code> route above is only the PayPal approval-cancel return, not a subscription-cancel API.</p>
 <p><strong>Gating:</strong> logbook skill sign-off (gates the <strong>signee</strong>) and upgrade-request creation (gates the <strong>applicant</strong>) return <code>403 {detail, code: "subscription_required"}</code> when the gated member is <code>lapsed</code> (unpaid) <strong>and</strong> <code>gating_mode</code> is <code>hard</code>. <code>soft</code> reports unpaid without blocking; <code>off</code> disables gating entirely. Clients branch on <code>code</code>, not the bare 403.</p>
 <hr />
 <h2 id="other-resources-standard-crud-viewsets">Other resources (standard CRUD ViewSets)<a class="headerlink" href="#other-resources-standard-crud-viewsets" title="Permanent link">&para;</a></h2>

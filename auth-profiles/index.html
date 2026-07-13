@@ -1647,6 +1647,7 @@
 </table>
 <blockquote>
 <p><strong>Note:</strong> The <code>carBrand</code>, <code>carModel</code>, <code>carColor</code>, and <code>carYear</code> fields are write-only. When provided during registration, a Vehicle record is automatically created and set as the member's primary vehicle. See <a href="../vehicles/">Vehicles</a> for managing vehicles after registration.</p>
+<p><strong>Note:</strong> When <code>REGISTER_VERIFICATION_ENABLED</code> is on, newly registered members are created inactive (<code>is_active=False</code>) and must verify their email address before they can log in. Login attempts for an inactive account return <code>email_not_verified</code> until verification completes.</p>
 </blockquote>
 <h3 id="change-password">Change Password<a class="headerlink" href="#change-password" title="Permanent link">&para;</a></h3>
 <p>Authenticated users can change their password by making a <code>POST</code> request to <code>/api/auth/change-password/</code>.</p>

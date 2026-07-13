@@ -1940,6 +1940,7 @@ curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span
 <blockquote>
 <p><strong>Note:</strong> The profile detail does NOT include vehicle/car fields. Vehicles are managed separately via the <a href="../vehicles/">Vehicles</a> endpoints. The <code>level</code> field is a full object in the detail view, whereas it is a string in the list view.</p>
 </blockquote>
+<p><strong>Permission Required</strong>: A member can always retrieve their own record. Retrieving another member's record requires the <code>SEARCH_MEMBERS</code> permission.</p>
 <h2 id="update-member-profile">Update Member Profile<a class="headerlink" href="#update-member-profile" title="Permanent link">&para;</a></h2>
 <p>Update a member's profile. Users can only update their own profiles unless they are an administrator.</p>
 <p><strong>PATCH</strong> <code>/api/members/{id}/</code></p>
@@ -2121,7 +2122,7 @@ history in the selected window and includes inactive trip levels when historical
 </blockquote>
 <p><strong>Authentication:</strong> Required (Bearer token)</p>
 <p><strong>Query Parameters:</strong>
-- <code>checked_in</code> - Include only trips where member is checked in (default: false)
+- <code>checked_in</code> - <code>true</code> returns only checked-in registrations, <code>false</code> returns only not-checked-in registrations. Omit to return all of the member's registrations regardless of check-in status.
 - <code>start_time</code> - Filter by start time</p>
 <p><strong>Permissions:</strong>
 - Users can always view their own trip history.

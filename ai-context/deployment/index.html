@@ -1388,9 +1388,12 @@ EMAIL_HOST_PASSWORD
 PAYPAL_CLIENT_ID
 PAYPAL_SECRET_KEY<span class="w">                </span><span class="c1"># PayPal REST API secret</span>
 PAYPAL_WEBHOOK_ID<span class="w">                </span><span class="c1"># verifies PayPal webhook signatures (PAYMENT.CAPTURE.COMPLETED backstop)</span>
-PAYPAL_SUBSCRIPTION_RETURN_URL<span class="w">   </span><span class="c1"># web page PayPal returns to after subscription approval</span>
-PAYPAL_SUBSCRIPTION_CANCEL_URL<span class="w">   </span><span class="c1"># web page PayPal returns to after subscription cancel</span>
-SUBSCRIPTION_PORTAL_RETURN_URL<span class="w">   </span><span class="c1"># portal URL subscription/return and subscription/cancel redirect to (deep-link target; app-link claimable once the portal host serves the .well-known association files)</span>
+PAYPAL_SUBSCRIPTION_RETURN_URL<span class="w">   </span><span class="c1"># backend route PayPal returns to after subscription approval (default: ap.ad4x4.com/subscription/return — not a front-end page, only changes on a backend-host move)</span>
+PAYPAL_SUBSCRIPTION_CANCEL_URL<span class="w">   </span><span class="c1"># backend route PayPal returns to after subscription cancel (default: ap.ad4x4.com/subscription/cancel)</span>
+SUBSCRIPTION_PORTAL_RETURN_URL<span class="w">   </span><span class="c1"># portal URL subscription/return and subscription/cancel redirect to after capture (deep-link target; app-link claimable once the portal host serves the .well-known association files)</span>
+RESET_PASSWORD_VERIFICATION_URL<span class="w">  </span><span class="c1"># front-end page the password-reset email links to (default: ad4x4.com/reset-password)</span>
+REGISTER_VERIFICATION_URL<span class="w">        </span><span class="c1"># front-end page the register-verification email links to (default: ad4x4.com/verify-registration)</span>
+REGISTER_EMAIL_VERIFICATION_URL<span class="w">  </span><span class="c1"># front-end page the email-change-verification email links to (default: ad4x4.com/verify-email)</span>
 
 <span class="c1"># GitHub webhooks</span>
 GITHUB_WEBHOOK_SECRET<span class="w">            </span><span class="c1"># HMAC secret for validating incoming GitHub webhook payloads</span>
@@ -1415,16 +1418,17 @@ TELEGRAM_ADMIN_USER_IDS<span class="w">          </span><span class="c1"># Optio
 TELEGRAM_GITHUB_THREAD_ID<span class="w">        </span><span class="c1"># Optional; forum topic for GitHub webhook notifications</span>
 TELEGRAM_FINANCIAL_THREAD_ID<span class="w">    </span><span class="c1"># Optional; forum topic for financial transaction notifications</span>
 
-<span class="c1"># Maintenance bypass</span>
-MAINTENANCE_BYPASS_IP_FILE<span class="w">                    </span><span class="c1"># Nginx include path in infra/.env; host file path in monitor-bot env</span>
-MAINTENANCE_BYPASS_SECRET_FILE<span class="w">                </span><span class="c1"># Nginx include path in infra/.env; host file path in monitor-bot env</span>
-MAINTENANCE_BYPASS_HEADER_NAME<span class="w">                </span><span class="c1"># Optional; default X-Maintenance-Bypass</span>
-MAINTENANCE_BYPASS_HEADER_VARIABLE<span class="w">            </span><span class="c1"># Nginx header variable, e.g. $http_x_maintenance_bypass</span>
-MAINTENANCE_BYPASS_MIN_SECRET_LENGTH<span class="w">          </span><span class="c1"># Optional; default 32</span>
-MAINTENANCE_BYPASS_REQUIRE_CONFIRM_FOR_PURGE<span class="w">  </span><span class="c1"># Optional; default true</span>
-MAINTENANCE_BYPASS_REQUIRE_CONFIRM_FOR_SECRET_CLEAR<span class="w">  </span><span class="c1"># Optional; default true</span>
-NGINX_TEST_COMMAND<span class="w">                            </span><span class="c1"># Command monitor bot runs before bypass file reloads</span>
-NGINX_RELOAD_COMMAND<span class="w">                          </span><span class="c1"># Command monitor bot runs after successful validation</span>
+<span class="c1"># Maintenance mode (Django middleware, issue #311; see docs/maintenance-mode.md)</span>
+MAINTENANCE_MARKER_FILE<span class="w">                       </span><span class="c1"># Presence toggles maintenance; unset disables the feature. On the box: path backed by a Coolify Storage bind mount, not a docker-exec target</span>
+MAINTENANCE_BYPASS_IP_FILE<span class="w">                    </span><span class="c1"># Optional; app-read allowlist path (host file path in monitor-bot env)</span>
+MAINTENANCE_BYPASS_SECRET_FILE<span class="w">                </span><span class="c1"># Optional; app-read secret path (host file path in monitor-bot env)</span>
+MAINTENANCE_BYPASS_HEADER<span class="w">                     </span><span class="c1"># Optional; default X-Maintenance-Bypass</span>
+MAINTENANCE_RETRY_AFTER<span class="w">                       </span><span class="c1"># Optional; default 3600</span>
+MAINTENANCE_BYPASS_MIN_SECRET_LENGTH<span class="w">          </span><span class="c1"># Optional (monitor bot); default 32</span>
+MAINTENANCE_BYPASS_REQUIRE_CONFIRM_FOR_PURGE<span class="w">  </span><span class="c1"># Optional (monitor bot); default true</span>
+MAINTENANCE_BYPASS_REQUIRE_CONFIRM_FOR_SECRET_CLEAR<span class="w">  </span><span class="c1"># Optional (monitor bot); default true</span>
+<span class="c1"># NGINX_TEST_COMMAND / NGINX_RELOAD_COMMAND: no longer needed once nginx is</span>
+<span class="c1"># retired — Django re-reads the bypass files per request (monitor-bot follow-up).</span>
 
 <span class="c1"># Backups</span>
 BACKUP_NOTIFY_EMAIL<span class="w">              </span><span class="c1"># Destination for backup failure / warning alerts</span>
@@ -1447,7 +1451,8 @@ DISK_ALERT_COOLDOWN_SECONDS<span class="w">      </span><span class="c1"># Optio
 CSRF trusted: <code>ap.ad4x4.com</code>, <code>ad4x4.com</code>.</p>
 <hr />
 <h2 id="media-files">Media files<a class="headerlink" href="#media-files" title="Permanent link">&para;</a></h2>
-<p>Served from <code>/uploads/</code> path via a custom <code>serve_media</code> view in production (not Whitenoise — that's for static only). Media root: <code>/app/uploads</code> inside the container.</p>
+<p>Served from <code>/uploads/</code> path via a custom <code>serve_media</code> view in production (not Whitenoise — that's for static only). Media root: <code>/app/uploads</code> inside the container. <code>serve_media</code> sets <code>Content-Disposition: attachment</code> and <code>X-Content-Type-Options: nosniff</code> on every response so stored files can never render inline.</p>
+<p>nginx <code>client_max_body_size</code> is <strong>60 MB</strong> (<code>infra/nginx/secure/default.conf.template</code>) — sized to accommodate the upgrade-request attachment total cap (50 MB) plus overhead.</p>
 <hr />
 <h2 id="error-tracking-bugsink">Error tracking — Bugsink<a class="headerlink" href="#error-tracking-bugsink" title="Permanent link">&para;</a></h2>
 <p>Bugsink is the production exception target. Django + Huey use <code>sentry-sdk</code> with <code>DjangoIntegration</code>, <code>HueyIntegration</code>, and <code>RedisIntegration</code> when <code>SENTRY_DSN</code> is set. The DSN points at the Bugsink project; the env var keeps the Sentry-compatible name on purpose.</p>

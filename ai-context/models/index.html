@@ -1270,6 +1270,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#upgraderequestattachment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UpgradeRequestAttachment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#upgraderequestcomment" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1329,6 +1340,17 @@
     <span class="md-ellipsis">
       
         LogbookMigrationSkillEntry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logbookmigrationattachment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LogbookMigrationAttachment
       
     </span>
   </a>
@@ -1479,10 +1501,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#paypalconfiguration-website-app-singleton" class="md-nav__link">
+  <a href="#paypalconfiguration-singleton" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PayPalConfiguration (website app, singleton)
+        PayPalConfiguration (singleton)
       
     </span>
   </a>
@@ -1490,10 +1512,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#websitepayment-website-app" class="md-nav__link">
+  <a href="#websitepayment" class="md-nav__link">
     <span class="md-ellipsis">
       
-        WebsitePayment (website app)
+        WebsitePayment
       
     </span>
   </a>
@@ -1563,7 +1585,7 @@
 
 <h1 id="data-models">Data Models<a class="headerlink" href="#data-models" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>AI-context reference. Models live in <code>api/models/</code> (one file per model group, registered in <code>api/models/__init__.py</code>). The <code>website</code> app contributes two singleton-style models. Always read <a href="../../AGENTS.md"><code>AGENTS.md</code></a> first for the gotchas that touch these models.</p>
+<p>AI-context reference. Models live in <code>api/models/</code> (one file per model group, registered in <code>api/models/__init__.py</code>). Always read <a href="../../AGENTS.md"><code>AGENTS.md</code></a> first for the gotchas that touch these models.</p>
 </blockquote>
 <hr />
 <h2 id="apimember-authusermodel"><code>api.Member</code> — AUTH<em>USER</em>MODEL<a class="headerlink" href="#apimember-authusermodel" title="Permanent link">&para;</a></h2>
@@ -1590,7 +1612,7 @@
 <p>Class method: <code>PermissionMatrix.has_permission(user, action, member=None, trip=None, require_trip_lead=False)</code> — the authoritative permission check. Always use this for authorisation logic.</p>
 <hr />
 <h2 id="trip"><code>Trip</code><a class="headerlink" href="#trip" title="Permanent link">&para;</a></h2>
-<p><code>lead</code> (FK → Member, <code>PROTECT</code>), <code>deputy_leads</code> (M2M → Member), <code>title</code>, <code>description</code>, <code>level</code> (FK → Level, <code>PROTECT</code>), <code>start_time</code>, <code>end_time</code>, <code>cut_off</code>, <code>meeting_point</code> (FK → <code>MeetingPoint</code>), <code>capacity</code>, <code>registered</code> (M2M via <code>TripRegistration</code>), <code>waitlist</code> (M2M via <code>TripWaitlist</code>), <code>approval_status</code> (P/A/R/C), <code>allow_waitlist</code>, <code>gallery_id</code> (UUID string, links to external gallery service).</p>
+<p><code>lead</code> (FK → Member, <code>PROTECT</code>), <code>deputy_leads</code> (M2M → Member), <code>title</code>, <code>description</code>, <code>level</code> (FK → Level, <code>PROTECT</code>), <code>start_time</code>, <code>end_time</code>, <code>cut_off</code>, <code>meeting_point</code> (FK → <code>MeetingPoint</code>), <code>capacity</code>, <code>registered</code> (M2M via <code>TripRegistration</code>), <code>waitlist</code> (M2M via <code>TripWaitlist</code>), <code>approval_status</code> (P/A/R/C), <code>approved_by</code> (FK → Member, <code>SET_NULL</code>), <code>decline_reason</code> (optional text set via <code>/decline</code>, blank by default), <code>allow_waitlist</code>, <code>gallery_id</code> (UUID string, links to external gallery service).</p>
 <hr />
 <h2 id="tripregistration-tripwaitlist"><code>TripRegistration</code> / <code>TripWaitlist</code><a class="headerlink" href="#tripregistration-tripwaitlist" title="Permanent link">&para;</a></h2>
 <p>Join tables with <code>member</code>, <code>trip</code>, <code>vehicle</code> (optional FK, <code>SET_NULL</code> on vehicle delete), <code>registration_date</code>, <code>checked_in</code> (<code>TripRegistration</code> only).</p>
@@ -1606,8 +1628,12 @@
 <p>Member's trip wish: <code>member</code>, <code>time_of_day</code> (MOR/MID/AFT/EVE/ANY), <code>area</code> (DXB/NOR/AUH/AAN/LIW), <code>level</code>, <code>date</code> (max 16 days ahead). Auto-deleted after 1 day by periodic task.</p>
 <hr />
 <h2 id="upgraderequest"><code>UpgradeRequest</code><a class="headerlink" href="#upgraderequest" title="Permanent link">&para;</a></h2>
-<p><code>applicant</code> (FK → Member, nullable — store username backup in <code>applicant_str</code>), <code>target_level</code>, <code>status</code> (N/I/A/D), <code>yes_voters</code>/<code>no_voters</code>/<code>defer_voters</code>/<code>nominated_voters</code> (all M2M → Member), <code>final_approver</code>, <code>verdict_date</code>, <code>verdict_reason</code>, <code>attachment</code>.</p>
+<p><code>applicant</code> (FK → Member, nullable — store username backup in <code>applicant_str</code>), <code>target_level</code>, <code>status</code> (N/I/A/D), <code>yes_voters</code>/<code>no_voters</code>/<code>defer_voters</code>/<code>nominated_voters</code> (all M2M → Member), <code>final_approver</code>, <code>verdict_date</code>, <code>verdict_reason</code>.</p>
 <p>Status flow: NEW → IN_PROGRESS → APPROVED/DECLINED. <code>verdict_date</code> auto-set in <code>save()</code>.</p>
+<hr />
+<h2 id="upgraderequestattachment"><code>UpgradeRequestAttachment</code><a class="headerlink" href="#upgraderequestattachment" title="Permanent link">&para;</a></h2>
+<p>Supporting-document uploads for an upgrade request. FK → <code>UpgradeRequest</code> (<code>related_name='attachments'</code>), <code>file</code> (UUID-randomised path under <code>upgraderequest/</code>), <code>original_filename</code>, <code>content_type</code>, <code>file_size</code> (bytes, post-strip), <code>created</code>.</p>
+<p>Files are validated by magic-byte detection (JPEG/PNG/WebP/PDF accepted; SVG and all other types rejected). Images are EXIF-stripped (Pillow re-encode) before storage. Configurable limits on <code>ConfigurableSettings</code>: <code>upgrade_attachment_max_file_size_mb</code> (default 25), <code>upgrade_attachment_max_total_size_mb</code> (default 50), <code>upgrade_attachment_max_files</code> (default 10). See <code>api/services/attachment_validation.py</code>.</p>
 <hr />
 <h2 id="upgraderequestcomment"><code>UpgradeRequestComment</code><a class="headerlink" href="#upgraderequestcomment" title="Permanent link">&para;</a></h2>
 <p>Comment thread on upgrade requests. Create/edit/delete actions are <code>PermissionMatrix</code>-gated separately from the parent request.</p>
@@ -1622,10 +1648,14 @@
 <p>Granular join: member earned a specific skill on a specific trip. <code>logbook_skill</code>, <code>member</code>, <code>trip</code>, <code>signed_by</code>, <code>entered_by</code>, <code>entered_at</code>. <strong>Unique on <code>(member, trip, logbook_skill)</code></strong> — preserves audit history (see gotchas).</p>
 <hr />
 <h2 id="logbookmigrationrequest"><code>LogbookMigrationRequest</code><a class="headerlink" href="#logbookmigrationrequest" title="Permanent link">&para;</a></h2>
-<p>Import logbook from old system. <code>member</code>, <code>target_level</code>, <code>status</code> (PENDING/APPROVED/RETURNED/REJECTED), <code>migration_type</code> (MEMBER<em>INITIATED/MANAGER</em>DIRECT), <code>uploaded_pdf</code>, <code>rejection_reason</code>, <code>return_comment</code>. Create-time validation rejects duplicate <code>skill_entries.trip</code> values with <code>migration_skill_entries_duplicate_trip</code>.</p>
+<p>Import logbook from old system. <code>member</code>, <code>target_level</code>, <code>status</code> (DRAFT/PENDING/APPROVED/RETURNED/REJECTED), <code>migration_type</code> (MEMBER<em>INITIATED/MANAGER</em>DIRECT), <code>rejection_reason</code>, <code>return_comment</code>. Create-time validation rejects duplicate <code>skill_entries.trip</code> values with <code>migration_skill_entries_duplicate_trip</code>.</p>
 <hr />
 <h2 id="logbookmigrationskillentry"><code>LogbookMigrationSkillEntry</code><a class="headerlink" href="#logbookmigrationskillentry" title="Permanent link">&para;</a></h2>
 <p>Per-skill entry attached to a migration request. Records requested migrated skill evidence before approval.</p>
+<hr />
+<h2 id="logbookmigrationattachment"><code>LogbookMigrationAttachment</code><a class="headerlink" href="#logbookmigrationattachment" title="Permanent link">&para;</a></h2>
+<p>Supporting-document uploads for a logbook migration request (scanned physical logbook). FK → <code>LogbookMigrationRequest</code> (<code>related_name='attachments'</code>), <code>file</code> (UUID-randomised path under <code>logbook_migrations/</code>), <code>original_filename</code>, <code>content_type</code>, <code>file_size</code> (bytes, post-strip), <code>created</code>.</p>
+<p>Files are validated by magic-byte detection (JPEG/PNG/WebP/PDF accepted; SVG and all other types rejected). Images are EXIF-stripped (Pillow re-encode) before storage. Configurable limits on <code>ConfigurableSettings</code>: <code>migration_attachment_max_file_size_mb</code> (default 25), <code>migration_attachment_max_total_size_mb</code> (default 50), <code>migration_attachment_max_files</code> (default 10). See <code>api/services/attachment_validation.py</code> (<code>validate_migration_attachment</code>). This replaces the old single <code>uploaded_pdf</code> field, which was removed via a data migration that backfilled one attachment row per existing non-null value.</p>
 <hr />
 <h2 id="clubnews"><code>ClubNews</code><a class="headerlink" href="#clubnews" title="Permanent link">&para;</a></h2>
 <p>Broadcast to members at specific levels. <code>title</code>, <code>content</code>, <code>levels</code> (M2M, empty=all), <code>status</code> (DRAFT→APPROVED→SENT/ERROR/DELETED), <code>image</code>. <strong>Editable at any status</strong> — <code>save()</code> sets <code>submit_date</code> only on the first transition into <code>APPROVED</code> (re-saving a published entry never rewrites it, and notifies exactly once on that first transition — see gotchas). Admin CRUD at <code>/api/admin/clubnews/</code> (<code>MANAGE_CLUB_NEWS</code>); the public <code>/api/clubnews/</code> stays read-only/SENT-only.</p>
@@ -1667,11 +1697,11 @@
 <h2 id="uistring"><code>UIString</code><a class="headerlink" href="#uistring" title="Permanent link">&para;</a></h2>
 <p>Admin-managed key/value strings used by clients for dynamic copy.</p>
 <hr />
-<h2 id="paypalconfiguration-website-app-singleton"><code>PayPalConfiguration</code> (website app, singleton)<a class="headerlink" href="#paypalconfiguration-website-app-singleton" title="Permanent link">&para;</a></h2>
-<p>Payment config: <code>sandbox_mode</code>, <code>is_active</code>, <code>payment_amount</code> / <code>payment_currency</code> (PayPal-side, limited currency list), <code>display_amount</code> / <code>display_currency</code> (shown to user, AED). <strong>PayPal does NOT support AED</strong> — the club charges in USD (~27 USD) but shows 100 AED. See gotchas.</p>
+<h2 id="paypalconfiguration-singleton"><code>PayPalConfiguration</code> (singleton)<a class="headerlink" href="#paypalconfiguration-singleton" title="Permanent link">&para;</a></h2>
+<p>Payment config: <code>sandbox_mode</code>, <code>is_active</code>, <code>payment_amount</code> / <code>payment_currency</code> (PayPal-side, limited currency list), <code>display_amount</code> / <code>display_currency</code> (shown to user, AED). <strong>PayPal does NOT support AED</strong> — the club charges in USD (~27 USD) but shows 100 AED. See gotchas. <code>db_table</code> is still <code>website_paypalconfiguration</code> (state-only move from the now-deleted <code>website</code> app, issue #299/#347 — no physical rename).</p>
 <hr />
-<h2 id="websitepayment-website-app"><code>WebsitePayment</code> (website app)<a class="headerlink" href="#websitepayment-website-app" title="Permanent link">&para;</a></h2>
-<p>Transaction record: <code>member</code>, <code>amount</code>, <code>currency</code>, <code>payment_method</code>, <code>paypal_order_id</code>, <code>paypal_transaction_id</code>, <code>payer_email</code>, <code>status</code> (pending/completed/failed/refunded). <strong>This one-time-order flow IS the membership purchase</strong> — on capture it grants lifetime membership (sets <code>paid_member=True</code>) via <code>grant_membership</code> (see <code>website/views.py</code> + <code>api/services/subscription_events.py</code>).</p>
+<h2 id="websitepayment"><code>WebsitePayment</code><a class="headerlink" href="#websitepayment" title="Permanent link">&para;</a></h2>
+<p>Transaction record: <code>member</code>, <code>amount</code>, <code>currency</code>, <code>charge_amount</code>, <code>charge_currency</code>, <code>payment_method</code>, <code>paypal_order_id</code>, <code>paypal_transaction_id</code>, <code>payer_email</code>, <code>status</code> (pending/completed/failed/refunded). <strong>This one-time-order flow IS the membership purchase</strong> — on capture it grants lifetime membership (sets <code>paid_member=True</code>) via <code>grant_membership</code> (see <code>api/views/views_payment.py</code> + <code>api/services/subscription_events.py</code>). <code>amount</code>/<code>currency</code> is the <em>display</em> value shown to the member (e.g. 100.00 AED); <code>charge_amount</code>/<code>charge_currency</code> (nullable — added #301) is a frozen snapshot of <code>PayPalConfiguration.payment_amount</code>/<code>payment_currency</code> taken at order-creation time, used to validate the PayPal capture against the price that was actually live when the order was placed, so a later edit to the live PayPal charge price can't strand an in-flight order's capture/webhook (null on rows created before this field existed, which fall back to the live config). <code>db_table</code> is still <code>website_websitepayment</code> (same state-only move, no physical rename).</p>
 <hr />
 <h2 id="subscriptionpaymentevent-api-append-only"><code>SubscriptionPaymentEvent</code> (api, append-only)<a class="headerlink" href="#subscriptionpaymentevent-api-append-only" title="Permanent link">&para;</a></h2>
 <p>Immutable audit trail for membership payment events — the record for audit, member history, and treasurer export. Fields: <code>member</code>, <code>event_type</code> (payment<em>completed / manual</em>grant / comp / refund), <code>source</code> (paypal / manual_admin / migration), <code>paypal_event_id</code> (unique idempotency key — the PayPal order/capture id), <code>amount</code>, <code>currency</code>, <code>payer_email</code>, <code>period_end_after_event</code> (unused in the lifetime model; retained for the audit-row schema), <code>created_by</code>, <code>note</code> (free-text reason for a manual grant/comp/revoke), <code>raw_payload</code>, <code>occurred_at</code>. Registered read-only in Django admin with a CSV export action.</p>

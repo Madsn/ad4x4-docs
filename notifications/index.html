@@ -1558,7 +1558,9 @@
 </ul>
 <h3 id="club-news">Club News<a class="headerlink" href="#club-news" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Club-Wide News</strong>: Sent to all members when a new club news item is published.</li>
+<li><strong>Club-Wide News</strong>: Sent to all members when a new club news item is published. The <code>content</code> field is
+  authored as Markdown; it is rendered to styled HTML for email and stripped down to plain text (no <code>**</code>, <code>#</code>,
+  <code>[]()</code>, etc.) for push and in-app notifications. See <code>api/services/markdown_util.py</code>.</li>
 </ul>
 <h3 id="feedback">Feedback<a class="headerlink" href="#feedback" title="Permanent link">&para;</a></h3>
 <ul>

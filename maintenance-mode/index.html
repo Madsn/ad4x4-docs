@@ -1142,13 +1142,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="How it works">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dev-bypass-no-app-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dev bypass (no app change)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#api-bypass-files" class="md-nav__link">
+  <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        API bypass files
+        Configuration
       
     </span>
   </a>
@@ -1156,10 +1173,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#telegram-management" class="md-nav__link">
+  <a href="#bypass-files" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Telegram management
+        Bypass files
       
     </span>
   </a>
@@ -1167,10 +1184,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#enabling-maintenance-mode" class="md-nav__link">
+  <a href="#telegram-management-old-vps-only-not-deployed-on-the-box" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Enabling maintenance mode
+        Telegram management (old VPS only — not deployed on the box)
       
     </span>
   </a>
@@ -1178,10 +1195,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#disabling-maintenance-mode" class="md-nav__link">
+  <a href="#provisioning-on-the-box-coolify" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Disabling maintenance mode
+        Provisioning on the box (Coolify)
       
     </span>
   </a>
@@ -1189,10 +1206,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-nginx-instead-of-a-django-middleware" class="md-nav__link">
+  <a href="#enabling-disabling-maintenance-mode" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why nginx instead of a Django middleware
+        Enabling / disabling maintenance mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#availability-trade-off-deliberate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Availability trade-off (deliberate)
       
     </span>
   </a>
@@ -1329,13 +1357,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="How it works">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dev-bypass-no-app-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dev bypass (no app change)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#api-bypass-files" class="md-nav__link">
+  <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        API bypass files
+        Configuration
       
     </span>
   </a>
@@ -1343,10 +1388,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#telegram-management" class="md-nav__link">
+  <a href="#bypass-files" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Telegram management
+        Bypass files
       
     </span>
   </a>
@@ -1354,10 +1399,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#enabling-maintenance-mode" class="md-nav__link">
+  <a href="#telegram-management-old-vps-only-not-deployed-on-the-box" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Enabling maintenance mode
+        Telegram management (old VPS only — not deployed on the box)
       
     </span>
   </a>
@@ -1365,10 +1410,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#disabling-maintenance-mode" class="md-nav__link">
+  <a href="#provisioning-on-the-box-coolify" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Disabling maintenance mode
+        Provisioning on the box (Coolify)
       
     </span>
   </a>
@@ -1376,10 +1421,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-nginx-instead-of-a-django-middleware" class="md-nav__link">
+  <a href="#enabling-disabling-maintenance-mode" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why nginx instead of a Django middleware
+        Enabling / disabling maintenance mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#availability-trade-off-deliberate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Availability trade-off (deliberate)
       
     </span>
   </a>
@@ -1437,110 +1493,68 @@
 
 
 <h1 id="maintenance-mode">Maintenance Mode<a class="headerlink" href="#maintenance-mode" title="Permanent link">&para;</a></h1>
-<p>AD4x4 supports a maintenance toggle that responds to public app/API requests with <code>503 Service Unavailable</code> and a short HTML page. The feature is implemented at the <strong>nginx layer</strong>, not in Django — so it keeps working even if the Django app or Huey workers are being restarted, migrated, or are otherwise unavailable. Django admin remains available during maintenance mode for operator access.</p>
+<p>AD4x4 supports a maintenance toggle that responds to public app/API requests with <code>503 Service Unavailable</code> and a short HTML page. Since the Unraid → OVH hosting migration retired nginx (Coolify-managed Traefik is now the reverse proxy / TLS terminator), the gate is implemented as a <strong>Django middleware</strong> — <code>api.maintenance.MaintenanceModeMiddleware</code> — rather than in the proxy. Django admin remains available during maintenance mode for operator access.</p>
+<blockquote>
+<p><strong>History:</strong> This used to be an nginx-layer feature (<code>infra/nginx/secure/default.conf.template</code>). Traefik has no drop-in equivalent of nginx's "reload on file touch" gate, and under Coolify we don't hand-edit Traefik's config. Per the decision on <a href="https://github.com/Madsn/ad4x4-backend/issues/311">#311</a> (and consistent with <a href="https://github.com/Madsn/ad4x4-backend/issues/310">#310</a> moving real-IP handling into Django), the gate now lives in Django. The nginx files are kept for now as the rollback target until nginx is fully retired.</p>
+</blockquote>
 <h2 id="how-it-works">How it works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h2>
-<p>The nginx container inside the Docker Compose stack checks for a marker file on every incoming request:</p>
+<p>The middleware runs early in the stack (right after <code>SecurityMiddleware</code>, before session/DB middleware) and checks for a <strong>marker file</strong> on every request:</p>
 <ul>
-<li>If <code>/etc/nginx/maintenance/maintenance_on</code> exists → nginx returns <code>503 Service Unavailable</code> with a <code>Retry-After: 3600</code> header and a small HTML body for public app/API paths</li>
-<li><code>/admin</code>, <code>/admin/...</code>, and <code>/static/admin/...</code> bypass maintenance mode so operators can use Django admin while the public site is unavailable</li>
-<li>API clients can bypass maintenance when the real client IP matches the external whitelist include file or the request sends the configured secret header</li>
-<li>If the file is absent → traffic flows through to Django and the static locations as normal</li>
+<li>If the marker file at <code>MAINTENANCE_MARKER_FILE</code> exists → the middleware returns <code>503</code> with a <code>Retry-After: 3600</code> header and a small HTML body for public app/API paths.</li>
+<li><code>/admin</code>, <code>/admin/...</code>, and <code>/static/admin/...</code> bypass maintenance mode so operators can use Django admin while the public site is unavailable.</li>
+<li>Requests bypass maintenance when the real client IP matches the allowlist file <strong>or</strong> the request sends the configured secret header (<code>X-Maintenance-Bypass</code>).</li>
+<li>If the marker is absent → traffic flows through as normal.</li>
 </ul>
-<p>The marker and bypass include directory (<code>nginx/maintenance/</code>) is mounted as a shared volume between the host and the nginx container in <code>infra/docker-compose.yml</code>, so creating or removing the marker from the host is immediately visible to nginx. The nginx <code>if (-f ...)</code> check is re-evaluated per request, so a config reload isn't strictly required for the state change to take effect — but the maintenance toggle scripts run <code>nginx -s reload</code> anyway as a belt-and-braces measure so any in-flight keep-alive connections see a clean state. Bypass whitelist/secret changes are validated with <code>NGINX_TEST_COMMAND</code> and reloaded only after validation succeeds.</p>
-<p>The nginx block that implements the check lives in <code>infra/nginx/secure/default.conf.template</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">map</span><span class="w"> </span><span class="nv">$uri</span><span class="w"> </span><span class="nv">$maintenance_uri_bypass</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kn">default</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">~^/admin(?:/|$)</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">~^/static/admin/</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">geo</span><span class="w"> </span><span class="nv">$maintenance_ip_bypass</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kn">default</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">include</span><span class="w"> </span><span class="nv">${MAINTENANCE_BYPASS_IP_FILE}</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">map</span><span class="w"> </span><span class="nv">${MAINTENANCE_BYPASS_HEADER_VARIABLE}</span><span class="w"> </span><span class="nv">$maintenance_header_bypass</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kn">default</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">include</span><span class="w"> </span><span class="nv">${MAINTENANCE_BYPASS_SECRET_FILE}</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">map</span><span class="w"> </span><span class="s">&quot;</span><span class="nv">$maintenance_ip_bypass:$maintenance_header_bypass&quot;</span><span class="w"> </span><span class="nv">$maintenance_client_bypass</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kn">default</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">&quot;1:0&quot;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">&quot;0:1&quot;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">&quot;1:1&quot;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">map</span><span class="w"> </span><span class="s">&quot;</span><span class="nv">$maintenance_uri_bypass:$maintenance_client_bypass&quot;</span><span class="w"> </span><span class="nv">$maintenance_bypass</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kn">default</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">&quot;1:0&quot;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">&quot;0:1&quot;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">&quot;1:1&quot;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">set</span><span class="w"> </span><span class="nv">$maintenance_mode</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="k">if</span><span class="w"> </span><span class="s">(-f</span><span class="w"> </span><span class="s">/etc/nginx/maintenance/maintenance_on)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kn">set</span><span class="w"> </span><span class="nv">$maintenance_mode</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">if</span><span class="w"> </span><span class="s">(</span><span class="nv">$maintenance_bypass</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="s">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kn">set</span><span class="w"> </span><span class="nv">$maintenance_mode</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">if</span><span class="w"> </span><span class="s">(</span><span class="nv">$maintenance_mode</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="s">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kn">return</span><span class="w"> </span><span class="mi">503</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">error_page</span><span class="w"> </span><span class="mi">503</span><span class="w"> </span><span class="s">@maintenance</span><span class="p">;</span>
-<span class="k">location</span><span class="w"> </span><span class="s">@maintenance</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kn">default_type</span><span class="w"> </span><span class="s">text/html</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">add_header</span><span class="w"> </span><span class="s">Retry-After</span><span class="w"> </span><span class="mi">3600</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">return</span><span class="w"> </span><span class="mi">503</span><span class="w"> </span><span class="s">&#39;&lt;html&gt;&lt;body&gt;&lt;h1&gt;Maintenance&lt;/h1&gt;&lt;p&gt;We&amp;</span><span class="c1">#39;ll be back soon.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&#39;;</span>
-<span class="err">}</span>
+<p>The marker check is re-evaluated per request, so creating or removing the marker on the mounted volume flips the state immediately — <strong>no redeploy and no proxy reload required.</strong> If <code>MAINTENANCE_MARKER_FILE</code> is unset the middleware disables itself entirely (<code>MiddlewareNotUsed</code>), so local/dev is unaffected.</p>
+<p>The 503 body is byte-identical to the old nginx one so the Flutter app is untouched (its <code>MaintenanceOverlay</code> extracts the first <code>&lt;p&gt;</code>):</p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;&lt;</span><span class="nt">body</span><span class="p">&gt;&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Maintenance<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;&lt;</span><span class="nt">p</span><span class="p">&gt;</span>We<span class="ni">&amp;#39;</span>ll be back soon.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;&lt;/</span><span class="nt">body</span><span class="p">&gt;&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </code></pre></div>
 
-<p>Because the <code>if</code> blocks are at the <code>server {}</code> level and run before <code>location</code> routing, public API endpoints, uploads, Swagger UI, and frontend assets are blocked in one sweep. The explicit <code>maintenance_uri_bypass</code> map keeps Django admin and its static files available. The client bypass is separate and allows either <code>maintenance_ip_bypass=1</code> or <code>maintenance_header_bypass=1</code>.</p>
-<p>The nginx proxy locations set <code>X-Maintenance-Bypass-Granted</code> from nginx's own <code>$maintenance_bypass</code> value before proxying to Django. Nginx overwrites any client-supplied value; Django must treat it only as optional audit/logging context, never as authentication.</p>
-<h2 id="api-bypass-files">API bypass files<a class="headerlink" href="#api-bypass-files" title="Permanent link">&para;</a></h2>
-<p>The whitelist and secret are operational files, not Git-tracked source. The tracked examples live at:</p>
-<div class="codehilite"><pre><span></span><code>infra/nginx/maintenance/bypass_ips.conf.example
-infra/nginx/maintenance/bypass_secret.conf.example
+<h3 id="dev-bypass-no-app-change">Dev bypass (no app change)<a class="headerlink" href="#dev-bypass-no-app-change" title="Permanent link">&para;</a></h3>
+<p>The bypass mechanism the app already speaks (<code>X-Maintenance-Bypass: &lt;secret&gt;</code>, added in #116) is preserved. The <code>ApiClient</code> interceptor injects this header on every request (including token refresh), so devs keep access during a maintenance window with <strong>no app change</strong> — the middleware just needs to (a) still return <code>503</code> + <code>Retry-After</code> + the same HTML, and (b) check that same header. Both hold.</p>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<p>Set these in the app's environment (<code>infra/.env</code> / Coolify):</p>
+<div class="codehilite"><pre><span></span><code># Presence of this file toggles maintenance mode. Point it at a mounted volume
+# so it survives container restarts and can be toggled without a redeploy.
+MAINTENANCE_MARKER_FILE=/data/maintenance/maintenance_on
+
+# Optional bypass files (read live on each request, so the monitor bot can
+# rotate them without a redeploy). Omit to disable that bypass mechanism.
+MAINTENANCE_BYPASS_IP_FILE=/data/maintenance/bypass_ips.conf
+MAINTENANCE_BYPASS_SECRET_FILE=/data/maintenance/bypass_secret.conf
+
+# Optional overrides (defaults shown).
+MAINTENANCE_BYPASS_HEADER=X-Maintenance-Bypass
+MAINTENANCE_RETRY_AFTER=3600
 </code></pre></div>
 
-<p>The production files are ignored by Git:</p>
-<div class="codehilite"><pre><span></span><code>infra/nginx/maintenance/bypass_ips.conf
-infra/nginx/maintenance/bypass_secret.conf
+<p>If <code>MAINTENANCE_MARKER_FILE</code> is empty/unset, the middleware is inert.</p>
+<h2 id="bypass-files">Bypass files<a class="headerlink" href="#bypass-files" title="Permanent link">&para;</a></h2>
+<p>The allowlist and secret are operational files, not Git-tracked source. Tracked examples live at <code>infra/nginx/maintenance/bypass_ips.conf.example</code> and <code>bypass_secret.conf.example</code>. The real files must not be committed.</p>
+<p><strong>IP allowlist</strong> — one IP or CIDR per line; <code>#</code> comments and blank lines are ignored:</p>
+<div class="codehilite"><pre><span></span><code># comments allowed
+203.0.113.10/32
+198.51.100.0/24
+2001:db8::1/128
 </code></pre></div>
 
-<p>The nginx container sees them through the <code>/etc/nginx/maintenance</code> bind mount. The host monitor bot writes the host paths, so <code>infra/.env</code> and <code>/opt/ad4x4-monitor-bot/.env</code> intentionally use different path values for the same setting:</p>
-<div class="codehilite"><pre><span></span><code># nginx container env
-MAINTENANCE_BYPASS_IP_FILE=/etc/nginx/maintenance/bypass_ips.conf
-MAINTENANCE_BYPASS_SECRET_FILE=/etc/nginx/maintenance/bypass_secret.conf
-MAINTENANCE_BYPASS_HEADER_VARIABLE=&#39;$http_x_maintenance_bypass&#39;
-
-# monitor bot host env
-MAINTENANCE_BYPASS_IP_FILE=/home/admin/ad4x4/infra/nginx/maintenance/bypass_ips.conf
-MAINTENANCE_BYPASS_SECRET_FILE=/home/admin/ad4x4/infra/nginx/maintenance/bypass_secret.conf
+<p>Bare IPv4/IPv6 addresses and CIDRs are both accepted. The client IP is resolved preferring Cloudflare's <code>Cf-Connecting-Ip</code> (matching #310), then leftmost <code>X-Forwarded-For</code>, then <code>REMOTE_ADDR</code>.</p>
+<blockquote>
+<p><strong>Trust assumption:</strong> the IP allowlist trusts <code>Cf-Connecting-Ip</code> / <code>X-Forwarded-For</code> directly (the #310 decision), so it assumes Traefik/Cloudflare is the <em>only</em> path to the origin. Anyone able to reach the origin directly could spoof an allowlisted IP to bypass the maintenance gate — this only unlocks a temporary maintenance page, no data access, but keep the origin firewalled to the proxy.</p>
+</blockquote>
+<p><strong>Secret</strong> — one secret per line (the whole line is the literal secret):</p>
+<div class="codehilite"><pre><span></span><code>super-secret-maintenance-token-at-least-32-chars
 </code></pre></div>
 
-<p>Whitelist file format:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># comments and blanks are allowed</span>
-<span class="k">203.0.113.10/32</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="k">198.51.100.0/24</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="k">2001:db8::1/128</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-</code></pre></div>
-
-<p>Single IPv4 addresses are normalized to <code>/32</code>, and single IPv6 addresses to <code>/128</code>. Duplicate normalized CIDRs are not added.</p>
-<p>Secret file format when enabled:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">~^example\-maintenance\-bypass\-secret\-32\-plus$</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-</code></pre></div>
-
-<p>The enabled entry is a case-sensitive anchored nginx <code>map</code> regex. This avoids nginx literal map key case folding, so only the exact secret value matches.</p>
-<p>Secret file format when disabled:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Maintenance bypass header secret disabled.</span>
-<span class="c1"># No header value is accepted.</span>
-</code></pre></div>
-
-<p>The disabled state must be comments or blanks only. Do not write <code>"" 1;</code>; a blank header must never match.</p>
-<h2 id="telegram-management">Telegram management<a class="headerlink" href="#telegram-management" title="Permanent link">&para;</a></h2>
-<p>The host monitor bot manages the bypass files with these commands:</p>
+<p>An empty/comment-only file means no secret is accepted (bypass-by-header disabled). Never write a blank secret.</p>
+<blockquote>
+<p><strong>Legacy compatibility:</strong> the middleware also accepts the <strong>old nginx file formats</strong> the Telegram monitor bot currently writes — <code>&lt;CIDR&gt; 1;</code> allowlist entries and <code>~^&lt;re.escape(secret)&gt;$ 1;</code> secret entries (matched as an anchored regex, faithfully reproducing nginx). So the existing bot output keeps working during the transition. Simplifying the bot to the plain format above (and dropping its <code>nginx -s reload</code> step) is a follow-up.</p>
+</blockquote>
+<h2 id="telegram-management-old-vps-only-not-deployed-on-the-box">Telegram management (old VPS only — not deployed on the box)<a class="headerlink" href="#telegram-management-old-vps-only-not-deployed-on-the-box" title="Permanent link">&para;</a></h2>
+<p><code>infra/monitor-bot</code> still runs on the old VPS as a rollback target, but was deliberately <strong>not</strong>
+carried over to the box (it assumes the old VPS's git-checkout + docker-compose model — see
+"Provisioning on the box" below). On the box, manage the bypass files by hand over SSH instead.
+Where the bot is still running, it manages the bypass files:</p>
 <div class="codehilite"><pre><span></span><code>/maintenance_ip_add &lt;ip-or-cidr&gt;
 /maintenance_ip_list
 /maintenance_ip_remove &lt;ip-or-cidr&gt;
@@ -1549,59 +1563,79 @@ MAINTENANCE_BYPASS_SECRET_FILE=/home/admin/ad4x4/infra/nginx/maintenance/bypass_
 /maintenance_secret_clear confirm
 </code></pre></div>
 
-<p>Users listed in <code>TELEGRAM_ADMIN_USER_IDS</code> or <code>TELEGRAM_PRIVILEGED_USER_IDS</code> can run these maintenance-bypass commands. Use <code>TELEGRAM_ADMIN_USER_IDS</code> to grant bypass management without granting deploy/restart privileges. Unauthorized attempts reply exactly <code>Unauthorized.</code> and are logged. The commands write files atomically, run <code>NGINX_TEST_COMMAND</code>, reload with <code>NGINX_RELOAD_COMMAND</code> only if validation succeeds, and roll back file changes when validation fails. Secret replies and logs do not include the full secret.</p>
-<h2 id="enabling-maintenance-mode">Enabling maintenance mode<a class="headerlink" href="#enabling-maintenance-mode" title="Permanent link">&para;</a></h2>
-<p>From the production host, with shell access as <code>admin</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/home/admin/ad4x4/infra
-./enable_maintenance_mode.sh
+<p>Users in <code>TELEGRAM_ADMIN_USER_IDS</code> / <code>TELEGRAM_PRIVILEGED_USER_IDS</code> may run these. The bot still writes the same files (now read by Django); because Django re-reads them per request, the bot's <code>NGINX_TEST_COMMAND</code> / <code>NGINX_RELOAD_COMMAND</code> steps are <strong>no longer needed</strong> and should be dropped when the bot is next touched (follow-up).</p>
+<h2 id="provisioning-on-the-box-coolify">Provisioning on the box (Coolify)<a class="headerlink" href="#provisioning-on-the-box-coolify" title="Permanent link">&para;</a></h2>
+<p>Django on the box is a Coolify <strong>Docker Image</strong> resource deployed straight from a pinned
+<code>ghcr.io</code> digest — there is no docker-compose stack driven by this repo's <code>infra/</code> directory, and
+Coolify regenerates the app's real env file (<code>/data/coolify/applications/&lt;uuid&gt;/.env</code>) itself, so
+<code>infra/.env</code> in a checkout is never read by anything running on the box. The marker/bypass paths
+only work once they're backed by a <strong>Coolify Storage bind mount</strong>, the same pattern already used
+for the <code>/app/uploads</code> media volume:</p>
+<ol>
+<li>On the host: <code>mkdir -p /opt/ad4x4/django-maintenance &amp;&amp; chown 1000:1000 /opt/ad4x4/django-maintenance &amp;&amp; chmod 750 /opt/ad4x4/django-maintenance</code>
+   (uid 1000 because Django's container runs as non-root <code>appuser</code>, same as the media bind mount).</li>
+<li>Coolify UI → the Django app → <strong>Storages</strong> → add a bind mount:
+   <code>/opt/ad4x4/django-maintenance</code> (host) → <code>/data/maintenance</code> (container).</li>
+<li>Coolify UI → the Django app → <strong>Environment Variables</strong>:
+   <code>MAINTENANCE_MARKER_FILE=/data/maintenance/maintenance_on
+   MAINTENANCE_BYPASS_IP_FILE=/data/maintenance/bypass_ips.conf
+   MAINTENANCE_BYPASS_SECRET_FILE=/data/maintenance/bypass_secret.conf</code>
+   Huey doesn't serve HTTP, so it doesn't need these vars — Django only.</li>
+<li>Redeploy Django (rollback = redeploy the previous digest, Coolify keeps deployment history).
+   Confirm the boot log is clean and <code>docker exec &lt;container&gt; ls -la /data/maintenance</code> shows the
+   writable directory.</li>
+<li>Deploy <code>infra/enable_maintenance_mode.sh</code> / <code>disable_maintenance_mode.sh</code> to
+   <code>/opt/ad4x4/scripts/</code> on the box (750, root) — same location convention as
+   <code>scripts/box/redeploy-backend.sh</code> in the ops repo.</li>
+</ol>
+<p>This is an <strong>AMBER</strong> change (mutating but reversible) per the ops repo's
+<code>docs/RULES_OF_ENGAGEMENT.md</code> — write a working note + verify live before/after.</p>
+<h2 id="enabling-disabling-maintenance-mode">Enabling / disabling maintenance mode<a class="headerlink" href="#enabling-disabling-maintenance-mode" title="Permanent link">&para;</a></h2>
+<p>The marker is a file on the Coolify bind mount — create it to enable, remove it to disable.
+Because the host path and the container path are the same file once the bind mount above is in
+place, the scripts never need to reach into the container:</p>
+<div class="codehilite"><pre><span></span><code><span class="nv">MAINTENANCE_MARKER_FILE</span><span class="o">=</span>/opt/ad4x4/django-maintenance/maintenance_on<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>/opt/ad4x4/scripts/enable_maintenance_mode.sh
 </code></pre></div>
 
-<p>The script creates the marker file and reloads nginx:</p>
-<div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-touch<span class="w"> </span>./nginx/maintenance/maintenance_on
-docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>nginx<span class="w"> </span>nginx<span class="w"> </span>-s<span class="w"> </span>reload
-</code></pre></div>
-
-<p>The site starts returning <code>503</code> immediately. Verify from another machine:</p>
+<p>Verify from another machine:</p>
 <div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-I<span class="w"> </span>https://ap.ad4x4.com/
 <span class="c1"># HTTP/2 503</span>
 <span class="c1"># retry-after: 3600</span>
 </code></pre></div>
 
-<h2 id="disabling-maintenance-mode">Disabling maintenance mode<a class="headerlink" href="#disabling-maintenance-mode" title="Permanent link">&para;</a></h2>
-<p>From the production host:</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/home/admin/ad4x4/infra
-./disable_maintenance_mode.sh
-</code></pre></div>
-
-<p>The script removes the marker file and reloads nginx:</p>
-<div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-rm<span class="w"> </span>./nginx/maintenance/maintenance_on
-docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>nginx<span class="w"> </span>nginx<span class="w"> </span>-s<span class="w"> </span>reload
-</code></pre></div>
-
-<p>Normal traffic resumes immediately.</p>
-<h2 id="why-nginx-instead-of-a-django-middleware">Why nginx instead of a Django middleware<a class="headerlink" href="#why-nginx-instead-of-a-django-middleware" title="Permanent link">&para;</a></h2>
-<p>Putting the maintenance gate at nginx rather than a Django middleware has two operational advantages:</p>
+<p>Disable with <code>disable_maintenance_mode.sh</code> (same env). Normal traffic resumes on the next request.
+You can also just <code>touch</code> / <code>rm</code> the marker directly (Coolify terminal, or straight on the host
+since it's a bind mount).</p>
+<p><strong>No Telegram monitor bot runs on the box</strong> — <code>infra/monitor-bot</code> was evaluated and dropped for
+this migration (it assumes the old VPS's git-checkout + docker-compose model; see
+<code>docs/working-notes/claude-21-backend-migration.md</code> in the ops repo). Until/unless a box-native
+bot exists, toggling maintenance mode and editing the bypass files is a manual SSH operation, not
+a Telegram command. (On the old VPS, where the bot still runs, its <code>/maintenanceon</code>/<code>/maintenanceoff</code>
+commands invoke these same scripts via <code>sudo -n -u root</code> against the docker-compose stack — not
+applicable on the box.)</p>
+<h2 id="availability-trade-off-deliberate">Availability trade-off (deliberate)<a class="headerlink" href="#availability-trade-off-deliberate" title="Permanent link">&para;</a></h2>
+<p>nginx served the branded 503 even if Django/Huey/Postgres were fully down, because it <em>was</em> the proxy. A Django-side gate can't paint the branded page if Django itself is completely stopped. This was an accepted trade-off on #311:</p>
 <ul>
-<li><strong>Nothing in Django needs to be running.</strong> The 503 is served even if the Django container is stopped, the database is mid-migration, Huey is stuck, or a release has just unhealthy-checked out. Those are the exact scenarios where maintenance mode matters most.</li>
-<li><strong>No request ever reaches Django</strong> during maintenance, so there is no database load and no risk of side effects from partially processed requests.</li>
+<li>A <strong>file</strong> marker still works with the <strong>database down or mid-migration</strong> — the middleware only reads a file, touches no DB. Planned maintenance / deploys keep Django up, which is the real use case.</li>
+<li>If the app tier is <strong>fully stopped</strong>, Traefik/Coolify still returns a plain (unbranded) <code>503</code>, so clients still see a 503 and back off — they just don't get the branded HTML.</li>
+<li>The <strong>dev bypass</strong> never needed the "survives-down" property: it only ever grants access when Django is up anyway.</li>
 </ul>
-<p>The trade-off is that there is no way for API clients to negotiate a structured maintenance window — the body is a static HTML page, not a JSON envelope with <code>Retry-After</code> metadata or a message key. Clients should match on <code>503 + Retry-After</code> header to detect the state.</p>
+<p>If a branded 503 during a total outage is ever required, the right home is the Cloudflare edge (a WAF custom-response or a Worker + KV flag), not the app tier — tracked separately if wanted.</p>
 <h2 id="client-behaviour">Client behaviour<a class="headerlink" href="#client-behaviour" title="Permanent link">&para;</a></h2>
-<p>The mobile app and web clients should treat <code>503</code> responses during any request as a transient maintenance state and:</p>
+<p>Clients should treat <code>503</code> on any request as a transient maintenance state and:</p>
 <ol>
 <li>Show a "We'll be back soon" screen with a manual retry affordance.</li>
-<li>Back off for at least the duration in the <code>Retry-After</code> header (currently <code>3600</code> seconds).</li>
-<li><strong>Do not</strong> send these to Sentry / error reporting — they are expected operational states, not bugs, and will drown real errors.</li>
+<li>Back off for at least the <code>Retry-After</code> duration (currently <code>3600</code> seconds).</li>
+<li><strong>Do not</strong> send these to Sentry / error reporting — they are expected operational states, not bugs.</li>
 </ol>
 <h2 id="gotchas">Gotchas<a class="headerlink" href="#gotchas" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>The marker and bypass files are on the production host, not in the Django database.</strong> There is no API endpoint to enable/disable maintenance or manage bypass access. These are ops-level actions performed with shell access or the restricted host monitor bot commands.</li>
-<li><strong>Static files under <code>/static/</code> are blocked except <code>/static/admin/</code>.</strong> Admin static files stay available so Django admin remains usable. Frontend assets stay blocked because we do not want the public app UI to render half-loaded while the backend is unavailable.</li>
-<li><strong>There is no Django-level maintenance toggle.</strong> <code>ConfigurableSettings</code> does not have a <code>maintenance_mode_enabled</code> field, and there is no custom Django middleware for this purpose. Do not try to add one — the nginx-based flow is the authoritative mechanism, and a duplicate toggle would split-brain the state.</li>
-<li><strong><code>nginx -s reload</code> is a belt-and-braces step.</strong> The <code>if (-f ...)</code> check is re-evaluated on every request even without reloading, but the reload guarantees all worker processes agree on the new state for in-flight keep-alive connections.</li>
-<li><strong>The Huey worker container is unaffected by maintenance mode</strong> — scheduled tasks and background notifications continue to run. If you need to stop Huey as well, that's a separate <code>docker compose stop huey</code> action.</li>
+<li><strong>The marker and bypass files live on the mounted volume, not the Django database.</strong> There is no API endpoint to toggle maintenance or manage bypass access — these are ops-level actions (shell / <code>docker exec</code> / Coolify terminal / the restricted monitor-bot commands).</li>
+<li><strong>Django is now the single source of truth for maintenance state.</strong> Earlier revisions of this doc warned <em>against</em> a Django-side toggle — that warning existed to avoid split-brain with the nginx gate. With nginx retired, Django is the authority and that objection no longer applies. There is still <strong>no</strong> <code>ConfigurableSettings.maintenance_mode_enabled</code> DB field, and one should not be added: the marker file is intentionally out-of-band so maintenance works even when the DB is unavailable.</li>
+<li><strong>Static files under <code>/static/</code> are gated except <code>/static/admin/</code>,</strong> so admin stays usable while the public app UI is held back.</li>
+<li><strong>The middleware self-disables when <code>MAINTENANCE_MARKER_FILE</code> is unset</strong> — expected in local/dev and CI.</li>
+<li><strong>The Huey worker is unaffected by maintenance mode</strong> — background tasks keep running. Stop Huey separately if needed.</li>
 </ul>
 <h2 id="related-documentation">Related documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
 <ul>

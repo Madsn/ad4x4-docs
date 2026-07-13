@@ -1984,7 +1984,7 @@
 </tr>
 <tr>
 <td><strong>Size limit</strong></td>
-<td>No size validation is performed in Django. The effective cap is <strong>20 MB</strong>, imposed by nginx's <code>client_max_body_size 20M</code> (<code>infra/nginx/secure/default.conf.template:66</code>). Uploads larger than that will be rejected by nginx with a <code>413 Payload Too Large</code> <strong>before</strong> the request reaches Django. Resize or recompress client-side for large screenshots.</td>
+<td><strong>20 MB per file</strong>, enforced in Django (<code>validate_feedback_image_size</code> in <code>api/services/attachment_validation.py</code>, called from <code>FeedbackSerializer.validate_image</code>). There is no nginx or Traefik body-size limit in front of the app, so this is the sole guard. Oversized uploads get a normal <code>400 Bad Request</code> from the create endpoint, with the error keyed under <code>image</code> in the standard <code>{success: false, message: {...}}</code> envelope, e.g. <code>{"image": ["File size 20971521 exceeds the maximum allowed size of 20 MB."]}</code>. Resize or recompress client-side for large screenshots.</td>
 </tr>
 </tbody>
 </table>

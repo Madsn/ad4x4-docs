@@ -753,6 +753,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#csv-exports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CSV Exports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#logbook-skill-references-viewset" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1494,6 +1505,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#csv-exports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CSV Exports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#logbook-skill-references-viewset" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1723,7 +1745,7 @@
 <h3 id="logbook-entries-viewset-crud">Logbook Entries ViewSet (CRUD)<a class="headerlink" href="#logbook-entries-viewset-crud" title="Permanent link">&para;</a></h3>
 <p>The following router-registered endpoints provide full CRUD access to logbook entries:</p>
 <ul>
-<li><strong>GET</strong> <code>/api/logbookentries/</code> - List all logbook entries, ordered by ID.</li>
+<li><strong>GET</strong> <code>/api/logbookentries/</code> - List all logbook entries, ordered by ID. Requires <code>CREATE_LOGBOOK_ENTRIES</code> permission (same permission as create); returns 403 without it. Supports filtering by <code>member</code>, <code>trip</code>, <code>signed_by</code>, and <code>created_at</code> (date range via <code>created_at_after</code>/<code>created_at_before</code>), plus <code>ordering</code> on <code>created_at</code>/<code>id</code>.</li>
 <li><strong>GET</strong> <code>/api/logbookentries/{id}/</code> - Retrieve a single entry.</li>
 <li><strong>POST</strong> <code>/api/logbookentries/</code> - Create a logbook entry (alternative to <code>POST /api/trips/{id}/logbook-entries</code>). Requires <code>CREATE_LOGBOOK_ENTRIES</code> permission. Body includes <code>trip</code>, <code>member</code>, <code>comment</code>, and <code>skills_verified</code> (array of skill IDs). If the same <code>(member, trip)</code> already exists, the API reuses that parent row and updates the comment instead of creating a duplicate.</li>
 <li><strong>PUT/PATCH</strong> <code>/api/logbookentries/{id}/</code> - Update an entry. Same permission checks as create. If the update would collide with another <code>(member, trip)</code> row, the API rejects it instead of bubbling a database error.</li>
@@ -1798,6 +1820,41 @@
 </code></pre></div>
 
 <p>Rows are ordered by <code>totalEntries</code> descending, then marshal id ascending for tie-breaks. If the <code>marshal</code> filter is supplied, the breakdown is scoped to that marshal and returns a single row for the matching signer.</p>
+<h3 id="csv-exports">CSV Exports<a class="headerlink" href="#csv-exports" title="Permanent link">&para;</a></h3>
+<p>Three streaming CSV endpoints, all gated by the <code>EXPORT_LOGBOOK_DATA</code> permission (distinct from <code>CREATE_LOGBOOK_ENTRIES</code> — grantable independently of the ability to sign entries). Excluded from every export: email, phone, DOB, ICE, address.</p>
+<ul>
+<li>
+<p><strong>GET</strong> <code>/api/logbookentries/export</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<ul>
+<li>Streams all logbook entries as CSV, respecting the same <code>member</code>/<code>trip</code>/<code>signed_by</code>/<code>created_at</code> filterset and <code>ordering</code> as <code>GET /api/logbookentries/</code>.</li>
+<li>Columns: <code>entry_id</code>, <code>member_username</code>, <code>member_full_name</code>, <code>member_level</code>, <code>trip_id</code>, <code>trip_title</code>, <code>trip_date</code>, <code>signed_by_username</code>, <code>signed_by_full_name</code>, <code>skill_names</code> (<code>;</code>-joined), <code>comment</code>, <code>created_at</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>GET</strong> <code>/api/members/{id}/logbookskills/export</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<ul>
+<li>Streams a single member's logbook skill sign-offs (<code>LogbookSkillReference</code> rows) as CSV.</li>
+<li>Columns: <code>record_id</code>, <code>member_username</code>, <code>member_full_name</code>, <code>member_level</code>, <code>trip_id</code>, <code>trip_title</code>, <code>trip_date</code>, <code>signed_by_username</code>, <code>signed_by_full_name</code>, <code>skill_name</code>, <code>comment</code> (from the associated logbook entry), <code>entered_at</code>.</li>
+<li>Unlike the JSON read endpoint (<code>GET /api/members/{id}/logbookskills</code>), there is no self-access exception — exporting requires <code>EXPORT_LOGBOOK_DATA</code> even for your own records.</li>
+</ul>
+</li>
+<li>
+<p><strong>GET</strong> <code>/api/marshal-activity/export</code></p>
+<blockquote>
+<p><strong>Note:</strong> This endpoint does NOT use a trailing slash.</p>
+</blockquote>
+<ul>
+<li>Streams the per-marshal aggregate rollup (the same computation behind <code>marshalBreakdown</code> above) as CSV, one row per marshal. Accepts the same <code>since</code>/<code>until</code>/<code>level</code>/<code>marshal</code> filters as the aggregate endpoint.</li>
+<li>Columns: <code>marshal_id</code>, <code>marshal_username</code>, <code>marshal_full_name</code>, <code>marshal_level</code>, <code>total_entries</code>, <code>unique_members</code>, <code>total_skills</code>, <code>avg_skills_per_entry</code>, <code>recent_entries_30d</code>, <code>last_activity</code>.</li>
+</ul>
+</li>
+</ul>
 <p><strong><code>monthlyGrowth[]</code> row shape</strong></p>
 <p>Each row is:</p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
